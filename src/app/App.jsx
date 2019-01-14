@@ -55,12 +55,14 @@ class App extends React.Component {
         axios.defaults.baseURL = Urls().api();
         axios.defaults.timeout = 10000;
         const RegistrationPage = window.location.href.includes('registration');
+        const ArtistRegistrationPage = window.location.href.includes(Urls().ArtistRegistration());
+        const GalleryRegistrationPage = window.location.href.includes(Urls().GalleryRegistration());
 
         axios
             .interceptors
             .request
             .use(function (config) {
-                const token = RegistrationPage ? SecurityManager().getGalleryAuthToken() : SecurityManager().getAuthToken()
+                const token = RegistrationPage ? SecurityManager().getGalleryRegAuthToken() : SecurityManager().getAuthToken()
 
                 if (token && token !== null && token !== 'null') {
                     config.headers.Authorization = `Bearer ${token}`;
@@ -86,27 +88,43 @@ class App extends React.Component {
             }
             if (status === 401) {
                 if (RegistrationPage) {
-                    if (!isRefreshing) {
-                        isRefreshing = true;
-                        SecurityManager().refreshGalleryToken().then(respaonse => {
-                            const { data } = respaonse;
-                            isRefreshing = false;
-                            onRrefreshed(data.access_token);
-                            SecurityManager().setGalleryAccessToken(data.access_token);
-                            SecurityManager().setGalleryRefreshToken(data.refresh_token);
-                            subscribers = [];
-                        })
+
+                    if (GalleryRegistrationPage) {
+                        if (!isRefreshing) {
+                            isRefreshing = true;
+                            SecurityManager().refreshGalleryRegToken().then(respaonse => {
+                                const { data } = respaonse;
+                                isRefreshing = false;
+                                onRrefreshed(data.access_token);
+                                SecurityManager().setGalleryRegAccessToken(data.access_token);
+                                SecurityManager().setGalleryRegRefreshToken(data.refresh_token);
+                                subscribers = [];
+                            })
+                        }
+                        else {
+                            SecurityManager().GalleryRegLogout();
+                        }
                     }
-                    else {
-                        // console.log('error 401')
-                        // reject(error);
-                        SecurityManager().GalleryLogout();
-                        // window.location.href = '/'
+                    if (ArtistRegistrationPage) {
+                        if (!isRefreshing) {
+                            isRefreshing = true;
+                            SecurityManager().refreshArtistToken().then(respaonse => {
+                                const { data } = respaonse;
+                                isRefreshing = false;
+                                onRrefreshed(data.access_token);
+                                SecurityManager().setArtistRegAccessToken(data.access_token);
+                                SecurityManager().setArtistRegRefreshToken(data.refresh_token);
+                                subscribers = [];
+                            })
+                        }
+                        else {
+                            SecurityManager().ArtistRegLogout();
+                        }
                     }
+
                 } else {
                     if (!isRefreshing) {
                         isRefreshing = true;
-                        // console.log('client refresh token')
                         SecurityManager().refreshToken().then(respaonse => {
                             const { data } = respaonse;
                             isRefreshing = false;
@@ -118,10 +136,7 @@ class App extends React.Component {
 
 
                     } else {
-                        // console.log('error 401')
-                        // reject(error);
                         SecurityManager().logout();
-                        // window.location.href = '/'
                     }
                 }
 
@@ -167,31 +182,38 @@ class App extends React.Component {
         }, 200);
     }
     getClientsIDSecret = async () => {
-        var RegistrationPage = window.location.href.includes('registration');
-        if (RegistrationPage) {
-            // SecurityManager().RemoveAuthClientIDSecret();
-        }
+        const RegistrationPage = window.location.href.includes('registration');
+        const ArtistRegistrationPage = window.location.href.includes(Urls().ArtistRegistration());
+        const GalleryRegistrationPage = window.location.href.includes(Urls().GalleryRegistration());
+
         try {
             var client_id = cookie.load('client_id', { path: '/' });
             var client_secret = cookie.load('client_secret', { path: '/' });
             var auth_client_id = cookie.load('auth_client_id', { path: '/' });
-            var auth_client_secret = cookie.load('auth_client_secret', { path: '/' });
-            var gallery_auth_client_id = cookie.load('gallery_auth_client_id', { path: '/' });
-            var gallery_auth_client_secret = cookie.load('gallery_auth_client_secret', { path: '/' });
-
+            var galleryReg_auth_client_id = cookie.load('gallery_auth_client_id', { path: '/' });
+            var artistReg_auth_client_secret = cookie.load('artist_auth_client_secret', { path: '/' });
 
 
             if (RegistrationPage) {
-                if (gallery_auth_client_id == "" || gallery_auth_client_id == undefined) {
-                    // console.log('get new client ID Secret')
-                    await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`, {
-                        is_gallery: true
-                    }).then((response) => {
-                        cookie.save('gallery_auth_client_id', response.data.client_id, { path: '/registration' });
-                        cookie.save('gallery_auth_client_secret', response.data.client_secret, { path: '/registration' });
-                    });
-                    auth_client_id = await cookie.load('auth_client_id', { path: '/registration' });
-                    auth_client_secret = await cookie.load('auth_client_secret', { path: '/registration' });
+
+
+                if (GalleryRegistrationPage) {
+                    if (galleryReg_auth_client_id == "" || galleryReg_auth_client_id == undefined) {
+                        await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`, {
+                            is_gallery: true
+                        }).then((response) => {
+                            SecurityManager().setGalleryRegClientIDSecret(response.data.client_id, response.data.client_secret)
+                        });
+                    }
+                }
+                if (ArtistRegistrationPage) {
+                    if (artistReg_auth_client_secret == "" || artistReg_auth_client_secret == undefined) {
+                        await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`, {
+                            is_gallery: true
+                        }).then((response) => {
+                            SecurityManager().setArtistRegClientIDSecret(response.data.client_id, response.data.client_secret)
+                        });
+                    }
                 }
             }
 
@@ -215,7 +237,6 @@ class App extends React.Component {
                 });
                 client_id = await cookie.load('client_id', { path: '/' });
                 client_secret = await cookie.load('client_secret', { path: '/' });
-            } else {
             }
             await this.callConfingAPI(client_id, client_secret);
         }
@@ -223,6 +244,9 @@ class App extends React.Component {
             console.log(error);
         }
     }
+
+
+
     callConfingAPI = (ID, Secret) => {
         var body = {
             client_id: ID,

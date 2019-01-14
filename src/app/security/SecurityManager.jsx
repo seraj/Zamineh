@@ -34,14 +34,7 @@ export default function SecurityManager() {
                 return false
             }
         },
-        hasGalleryToken() {
-            var gallery_access_token = cookie.load('gallery_access_token', { path: '/' });
-            if (gallery_access_token && gallery_access_token != 'null') {
-                return true
-            } else {
-                return false
-            }
-        },
+
         refreshToken: function () {
             return axios.post(`${Urls().api()}/o/auth-token/`, {
 
@@ -52,15 +45,7 @@ export default function SecurityManager() {
             }
             )
         },
-        refreshGalleryToken: function () {
-            return axios.post(`${Urls().api()}/o/auth-token/`, {
-                client_id: cookie.load('gallery_auth_client_id', { path: '/' }),
-                client_secret: cookie.load('gallery_auth_client_secret', { path: '/' }),
-                refresh_token: cookie.load('gallery_refresh_token', { path: '/' }),
-                grant_type: 'refresh_token'
-            }
-            )
-        },
+
         getAuthToken() {
             return cookie.load('access_token', { path: '/' });
         },
@@ -72,15 +57,6 @@ export default function SecurityManager() {
         },
 
 
-        getGalleryAuthToken() {
-            return cookie.load('gallery_access_token', { path: '/' });
-        },
-        setGalleryAccessToken(token) {
-            return cookie.save('gallery_access_token', token, { path: '/' });
-        },
-        setGalleryRefreshToken(token) {
-            return cookie.save('gallery_refresh_token', token, { path: '/' });
-        },
         RemoveClientIDSecret() {
             cookie.remove('client_id');
             cookie.remove('client_secret')
@@ -89,13 +65,8 @@ export default function SecurityManager() {
             cookie.remove('auth_client_id');
             cookie.remove('auth_client_secret')
         },
-        GalleryLogout() {
-            cookie.save('gallery_access_token', null, { path: '/' });
-            cookie.remove('gallery_access_token');
-            cookie.remove('gallery_refresh_token')
-        },
         logout() {
-            cookie.save('access_token', null, { path: '/' });
+            // cookie.save('access_token', null, { path: '/' });
             cookie.remove('access_token');
             cookie.remove('token_type')
             cookie.remove('refresh_token')
@@ -108,6 +79,112 @@ export default function SecurityManager() {
         removeLoginedUser() {
             cookie.remove('access_token');
             cookie.remove('refresh_token')
+        },
+
+
+
+
+
+
+
+
+
+
+
+        //Gallery Registration Cookies
+        getGalleryRegAuthToken() {
+            return cookie.load('gallery_access_token', { path: Urls().GalleryRegistration() });
+        },
+        setGalleryRegAccessToken(token) {
+            return cookie.save('gallery_access_token', token, { path: Urls().GalleryRegistration() });
+        },
+        setGalleryRegRefreshToken(token) {
+            return cookie.save('gallery_refresh_token', token, { path: Urls().GalleryRegistration() });
+        },
+        hasGalleryRegToken() {
+            var gallery_access_token = cookie.load('gallery_access_token', { path: Urls().GalleryRegistration() });
+            if (gallery_access_token && gallery_access_token != 'null') {
+                return true
+            } else {
+                return false
+            }
+        },
+        setGalleryRegClientIDSecret(id, secret) {
+            cookie.save('gallery_auth_client_id', id, { path: Urls().GalleryRegistration() });
+            cookie.save('gallery_auth_client_secret', secret, { path: Urls().GalleryRegistration() });
+        },
+        refreshGalleryRegToken: function () {
+            return axios.post(`${Urls().api()}/o/auth-token/`, {
+                client_id: cookie.load('gallery_auth_client_id', { path: Urls().GalleryRegistration() }),
+                client_secret: cookie.load('gallery_auth_client_secret', { path: Urls().GalleryRegistration() }),
+                refresh_token: cookie.load('gallery_refresh_token', { path: Urls().GalleryRegistration() }),
+                grant_type: 'refresh_token'
+            }
+            )
+        },
+        GalleryRegLogout() {
+            // cookie.save('gallery_access_token', null, { path: Urls().GalleryRegistration() });
+            cookie.remove('gallery_access_token');
+            cookie.remove('gallery_refresh_token')
+        },
+
+
+
+
+
+        //Artist Registration Cookies
+        getArtistRegAuthToken() {
+            return cookie.load('artist_access_token', { path: Urls().ArtistRegistration() });
+        },
+        setArtistRegAccessToken(token) {
+            return cookie.save('artist_access_token', token, { path: Urls().ArtistRegistration() });
+        },
+        setArtistRegRefreshToken(token) {
+            return cookie.save('artist_refresh_token', token, { path: Urls().ArtistRegistration() });
+        },
+        hasArtistRegToken() {
+            var artist_access_token = cookie.load('artist_access_token', { path: Urls().ArtistRegistration() });
+            if (artist_access_token && artist_access_token != 'null') {
+                return true
+            } else {
+                return false
+            }
+        },
+        refreshArtistRegToken: function () {
+            return axios.post(`${Urls().api()}/o/auth-token/`, {
+                client_id: cookie.load('artist_auth_client_id', { path: Urls().ArtistRegistration() }),
+                client_secret: cookie.load('artist_auth_client_secret', { path: Urls().ArtistRegistration() }),
+                refresh_token: cookie.load('artist_refresh_token', { path: Urls().ArtistRegistration() }),
+                grant_type: 'refresh_token'
+            }
+            )
+        },
+        setArtistRegClientIDSecret(id, secret) {
+            cookie.save('artist_auth_client_id', id, { path: Urls().ArtistRegistration() });
+            cookie.save('artist_auth_client_secret', secret, { path: Urls().ArtistRegistration() });
+        },
+        ArtistRegLogout() {
+            // cookie.remove('artist_access_token', null, { path: Urls().ArtistRegistration() });
+            cookie.remove('artist_access_token');
+            cookie.remove('artist_refresh_token')
+        },
+
+
+        getRegClientIDSecret(type, page) {
+
+            if (type == 'secret') {
+                return page == 'Gallery' ?
+                    cookie.load('gallery_auth_client_secret', { path: Urls().GalleryRegistration() })
+                    :
+                    cookie.load('artist_auth_client_secret', { path: Urls().ArtistRegistration() })
+            }
+            if (type == 'id') {
+                return page == 'Gallery' ?
+                    cookie.load('gallery_auth_client_id', { path: Urls().GalleryRegistration() })
+                    :
+                    cookie.load('artist_auth_client_id', { path: Urls().ArtistRegistration() })
+            }
         }
+
     }
 }

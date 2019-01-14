@@ -73,7 +73,7 @@ class AuthorizationForm extends React.Component {
             playerID: '123456789',
             showLoginError: false,
             loading: false,
-            checkMobileNumberStep1: !SecurityManager().hasGalleryToken(),
+            checkMobileNumberStep1: !SecurityManager().hasGalleryRegToken(),
             MobileValidationStep2: false,
             loginForm: false,
             username: ''
@@ -155,8 +155,8 @@ class AuthorizationForm extends React.Component {
 
         axios
             .post(`${Urls().api()}${this.props.validationAPI}`, {
-                client_id: cookie.load("gallery_auth_client_id", { path: "/" }),
-                client_secret: cookie.load("gallery_auth_client_secret", { path: "/" }),
+                client_id: SecurityManager().getRegClientIDSecret('id', this.props.type),
+                client_secret: SecurityManager().getRegClientIDSecret('secret', this.props.type),
                 player_id: this.state.playerID,
                 code: values.code,
                 username: this.state.username,
@@ -164,8 +164,7 @@ class AuthorizationForm extends React.Component {
                 user_type: this.props.type
             })
             .then(response => {
-                SecurityManager().setGalleryAccessToken(response.data.access_token);
-                SecurityManager().setGalleryRefreshToken(response.data.refresh_token);
+                this.props.setAccessTokens(response.data.access_token, response.data.refresh_token)
 
                 this.setState({
                     MobileValidationStep2: false,
@@ -183,8 +182,8 @@ class AuthorizationForm extends React.Component {
         this.setState({ loading: true });
         axios
             .post(`${Urls().api()}${this.props.loginAPI}`, {
-                client_id: cookie.load("gallery_auth_client_id", { path: "/" }),
-                client_secret: cookie.load("gallery_auth_client_secret", { path: "/" }),
+                client_id: SecurityManager().getRegClientIDSecret('id', this.props.type),
+                client_secret: SecurityManager().getRegClientIDSecret('secret', this.props.type),
                 username: this.state.username,
                 password: values.password,
                 grant_type: "password",
@@ -193,8 +192,8 @@ class AuthorizationForm extends React.Component {
             .then(response => {
                 this.setState({ loading: false });
 
-                SecurityManager().setGalleryAccessToken(response.data.access_token);
-                SecurityManager().setGalleryRefreshToken(response.data.refresh_token);
+                this.props.setAccessTokens(response.data.access_token, response.data.refresh_token)
+
             })
             .then(() => {
                 window.location.href = '/profile'

@@ -24,9 +24,9 @@ function Logo() {
             <path
                 fill="none"
                 stroke="#000"
-                stroke-width="5"
-                stroke-linecap="square"
-                stroke-miterlimit="2.6131"
+                strokeWidth="5"
+                strokeLinecap="square"
+                strokeMiterlimit="2.6131"
                 d='M107.7,107.7H4.3V4.3h103.5V107.7z M38.8,38.8h34.5 M38.8,56h34.5 M38.8,21.5v69 M73.2,21.5v69 M107.7,73.2H4.3'
             />
         </svg>

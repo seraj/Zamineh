@@ -108,9 +108,8 @@ class ArtistRegistration extends React.Component {
     }
 
     componentWillMount() {
-        const hasGalleryToken = SecurityManager().hasGalleryToken()
-        // console.log('hasGalleryToken', hasGalleryToken)
-        if (hasGalleryToken) {
+
+        if (SecurityManager().hasArtistRegToken()) {
             this.getSteps()
         }
     }
@@ -165,7 +164,6 @@ class ArtistRegistration extends React.Component {
         })
 
     }
-
 
 
 
@@ -667,6 +665,17 @@ class ArtistRegistration extends React.Component {
 
     // end Step 4 Functions
 
+
+
+
+
+    setAccessTokens = (Token, RefreshToken) => {
+        SecurityManager().setArtistRegAccessToken(Token);
+        SecurityManager().setArtistRegRefreshToken(RefreshToken);
+    }
+
+
+
     render() {
         const {
 
@@ -680,6 +689,7 @@ class ArtistRegistration extends React.Component {
 
         } = this.state
         var url = window.location.href;
+        var hasToken = SecurityManager().hasArtistRegToken()
         return (
             <React.Fragment>
 
@@ -698,14 +708,16 @@ class ArtistRegistration extends React.Component {
                                     <div className={Loading ? `LoadingData` : ''}></div>
 
 
-
-                                    <AuthorizationForm
-                                        getSteps={this.getSteps}
-                                        checkMobileAPI="/gallery-app/gallery/check/"
-                                        validationAPI="/gallery-app/phone/validate/"
-                                        loginAPI="/gallery-app/gallery/login/"
-                                        type="Artist"
-                                    />
+                                    {!hasToken &&
+                                        <AuthorizationForm
+                                            afterLogin={this.getSteps}
+                                            checkMobileAPI="/gallery-app/gallery/check/"
+                                            validationAPI="/gallery-app/phone/validate/"
+                                            loginAPI="/gallery-app/gallery/login/"
+                                            type="Artist"
+                                            setAccessTokens={this.setAccessTokens}
+                                        />
+                                    }
 
 
                                     {currentStep == 1 &&

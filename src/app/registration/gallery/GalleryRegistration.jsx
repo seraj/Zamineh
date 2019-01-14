@@ -58,7 +58,7 @@ const SubmitSeciton = ({ StepData, Text, values, currentStep, goToSteps }) => (
             </Col>
 
         </Row>
-        <pre>{JSON.stringify(values, 0, 2)}</pre>
+        {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
     </React.Fragment>
 );
 
@@ -89,8 +89,7 @@ class GalleryRegistration extends React.Component {
     }
 
     componentWillMount() {
-        const hasGalleryToken = SecurityManager().hasGalleryToken()
-        if (hasGalleryToken) {
+        if (SecurityManager().hasGalleryRegToken()) {
             this.getFormConfig()
         }
     }
@@ -195,6 +194,13 @@ class GalleryRegistration extends React.Component {
     }
 
 
+    setAccessTokens = (Token, RefreshToken) => {
+        SecurityManager().setGalleryRegAccessToken(Token);
+        SecurityManager().setGalleryRegRefreshToken(RefreshToken);
+    }
+
+
+
     render() {
         const {
             currentStep,
@@ -208,7 +214,7 @@ class GalleryRegistration extends React.Component {
 
         } = this.state
         var url = window.location.href;
-        var GalleryToken = SecurityManager().hasGalleryToken()
+        var hasToken = SecurityManager().hasGalleryRegToken()
         return (
             <React.Fragment>
 
@@ -224,13 +230,14 @@ class GalleryRegistration extends React.Component {
                                     <StepBar currentStep={currentStep} />
 
                                     <div className={Loading ? `LoadingData` : ''}></div>
-                                    {!GalleryToken &&
+                                    {!hasToken &&
                                         <AuthorizationForm
                                             afterLogin={this.getFormConfig}
                                             checkMobileAPI="/gallery-app/gallery/check/"
                                             validationAPI="/gallery-app/phone/validate/"
                                             loginAPI="/gallery-app/gallery/login/"
                                             type="Gallery"
+                                            setAccessTokens={this.setAccessTokens}
                                         />
                                     }
 
