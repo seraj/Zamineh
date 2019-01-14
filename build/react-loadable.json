@@ -873,7 +873,7 @@
       "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
-  "./ArtistFormValidation": [
+  "../artist/ArtistFormValidation": [
     {
       "id": "./src/app/registration/artist/ArtistFormValidation.jsx",
       "name": "./src/app/registration/artist/ArtistFormValidation.jsx",
@@ -1497,12 +1497,6 @@
     {
       "id": "./node_modules/rc-steps/es/utils.js",
       "name": "./node_modules/rc-steps/es/utils.js",
-      "file": "static/js/vendors-0767beeb8b7f595df025.js",
-      "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
-    },
-    {
-      "id": "./node_modules/react-bootstrap-typeahead/lib/utils/index.js",
-      "name": "./node_modules/react-bootstrap-typeahead/lib/utils/index.js",
       "file": "static/js/vendors-0767beeb8b7f595df025.js",
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     },
@@ -2303,7 +2297,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "../../../css-loader/lib/css-base.js": [
+  "../../css-loader/lib/css-base.js": [
     {
       "id": "./node_modules/css-loader/lib/css-base.js",
       "name": "./node_modules/css-loader/lib/css-base.js",
@@ -4443,7 +4437,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./af": [
+  "./af.js": [
     {
       "id": "./node_modules/moment/locale/af.js",
       "name": "./node_modules/moment/locale/af.js",
@@ -4451,7 +4445,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ar-dz": [
+  "./ar-dz.js": [
     {
       "id": "./node_modules/moment/locale/ar-dz.js",
       "name": "./node_modules/moment/locale/ar-dz.js",
@@ -4459,7 +4453,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ar-kw": [
+  "./ar-kw.js": [
     {
       "id": "./node_modules/moment/locale/ar-kw.js",
       "name": "./node_modules/moment/locale/ar-kw.js",
@@ -4467,7 +4461,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ar-ly": [
+  "./ar-ly.js": [
     {
       "id": "./node_modules/moment/locale/ar-ly.js",
       "name": "./node_modules/moment/locale/ar-ly.js",
@@ -4475,7 +4469,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ar-ma": [
+  "./ar-ma.js": [
     {
       "id": "./node_modules/moment/locale/ar-ma.js",
       "name": "./node_modules/moment/locale/ar-ma.js",
@@ -4483,7 +4477,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ar-sa": [
+  "./ar-sa.js": [
     {
       "id": "./node_modules/moment/locale/ar-sa.js",
       "name": "./node_modules/moment/locale/ar-sa.js",
@@ -4491,7 +4485,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ar-tn": [
+  "./ar-tn.js": [
     {
       "id": "./node_modules/moment/locale/ar-tn.js",
       "name": "./node_modules/moment/locale/ar-tn.js",
@@ -4499,7 +4493,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ar": [
+  "./ar.js": [
     {
       "id": "./node_modules/moment/locale/ar.js",
       "name": "./node_modules/moment/locale/ar.js",
@@ -4507,7 +4501,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./az": [
+  "./az.js": [
     {
       "id": "./node_modules/moment/locale/az.js",
       "name": "./node_modules/moment/locale/az.js",
@@ -4515,7 +4509,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./be": [
+  "./be.js": [
     {
       "id": "./node_modules/moment/locale/be.js",
       "name": "./node_modules/moment/locale/be.js",
@@ -4523,7 +4517,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./bg": [
+  "./bg.js": [
     {
       "id": "./node_modules/moment/locale/bg.js",
       "name": "./node_modules/moment/locale/bg.js",
@@ -4531,7 +4525,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./bm": [
+  "./bm.js": [
     {
       "id": "./node_modules/moment/locale/bm.js",
       "name": "./node_modules/moment/locale/bm.js",
@@ -4539,7 +4533,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./bn": [
+  "./bn.js": [
     {
       "id": "./node_modules/moment/locale/bn.js",
       "name": "./node_modules/moment/locale/bn.js",
@@ -4547,7 +4541,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./bo": [
+  "./bo.js": [
     {
       "id": "./node_modules/moment/locale/bo.js",
       "name": "./node_modules/moment/locale/bo.js",
@@ -4555,7 +4549,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./br": [
+  "./br.js": [
     {
       "id": "./node_modules/moment/locale/br.js",
       "name": "./node_modules/moment/locale/br.js",
@@ -4563,7 +4557,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./bs": [
+  "./bs.js": [
     {
       "id": "./node_modules/moment/locale/bs.js",
       "name": "./node_modules/moment/locale/bs.js",
@@ -4571,7 +4565,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ca": [
+  "./ca.js": [
     {
       "id": "./node_modules/moment/locale/ca.js",
       "name": "./node_modules/moment/locale/ca.js",
@@ -4587,7 +4581,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./cv": [
+  "./cv.js": [
     {
       "id": "./node_modules/moment/locale/cv.js",
       "name": "./node_modules/moment/locale/cv.js",
@@ -4595,7 +4589,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./cy": [
+  "./cy.js": [
     {
       "id": "./node_modules/moment/locale/cy.js",
       "name": "./node_modules/moment/locale/cy.js",
@@ -4603,7 +4597,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./da": [
+  "./da.js": [
     {
       "id": "./node_modules/moment/locale/da.js",
       "name": "./node_modules/moment/locale/da.js",
@@ -4611,7 +4605,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./de-at": [
+  "./de-at.js": [
     {
       "id": "./node_modules/moment/locale/de-at.js",
       "name": "./node_modules/moment/locale/de-at.js",
@@ -4619,7 +4613,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./de-ch": [
+  "./de-ch.js": [
     {
       "id": "./node_modules/moment/locale/de-ch.js",
       "name": "./node_modules/moment/locale/de-ch.js",
@@ -4627,7 +4621,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./de": [
+  "./de.js": [
     {
       "id": "./node_modules/moment/locale/de.js",
       "name": "./node_modules/moment/locale/de.js",
@@ -4635,7 +4629,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./dv": [
+  "./dv.js": [
     {
       "id": "./node_modules/moment/locale/dv.js",
       "name": "./node_modules/moment/locale/dv.js",
@@ -4643,7 +4637,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./el": [
+  "./el.js": [
     {
       "id": "./node_modules/moment/locale/el.js",
       "name": "./node_modules/moment/locale/el.js",
@@ -4651,7 +4645,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./en-au": [
+  "./en-au.js": [
     {
       "id": "./node_modules/moment/locale/en-au.js",
       "name": "./node_modules/moment/locale/en-au.js",
@@ -4659,7 +4653,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./en-ca": [
+  "./en-ca.js": [
     {
       "id": "./node_modules/moment/locale/en-ca.js",
       "name": "./node_modules/moment/locale/en-ca.js",
@@ -4667,7 +4661,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./en-gb": [
+  "./en-gb.js": [
     {
       "id": "./node_modules/moment/locale/en-gb.js",
       "name": "./node_modules/moment/locale/en-gb.js",
@@ -4675,7 +4669,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./en-ie": [
+  "./en-ie.js": [
     {
       "id": "./node_modules/moment/locale/en-ie.js",
       "name": "./node_modules/moment/locale/en-ie.js",
@@ -4683,7 +4677,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./en-il": [
+  "./en-il.js": [
     {
       "id": "./node_modules/moment/locale/en-il.js",
       "name": "./node_modules/moment/locale/en-il.js",
@@ -4691,7 +4685,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./en-nz": [
+  "./en-nz.js": [
     {
       "id": "./node_modules/moment/locale/en-nz.js",
       "name": "./node_modules/moment/locale/en-nz.js",
@@ -4699,7 +4693,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./eo": [
+  "./eo.js": [
     {
       "id": "./node_modules/moment/locale/eo.js",
       "name": "./node_modules/moment/locale/eo.js",
@@ -4707,7 +4701,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./es-do": [
+  "./es-do.js": [
     {
       "id": "./node_modules/moment/locale/es-do.js",
       "name": "./node_modules/moment/locale/es-do.js",
@@ -4715,7 +4709,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./es-us": [
+  "./es-us.js": [
     {
       "id": "./node_modules/moment/locale/es-us.js",
       "name": "./node_modules/moment/locale/es-us.js",
@@ -4723,7 +4717,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./es": [
+  "./es.js": [
     {
       "id": "./node_modules/moment/locale/es.js",
       "name": "./node_modules/moment/locale/es.js",
@@ -4731,7 +4725,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./et": [
+  "./et.js": [
     {
       "id": "./node_modules/moment/locale/et.js",
       "name": "./node_modules/moment/locale/et.js",
@@ -4739,7 +4733,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./eu": [
+  "./eu.js": [
     {
       "id": "./node_modules/moment/locale/eu.js",
       "name": "./node_modules/moment/locale/eu.js",
@@ -4747,7 +4741,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./fa": [
+  "./fa.js": [
     {
       "id": "./node_modules/moment/locale/fa.js",
       "name": "./node_modules/moment/locale/fa.js",
@@ -4755,7 +4749,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./fi": [
+  "./fi.js": [
     {
       "id": "./node_modules/moment/locale/fi.js",
       "name": "./node_modules/moment/locale/fi.js",
@@ -4763,7 +4757,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./fo": [
+  "./fo.js": [
     {
       "id": "./node_modules/moment/locale/fo.js",
       "name": "./node_modules/moment/locale/fo.js",
@@ -4771,7 +4765,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./fr-ca": [
+  "./fr-ca.js": [
     {
       "id": "./node_modules/moment/locale/fr-ca.js",
       "name": "./node_modules/moment/locale/fr-ca.js",
@@ -4779,7 +4773,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./fr-ch": [
+  "./fr-ch.js": [
     {
       "id": "./node_modules/moment/locale/fr-ch.js",
       "name": "./node_modules/moment/locale/fr-ch.js",
@@ -4787,7 +4781,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./fr": [
+  "./fr.js": [
     {
       "id": "./node_modules/moment/locale/fr.js",
       "name": "./node_modules/moment/locale/fr.js",
@@ -4795,7 +4789,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./fy": [
+  "./fy.js": [
     {
       "id": "./node_modules/moment/locale/fy.js",
       "name": "./node_modules/moment/locale/fy.js",
@@ -4803,7 +4797,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./gd": [
+  "./gd.js": [
     {
       "id": "./node_modules/moment/locale/gd.js",
       "name": "./node_modules/moment/locale/gd.js",
@@ -4811,7 +4805,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./gl": [
+  "./gl.js": [
     {
       "id": "./node_modules/moment/locale/gl.js",
       "name": "./node_modules/moment/locale/gl.js",
@@ -4819,7 +4813,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./gom-latn": [
+  "./gom-latn.js": [
     {
       "id": "./node_modules/moment/locale/gom-latn.js",
       "name": "./node_modules/moment/locale/gom-latn.js",
@@ -4827,7 +4821,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./gu": [
+  "./gu.js": [
     {
       "id": "./node_modules/moment/locale/gu.js",
       "name": "./node_modules/moment/locale/gu.js",
@@ -4835,7 +4829,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./he": [
+  "./he.js": [
     {
       "id": "./node_modules/moment/locale/he.js",
       "name": "./node_modules/moment/locale/he.js",
@@ -4843,7 +4837,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./hi": [
+  "./hi.js": [
     {
       "id": "./node_modules/moment/locale/hi.js",
       "name": "./node_modules/moment/locale/hi.js",
@@ -4851,7 +4845,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./hr": [
+  "./hr.js": [
     {
       "id": "./node_modules/moment/locale/hr.js",
       "name": "./node_modules/moment/locale/hr.js",
@@ -4859,7 +4853,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./hu": [
+  "./hu.js": [
     {
       "id": "./node_modules/moment/locale/hu.js",
       "name": "./node_modules/moment/locale/hu.js",
@@ -4867,7 +4861,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./hy-am": [
+  "./hy-am.js": [
     {
       "id": "./node_modules/moment/locale/hy-am.js",
       "name": "./node_modules/moment/locale/hy-am.js",
@@ -4875,7 +4869,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./id": [
+  "./id.js": [
     {
       "id": "./node_modules/moment/locale/id.js",
       "name": "./node_modules/moment/locale/id.js",
@@ -4883,7 +4877,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./is": [
+  "./is.js": [
     {
       "id": "./node_modules/moment/locale/is.js",
       "name": "./node_modules/moment/locale/is.js",
@@ -4891,7 +4885,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./it": [
+  "./it.js": [
     {
       "id": "./node_modules/moment/locale/it.js",
       "name": "./node_modules/moment/locale/it.js",
@@ -4899,7 +4893,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ja": [
+  "./ja.js": [
     {
       "id": "./node_modules/moment/locale/ja.js",
       "name": "./node_modules/moment/locale/ja.js",
@@ -4907,7 +4901,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./jv": [
+  "./jv.js": [
     {
       "id": "./node_modules/moment/locale/jv.js",
       "name": "./node_modules/moment/locale/jv.js",
@@ -4915,7 +4909,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ka": [
+  "./ka.js": [
     {
       "id": "./node_modules/moment/locale/ka.js",
       "name": "./node_modules/moment/locale/ka.js",
@@ -4923,7 +4917,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./kk": [
+  "./kk.js": [
     {
       "id": "./node_modules/moment/locale/kk.js",
       "name": "./node_modules/moment/locale/kk.js",
@@ -4931,7 +4925,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./km": [
+  "./km.js": [
     {
       "id": "./node_modules/moment/locale/km.js",
       "name": "./node_modules/moment/locale/km.js",
@@ -4939,7 +4933,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./kn": [
+  "./kn.js": [
     {
       "id": "./node_modules/moment/locale/kn.js",
       "name": "./node_modules/moment/locale/kn.js",
@@ -4947,7 +4941,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ko": [
+  "./ko.js": [
     {
       "id": "./node_modules/moment/locale/ko.js",
       "name": "./node_modules/moment/locale/ko.js",
@@ -4955,7 +4949,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ku": [
+  "./ku.js": [
     {
       "id": "./node_modules/moment/locale/ku.js",
       "name": "./node_modules/moment/locale/ku.js",
@@ -4963,7 +4957,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ky": [
+  "./ky.js": [
     {
       "id": "./node_modules/moment/locale/ky.js",
       "name": "./node_modules/moment/locale/ky.js",
@@ -4971,7 +4965,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./lb": [
+  "./lb.js": [
     {
       "id": "./node_modules/moment/locale/lb.js",
       "name": "./node_modules/moment/locale/lb.js",
@@ -4979,7 +4973,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./lo": [
+  "./lo.js": [
     {
       "id": "./node_modules/moment/locale/lo.js",
       "name": "./node_modules/moment/locale/lo.js",
@@ -4987,7 +4981,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./lt": [
+  "./lt.js": [
     {
       "id": "./node_modules/moment/locale/lt.js",
       "name": "./node_modules/moment/locale/lt.js",
@@ -4995,7 +4989,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./lv": [
+  "./lv.js": [
     {
       "id": "./node_modules/moment/locale/lv.js",
       "name": "./node_modules/moment/locale/lv.js",
@@ -5003,7 +4997,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./me": [
+  "./me.js": [
     {
       "id": "./node_modules/moment/locale/me.js",
       "name": "./node_modules/moment/locale/me.js",
@@ -5011,7 +5005,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./mi": [
+  "./mi.js": [
     {
       "id": "./node_modules/moment/locale/mi.js",
       "name": "./node_modules/moment/locale/mi.js",
@@ -5019,7 +5013,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./mk": [
+  "./mk.js": [
     {
       "id": "./node_modules/moment/locale/mk.js",
       "name": "./node_modules/moment/locale/mk.js",
@@ -5027,7 +5021,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ml": [
+  "./ml.js": [
     {
       "id": "./node_modules/moment/locale/ml.js",
       "name": "./node_modules/moment/locale/ml.js",
@@ -5035,7 +5029,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./mn": [
+  "./mn.js": [
     {
       "id": "./node_modules/moment/locale/mn.js",
       "name": "./node_modules/moment/locale/mn.js",
@@ -5043,7 +5037,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./mr": [
+  "./mr.js": [
     {
       "id": "./node_modules/moment/locale/mr.js",
       "name": "./node_modules/moment/locale/mr.js",
@@ -5051,7 +5045,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ms-my": [
+  "./ms-my.js": [
     {
       "id": "./node_modules/moment/locale/ms-my.js",
       "name": "./node_modules/moment/locale/ms-my.js",
@@ -5059,7 +5053,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ms": [
+  "./ms.js": [
     {
       "id": "./node_modules/moment/locale/ms.js",
       "name": "./node_modules/moment/locale/ms.js",
@@ -5067,7 +5061,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./mt": [
+  "./mt.js": [
     {
       "id": "./node_modules/moment/locale/mt.js",
       "name": "./node_modules/moment/locale/mt.js",
@@ -5075,7 +5069,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./my": [
+  "./my.js": [
     {
       "id": "./node_modules/moment/locale/my.js",
       "name": "./node_modules/moment/locale/my.js",
@@ -5083,7 +5077,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./nb": [
+  "./nb.js": [
     {
       "id": "./node_modules/moment/locale/nb.js",
       "name": "./node_modules/moment/locale/nb.js",
@@ -5091,7 +5085,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ne": [
+  "./ne.js": [
     {
       "id": "./node_modules/moment/locale/ne.js",
       "name": "./node_modules/moment/locale/ne.js",
@@ -5099,7 +5093,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./nl-be": [
+  "./nl-be.js": [
     {
       "id": "./node_modules/moment/locale/nl-be.js",
       "name": "./node_modules/moment/locale/nl-be.js",
@@ -5107,7 +5101,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./nl": [
+  "./nl.js": [
     {
       "id": "./node_modules/moment/locale/nl.js",
       "name": "./node_modules/moment/locale/nl.js",
@@ -5115,7 +5109,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./nn": [
+  "./nn.js": [
     {
       "id": "./node_modules/moment/locale/nn.js",
       "name": "./node_modules/moment/locale/nn.js",
@@ -5123,7 +5117,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./pa-in": [
+  "./pa-in.js": [
     {
       "id": "./node_modules/moment/locale/pa-in.js",
       "name": "./node_modules/moment/locale/pa-in.js",
@@ -5131,7 +5125,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./pl": [
+  "./pl.js": [
     {
       "id": "./node_modules/moment/locale/pl.js",
       "name": "./node_modules/moment/locale/pl.js",
@@ -5139,7 +5133,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./pt-br": [
+  "./pt-br.js": [
     {
       "id": "./node_modules/moment/locale/pt-br.js",
       "name": "./node_modules/moment/locale/pt-br.js",
@@ -5147,7 +5141,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./pt": [
+  "./pt.js": [
     {
       "id": "./node_modules/moment/locale/pt.js",
       "name": "./node_modules/moment/locale/pt.js",
@@ -5155,7 +5149,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ro": [
+  "./ro.js": [
     {
       "id": "./node_modules/moment/locale/ro.js",
       "name": "./node_modules/moment/locale/ro.js",
@@ -5163,7 +5157,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ru": [
+  "./ru.js": [
     {
       "id": "./node_modules/moment/locale/ru.js",
       "name": "./node_modules/moment/locale/ru.js",
@@ -5171,7 +5165,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./sd": [
+  "./sd.js": [
     {
       "id": "./node_modules/moment/locale/sd.js",
       "name": "./node_modules/moment/locale/sd.js",
@@ -5179,7 +5173,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./se": [
+  "./se.js": [
     {
       "id": "./node_modules/moment/locale/se.js",
       "name": "./node_modules/moment/locale/se.js",
@@ -5187,7 +5181,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./si": [
+  "./si.js": [
     {
       "id": "./node_modules/moment/locale/si.js",
       "name": "./node_modules/moment/locale/si.js",
@@ -5195,7 +5189,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./sk": [
+  "./sk.js": [
     {
       "id": "./node_modules/moment/locale/sk.js",
       "name": "./node_modules/moment/locale/sk.js",
@@ -5203,7 +5197,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./sl": [
+  "./sl.js": [
     {
       "id": "./node_modules/moment/locale/sl.js",
       "name": "./node_modules/moment/locale/sl.js",
@@ -5211,7 +5205,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./sq": [
+  "./sq.js": [
     {
       "id": "./node_modules/moment/locale/sq.js",
       "name": "./node_modules/moment/locale/sq.js",
@@ -5219,7 +5213,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./sr-cyrl": [
+  "./sr-cyrl.js": [
     {
       "id": "./node_modules/moment/locale/sr-cyrl.js",
       "name": "./node_modules/moment/locale/sr-cyrl.js",
@@ -5227,7 +5221,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./sr": [
+  "./sr.js": [
     {
       "id": "./node_modules/moment/locale/sr.js",
       "name": "./node_modules/moment/locale/sr.js",
@@ -5235,7 +5229,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ss": [
+  "./ss.js": [
     {
       "id": "./node_modules/moment/locale/ss.js",
       "name": "./node_modules/moment/locale/ss.js",
@@ -5243,7 +5237,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./sv": [
+  "./sv.js": [
     {
       "id": "./node_modules/moment/locale/sv.js",
       "name": "./node_modules/moment/locale/sv.js",
@@ -5251,7 +5245,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./sw": [
+  "./sw.js": [
     {
       "id": "./node_modules/moment/locale/sw.js",
       "name": "./node_modules/moment/locale/sw.js",
@@ -5259,7 +5253,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ta": [
+  "./ta.js": [
     {
       "id": "./node_modules/moment/locale/ta.js",
       "name": "./node_modules/moment/locale/ta.js",
@@ -5267,7 +5261,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./te": [
+  "./te.js": [
     {
       "id": "./node_modules/moment/locale/te.js",
       "name": "./node_modules/moment/locale/te.js",
@@ -5275,7 +5269,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./tet": [
+  "./tet.js": [
     {
       "id": "./node_modules/moment/locale/tet.js",
       "name": "./node_modules/moment/locale/tet.js",
@@ -5283,7 +5277,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./tg": [
+  "./tg.js": [
     {
       "id": "./node_modules/moment/locale/tg.js",
       "name": "./node_modules/moment/locale/tg.js",
@@ -5291,7 +5285,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./th": [
+  "./th.js": [
     {
       "id": "./node_modules/moment/locale/th.js",
       "name": "./node_modules/moment/locale/th.js",
@@ -5299,7 +5293,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./tl-ph": [
+  "./tl-ph.js": [
     {
       "id": "./node_modules/moment/locale/tl-ph.js",
       "name": "./node_modules/moment/locale/tl-ph.js",
@@ -5307,7 +5301,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./tlh": [
+  "./tlh.js": [
     {
       "id": "./node_modules/moment/locale/tlh.js",
       "name": "./node_modules/moment/locale/tlh.js",
@@ -5315,7 +5309,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./tr": [
+  "./tr.js": [
     {
       "id": "./node_modules/moment/locale/tr.js",
       "name": "./node_modules/moment/locale/tr.js",
@@ -5323,7 +5317,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./tzl": [
+  "./tzl.js": [
     {
       "id": "./node_modules/moment/locale/tzl.js",
       "name": "./node_modules/moment/locale/tzl.js",
@@ -5331,7 +5325,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./tzm-latn": [
+  "./tzm-latn.js": [
     {
       "id": "./node_modules/moment/locale/tzm-latn.js",
       "name": "./node_modules/moment/locale/tzm-latn.js",
@@ -5339,7 +5333,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./tzm": [
+  "./tzm.js": [
     {
       "id": "./node_modules/moment/locale/tzm.js",
       "name": "./node_modules/moment/locale/tzm.js",
@@ -5347,7 +5341,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ug-cn": [
+  "./ug-cn.js": [
     {
       "id": "./node_modules/moment/locale/ug-cn.js",
       "name": "./node_modules/moment/locale/ug-cn.js",
@@ -5355,7 +5349,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./uk": [
+  "./uk.js": [
     {
       "id": "./node_modules/moment/locale/uk.js",
       "name": "./node_modules/moment/locale/uk.js",
@@ -5363,7 +5357,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./ur": [
+  "./ur.js": [
     {
       "id": "./node_modules/moment/locale/ur.js",
       "name": "./node_modules/moment/locale/ur.js",
@@ -5371,7 +5365,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./uz-latn": [
+  "./uz-latn.js": [
     {
       "id": "./node_modules/moment/locale/uz-latn.js",
       "name": "./node_modules/moment/locale/uz-latn.js",
@@ -5379,7 +5373,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./uz": [
+  "./uz.js": [
     {
       "id": "./node_modules/moment/locale/uz.js",
       "name": "./node_modules/moment/locale/uz.js",
@@ -5387,7 +5381,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./vi": [
+  "./vi.js": [
     {
       "id": "./node_modules/moment/locale/vi.js",
       "name": "./node_modules/moment/locale/vi.js",
@@ -5395,7 +5389,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./x-pseudo": [
+  "./x-pseudo.js": [
     {
       "id": "./node_modules/moment/locale/x-pseudo.js",
       "name": "./node_modules/moment/locale/x-pseudo.js",
@@ -5403,7 +5397,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./yo": [
+  "./yo.js": [
     {
       "id": "./node_modules/moment/locale/yo.js",
       "name": "./node_modules/moment/locale/yo.js",
@@ -5411,7 +5405,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./zh-cn": [
+  "./zh-cn.js": [
     {
       "id": "./node_modules/moment/locale/zh-cn.js",
       "name": "./node_modules/moment/locale/zh-cn.js",
@@ -5419,7 +5413,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./zh-hk": [
+  "./zh-hk.js": [
     {
       "id": "./node_modules/moment/locale/zh-hk.js",
       "name": "./node_modules/moment/locale/zh-hk.js",
@@ -5427,7 +5421,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./zh-tw": [
+  "./zh-tw.js": [
     {
       "id": "./node_modules/moment/locale/zh-tw.js",
       "name": "./node_modules/moment/locale/zh-tw.js",
@@ -5943,6 +5937,14 @@
     {
       "id": "./node_modules/react-bootstrap-typeahead/lib/utils/getTruncatedOptions.js",
       "name": "./node_modules/react-bootstrap-typeahead/lib/utils/getTruncatedOptions.js",
+      "file": "static/js/vendors-0767beeb8b7f595df025.js",
+      "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
+    }
+  ],
+  "./utils/": [
+    {
+      "id": "./node_modules/react-bootstrap-typeahead/lib/utils/index.js",
+      "name": "./node_modules/react-bootstrap-typeahead/lib/utils/index.js",
       "file": "static/js/vendors-0767beeb8b7f595df025.js",
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
@@ -6885,7 +6887,7 @@
       "publicPath": "/static/js/vendors-0767beeb8b7f595df025.js"
     }
   ],
-  "./../utils/eventManager": [
+  "./utils/eventManager": [
     {
       "id": "./node_modules/react-toastify/lib/utils/eventManager.js",
       "name": "./node_modules/react-toastify/lib/utils/eventManager.js",
