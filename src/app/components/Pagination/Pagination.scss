@@ -1,0 +1,225 @@
+:local(.pagination) {
+    display: block;
+    text-align: center;
+    font-size: 19px;
+    margin: 10px 0;
+
+    li {
+        display: inline-block;
+        line-height: 1;
+
+        &:not(.active) {
+            padding: 0 .5em;
+        }
+
+        &.previous,
+        &.next {
+            padding: 0 10px;
+            position: relative;
+        }
+
+        &.previous {
+            &:before {
+                content: "→";
+                right: -15px;
+                top: 3px;
+                position: absolute;
+            }
+        }
+
+        &.next {
+            &:after {
+                content: "←";
+                left: -15px;
+                top: 3px;
+                position: absolute;
+            }
+        }
+
+        &.active {
+            background: #000;
+            color: #fff;
+            padding: 5px 12px;
+            margin-right: .5em;
+            margin-left: .5em;
+
+            a {
+                font-weight: 700 !important;
+                color: #fff !important
+            }
+
+        }
+    }
+}
+
+
+
+
+/*
+Hi! If my code is useful for you can you donate me some money? 
+https://www.paypal.me/melnik909
+*/
+
+/*
+=====
+LEVEL 0. RESET BROWSER'S STYLES
+=====
+*/
+
+.pagination__list {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+/*
+  =====
+  LEVEL 1. CORE COMPONENT STYLES
+  =====
+  */
+
+.pagination {
+    --uiPaginationAlign: var(--paginationAlign);
+    --uiPaginationArrowSize: var(--paginationArrowSize, 22px);
+    --uiPaginationFontSize: var(--paginationFontSize);
+
+    font-size: var(--uiPaginationFontSize);
+}
+
+.pagination__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: var(--uiPaginationAlign);
+}
+
+.pagination__item:not(.pagination__control_prev):not(.pagination__item_active) {
+    padding-left: .5em;
+}
+
+.pagination__item:not(.pagination__control_next):not(.pagination__item_active) {
+    padding-right: .5em;
+}
+
+.pagination__item {
+    display: inline-block;
+    line-height: 1;
+}
+
+.pagination__control {
+    position: relative;
+}
+
+.pagination__control:before,
+.pagination__control:after {
+    font-size: var(--uiPaginationArrowSize);
+    line-height: 1;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.pagination__control_prev {
+    padding-left: calc(var(--uiPaginationArrowSize) + 5px);
+}
+
+.pagination__control_prev:before {
+    content: "←";
+    left: 0;
+}
+
+.pagination__control_next {
+    padding-right: calc(var(--uiPaginationArrowSize) + 5px);
+}
+
+.pagination__control_next:after {
+    content: "→";
+    right: 0;
+}
+
+.pagination__item_active {
+    padding: .5875em .8em;
+    margin-right: .5em;
+    margin-left: .5em;
+}
+
+/*
+  =====
+  LEVEL 2. PRESENTATION STYLES
+  =====
+  */
+
+.pagination {
+    --uiPaginationItemTextColor: var(--paginationItemTextColor);
+    --uiPaginationItemActiveTextColor: var(--paginationItemActiveTextColor);
+}
+
+.pagination__item {
+    text-decoration: none;
+    color: var(--uiPaginationItemTextColor);
+}
+
+.pagination__item_active {
+    font-weight: 700;
+    color: var(--uiPaginationItemActiveTextColor);
+}
+
+.pagination__item:focus {
+    outline-color: var(--uiPaginationItemActiveBgColor);
+}
+
+/* type 1 */
+
+.pagination_type1 {
+    --uiPaginationItemActiveBgColor: var(--paginationItemActiveBgColor);
+}
+
+.pagination_type1 .pagination__item_active {
+    background-color: var(--uiPaginationItemActiveBgColor);
+}
+
+
+/*
+  =====
+  LEVEL 3. SETTINGS
+  =====
+  */
+
+.demo {
+    --paginationAlign: center;
+    --paginationFontSize: 1.6rem;
+    --paginationItemActiveBgColor: #4557bb;
+    --paginationItemTextColor: #0094d9;
+    --paginationItemActiveTextColor: #fff;
+}
+
+.demo:nth-of-type(2),
+.demo:nth-of-type(4) {
+    --paginationItemTextColor: #0094d9;
+    --paginationItemActiveTextColor: #4557bb;
+    --paginationItemActiveBgColor: #fff;
+    --paginationItemActiveBorderColor: #4557bb;
+    --paginationItemActiveBorderWidth: 2px;
+}
+
+.demo:nth-of-type(3),
+.demo:nth-of-type(4) {
+    --paginationItemBorderRadius: 50%;
+}
+
+.demo:nth-of-type(5) {
+    --paginationItemBorderRadius: 2px;
+}
+
+.demo:nth-of-type(6) {
+    --paginationArrowIndent: 5px;
+    --paginationItemPadding: 10px 15px;
+    --paginationItemTextColor: #fff;
+    --paginationItemActiveBgColor: #5668ca;
+}
+
+.demo:nth-of-type(6) .pagination {
+    background-color: #4557bb;
+}

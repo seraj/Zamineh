@@ -1,0 +1,22 @@
+@import "../../static/scss/variables";
+@import "../../static/scss/_mixins";
+@import "../../static/scss/_rem";
+
+:local(.title) {
+    display: flex;
+    align-items: flex-end;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-top: 30px;
+
+    h1 {
+        font-size: 32px;
+        line-height: 38px;
+    }
+}
+
+:local(.CollectPage) {
+    border-top: 1px solid $border-color;
+    padding-top: 10px;
+}

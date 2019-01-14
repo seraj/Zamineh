@@ -1,0 +1,477 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+@import "rem";
+
+div#root {
+    overflow: hidden;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-family: ZaridSans, serif !important;
+    font-size: 16px;
+    margin: 0;
+    -webkit-touch-callout: auto;
+    -webkit-user-select: auto;
+    -khtml-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+}
+
+::selection {
+    background: $primary-color;
+    padding: 10px;
+    color: #fff;
+}
+
+body {
+    direction: rtl !important;
+    margin: 0;
+    padding: 0;
+    font-size: 16px !important;
+    height: 100%;
+    width: 100%;
+    text-align: right !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$map: (h1: 20px,
+h2: 16px,
+h3: 14px);
+
+@each $element,
+$size in $map {
+    #{$element} {
+        font-size: $size;
+    }
+}
+
+// Theme Normalize
+html {
+    @include rem-baseline;
+
+}
+
+body {
+    color: $primary_text_color;
+    line-height: 1.5;
+    background: #fff !important;
+    text-align: right;
+    @include rem(font-size, 12px);
+
+    &.bgwhite {
+        background: #fff;
+    }
+}
+
+* {
+    // font-family: "iranyekan";
+}
+
+$col:1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+10,
+11,
+12,
+auto;
+
+// @each $columns in $col {
+
+//     .col-#{$columns},
+//     .col-lg-#{$columns},
+//     .col-md-#{$columns},
+//     .col-sm-#{$columns},
+//     .col-xs-#{$columns} {
+//         padding-right: 10px !important;
+//         padding-left: 10px !important;
+//     }
+// }
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-family: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+a {
+    text-decoration: none !important;
+    transition: all 300ms;
+    color: $primary-color !important;
+
+    &:hover {
+        color: $secondery-color !important;
+        text-decoration: none !important;
+    }
+}
+
+a:focus,
+a:hover {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+        list-style-type: none;
+        color: $primary-color;
+
+        a {
+            color: $primary-color;
+
+            &:hover {
+                color: $secondery-color;
+            }
+        }
+    }
+}
+
+.alignEnd {
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.simpleSelect {
+    position: relative;
+    margin-top: -8px;
+
+    select {
+        // font-size: 12px;
+        line-height: 16px;
+        font-weight: bold;
+        height: auto;
+        padding: 0 10px !important;
+        cursor: pointer;
+        -webkit-appearance: none !important;
+        text-indent: 0.01px !important;
+        background: none !important;
+        border-width: initial !important;
+        border-style: none !important;
+        border-color: initial !important;
+        border-image: initial !important;
+        outline: 0px !important;
+    }
+
+    &:after {
+        content: "";
+        cursor: pointer;
+        pointer-events: none;
+        position: absolute;
+        top: 10px;
+        margin-left: -8px;
+        width: 0px;
+        height: 0px;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid rgb(0, 0, 0);
+    }
+}
+
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 950px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 1100px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px !important;
+    }
+}
+
+@media (min-width: 1300px) {
+    .container {
+        max-width: 1250px !important;
+    }
+}
+
+.cursor-auto {
+    cursor: auto;
+}
+
+.display-block {
+    display: block;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.d-block {}
+
+button,
+a {
+    border: none;
+    transition: background-color 0.25s, color 0.25s;
+    cursor: pointer;
+
+    &.registerbtn {
+        padding: 10px 30px !important;
+        width: 100%;
+    }
+
+    &.zbtn {
+        display: inline-block;
+        position: relative;
+        padding: 15px 30px;
+        font-size: 16px;
+        line-height: 1;
+        border-radius: 0;
+        cursor: pointer;
+        border: none;
+        background-color: #f8f8f8;
+        transition: background-color 0.25s, color 0.25s;
+        border: 1px solid transparent;
+        text-decoration: none;
+
+        &.bradius {
+            border-radius: .25rem
+        }
+
+        &:disabled {
+            opacity: 0.5;
+
+            &:hover {
+                background: #333 !important
+            }
+        }
+
+        &.next {
+            i {
+                position: absolute;
+                left: 13px;
+            }
+        }
+
+        &.previous {
+            i {
+                position: absolute;
+                right: 13px;
+            }
+        }
+
+        &.blank {
+            background: #eee;
+            text-align: center;
+            border-color: #eee;
+            color: #000;
+        }
+
+        &.white {
+            background-color: transparent;
+            text-align: center;
+            border: 1px solid #e5e5e5;
+            color: #000;
+
+            &:hover {
+                color: $button-black-hover
+            }
+        }
+
+        &.black {
+            text-align: center;
+            background-color: #000;
+            color: #fff !important;
+            border: 1px solid transparent;
+
+            &:hover {
+                background-color: $button-black-hover;
+                color: #fff !important;
+            }
+        }
+    }
+}
+
+h1 {
+    &.center-h1 {
+        text-align: center;
+        display: block;
+        font-weight: bold;
+        font-size: 27px;
+    }
+
+}
+
+.shadow {
+    box-shadow: 0 0 20px 0 rgba(164, 164, 164, 0.21);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    transition-property: color, background-color, box-shadow, transform;
+    transition-duration: .15s;
+
+    &:hover {
+        box-shadow: 0 18px 35px rgba(50, 50, 93, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07); // border-bottom: 4px solid #FFCF75;
+
+    }
+
+}
+
+.line {
+    &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background: #000;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: .25s linear;
+
+
+    }
+
+    &:hover {
+        // border-color: rgb(153, 153, 153);
+        // transform: translateY(-2px);
+
+        &:before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+    }
+
+}
+
+.spinning {
+    padding-left: 40px;
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        width: 0;
+        height: 0;
+        // box-shadow: 0px 0px 0 1px darken(#969696, 10%);
+        position: absolute;
+        border-radius: 50%;
+        animation: rotate360 .5s infinite linear, exist .1s forwards ease;
+    }
+
+    &:before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        border-radius: 50%;
+        left: 10px;
+        top: 50%;
+        position: absolute;
+        border: 2px solid darken(#969696, 10%);
+        border-right: 3px solid #353535;
+        animation: rotate360 .5s infinite linear, exist .1s forwards ease;
+
+    }
+}
+
+@keyframes rotate360 {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes exist {
+    100% {
+        width: 15px;
+        height: 15px;
+        margin: -8px 5px 0 0;
+    }
+}
+
+@media (max-width:767px) {}
+
+@media (max-width:992px) {}

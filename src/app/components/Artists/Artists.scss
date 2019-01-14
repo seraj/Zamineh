@@ -1,0 +1,178 @@
+@import "../../static/scss/variables";
+@import "../../static/scss/_mixins";
+@import "../../static/scss/_rem";
+
+
+.h1 {
+    margin: 40px 0;
+}
+
+
+
+:local(.TopArtistCarousel) {
+    position: relative;
+    margin: 40px 0;
+
+    h1 {
+        .center-h1 {
+            @extend .h1;
+        }
+    }
+
+    .flickity-prev-next-button .flickity-button-icon {
+        height: 85%;
+    }
+
+
+}
+
+:local(.TopSingleArtist) {
+    display: inline-block;
+    vertical-align: top;
+
+    .big {
+
+        .thumb {
+            height: 442px;
+            margin-bottom: 0;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+}
+
+:local(.alphabetical) {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -o-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 17px;
+    width: 100%;
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: $border-color;
+
+    .label {
+        padding: 20px 0 20px 20px;
+        text-align: right;
+    }
+
+    .range {
+        text-align: left;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        -o-box-flex: 1;
+        box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+
+        >a {
+            display: inline-block;
+            padding: 20px .75%;
+            text-decoration: none;
+            -webkit-transition: color 0.25s;
+            -moz-transition: color 0.25s;
+            -o-transition: color 0.25s;
+            -ms-transition: color 0.25s;
+            transition: color 0.25s;
+
+            &:hover {
+                color: $secondery-color
+            }
+
+            &.current {
+                font-weight: bold;
+                color: $secondery-color !important
+            }
+        }
+    }
+}
+
+:local(.forCarousel) {
+    width: calc(25% - 22.5px);
+}
+
+:local(.simpleArtist) {
+    width: 100%;
+    display: inline-block;
+
+}
+
+:local(.FeatureArtistSection) {
+    margin: 40px 0;
+
+    h4 {
+        margin: 20px 0;
+
+        a {
+            display: block;
+
+
+            i {
+                margin-right: 15px;
+                color: #ccc;
+
+                svg path {
+                    transition: stroke 0.25s;
+
+                }
+            }
+
+            &:hover {
+                i {
+                    svg {
+                        path {
+                            stroke: #000;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+:local(.SingleArtist) {
+    padding: 0;
+    background-color: #fff;
+}
+
+:local(.ArtistAlphabet) {
+    padding: 40px 0;
+
+    .center-h1 {
+        @extend .h1;
+    }
+}
+
+:local(.artistsColumns) {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+    margin-bottom: 30px;
+
+    a {
+        display: block;
+        padding: 5px 0 10px 10px;
+        font-weight: bold;
+        line-height: 1.1;
+        text-decoration: none;
+        -webkit-transition: color 0.25s;
+        transition: color 0.25s;
+    }
+}
+
+:local(.letters) {
+    position: relative;
+}

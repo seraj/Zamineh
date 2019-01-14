@@ -1,0 +1,142 @@
+import React from 'react';
+import Urls from "./components/Urls";
+import Container from "reactstrap/lib/Container";
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
+import {
+    Route,
+    Switch,
+} from 'react-router-dom';
+
+import Loadable from 'react-loadable';
+
+// import Home from './home/Home';
+import Artists from './components/Artists/Artists';
+import ArtistAlphabet from './components/Artists/ArtistAlphabet';
+import Galleries from './components/Gallery/Galleries';
+import GalleryAlphabet from './components/Gallery/GalleryAlphabet';
+import Search from './components/Search/Search'
+import Collect from './components/Collect/Collect'
+import Collections from './components/Collections/Collections'
+import Articles from './article/Articles';
+import ArtistRegistration from './registration/artist/ArtistRegistration';
+import GalleryRegistration from './registration/gallery/GalleryRegistration';
+import Section from "./components/Section/Section";
+
+import { LoadingHome } from "./components/Loaders/Loaders";
+
+
+
+if (typeof document !== 'undefined') {
+
+    var url = window.location.href;
+}
+else {
+    url = ''
+}
+
+
+
+
+const Home = Loadable({
+    loader: () => import('./home/Home'),
+    loading: LoadingHome
+});
+
+
+
+
+
+
+export default function Routing({ isLogined }) {
+    return (
+
+        <Switch>
+            <Route
+                path="/"
+                exact
+                render={() => <Home isLogined={isLogined} />}
+            />
+            <Route
+                path="/l"
+                exact
+                render={() => <LoadingHome isLogined={isLogined} />}
+            />
+            <Route
+                path="/login"
+                exact
+                render={() => <Login
+                    client_id={cookie.load('client_id', { path: '/' })}
+                    client_secret={cookie.load('client_secret', { path: '/' })}
+                />} />
+            <Route
+                path={Urls().Magzine()}
+                render={() => <Articles isLogined={isLogined} />}
+            />
+            <Route
+                path={Urls().artists()}
+                exact
+                render={() => <Artists isLogined={isLogined} />}
+            />
+            <Route
+                path={Urls().galleries()}
+                exact
+                render={() => <Galleries isLogined={isLogined} />}
+            />
+            <Route
+                path={Urls().galleriesAZ()}
+                exact
+                render={() => <GalleryAlphabet />}
+            />
+            <Route
+                path={`${Urls().artists()}:artistChar`}
+                component={ArtistAlphabet}
+            />
+            <Route
+                path={Urls().ArtistRegistration()}
+                render={() => <ArtistRegistration />}
+            />
+            <Route
+                path={Urls().GalleryRegistration()}
+                render={() => <GalleryRegistration />}
+            />
+            <Route
+                path={`${Urls().arts()}:artsId`}
+                render={() => <Articles />}
+            />
+            <Route
+                path={Urls().search()}
+                exact
+                render={() => <Search isLogined={isLogined} />}
+            />
+            <Route
+                path={Urls().collect()}
+                exact
+                render={() => <Collect isLogined={isLogined} />}
+            />
+            <Route
+                path={Urls().collections()}
+                exact
+                render={() => <Collections isLogined={isLogined} />}
+            />
+            <Route component={NoMatch} />
+        </Switch>
+
+    )
+}
+
+function NoMatch({ location }) {
+    return (
+        <Section ExtraClass={'content singlePage'}>
+            <Container>
+                <Row>
+                    <Col xs={12}>
+                        <h3>
+                            چیزی یافت نشد <code>{location.pathname}</code>
+                        </h3>
+                    </Col>
+                </Row>
+            </Container>
+        </Section>
+    );
+}

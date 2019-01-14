@@ -1,0 +1,16 @@
+$icon : 'icon';
+$icon_path : '../img/icons';
+
+.z#{$icon} {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+
+    @for $i from 1 through 36 {
+        &.#{$icon}-#{$i} {
+            background:url('#{$icon_path}/#{$icon}-#{$i}.svg')no-repeat;
+
+
+        }
+    }
+}

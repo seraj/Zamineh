@@ -1,0 +1,161 @@
+@import "../../static/scss/variables";
+
+:local(.threeCol) {
+    flex: 1 1 0%;
+    min-width: 0px;
+    margin-right: 20px;
+}
+
+:local(.Arts) {
+    // margin-left: 15px;
+    display: block;
+
+    .thumb {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        position: relative;
+
+        &:hover {
+            .save_art {
+                opacity: 1;
+            }
+        }
+
+        a {
+            display: block;
+            height: 100%;
+        }
+
+        img {
+            display: block;
+            height: auto;
+            min-width: 140px;
+        }
+
+
+        .save_art {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            display: block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            cursor: pointer;
+            color: white;
+            // border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 16px;
+            overflow: hidden;
+            line-height: 40px;
+            opacity: 0;
+
+            &:hover {
+                background-color: $primary-color;
+            }
+
+            svg {
+
+                g {
+                    transform: translateY(13px) translateX(13px);
+                }
+            }
+
+            .loadingSpinner {
+                display: none;
+            }
+
+            &.loading {
+                opacity: 1;
+
+                .loadingSpinner {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    font-family: 'Font Awesome 5 Free' !important;
+                    font-weight: 900;
+                    animation: spin 2s linear infinite;
+
+
+                    svg {
+                        display: none;
+                    }
+
+                    &:before {
+
+                        content: '\f110'
+                    }
+                }
+
+            }
+
+            &.saved {
+                opacity: 1 !important;
+                background-color: $secondery-color;
+
+                svg {
+                    g {
+
+                        fill: transparent !important;
+                        stroke: #fff !important;
+                    }
+                }
+
+                &:hover {
+                    background-color: #d42727;
+                    font-family: 'Font Awesome 5 Free' !important;
+                    font-weight: 900;
+
+                    svg {
+                        display: none;
+                    }
+
+                    &:before {
+                        content: '\f00d'
+                    }
+                }
+            }
+
+        }
+    }
+
+    .art_details {
+        font-size: 15px;
+        line-height: 1.25;
+        margin: 11px 0 26px 0;
+        // height: 95px;
+        overflow: hidden;
+        min-width: 140px;
+
+        .content {
+            display: block;
+            width: 100%;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+
+            &.item_title,
+            &.item_price {
+                font-weight: bold;
+            }
+
+            &.item_artist_name {
+                font-weight: normal;
+                color: #666;
+            }
+
+            &.gallery_name {
+                font-weight: normal;
+                color: #666;
+            }
+
+            &.price {
+                font-weight: normal;
+                font-size: 18px;
+                color: #666;
+            }
+        }
+    }
+}

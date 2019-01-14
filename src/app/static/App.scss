@@ -1,0 +1,28 @@
+@import "./scss/_variables";
+@import "./scss/_mixins";
+@import "./scss/_rem";
+@import "./scss/normalize";
+@import "./scss/Defaults";
+@import "./scss/Notification";
+@import "./scss/Divider";
+@import "./scss/Forms";
+@import "./scss/Slider";
+@import "./scss/Magzine";
+@import "./scss/Footer";
+@import "./scss/Artist";
+@import "./scss/Features";
+@import "./scss/Follow";
+@import "./scss/Uploader";
+
+@import "./scss/RTL";
+@import "./scss/Responsive";
+
+form pre {
+    direction: ltr;
+    text-align: left;
+    position: relative;
+    border: 1px solid #ccc;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}

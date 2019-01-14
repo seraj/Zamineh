@@ -1,0 +1,30 @@
+@import '../fonts/fontawesome/scss/fontawesome.scss';
+@import '../fonts/fontawesome/scss/solid.scss';
+
+@font-face {
+    font-family: ZaridSans;
+    font-style: normal;
+    font-weight: bolder;
+    src: url('../fonts/zaridsans/ZaridSans-Black.OTF');
+}
+
+@font-face {
+    font-family: ZaridSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/zaridsans/ZaridSans-Bold.OTF');
+}
+
+@font-face {
+    font-family: ZaridSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/zaridsans/ZaridSans-Medium.OTF');
+}
+
+@font-face {
+    font-family: ZaridSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/zaridsans/ZaridSans-Regular.OTF');
+}

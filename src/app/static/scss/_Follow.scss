@@ -1,0 +1,189 @@
+.follow-button {
+    display: inline-block;
+    vertical-align: middle;
+
+    &.following {
+        .follow-button-text {
+            color: $secondery-color;
+
+            &:before {
+                content: 'دنبال میکنید'
+            }
+        }
+
+        .follow-button-icon {
+            svg {
+                g {
+                    stroke: $secondery-color !important
+                }
+            }
+        }
+
+        &:hover {
+            .follow-button-text {
+                color: #a51f1f;
+
+                &:before {
+                    content: 'دنبال نکردن'
+                }
+            }
+
+            .follow-button-icon {
+                svg {
+                    g {
+                        stroke: #a51f1f !important
+                    }
+                }
+            }
+        }
+    }
+
+    .plus-button {
+        cursor: pointer;
+        display: inline-block;
+        min-width: 86px;
+    }
+
+    .follow-button-icon {
+        font-size: 32px;
+        margin: 0 0 0 5px;
+        vertical-align: bottom;
+        display: inline-block;
+        line-height: 20px;
+        height: 22px;
+
+    }
+
+    .follow-button-text {
+        display: inline;
+
+        &:before {
+            content: 'دنبال کردن';
+        }
+    }
+
+    &:hover {
+        .follow-button-text {
+            color: $secondery-color;
+
+
+        }
+
+        .follow-button-icon {
+            svg {
+                g {
+                    stroke: $secondery-color !important
+                }
+            }
+        }
+    }
+}
+
+.follow-popover {
+
+    background-color: #fff !important;
+    border-radius: 3px !important;
+    border: 1px solid #ddd !important;
+    width: 290px;
+    height: 192px;
+
+    &.show {}
+
+    .popover-body {
+        float: right;
+        width: 100%;
+        padding: 15px !important;
+    }
+
+    .header {
+        .header-text {
+            font-size: 15px;
+            line-height: 1.33;
+        }
+
+        .popover-close {
+            color: #999;
+            position: absolute;
+            left: 10px;
+            top: 0;
+            font-size: 34px;
+            cursor: pointer;
+        }
+    }
+
+    .popover-artists {
+        ul {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+
+            li {
+                padding: 10px 0 10px 0;
+                border-bottom: 1px solid #e5e5e5;
+                width: 100%;
+                float: right;
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+
+                >div {
+                    width: 100%;
+                    float: right;
+                }
+
+                &:before,
+                &:after {
+                    content: "";
+                    display: table;
+                }
+
+
+                img {
+                    margin-left: 10px;
+                    float: right;
+                }
+
+                .artist-name {
+                    font-size: 17px;
+                    line-height: 1.5;
+                    margin-top: 2px;
+                    text-decoration: none;
+                    border-bottom: 2px solid transparent;
+                    float: right;
+                    max-width: 128px;
+                    display: block;
+                    -o-text-overflow: ellipsis;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+
+                    &:hover {
+                        border-bottom: 1.6px solid #000;
+                    }
+                }
+
+                .follow-button {
+                    margin-top: 5px;
+                    cursor: pointer;
+                    float: left;
+                    font-weight: bold;
+                    border-bottom: 1.6px solid #000;
+
+                    &:before {
+                        content: 'دنبال کردن';
+                    }
+
+                    &.following {
+                        color: $secondery-color !important;
+
+                        &:before {
+                            content: 'دنبال میکنید'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

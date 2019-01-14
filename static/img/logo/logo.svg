@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.46 228.93">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#000;stroke-linejoin:round;stroke-width:9px;}
+        </style>
+    </defs>
+    <title>
+        logo
+    </title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <g id="_Group_" data-name="&lt;Group&gt;">
+                <polyline points="95.93 45.78 95.95 45.78 187.51 45.78" class="cls-1"/>
+                <polyline points="95.93 91.57 95.95 91.57 187.51 91.57" class="cls-1"/>
+                <polyline points="95.93 137.36 95.95 137.36 187.51 137.36" class="cls-1"/>
+                <polyline points="95.95 0 95.95 45.78 95.95 91.57 95.95 137.36 95.95 183.14 95.95 228.93" class="cls-1"/>
+                <polyline points="187.51 0 187.51 45.78 187.51 91.57 187.51 137.36 187.51 183.14 187.51 228.93" class="cls-1"/>
+                <polyline points="283.46 183.14 187.51 183.14 95.95 183.14 0 183.14" class="cls-1"/>
+            </g>
+        </g>
+    </g>
+</svg>

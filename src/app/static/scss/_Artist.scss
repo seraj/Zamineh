@@ -1,0 +1,244 @@
+@import "./_variables";
+@import "./_mixins";
+@import "./_rem";
+
+.artist_list {
+    width: 200px;
+    border-left: 1px solid #e5e5e5;
+    margin: 0 0 0 30px;
+    padding-left: 30px;
+    height: 262px;
+    white-space: normal;
+
+    .content {
+        z-index: 100;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        height: 100%;
+
+        a {
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.33;
+            -webkit-font-smoothing: antialiased;
+            text-decoration: none;
+            margin: 10px 0;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    }
+}
+
+.Arts {
+    // min-width: 140px;
+    // max-width: 150px;
+    margin-left: 15px;
+
+    .thumb {
+        width: 100%;
+        height: 180px;
+        margin-bottom: 10px;
+        position: relative;
+
+        &:hover {
+            .save_art {
+                opacity: 1;
+            }
+        }
+
+        a {
+            display: block;
+            height: 100%;
+        }
+
+        img {
+            display: block;
+            height: 100%;
+            min-width: 140px;
+        }
+
+
+        .save_art {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            display: block;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            cursor: pointer;
+            color: white;
+            // border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 16px;
+            overflow: hidden;
+            line-height: 40px;
+            opacity: 0;
+
+            &:hover {
+                background-color: $primary-color;
+            }
+
+            svg {
+
+                g {
+                    transform: translateY(13px) translateX(13px);
+                }
+            }
+
+            .loadingSpinner {
+                display: none;
+            }
+
+            &.loading {
+                opacity: 1;
+
+                .loadingSpinner {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    font-family: 'Font Awesome 5 Free' !important;
+                    font-weight: 900;
+                    animation: spin 2s linear infinite;
+
+
+                    svg {
+                        display: none;
+                    }
+
+                    &:before {
+
+                        content: '\f110'
+                    }
+                }
+
+            }
+
+            &.saved {
+                opacity: 1 !important;
+                background-color: $secondery-color;
+
+                svg {
+                    g {
+
+                        fill: transparent !important;
+                        stroke: #fff !important;
+                    }
+                }
+
+                &:hover {
+                    background-color: #d42727;
+                    font-family: 'Font Awesome 5 Free' !important;
+                    font-weight: 900;
+
+                    svg {
+                        display: none;
+                    }
+
+                    &:before {
+                        content: '\f00d'
+                    }
+                }
+            }
+
+        }
+    }
+
+    .art_details {
+        font-size: 15px;
+        line-height: 1.25;
+        margin: 11px 0 26px 0;
+        height: 95px;
+        overflow: hidden;
+        min-width: 140px;
+
+        .content {
+            display: block;
+            width: 100%;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+
+            &.item_title {
+                font-weight: bold;
+            }
+
+            &.gallery_name {
+                font-weight: normal;
+                color: #666;
+            }
+
+            &.price {
+                font-weight: normal;
+                font-size: 18px;
+                color: #666;
+            }
+        }
+    }
+}
+
+.carousel {
+    margin-bottom: 30px;
+    width: 100%;
+    counter-reset: carousel-cell;
+
+    &:hover {
+
+        .flickity-button {
+            transition: .3s visibility;
+            visibility: visible
+        }
+    }
+
+    .item {
+        max-width: 250px;
+    }
+}
+
+.flickity-enabled {
+    position: relative;
+}
+
+.flickity-enabled {
+    position: relative;
+}
+
+.flickity-enabled:focus {
+    outline: none
+}
+
+.flickity-enabled.is-draggable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.flickity-viewport {
+    overflow: hidden;
+    position: relative;
+    height: 100%
+}
+
+.flickity-slider {
+    position: absolute;
+    width: 100%;
+    height: 100%
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,248 @@
+@import "./_variables";
+@import "./_mixins";
+@import "./_rem";
+
+:local(.BorderedBox) {
+    border: 1px solid $border-color;
+    padding: 10px;
+
+    &.big {
+        border: none;
+        padding: 0;
+    }
+
+    link {
+        display: block;
+    }
+
+    .thumb {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 196px;
+        margin-bottom: 10px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+:local(.unBorderedBox) {
+    // padding: 10px;
+
+    link {
+        display: block;
+    }
+
+    .thumb {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 196px;
+        margin-bottom: 10px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+:local(.BoxContent) {
+    display: block;
+    width: 100%;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    &.bold {
+        font-weight: bold;
+    }
+
+    &.normal {
+        font-weight: normal;
+        color: #666;
+    }
+
+    &.works {
+        font-weight: normal;
+        font-size: 18px;
+        color: #666;
+    }
+
+}
+
+:local(.box_details_block) {
+    min-height: 63px;
+    margin-bottom: 3px;
+}
+
+:local(.box_details_inline) {
+
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+
+    .details_right,
+    .details_left {
+        display: table-cell;
+        vertical-align: top;
+        padding-top: 20px;
+    }
+
+    .details_left {
+        text-align: left;
+    }
+
+    button {
+        width: auto;
+    }
+
+    &.flex {
+        display: -webkit-box;
+        display: -moz-box;
+        display: box;
+        display: flex;
+        -webkit-box-align: center;
+        -moz-box-align: center;
+        -o-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        min-height: 73px;
+
+        .details_left,
+        .details_right {
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            -o-box-flex: 1;
+            box-flex: 1;
+            padding: 0;
+        }
+
+        .details_left {
+
+            -webkit-flex: 0 0 auto;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+            margin-right: 10px;
+
+
+        }
+
+        .details_right {
+            height: 48px;
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            overflow: hidden;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+
+            .location {
+                display: inline;
+                font-size: 17px;
+                line-height: 1.5;
+                min-height: 25px;
+            }
+        }
+    }
+}
+
+:local(.threeCol) {
+    margin-top: 30px;
+    width: -webkit-calc(33.333% - 20px);
+    width: -moz-calc(33.333% - 20px);
+    width: -ms-calc(33.333% - 20px);
+    width: -o-calc(33.333% - 20px);
+    width: calc(33.333% - 20px);
+    margin-left: 30px;
+}
+
+:local(.FeatureBoxSection) {
+    margin: 40px 0;
+
+    h4 {
+        margin: 20px 0;
+
+        a {
+            display: block;
+
+
+            i {
+                margin-right: 15px;
+                color: #ccc;
+
+                svg path {
+                    transition: stroke 0.25s;
+
+                }
+            }
+
+            &:hover {
+                i {
+                    svg {
+                        path {
+                            stroke: #000;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+:local(.followBtn) {
+    width: 100%;
+    padding: 4px 20px;
+    background: $primary-color;
+    border: 1px solid $primary-color;
+
+    &.big {
+        padding: 12px 20px;
+        width: 150px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    color: #fff;
+    text-align: center;
+    position: relative;
+
+    &:before {
+        content: 'دنبال کردن'
+    }
+
+    &:hover {
+        background: $secondery-color;
+        border: 1px solid $secondery-color;
+
+    }
+
+    &.following {
+        background-color: #fff;
+        color: #ccc;
+        border: 1px solid #e5e5e5;
+
+        &:hover {
+            color: $secondery-color;
+
+            &:before {
+                content: 'دنبال نکردن'
+            }
+        }
+
+
+        &:before {
+            content: 'دنبال میکنید'
+        }
+    }
+}

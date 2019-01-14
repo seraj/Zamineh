@@ -1,0 +1,96 @@
+@import "./_variables";
+@import "./_mixins";
+@import "./_rem";
+
+.header-slider {
+    height: 417px;
+    position: fixed;
+    top: 61px;
+    width: 100%;
+    background: #000;
+    // z-index: -1;
+
+    .header_slide {
+        height: 417px;
+        width: 100%;
+
+        &.black {
+            .slidecontent {
+                color: #000;
+
+                .title {
+                    color: #000;
+                }
+
+                .button {
+                    border-color: #000;
+
+                    &:hover {
+                        background: #000;
+                        color: #fff
+                    }
+                }
+            }
+        }
+
+        .slidecontent {
+            color: #fff;
+            position: relative;
+            height: 100%;
+            text-align: right;
+            padding: 50px 0;
+
+            .sub_content {
+                font-size: 21px;
+            }
+
+            .title {
+                color: #fff;
+                font-size: 35px;
+                font-weight: bold;
+                margin: 25px 0;
+                // text-shadow: 1px 1px 0 #000;
+            }
+
+            .context {
+                font-size: 24px;
+                display: block;
+                margin-bottom: 25px;
+            }
+
+            .button {
+                padding: 5px 20px;
+                display: inline-block;
+                border: 3px solid #fff;
+                background: transparent;
+                transition: background-color 0.25s, color 0.25s;
+
+                &:hover {
+                    color: $primary-color;
+                    background: #fff;
+                }
+            }
+        }
+    }
+
+    .flickity-page-dots {
+        position: absolute;
+        bottom: 10px;
+
+        .dot {
+            opacity: 1;
+            background: #eee;
+
+            &.is-selected {
+                background: $primary-color;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 767px) {
+    .header-slider .header_slide .slidecontent .context {
+        display: none;
+    }
+}

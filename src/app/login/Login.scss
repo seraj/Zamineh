@@ -1,0 +1,21 @@
+@import "../static/scss/variables";
+@import "../static/scss/_mixins";
+@import "../static/scss/_rem";
+
+:local(.input) {
+    display: inline-block;
+    border-width: 1px;
+    border-color: #dee2e6;
+    border-style: solid;
+    line-height: 1.5;
+    color: #212529;
+    -webkit-transition: color .2s ease-in-out, border-style .2s ease-in-out, visibility .2s ease-in-out, background .2s ease-in-out, background-color .2s ease-in-out, text-decoration .2s ease-in-out, box-shadow .2s ease-in-out, -webkit-transform .2s ease-in-out, opacity .2s ease-in-out;
+    -webkit-transition: color .2s ease-in-out, border-style .2s ease-in-out, visibility .2s ease-in-out, background .2s ease-in-out, background-color .2s ease-in-out, text-decoration .2s ease-in-out, box-shadow .2s ease-in-out, transform .2s ease-in-out, opacity .2s ease-in-out;
+    transition: color .2s ease-in-out, border-style .2s ease-in-out, visibility .2s ease-in-out, background .2s ease-in-out, background-color .2s ease-in-out, text-decoration .2s ease-in-out, box-shadow .2s ease-in-out, transform .2s ease-in-out, opacity .2s ease-in-out;
+    background-color: #fff;
+    padding: 10px 10px !important;
+    font-size: 1rem;
+    border-radius: .25rem;
+    display: block;
+    width: 100%;
+}

@@ -1,0 +1,309 @@
+@import "../static/scss/StepBar";
+@import "../static/scss/_variables";
+@import "../static/scss/_mixins";
+@import "../static/scss/_rem";
+$importColor : rgb(255, 139, 72);
+
+:local(.addSectionButton) {
+    display: block;
+    text-align: center;
+    transition: ease-in-out .5s;
+
+    button {
+        background: transparent;
+    }
+
+    span {
+        margin: 10px 0;
+        display: block;
+        color: #ddd;
+        font-weight: bold;
+    }
+
+    i {
+        border: 3px solid #ddd;
+        height: 80px;
+        width: 80px;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+
+        &::after {
+            content: '+';
+            font-size: 51px;
+            color: #ddd;
+            font-family: arial;
+
+        }
+    }
+
+    &:hover {
+        span {
+            color: #000
+        }
+
+        i {
+            border-color: #000;
+
+            &::after {
+                color: #000;
+            }
+        }
+    }
+}
+
+:local(.importArtButton) {
+    @extend :local(.addSectionButton);
+
+    span {
+        color: $importColor;
+    }
+
+    i {
+        border-color: $importColor;
+
+        &::after {
+            color: $importColor;
+        }
+    }
+
+    &:hover {
+
+        span,
+        i::after {
+            color: darken($importColor, 20%)
+        }
+
+        i {
+            border-color: darken($importColor, 20%)
+        }
+    }
+
+}
+
+:local(.removethis),
+a:local(.removethis) {
+    position: absolute;
+    left: 36px;
+    top: 27px;
+    color: #ff0000 !important;
+    font-size: 16px;
+    padding: 0 10px;
+    background: #fff;
+    border-radius: 0 !important;
+    z-index: 1;
+    transition: ease-in-out .2s;
+
+    &:hover {
+        background: #ff0000 !important;
+        color: #fff !important;
+    }
+}
+
+:local(.RegistrationSection) {
+    margin-bottom: 25px;
+
+    &.part {
+        background: #ffffff;
+        position: relative;
+        border: 1px solid #000;
+        border-radius: 3px;
+        padding: 10px 20px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        width: 100%;
+
+        &.submitted {
+            @extend .box-success;
+        }
+    }
+
+
+
+    ._art {
+        background: #ffffff;
+        margin-bottom: 30px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        position: relative;
+        padding: 10px 20px;
+        width: 100%;
+
+        &.submitted {
+            @extend .box-success;
+        }
+
+        &_add {
+            @extend :local(.addSectionButton)
+        }
+    }
+
+    .sui-form-check {
+        .sui-form-check-label {
+            padding-left: 0;
+            padding-right: 0.25rem;
+            margin-bottom: 0;
+        }
+    }
+}
+
+:local(.importArts) {
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    ._art {
+        background: #ffffff;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        padding: 10px 0;
+        width: 100%;
+
+        .name {
+            font-size: 16px;
+        }
+
+        &.submitted {
+            @extend .box-success;
+        }
+    }
+
+    .import-button {
+        margin-top: 5px;
+        cursor: pointer;
+        float: left;
+        font-weight: bold;
+        // border-bottom: 1.6px solid #000;
+
+        &:before {
+            content: 'اضافه کن';
+        }
+
+        &.imported {
+            color: $secondery-color !important;
+
+            &:before {
+                content: 'لغو'
+            }
+        }
+    }
+
+    .Arts {
+        margin-top: 15px;
+
+
+    }
+}
+
+.box-success {
+    border-color: #4caf50;
+    background: #fcfffc;
+}
+
+:local(.CustomBox) {
+
+    .sui-radio,
+    .sui-checkbox {
+        display: none;
+    }
+
+    .sui-form-check {
+        text-align: center;
+
+        &:first-child {
+            margin-right: 0 !important;
+        }
+    }
+
+
+
+    .sui-form-check-label {
+        cursor: pointer;
+        background: #fff;
+        border-radius: 2px;
+        border: 1px solid #ddd;
+        padding: 10px 20px !important;
+        transition: padding 0.2s linear, color .2s linear;
+
+        &.checked {
+            @extend .box-success;
+            color: #4caf50;
+            border-bottom-width: 2px;
+        }
+    }
+
+    .spinning {
+        padding-left: 40px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    :local(.CustomBox) {
+        margin: 0 -10px;
+
+        .sui-form-check-label {
+            width: 100%;
+        }
+
+        .sui-form-check {
+            width: 29.3%;
+            margin: 10px;
+
+            &:first-child {
+                margin: 10px !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 537px) {
+    :local(.CustomBox) {
+        .sui-form-check {
+            width: 29%;
+        }
+    }
+}
+
+@media (max-width: 502px) {
+    :local(.CustomBox) {
+        .sui-form-check {
+            width: 28.7%;
+        }
+    }
+}
+
+@media (max-width: 405px) {
+    :local(.CustomBox) {
+        .sui-form-check {
+            width: 44%;
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    :local(.CustomBox) {
+        .sui-form-check {
+            width: 43%;
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    :local(.CustomBox) {
+        margin: 0;
+
+        .sui-form-check {
+            margin: 10px 0;
+
+            &:first-child {
+                margin: 10px 0 !important;
+            }
+
+            width: 100%;
+        }
+    }
+}

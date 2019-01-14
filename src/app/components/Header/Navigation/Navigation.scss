@@ -1,0 +1,49 @@
+@import "../../../static/scss/variables";
+@import "../../../static/scss/_mixins";
+@import "../../../static/scss/_rem";
+
+:local(.hasMenu) {
+    position: relative;
+}
+
+:local(.dropdownMenu) {
+    margin-right: 10px;
+
+    >li {
+
+        a {
+            position: relative;
+            padding: 15px 10px;
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff !important;
+
+            &:before {
+                content: '>';
+                margin-left: 10px
+            }
+        }
+    }
+}
+
+:local(.MoreBtn) {
+    position: relative;
+
+    &:before {
+        display: block;
+        position: absolute;
+        content: '';
+        top: 75%;
+        left: 50%;
+        margin-left: -4px;
+        background: transparent;
+        border: 4px solid transparent;
+        border-top-color: $primary-color;
+        border-top-width: 6px;
+    }
+}
+
+:local(.Nav) {
+    position: relative;
+}
