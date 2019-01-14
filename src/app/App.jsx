@@ -92,7 +92,6 @@ class App extends React.Component {
             const originalRequest = config;
             if (status === 400) {
                 data.error ? Toast('error', data.error) : null
-                console.log(data)
             }
             if (status >= 500) {
                 Toast('error', 'مشکلی پیش آمده است.لطفا دوباره تلاش نمایید')

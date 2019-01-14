@@ -70,7 +70,7 @@ export const Exhibition = ({
     values }, ...props) => {
     const exbIndex = index
     const ExbData = StepData.exb_set[index]
-    const unSubmittedArts = unSubmittedArt(values.exb_set[index].art_set).length;
+    const unSubmittedArts = values.exb_set[index] ? unSubmittedArt(values.exb_set[index].art_set).length : null;
 
     return (
         <div className={`${styles.RegistrationSection} part ${ExbData && ExbData.submitted ? `submitted` : ``}`}>
@@ -263,7 +263,7 @@ export const Collection = ({
     values }, ...props) => {
     const ColIndex = index
     const ColData = StepData.collection_set[index]
-    const unSubmittedArts = unSubmittedArt(values.collection_set[index].art_set).length;
+    const unSubmittedArts = values.collection_set[index] ? unSubmittedArt(values.collection_set[index].art_set).length : null;
     return (
         <div className={`${styles.RegistrationSection} part ${ColData && ColData.submitted ? `submitted` : ``}`}>
             {ColData && ColData.loading &&
