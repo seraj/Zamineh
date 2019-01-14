@@ -123,636 +123,636 @@
     {
       "id": "./src/app/components/Filters/Filters.jsx",
       "name": "./src/app/components/Filters/Filters.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "undefined": [
     {
       "id": 0,
       "name": null,
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     },
     {
       "id": "./node_modules/moment/locale sync recursive ^\\.\\/.*$",
       "name": "./node_modules/moment/locale sync recursive ^\\.\\/.*$",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     },
     {
       "id": "./node_modules/webpack/hot sync ^\\.\\/log$",
       "name": "./node_modules/webpack/hot sync ^\\.\\/log$",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./src/index.jsx": [
     {
       "id": "./src/index.jsx",
       "name": "./src/index.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./app/App": [
     {
       "id": "./src/app/App.jsx",
       "name": "./src/app/App.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Toast/Toast": [
     {
       "id": "./src/app/components/Toast/Toast.jsx",
       "name": "./src/app/components/Toast/Toast.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./security/SecurityManager": [
     {
       "id": "./src/app/security/SecurityManager.jsx",
       "name": "./src/app/security/SecurityManager.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Urls": [
     {
       "id": "./src/app/components/Urls.jsx",
       "name": "./src/app/components/Urls.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Routing": [
     {
       "id": "./src/app/Routing.jsx",
       "name": "./src/app/Routing.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Artists/Artists": [
     {
       "id": "./src/app/components/Artists/Artists.jsx",
       "name": "./src/app/components/Artists/Artists.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../Models": [
     {
       "id": "./src/app/components/Models.jsx",
       "name": "./src/app/components/Models.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./AlphabetSet": [
     {
       "id": "./src/app/components/Artists/AlphabetSet.jsx",
       "name": "./src/app/components/Artists/AlphabetSet.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Artists.scss": [
     {
       "id": "./src/app/components/Artists/Artists.scss",
       "name": "./src/app/components/Artists/Artists.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Artists.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Artists/Artists.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Artists/Artists.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../General": [
     {
       "id": "./src/app/components/General.jsx",
       "name": "./src/app/components/General.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../Icons": [
     {
       "id": "./src/app/components/Icons.jsx",
       "name": "./src/app/components/Icons.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./General.scss": [
     {
       "id": "./src/app/components/General.scss",
       "name": "./src/app/components/General.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./General.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/General.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/General.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./login/Login": [
     {
       "id": "./src/app/login/Login.jsx",
       "name": "./src/app/login/Login.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./LoginForm": [
     {
       "id": "./src/app/login/LoginForm.jsx",
       "name": "./src/app/login/LoginForm.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../components/datepicker/PersianDatePicker": [
     {
       "id": "./src/app/components/datepicker/PersianDatePicker.jsx",
       "name": "./src/app/components/datepicker/PersianDatePicker.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./datepicker.css": [
     {
       "id": "./src/app/components/datepicker/datepicker.css",
       "name": "./src/app/components/datepicker/datepicker.css",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./datepicker.css": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/datepicker/datepicker.css",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/datepicker/datepicker.css",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../components/NumbersConvertor": [
     {
       "id": "./src/app/components/NumbersConvertor.jsx",
       "name": "./src/app/components/NumbersConvertor.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Login.scss": [
     {
       "id": "./src/app/login/Login.scss",
       "name": "./src/app/login/Login.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./Login.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/login/Login.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/login/Login.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./LoginModal": [
     {
       "id": "./src/app/login/LoginModal.jsx",
       "name": "./src/app/login/LoginModal.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../components/ui-components/Modal/Modal": [
     {
       "id": "./src/app/components/ui-components/Modal/Modal.jsx",
       "name": "./src/app/components/ui-components/Modal/Modal.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Modal.scss": [
     {
       "id": "./src/app/components/ui-components/Modal/Modal.scss",
       "name": "./src/app/components/ui-components/Modal/Modal.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/sass-loader/lib/loader.js!./Modal.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/ui-components/Modal/Modal.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/ui-components/Modal/Modal.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./SingleArtist": [
     {
       "id": "./src/app/components/Artists/SingleArtist.jsx",
       "name": "./src/app/components/Artists/SingleArtist.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../../static/scss/_boxStyle.scss": [
     {
       "id": "./src/app/static/scss/_boxStyle.scss",
       "name": "./src/app/static/scss/_boxStyle.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./_boxStyle.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/static/scss/_boxStyle.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/static/scss/_boxStyle.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "..//Error": [
     {
       "id": "./src/app/components/Error.jsx",
       "name": "./src/app/components/Error.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Section/Section": [
     {
       "id": "./src/app/components/Section/Section.jsx",
       "name": "./src/app/components/Section/Section.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Section.scss": [
     {
       "id": "./src/app/components/Section/Section.scss",
       "name": "./src/app/components/Section/Section.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Section.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Section/Section.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Section/Section.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Artists/ArtistAlphabet": [
     {
       "id": "./src/app/components/Artists/ArtistAlphabet.jsx",
       "name": "./src/app/components/Artists/ArtistAlphabet.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../Pagination/Pagination": [
     {
       "id": "./src/app/components/Pagination/Pagination.jsx",
       "name": "./src/app/components/Pagination/Pagination.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Pagination.scss": [
     {
       "id": "./src/app/components/Pagination/Pagination.scss",
       "name": "./src/app/components/Pagination/Pagination.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Pagination.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Pagination/Pagination.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Pagination/Pagination.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Gallery/Galleries": [
     {
       "id": "./src/app/components/Gallery/Galleries.jsx",
       "name": "./src/app/components/Gallery/Galleries.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./GalleryForm": [
     {
       "id": "./src/app/components/Gallery/GalleryForm.jsx",
       "name": "./src/app/components/Gallery/GalleryForm.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Gallery.scss": [
     {
       "id": "./src/app/components/Gallery/Gallery.scss",
       "name": "./src/app/components/Gallery/Gallery.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Gallery.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Gallery/Gallery.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Gallery/Gallery.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./SingleGallery": [
     {
       "id": "./src/app/components/Gallery/SingleGallery.jsx",
       "name": "./src/app/components/Gallery/SingleGallery.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../ui-components/Buttons": [
     {
       "id": "./src/app/components/ui-components/Buttons.jsx",
       "name": "./src/app/components/ui-components/Buttons.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../Spinner/Spinner": [
     {
       "id": "./src/app/components/Spinner/Spinner.jsx",
       "name": "./src/app/components/Spinner/Spinner.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Spinner.scss": [
     {
       "id": "./src/app/components/Spinner/Spinner.scss",
       "name": "./src/app/components/Spinner/Spinner.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Spinner.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Spinner/Spinner.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Spinner/Spinner.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Gallery/GalleryAlphabet": [
     {
       "id": "./src/app/components/Gallery/GalleryAlphabet.jsx",
       "name": "./src/app/components/Gallery/GalleryAlphabet.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Search/Search": [
     {
       "id": "./src/app/components/Search/Search.jsx",
       "name": "./src/app/components/Search/Search.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./SearchMetaTags": [
     {
       "id": "./src/app/components/Search/SearchMetaTags.jsx",
       "name": "./src/app/components/Search/SearchMetaTags.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Search.scss": [
     {
       "id": "./src/app/components/Search/Search.scss",
       "name": "./src/app/components/Search/Search.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Search.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Search/Search.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Search/Search.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Collect/Collect": [
     {
       "id": "./src/app/components/Collect/Collect.jsx",
       "name": "./src/app/components/Collect/Collect.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../ThousandSeparator": [
     {
       "id": "./src/app/components/ThousandSeparator.jsx",
       "name": "./src/app/components/ThousandSeparator.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Filters.scss": [
     {
       "id": "./src/app/components/Filters/Filters.scss",
       "name": "./src/app/components/Filters/Filters.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Filters.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Filters/Filters.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Filters/Filters.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./CollectMetaTags": [
     {
       "id": "./src/app/components/Collect/CollectMetaTags.jsx",
       "name": "./src/app/components/Collect/CollectMetaTags.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../ArtArtist/Arts": [
     {
       "id": "./src/app/components/ArtArtist/Arts.jsx",
       "name": "./src/app/components/ArtArtist/Arts.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Arts.scss": [
     {
       "id": "./src/app/components/ArtArtist/Arts.scss",
       "name": "./src/app/components/ArtArtist/Arts.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Arts.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/ArtArtist/Arts.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/ArtArtist/Arts.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Collect.scss": [
     {
       "id": "./src/app/components/Collect/Collect.scss",
       "name": "./src/app/components/Collect/Collect.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Collect.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Collect/Collect.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Collect/Collect.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Collections/Collections": [
     {
       "id": "./src/app/components/Collections/Collections.jsx",
       "name": "./src/app/components/Collections/Collections.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./CollectionsMetaTags": [
     {
       "id": "./src/app/components/Collections/CollectionsMetaTags.jsx",
       "name": "./src/app/components/Collections/CollectionsMetaTags.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./CollectionSet": [
     {
       "id": "./src/app/components/Collections/CollectionSet.jsx",
       "name": "./src/app/components/Collections/CollectionSet.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Collections.scss": [
     {
       "id": "./src/app/components/Collections/Collections.scss",
       "name": "./src/app/components/Collections/Collections.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Collections.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Collections/Collections.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Collections/Collections.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./article/Articles": [
     {
       "id": "./src/app/article/Articles.jsx",
       "name": "./src/app/article/Articles.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./ArticleMetaTags": [
     {
       "id": "./src/app/article/ArticleMetaTags.jsx",
       "name": "./src/app/article/ArticleMetaTags.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./registration/artist/ArtistRegistration": [
     {
       "id": "./src/app/registration/artist/ArtistRegistration.jsx",
       "name": "./src/app/registration/artist/ArtistRegistration.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../components/AuthorizationForm": [
     {
       "id": "./src/app/registration/components/AuthorizationForm.jsx",
       "name": "./src/app/registration/components/AuthorizationForm.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../../components/Alert/Alert": [
     {
       "id": "./src/app/components/Alert/Alert.jsx",
       "name": "./src/app/components/Alert/Alert.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Alert.scss": [
     {
       "id": "./src/app/components/Alert/Alert.scss",
       "name": "./src/app/components/Alert/Alert.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Alert.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Alert/Alert.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Alert/Alert.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../RegisterMetaTags": [
     {
       "id": "./src/app/registration/RegisterMetaTags.jsx",
       "name": "./src/app/registration/RegisterMetaTags.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Steps": [
     {
       "id": "./src/app/registration/artist/Steps.jsx",
       "name": "./src/app/registration/artist/Steps.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     },
     {
       "id": "./node_modules/rc-steps/es/Steps.js",
@@ -765,264 +765,264 @@
     {
       "id": "./src/app/registration/components/InputTypeahead.jsx",
       "name": "./src/app/registration/components/InputTypeahead.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./makeAndHandleRequest": [
     {
       "id": "./src/app/registration/components/makeAndHandleRequest.jsx",
       "name": "./src/app/registration/components/makeAndHandleRequest.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../components/InputAsyncTypeahead": [
     {
       "id": "./src/app/registration/components/InputAsyncTypeahead.jsx",
       "name": "./src/app/registration/components/InputAsyncTypeahead.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./CustomArtistForm": [
     {
       "id": "./src/app/registration/artist/CustomArtistForm.jsx",
       "name": "./src/app/registration/artist/CustomArtistForm.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../../components/Divider": [
     {
       "id": "./src/app/components/Divider.jsx",
       "name": "./src/app/components/Divider.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../../components/Uploader": [
     {
       "id": "./src/app/components/Uploader.jsx",
       "name": "./src/app/components/Uploader.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../Registration.scss": [
     {
       "id": "./src/app/registration/Registration.scss",
       "name": "./src/app/registration/Registration.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./Registration.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/registration/Registration.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/registration/Registration.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../../components/map/ZaminehMap": [
     {
       "id": "./src/app/components/map/ZaminehMap.jsx",
       "name": "./src/app/components/map/ZaminehMap.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Map.css": [
     {
       "id": "./src/app/components/map/Map.css",
       "name": "./src/app/components/map/Map.css",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Map.css": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/map/Map.css",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/map/Map.css",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../../components/StepBar/StepBar": [
     {
       "id": "./src/app/components/StepBar/StepBar.jsx",
       "name": "./src/app/components/StepBar/StepBar.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./StepBar.scss": [
     {
       "id": "./src/app/components/StepBar/StepBar.scss",
       "name": "./src/app/components/StepBar/StepBar.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./StepBar.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/StepBar/StepBar.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/StepBar/StepBar.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./ArtistFormValidation": [
     {
       "id": "./src/app/registration/artist/ArtistFormValidation.jsx",
       "name": "./src/app/registration/artist/ArtistFormValidation.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../../components/Validation": [
     {
       "id": "./src/app/components/Validation.jsx",
       "name": "./src/app/components/Validation.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./registration/gallery/GalleryRegistration": [
     {
       "id": "./src/app/registration/gallery/GalleryRegistration.jsx",
       "name": "./src/app/registration/gallery/GalleryRegistration.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./RegistrationFrom": [
     {
       "id": "./src/app/registration/gallery/RegistrationFrom.jsx",
       "name": "./src/app/registration/gallery/RegistrationFrom.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Loaders/Loaders": [
     {
       "id": "./src/app/components/Loaders/Loaders.jsx",
       "name": "./src/app/components/Loaders/Loaders.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Loaders.scss": [
     {
       "id": "./src/app/components/Loaders/Loaders.scss",
       "name": "./src/app/components/Loaders/Loaders.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Loaders.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Loaders/Loaders.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Loaders/Loaders.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./components/Header/Header": [
     {
       "id": "./src/app/components/Header/Header.jsx",
       "name": "./src/app/components/Header/Header.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Navigation/Navigation": [
     {
       "id": "./src/app/components/Header/Navigation/Navigation.jsx",
       "name": "./src/app/components/Header/Navigation/Navigation.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Header.scss": [
     {
       "id": "./src/app/components/Header/Header.scss",
       "name": "./src/app/components/Header/Header.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../node_modules/css-loader/index.js!../../../../node_modules/sass-loader/lib/loader.js!./Header.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Header/Header.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Header/Header.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./Navigation.scss": [
     {
       "id": "./src/app/components/Header/Navigation/Navigation.scss",
       "name": "./src/app/components/Header/Navigation/Navigation.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/sass-loader/lib/loader.js!./Navigation.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Header/Navigation/Navigation.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Header/Navigation/Navigation.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "../Search/SearchForm/SearchForm": [
     {
       "id": "./src/app/components/Search/SearchForm/SearchForm.jsx",
       "name": "./src/app/components/Search/SearchForm/SearchForm.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./SearchForm.scss": [
     {
       "id": "./src/app/components/Search/SearchForm/SearchForm.scss",
       "name": "./src/app/components/Search/SearchForm/SearchForm.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/sass-loader/lib/loader.js!./SearchForm.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Search/SearchForm/SearchForm.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/components/Search/SearchForm/SearchForm.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./AppFooter": [
     {
       "id": "./src/app/AppFooter.jsx",
       "name": "./src/app/AppFooter.jsx",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./static/App.scss": [
     {
       "id": "./src/app/static/App.scss",
       "name": "./src/app/static/App.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./App.scss": [
     {
       "id": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/static/App.scss",
       "name": "./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./src/app/static/App.scss",
-      "file": "static/js/main-32e8b72c2136bf29be3f.js",
-      "publicPath": "/static/js/main-32e8b72c2136bf29be3f.js"
+      "file": "static/js/main-508a61c35a55ffc721aa.js",
+      "publicPath": "/static/js/main-508a61c35a55ffc721aa.js"
     }
   ],
   "./arrayWithoutHoles": [

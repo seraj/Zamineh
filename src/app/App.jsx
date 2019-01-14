@@ -304,7 +304,7 @@ class App extends React.Component {
         return (
             <React.Fragment>
                 <ToastMessageBox />
-                {(parsed['xeYDSM2fWgsJvFuN'] == 'ios' && isMobile) ?
+                {((parsed['xeYDSM2fWgsJvFuN'] == 'ios' || parsed['xeYDSM2fWgsJvFuN'] == 'android') && isMobile) ?
                     null
                     :
                     <Header
@@ -322,7 +322,7 @@ class App extends React.Component {
                     modalisOpen={this.state.LoginModal}
                     openModal={this.openModal}
                 />
-                {(parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) ?
+                {((parsed['xeYDSM2fWgsJvFuN'] == 'ios' || parsed['xeYDSM2fWgsJvFuN'] == 'android') && isMobile) ?
                     null
                     :
                     <AppFooter></AppFooter>
