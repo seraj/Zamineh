@@ -1,7 +1,7 @@
 {
-  "name": "initiatereactapp",
+  "name": "zamineh",
   "version": "1.0.0",
-  "description": "Initiation for Every React js App",
+  "description": "Zamineh React web application",
   "main": "index.jsx",
   "scripts": {
     "start": "webpack-dev-server --host 0.0.0.0 --port 8001 --open --mode development",
@@ -51,9 +51,9 @@
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
     "terser-webpack-plugin": "^1.1.0",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
     "@smooth-ui/core-sc": "^7.0.5",
