@@ -460,3 +460,27 @@
 .rc-steps-dot .rc-steps-item-process .rc-steps-dot .rc-steps-item-icon .rc-steps-icon-dot {
     border-radius: 3.5px;
 }
+
+
+@media (max-width:426px) {
+    .rc-steps-item-title {
+        display: none;
+    }
+}
+
+@media (max-width:375px) {
+    .rc-steps-label-vertical .rc-steps-item-tail {
+        margin-right: 20px;
+    }
+
+    .rc-steps-label-vertical .rc-steps-item-icon {
+        display: inline-block;
+        margin-right: 8px
+    }
+}
+
+@media (max-width:320px) {
+    .rc-steps-label-vertical .rc-steps-item-content {
+        width: 80px
+    }
+}

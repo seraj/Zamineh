@@ -4,8 +4,7 @@ import Col from "reactstrap/lib/Col";
 
 import { Field } from 'react-final-form-html5-validation'
 import { FieldArray } from 'react-final-form-arrays'
-import Steps, { Step } from 'rc-steps';
-import 'rc-steps/assets/iconfont.css';
+
 import {
     Checkbox,
     ControlFeedback,
@@ -54,17 +53,6 @@ const Error = ({ name }) => (
         }
     </Field>
 );
-
-export const StepBar = ({ currentStep }) => {
-    return (
-        <Steps labelPlacement="vertical" current={currentStep - 1} status="process">
-            <Step title="مشخصات هنرمند" />
-            <Step title="زندگی نامه" />
-            <Step title="نمایشگاه‌ها و آثار هنرمند" />
-            <Step title="آثار برای داوری" />
-        </Steps>
-    );
-}
 export const Step1 = ({
     Field,
     StepData,

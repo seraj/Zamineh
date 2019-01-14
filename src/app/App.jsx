@@ -6,7 +6,10 @@ import {
 } from 'react-router-dom';
 import axios from 'axios';
 import { ToastMessageBox, Toast } from './components/Toast/Toast';
-
+import queryString from 'query-string';
+import {
+    isMobile
+} from "react-device-detect";
 
 import cookie from 'react-cookies';
 import SecurityManager from './security/SecurityManager'
@@ -62,8 +65,16 @@ class App extends React.Component {
             .interceptors
             .request
             .use(function (config) {
-                const token = RegistrationPage ? SecurityManager().getGalleryRegAuthToken() : SecurityManager().getAuthToken()
+                var token = "";
+                if (RegistrationPage) {
 
+                    token = GalleryRegistrationPage ?
+                        SecurityManager().getGalleryRegAuthToken()
+                        :
+                        SecurityManager().getArtistRegAuthToken()
+                } else {
+                    token = SecurityManager().getAuthToken()
+                }
                 if (token && token !== null && token !== 'null') {
                     config.headers.Authorization = `Bearer ${token}`;
                 }
@@ -108,7 +119,7 @@ class App extends React.Component {
                     if (ArtistRegistrationPage) {
                         if (!isRefreshing) {
                             isRefreshing = true;
-                            SecurityManager().refreshArtistToken().then(respaonse => {
+                            SecurityManager().refreshArtistRegToken().then(respaonse => {
                                 const { data } = respaonse;
                                 isRefreshing = false;
                                 onRrefreshed(data.access_token);
@@ -289,18 +300,21 @@ class App extends React.Component {
     render() {
         const isLogined = SecurityManager().isLogined();
         const { nav_list } = this.state.baseContent;
-
+        const parsed = queryString.parse(location.search)
         return (
             <React.Fragment>
                 <ToastMessageBox />
-                <Header
-                    isLogined={isLogined}
-                    onLogoutClick={this.onLogoutClick}
-                    onMenuClick={this.updateApp}
-                    navList={nav_list}
-                    openModal={this.openModal}
-                />
-
+                {(parsed['xeYDSM2fWgsJvFuN'] == 'ios' && isMobile) ?
+                    null
+                    :
+                    <Header
+                        isLogined={isLogined}
+                        onLogoutClick={this.onLogoutClick}
+                        onMenuClick={this.updateApp}
+                        navList={nav_list}
+                        openModal={this.openModal}
+                    />
+                }
                 <Routing isLogined={isLogined} />
 
                 <Login
@@ -308,8 +322,11 @@ class App extends React.Component {
                     modalisOpen={this.state.LoginModal}
                     openModal={this.openModal}
                 />
-
-                <AppFooter></AppFooter>
+                {(parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) ?
+                    null
+                    :
+                    <AppFooter></AppFooter>
+                }
             </React.Fragment>
         )
     }

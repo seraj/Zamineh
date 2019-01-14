@@ -28,7 +28,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import AuthorizationForm from "../components/AuthorizationForm"
 import NumbersConvertor from '../../components/NumbersConvertor';
 import RegisterMetaTags from '../RegisterMetaTags';
-import { StepBar, RegisterForm } from "./RegistrationFrom";
+import { RegisterForm } from "./RegistrationFrom";
+import StepBar from "../../components/StepBar/StepBar"
 
 import {
     Step1Validation,
@@ -227,7 +228,6 @@ class GalleryRegistration extends React.Component {
                             <Col xs={12}>
                                 <div className="page-content registration">
 
-                                    <StepBar currentStep={currentStep} />
 
                                     <div className={Loading ? `LoadingData` : ''}></div>
                                     {!hasToken &&

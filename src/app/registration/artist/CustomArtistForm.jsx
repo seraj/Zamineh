@@ -73,7 +73,7 @@ export const Exhibition = ({
     const unSubmittedArts = unSubmittedArt(values.exb_set[index].art_set).length;
 
     return (
-        <div className={`Registration-section part ${ExbData && ExbData.submitted ? `submitted` : ``}`}>
+        <div className={`${styles.RegistrationSection} part ${ExbData && ExbData.submitted ? `submitted` : ``}`}>
             {ExbData && ExbData.loading &&
                 <Loading />
             }
@@ -265,7 +265,7 @@ export const Collection = ({
     const ColData = StepData.collection_set[index]
     const unSubmittedArts = unSubmittedArt(values.collection_set[index].art_set).length;
     return (
-        <div className={`Registration-section part ${ColData && ColData.submitted ? `submitted` : ``}`}>
+        <div className={`${styles.RegistrationSection} part ${ColData && ColData.submitted ? `submitted` : ``}`}>
             {ColData && ColData.loading &&
                 <Loading />
             }

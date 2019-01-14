@@ -23,8 +23,8 @@ import { Toast } from '../../components/Toast/Toast';
 import AuthorizationForm from "../components/AuthorizationForm"
 import NumbersConvertor from '../../components/NumbersConvertor';
 import RegisterMetaTags from '../RegisterMetaTags';
-import { StepBar, Step1, Step2, Step3 } from "./Steps";
-
+import { Step1, Step2, Step3 } from "./Steps";
+import StepBar from "../../components/StepBar/StepBar"
 const Step4 = Loadable({
     loader: () => import('./Steps').then(module => module.Step4),
     loading: () => <div>در حال بارگذاری...</div>,
@@ -703,7 +703,7 @@ class ArtistRegistration extends React.Component {
                                 <div className="page-content registration">
 
 
-                                    <StepBar currentStep={currentStep} />
+                                    <StepBar currentStep={currentStep} page="artist" />
 
                                     <div className={Loading ? `LoadingData` : ''}></div>
 
