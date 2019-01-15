@@ -94,7 +94,7 @@ class App extends React.Component {
                 data.error ? Toast('error', data.error) : null
             }
             if (status >= 500) {
-                Toast('error', 'مشکلی پیش آمده است.لطفا دوباره تلاش نمایید')
+                Toast('error', 'مشکلی رخ داده است.لطفا دوباره تلاش نمایید')
             }
             if (status === 401) {
                 if (RegistrationPage) {
@@ -112,6 +112,7 @@ class App extends React.Component {
                             })
                         }
                         else {
+                            console.log('gg')
                             SecurityManager().GalleryRegLogout();
                         }
                     }

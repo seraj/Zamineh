@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
 import PropTypes from 'prop-types';
-import './Map.css';
+import './ZaminehMap.scss';
 import leafletPip from 'leaflet-pip';
 import 'leaflet/dist/leaflet.css';
 
@@ -38,7 +38,7 @@ class ZaminehMap extends Component {
                 L.tileLayer.wms('http://map.ir/shiveh', {
                     layers: 'Shiveh:ShivehGSLD256',
                     format: 'image/png',
-                    // attribution: '&copy; <a href="http://corp.map.ir">Map.ir</a> contributors'
+                    attribution: '&copy; <a href="http://corp.map.ir">Map.ir</a> contributors'
                 }),
             ]
         });
@@ -61,7 +61,7 @@ class ZaminehMap extends Component {
                         fillOpacity: 0.2
                     });
                     // self.map.addLayer(marker);
-                    self.map.addLayer(circle);
+                    self.map.addLayer(marker);
                 })
                     .on('locationerror', function (e) {
                         console.log(e);
@@ -81,7 +81,6 @@ class ZaminehMap extends Component {
             var lat = e.latlng.lat;
             var lon = e.latlng.lng;
 
-            // console.log("You clicked the map at LAT: " + lat + " and LONG: " + lon);
             //Clear existing marker, 
 
             if (theMarker != undefined) {
@@ -96,13 +95,6 @@ class ZaminehMap extends Component {
             self.props.onClick(e)
 
         });
-
-
-
-
-
-
-
 
 
     }

@@ -238,15 +238,15 @@ export const RegisterForm = ({
                                     StepConfig.weekday_set.map((item, index) => (
                                         <FormCheck inline key={index}>
                                             <Field
-                                                name="holiday_set"
+                                                name={`holiday_set`}
                                                 component={AdaptedCheckbox}
                                                 id={item.value}
                                                 value={item.value}
+                                                type="checkbox"
                                             />
                                             <FormCheckLabel htmlFor={item.value} className={`${(values.holiday_set && values.holiday_set.includes(item.value)) ? `checked` : ``}`}>{item.title}</FormCheckLabel>
                                         </FormCheck>
                                     ))}
-
                                 <Error name="holiday_set" />
                             </div>
                         </FormGroup>

@@ -19,6 +19,7 @@ import Search from './components/Search/Search'
 import Collect from './components/Collect/Collect'
 import Collections from './components/Collections/Collections'
 import Articles from './article/Articles';
+import AddSingleArtForm from './registration/AddSingleArtForm';
 import ArtistRegistration from './registration/artist/ArtistRegistration';
 import GalleryRegistration from './registration/gallery/GalleryRegistration';
 import Section from "./components/Section/Section";
@@ -93,10 +94,17 @@ export default function Routing({ isLogined }) {
                 component={ArtistAlphabet}
             />
             <Route
+                exact
                 path={Urls().ArtistRegistration()}
                 render={() => <ArtistRegistration />}
             />
             <Route
+                exact
+                path={`${Urls().ArtistRegistration()}/addsingleart`}
+                render={() => <AddSingleArtForm />}
+            />
+            <Route
+                exact
                 path={Urls().GalleryRegistration()}
                 render={() => <GalleryRegistration />}
             />

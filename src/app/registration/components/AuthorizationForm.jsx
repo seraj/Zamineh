@@ -6,7 +6,6 @@ import queryString from 'query-string';
 import SecurityManager from "../../security/SecurityManager";
 import Urls from "../../components/Urls";
 import Alert from "../../components/Alert/Alert";
-import { ToastMessageBox, Toast } from '../../components/Toast/Toast';
 
 import Row from "reactstrap/lib/Row";
 import Col from "reactstrap/lib/Col";
@@ -293,7 +292,7 @@ class AuthorizationForm extends React.Component {
                                 initialValues={{ username: username }}
 
                                 render={({ handleSubmit, form, submitting, pristine, values }) => (
-                                    <form onSubmit={handleSubmit}>
+                                    <form onSubmit={handleSubmit} autoComplete="off">
                                         <FormGroup>
                                             <Label>شماره تلفن</Label>
                                             <Field
@@ -308,6 +307,7 @@ class AuthorizationForm extends React.Component {
                                             <Label>کد تایید</Label>
                                             <Field
                                                 name="code"
+                                                autoComplete="off"
                                                 component={this.AdaptedInput}
                                                 placeholder="کد تایید"
                                                 validate={value => value ? undefined : "وارد کردن کد تایید الزامی میباشد"}

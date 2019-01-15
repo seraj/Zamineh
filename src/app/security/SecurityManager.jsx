@@ -66,7 +66,7 @@ export default function SecurityManager() {
             cookie.remove('auth_client_secret')
         },
         logout() {
-            // cookie.save('access_token', null, { path: '/' });
+            cookie.save('access_token', null, { path: '/' });
             cookie.remove('access_token');
             cookie.remove('token_type')
             cookie.remove('refresh_token')
@@ -123,7 +123,7 @@ export default function SecurityManager() {
             )
         },
         GalleryRegLogout() {
-            // cookie.save('gallery_access_token', null, { path: Urls().GalleryRegistration() });
+            cookie.save('gallery_access_token', null, { path: Urls().GalleryRegistration() });
             cookie.remove('gallery_access_token');
             cookie.remove('gallery_refresh_token')
         },
@@ -164,7 +164,7 @@ export default function SecurityManager() {
             cookie.save('artist_auth_client_secret', secret, { path: Urls().ArtistRegistration() });
         },
         ArtistRegLogout() {
-            // cookie.remove('artist_access_token', null, { path: Urls().ArtistRegistration() });
+            cookie.save('artist_access_token', null, { path: Urls().ArtistRegistration() });
             cookie.remove('artist_access_token');
             cookie.remove('artist_refresh_token')
         },

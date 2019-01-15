@@ -29,7 +29,6 @@ import AuthorizationForm from "../components/AuthorizationForm"
 import NumbersConvertor from '../../components/NumbersConvertor';
 import RegisterMetaTags from '../RegisterMetaTags';
 import { RegisterForm } from "./RegistrationFrom";
-import StepBar from "../../components/StepBar/StepBar"
 
 import {
     Step1Validation,
@@ -40,7 +39,7 @@ import {
 import '../Registration.scss';
 
 
-const SubmitSeciton = ({ StepData, Text, values, currentStep, goToSteps }) => (
+const SubmitSeciton = ({ StepData, Text, values }) => (
     <React.Fragment>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
@@ -59,6 +58,7 @@ const SubmitSeciton = ({ StepData, Text, values, currentStep, goToSteps }) => (
             </Col>
 
         </Row>
+        <pre>{JSON.stringify(values, 0, 2)}</pre>
         {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
     </React.Fragment>
 );
@@ -84,6 +84,7 @@ class GalleryRegistration extends React.Component {
             datePicker: '',
             currentStep: '',
             Loading: true,
+            StepConfig: [],
             StepData: [],
             ModalToggle: false
         }
@@ -142,7 +143,7 @@ class GalleryRegistration extends React.Component {
         this.setState({
             Maplatlng: event.latlng
         })
-        console.log(this.state.Maplatlng)
+        // console.log(this.state.Maplatlng)
     }
 
     BtnSubmitLoading(value) {
@@ -152,46 +153,73 @@ class GalleryRegistration extends React.Component {
             StepData
         })
     }
+    Validation = (value) => {
+        if (
+            value.name == '' ||
+            value.address.address == undefined ||
+            value.address.address == '' ||
+            value.address.tel == undefined ||
+            value.address.tel == "" ||
+            value.work_hours.start_time == undefined ||
+            value.work_hours.start_time == "" ||
+            value.work_hours.end_time == undefined ||
+            value.work_hours.end_time == "" ||
+            value.holiday_set == undefined ||
+            value.holiday_set == "" ||
+            value.email == null ||
+            value.email == "" ||
+            value.phone_num == null ||
+            value.phone_num == "" ||
+            value.sheba_num == null ||
+            value.sheba_num == "" ||
+            value.owner.name == undefined ||
+            value.owner.name == '' ||
+            value.owner.tel == undefined ||
+            value.owner.tel == ''
+        ) {
+            return false
+        } else {
+            return true
+        }
+    }
     handleFormSubmit = values => {
         var StepData = this.state.StepData;
-        if (!Step1Validation(values)) {
+        if (!this.Validation(values)) {
             Toast('warning', 'اطلاعات تکمیل نمیباشد');
         }
-        // else
-        //     if (values.lat == '' || values.lat == undefined) {
-        //         Toast('warning','لطفا آدرس دقیق را روی نقشه انتخاب کنید');
-        //     }
-        else {
-            this.BtnSubmitLoading(true)
-            axios
-                .post(`${Urls().api()}/gallery-app/gallery/registration/`, {
-                    name: values.name,
-                    about: values.about,
-                    address: {
-                        address: values.address.address,
-                        tel: values.address.tel,
-                        lat: StepData.address.lat == null ? values.address.lat : this.state.Maplatlng.lat,
-                        lng: StepData.address.lng == null ? values.address.lng : this.state.Maplatlng.lng
-                    },
-                    work_hours: values.work_hours,
-                    holiday_set: values.holiday_set,
-                    email: values.email,
-                    social_set: values.social_set,
-                    owner: values.owner,
-                    permission_name: values.permission_name,
-                    phone_num: NumbersConvertor().convertToLatin(values.phone_num),
-                    sheba_num: NumbersConvertor().convertToLatin(values.sheba_num),
-                })
-                .then(() => {
-                    Toast('success', 'اطلاعات شما با موفقیت ثبت شد');
-                    this.BtnSubmitLoading(false)
-                }).then(() => {
-                    this.getSteps()
-                })
-                .catch(error => {
-                    this.BtnSubmitLoading(false)
-                })
-        }
+        else
+            if (this.state.Maplatlng.lat == '' || this.state.Maplatlng.lat == undefined) {
+                Toast('warning', 'لطفا آدرس دقیق را روی نقشه انتخاب کنید');
+            }
+            else {
+                this.BtnSubmitLoading(true)
+                axios
+                    .post(`${Urls().api()}/gallery-app/gallery/registration/`, {
+                        name: values.name,
+                        about: values.about,
+                        address: {
+                            address: values.address.address,
+                            tel: values.address.tel,
+                            lat: StepData.address.lat == null ? this.state.Maplatlng.lat : values.address.lat,
+                            lng: StepData.address.lng == null ? this.state.Maplatlng.lng : values.address.lng
+                        },
+                        work_hours: values.work_hours,
+                        holiday_set: values.holiday_set,
+                        email: values.email,
+                        social_set: values.social_set,
+                        owner: values.owner,
+                        permission_name: values.permission_name,
+                        phone_num: NumbersConvertor().convertToLatin(values.phone_num),
+                        sheba_num: NumbersConvertor().convertToLatin(values.sheba_num),
+                    })
+                    .then(() => {
+                        Toast('success', 'اطلاعات شما با موفقیت ثبت شد');
+                        this.BtnSubmitLoading(false)
+                    })
+                    .catch(error => {
+                        this.BtnSubmitLoading(false)
+                    })
+            }
     }
 
 
@@ -199,7 +227,6 @@ class GalleryRegistration extends React.Component {
         SecurityManager().setGalleryRegAccessToken(Token);
         SecurityManager().setGalleryRegRefreshToken(RefreshToken);
     }
-
 
 
     render() {
@@ -246,7 +273,7 @@ class GalleryRegistration extends React.Component {
                                         <React.Fragment>
                                             <Col xs={12}>
                                                 <Form
-                                                    decorators={[this.focusOnErrors]}
+                                                    // decorators={[this.focusOnErrors]}
                                                     onSubmit={this.handleFormSubmit}
                                                     initialValues={
                                                         StepData != '' ? StepData : null
