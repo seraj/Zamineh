@@ -361,7 +361,27 @@
 
 
 
+:local(.ZaminehRegisterModal) {
+    .modal-content {
+        // background: transparent;
+        // box-shadow: none;
+    }
 
+    svg {
+        width: 50%;
+        display: none;
+        margin: 0 auto 40px;
+    }
+
+    .zbtn {
+        border-radius: .25rem !important;
+        background-color: #f3f3f3 !important;
+        // box-shadow: 0 0 20px 0 rgba(94, 94, 94, 0.21);
+        // min-height: 170px;
+        font-weight: bold;
+        font-size: 21px !important;
+    }
+}
 
 
 

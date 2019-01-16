@@ -105,7 +105,7 @@ class GalleryRegistration extends React.Component {
                 if (error.response.status == 406) {
                     this.setState({
                         successBox: true,
-                        timer: 2005,
+                        timer: 15,
                     })
                 }
             })
@@ -280,6 +280,7 @@ class GalleryRegistration extends React.Component {
                                             title="ثبت موفق"
                                             message="گالری مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید."
                                             type="info"
+                                            buttonText="رفتن به پروفایل"
                                             seconds={timer}
                                             afterTimeFinished={this.afterTimeFinished}
                                         />

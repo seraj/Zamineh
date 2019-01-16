@@ -721,8 +721,9 @@ class ArtistRegistration extends React.Component {
                                     {successBox &&
                                         <MessageBox
                                             title="ثبت موفق"
-                                            message="گالری شما با موفقیت ثبت شد."
-                                            type="success"
+                                            message="اطلاعات مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید."
+                                            type="info"
+                                            buttonText="رفتن به پروفایل"
                                             seconds={timer}
                                             afterTimeFinished={this.afterTimeFinished}
                                         />

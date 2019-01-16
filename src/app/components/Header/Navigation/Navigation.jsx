@@ -56,10 +56,10 @@ const Menu = ({ navList, className, isLogined, width, height }) => {
             if (window.innerWidth <= 1200) {
                 NavReducer(4)
             }
-            if (window.innerWidth <= 1040) {
+            if (window.innerWidth <= 1090) {
                 NavReducer(3)
             }
-            if (window.innerWidth <= 783) {
+            if (window.innerWidth <= 830) {
                 NavReducer(2)
             }
         }
@@ -78,6 +78,9 @@ const Menu = ({ navList, className, isLogined, width, height }) => {
             }
             if (window.innerWidth <= 920) {
                 NavReducer(3)
+            }
+            if (window.innerWidth <= 800) {
+                NavReducer(2)
             }
         }
     }

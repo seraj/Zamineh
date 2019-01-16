@@ -34,10 +34,11 @@ const SingleArts = (props) => (
       <div className="art_details">
         <span className="content item_title"><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>
         <span className="content gallery_name">
-          {props.item.gallery.slug ?
+          {props.item.gallery != null &&
+            props.item.gallery.slug ?
             <Link to={`${Urls().gallery()}${props.item.gallery.slug}`}>{props.item.gallery.name}</Link>
             :
-            props.item.gallery.name
+            props.item.gallery ? props.item.gallery.name : ''
           }
         </span>
         {props.item.price &&

@@ -55,8 +55,37 @@
     }
 }
 
+:local(.button) {
+    position: relative;
+    margin-top: 15px;
+    background-color: $primary-color !important;
+    color: #fff;
+
+    &.success {
+        background-color: $success-color !important;
+    }
+
+    &.error {
+        background-color: $error-color !important;
+    }
+
+    &.warning {
+        background-color: $warning-color !important;
+    }
+
+    &.info {
+        background-color: $info-color !important;
+    }
+
+    i {
+        font-style: normal;
+    }
+
+}
+
 :local(.timer) {
     font-size: 22px;
     font-weight: bold;
     text-align: center;
+
 }
