@@ -102,9 +102,10 @@ class AppHeader extends React.Component {
         return (
             <React.Fragment>
                 <Row>
-                    {!isLogined &&
-                        <MediaQuery query="(max-width: 768px)">
-                            <Col xs="12" lg="12" md="12" sm="12" className="mobileLogin">
+                    <MediaQuery query="(max-width: 768px)">
+                        <Col xs="12" lg="12" md="12" sm="12" className="mobileLogin">
+                            {!isLogined &&
+
                                 <div className="mobile-login-btn right">
                                     <button
                                         className="zbtn"
@@ -113,16 +114,20 @@ class AppHeader extends React.Component {
                                         <span>ثبت نام / ورود</span>
                                     </button>
                                 </div>
-                                <div className="mobile-login-btn left">
-                                    <button
-                                        onClick={() => this.openRegisterModal(true)}
-                                        className="zbtn"
-                                    >ثبت گالری / هنرمند
+                            }
+                            <div
+                                className={`mobile-login-btn ${isLogined ? `w-100` : `left`}`}
+
+                            >
+                                <button
+                                    onClick={() => this.openRegisterModal(true)}
+                                    className="zbtn"
+                                >ثبت گالری / هنرمند
                                     </button>
-                                </div>
-                            </Col>
-                        </MediaQuery>
-                    }
+                            </div>
+                        </Col>
+                    </MediaQuery>
+
                 </Row>
                 <header className={`${styles.header} fixed`}>
                     <MediaQuery query="(max-width: 768px)">
@@ -224,7 +229,7 @@ class AppHeader extends React.Component {
                     title={"انتخاب نوع ثبت نام"}
                 >
                     <Row>
-                        <Col lg={6} md={6} sm={12} xs={12}>
+                        <Col lg={6} md={6} sm={6} xs={12}>
                             <Link to={Urls().ArtistRegistration()} onClick={this.closeRegisterModal}>
                                 <button
                                     style={{ width: '100%', marginBottom: 15 }}
@@ -234,7 +239,7 @@ class AppHeader extends React.Component {
                                     ثبت هنرمند</button>
                             </Link>
                         </Col>
-                        <Col lg={6} md={6} sm={12} xs={12}>
+                        <Col lg={6} md={6} sm={6} xs={12}>
                             <Link to={Urls().GalleryRegistration()} onClick={this.closeRegisterModal}>
                                 <button
                                     style={{ width: '100%' }}
