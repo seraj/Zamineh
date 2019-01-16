@@ -1,0 +1,62 @@
+@import "../../../static/scss/_variables";
+@import "../../../static/scss/_mixins";
+@import "../../../static/scss/_rem";
+
+
+:local(.type) {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 15px;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    background: white;
+    padding: 40px 40px 20px;
+    border-radius: 5px;
+    display: table;
+    margin: 0 auto;
+
+    h2 {
+        font-size: 27px;
+        font-weight: bold;
+    }
+
+    span {
+        font-size: 20px;
+    }
+
+    &.success {
+        border-color: $success-color;
+
+        h2 {
+            color: $success-color
+        }
+    }
+
+    &.error {
+        border-color: $error-color;
+
+        h2 {
+            color: $error-color
+        }
+    }
+
+    &.warning {
+        border-color: $warning-color;
+
+        h2 {
+            color: $warning-color
+        }
+    }
+
+    &.info {
+        border-color: $info-color;
+
+        h2 {
+            color: $info-color
+        }
+    }
+}
+
+:local(.timer) {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}

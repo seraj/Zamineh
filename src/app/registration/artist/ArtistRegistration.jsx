@@ -25,6 +25,8 @@ import NumbersConvertor from '../../components/NumbersConvertor';
 import RegisterMetaTags from '../RegisterMetaTags';
 import { Step1, Step2, Step3 } from "./Steps";
 import StepBar from "../../components/StepBar/StepBar"
+import MessageBox from "../../components/ui-components/MessageBox/MessageBox"
+
 const Step4 = Loadable({
     loader: () => import('./Steps').then(module => module.Step4),
     loading: () => <div>در حال بارگذاری...</div>,
@@ -96,6 +98,8 @@ class ArtistRegistration extends React.Component {
             type: 'Artist',
             playerID: '123456789',
             showLoginError: false,
+            successBox: false,
+            timer: '10',
 
             Maplatlng: [],
             datePicker: '',
@@ -144,6 +148,13 @@ class ArtistRegistration extends React.Component {
                         loadingDiv: ''
                     })
                 }, 200);
+            }).catch(error => {
+                if (error.response.status == 406) {
+                    this.setState({
+                        successBox: true,
+                        timer: 25,
+                    })
+                }
             })
     }
     getStepConfig = (step) => {
@@ -674,7 +685,10 @@ class ArtistRegistration extends React.Component {
         SecurityManager().setArtistRegRefreshToken(RefreshToken);
     }
 
+    afterTimeFinished = () => {
+        window.location.replace(Urls().Profile());
 
+    }
 
     render() {
         const {
@@ -685,7 +699,9 @@ class ArtistRegistration extends React.Component {
 
             Loading,
             loadingDiv,
-            ModalToggle
+            ModalToggle,
+            successBox,
+            timer
 
         } = this.state
         var url = window.location.href;
@@ -702,7 +718,15 @@ class ArtistRegistration extends React.Component {
                             <Col xs={12}>
                                 <div className="page-content registration">
 
-
+                                    {successBox &&
+                                        <MessageBox
+                                            title="ثبت موفق"
+                                            message="گالری شما با موفقیت ثبت شد."
+                                            type="success"
+                                            seconds={timer}
+                                            afterTimeFinished={this.afterTimeFinished}
+                                        />
+                                    }
                                     <StepBar currentStep={currentStep} page="artist" />
 
                                     <div className={Loading ? `LoadingData` : ''}></div>

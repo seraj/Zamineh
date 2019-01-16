@@ -75,7 +75,10 @@ export default function Urls() {
         },
         GalleryRegistration() {
             return '/registration/gallery';
-        }
+        },
 
+        Profile() {
+            return '/profile'
+        }
     }
 }

@@ -6,6 +6,11 @@ $nav-text-color :$primary-color;
 $nav-link-hover : $secondery-color;
 $border-color:rgb(229, 229, 229);
 
+$info-color : #1890ff;
+$success-color : #52c41a;
+$error-color : #f5222d;
+$warning-color : #faad14;
+
 .line {
     &:before {
         content: "";

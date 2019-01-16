@@ -112,7 +112,6 @@ class App extends React.Component {
                             })
                         }
                         else {
-                            console.log('gg')
                             SecurityManager().GalleryRegLogout();
                         }
                     }

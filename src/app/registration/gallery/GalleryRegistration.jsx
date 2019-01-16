@@ -1,10 +1,7 @@
 
 import React from 'react';
-import cookie from 'react-cookies';
 import { withRouter } from 'react-router-dom'
 import axios from 'axios';
-import Loadable from 'react-loadable';
-import moment from "moment-jalaali";
 import SecurityManager from "../../security/SecurityManager";
 import Urls from "../../components/Urls";
 import Section from "../../components/Section/Section";
@@ -16,9 +13,7 @@ import Col from "reactstrap/lib/Col";
 
 import { Form } from "react-final-form";
 import { Field } from 'react-final-form-html5-validation'
-import setFieldData from 'final-form-set-field-data'
 import createDecorator from 'final-form-focus'
-import arrayMutators from 'final-form-arrays'
 
 
 import { Toast } from '../../components/Toast/Toast';
@@ -36,10 +31,12 @@ import {
     ValidateShebaNum
 } from '../artist/ArtistFormValidation';
 
+import MessageBox from "../../components/ui-components/MessageBox/MessageBox"
+
 import '../Registration.scss';
 
 
-const SubmitSeciton = ({ StepData, Text, values }) => (
+const SubmitSeciton = ({ FormData, Text, values }) => (
     <React.Fragment>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
@@ -49,9 +46,9 @@ const SubmitSeciton = ({ StepData, Text, values }) => (
                         <button
                             type="submit"
                             style={{ width: '100%', marginBottom: 10 }}
-                            disabled={StepData.SubmitBtnLoading}
+                            disabled={FormData.SubmitBtnLoading}
                             variant="primary"
-                            className={`zbtn next black bradius ${StepData.SubmitBtnLoading ? `spinning` : null}`}
+                            className={`zbtn next black bradius ${FormData.SubmitBtnLoading ? `spinning` : null}`}
                         >{Text} <i className="fas fa-angle-left" /></button>
                     </Col>
                 </Row>
@@ -64,14 +61,6 @@ const SubmitSeciton = ({ StepData, Text, values }) => (
 );
 
 
-
-
-const Condition = ({ when, is, children }) => (
-    <Field name={when} subscription={{ value: true }}>
-        {({ input: { value } }) => ((value === is || value != '') ? children : null)}
-    </Field>
-);
-
 class GalleryRegistration extends React.Component {
 
     constructor(props) {
@@ -79,18 +68,22 @@ class GalleryRegistration extends React.Component {
         this.state = {
             playerID: '12',
             showLoginError: false,
+            successBox: false,
+            timer: '10',
 
             Maplatlng: [],
             datePicker: '',
             currentStep: '',
             Loading: true,
             StepConfig: [],
-            StepData: [],
+            FormData: [],
+
             ModalToggle: false
         }
     }
 
     componentWillMount() {
+
         if (SecurityManager().hasGalleryRegToken()) {
             this.getFormConfig()
         }
@@ -102,13 +95,21 @@ class GalleryRegistration extends React.Component {
             .then(response => {
                 this.setState({
                     StepConfig: response.data,
-                    StepData: response.data.social_set,
+                    FormData: response.data.social_set,
                     currentStep: response.data.step,
                 })
             })
             .then(() => {
                 this.getFormData()
-            });;
+            }).catch(error => {
+                if (error.response.status == 406) {
+                    this.setState({
+                        successBox: true,
+                        timer: 2005,
+                    })
+                }
+            })
+
     }
 
     getFormData = () => {
@@ -119,7 +120,7 @@ class GalleryRegistration extends React.Component {
             .get(`${Urls().api()}/gallery-app/gallery/registration/`)
             .then(response => {
                 this.setState({
-                    StepData: response.data,
+                    FormData: response.data,
                     Loading: false
                 })
             })
@@ -139,18 +140,17 @@ class GalleryRegistration extends React.Component {
 
 
     onMapClick = (event) => {
-        //         debugger
         this.setState({
             Maplatlng: event.latlng
         })
-        // console.log(this.state.Maplatlng)
+        console.log(this.state.Maplatlng)
     }
 
     BtnSubmitLoading(value) {
-        var StepData = this.state.StepData;
-        StepData.SubmitBtnLoading = value;
+        var FormData = this.state.FormData;
+        FormData.SubmitBtnLoading = value;
         this.setState({
-            StepData
+            FormData
         })
     }
     Validation = (value) => {
@@ -168,8 +168,6 @@ class GalleryRegistration extends React.Component {
             value.holiday_set == "" ||
             value.email == null ||
             value.email == "" ||
-            value.phone_num == null ||
-            value.phone_num == "" ||
             value.sheba_num == null ||
             value.sheba_num == "" ||
             value.owner.name == undefined ||
@@ -182,16 +180,37 @@ class GalleryRegistration extends React.Component {
             return true
         }
     }
+    onSubmit = async values => {
+        var Holiday = []
+        for (var i = 0; i < values.holiday_set.length; i++) {
+            Holiday[i] = { "name": values.holiday_set[i] };
+        }
+
+        window.alert(JSON.stringify(Holiday, 0, 2));
+    };
     handleFormSubmit = values => {
-        var StepData = this.state.StepData;
+        var FormData = this.state.FormData;
+
+
+        console.log(HolidaySet)
         if (!this.Validation(values)) {
             Toast('warning', 'اطلاعات تکمیل نمیباشد');
         }
         else
-            if (this.state.Maplatlng.lat == '' || this.state.Maplatlng.lat == undefined) {
+            if (
+                FormData.address.lat == null
+                    ?
+                    (this.state.Maplatlng.lat == '' || this.state.Maplatlng.lat == undefined)
+                    :
+                    (values.address.lat == '' || values.address.lat == undefined)
+            ) {
                 Toast('warning', 'لطفا آدرس دقیق را روی نقشه انتخاب کنید');
             }
             else {
+                var HolidaySet = []
+                for (var i = 0; i < values.holiday_set.length; i++) {
+                    HolidaySet[i] = { "name": values.holiday_set[i] };
+                }
                 this.BtnSubmitLoading(true)
                 axios
                     .post(`${Urls().api()}/gallery-app/gallery/registration/`, {
@@ -200,11 +219,11 @@ class GalleryRegistration extends React.Component {
                         address: {
                             address: values.address.address,
                             tel: values.address.tel,
-                            lat: StepData.address.lat == null ? this.state.Maplatlng.lat : values.address.lat,
-                            lng: StepData.address.lng == null ? this.state.Maplatlng.lng : values.address.lng
+                            lat: FormData.address.lat == null ? this.state.Maplatlng.lat : values.address.lat,
+                            lng: FormData.address.lng == null ? this.state.Maplatlng.lng : values.address.lng
                         },
                         work_hours: values.work_hours,
-                        holiday_set: values.holiday_set,
+                        holiday_set: HolidaySet,
                         email: values.email,
                         social_set: values.social_set,
                         owner: values.owner,
@@ -227,18 +246,20 @@ class GalleryRegistration extends React.Component {
         SecurityManager().setGalleryRegAccessToken(Token);
         SecurityManager().setGalleryRegRefreshToken(RefreshToken);
     }
+    afterTimeFinished = () => {
+        window.location.replace(Urls().Profile());
 
+    }
 
     render() {
         const {
             currentStep,
-            StepData,
+            FormData,
             StepConfig,
 
             Loading,
-            loadingDiv,
-            ModalToggle
-
+            successBox,
+            timer
 
         } = this.state
         var url = window.location.href;
@@ -254,7 +275,15 @@ class GalleryRegistration extends React.Component {
                         <Row>
                             <Col xs={12}>
                                 <div className="page-content registration">
-
+                                    {successBox &&
+                                        <MessageBox
+                                            title="ثبت موفق"
+                                            message="گالری مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید."
+                                            type="info"
+                                            seconds={timer}
+                                            afterTimeFinished={this.afterTimeFinished}
+                                        />
+                                    }
 
                                     <div className={Loading ? `LoadingData` : ''}></div>
                                     {!hasToken &&
@@ -273,16 +302,16 @@ class GalleryRegistration extends React.Component {
                                         <React.Fragment>
                                             <Col xs={12}>
                                                 <Form
-                                                    // decorators={[this.focusOnErrors]}
+                                                    decorators={[this.focusOnErrors]}
                                                     onSubmit={this.handleFormSubmit}
                                                     initialValues={
-                                                        StepData != '' ? StepData : null
+                                                        FormData != '' ? FormData : null
                                                     }
                                                     render={({ handleSubmit, form, submitting, pristine, values }) => (
                                                         <form onSubmit={handleSubmit}>
                                                             <RegisterForm
                                                                 Field={Field}
-                                                                StepData={StepData}
+                                                                FormData={FormData}
                                                                 StepConfig={StepConfig}
                                                                 onMapClick={this.onMapClick}
                                                                 MobileValidator={MobileValidator}
@@ -292,7 +321,7 @@ class GalleryRegistration extends React.Component {
 
                                                             <SubmitSeciton
                                                                 Text="ثبت نام گالری"
-                                                                StepData={StepData}
+                                                                FormData={FormData}
                                                                 currentStep={currentStep}
                                                                 values={values}
 

@@ -46,19 +46,9 @@ const Error = ({ name }) => (
     </Field>
 );
 
-export const StepBar = ({ currentStep }) => {
-    return (
-        <Steps labelPlacement="vertical" current={currentStep - 1} status="process">
-            <Step title="مشخصات هنرمند" />
-            <Step title="زندگی نامه" />
-            <Step title="نمایشگاه‌ها و آثار هنرمند" />
-            <Step title="آثار برای داوری" />
-        </Steps>
-    );
-}
 export const RegisterForm = ({
     Field,
-    StepData,
+    FormData,
     StepConfig,
     MobileValidator,
     ValidateShebaNum,
@@ -128,16 +118,16 @@ export const RegisterForm = ({
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>آدرس روی نقشه</Label>
-                            {StepData && StepData.address && StepData.address.lat &&
+                            {FormData && FormData.address && FormData.address.lat &&
                                 <ZaminehMap
                                     onClick={onMapClick}
-                                    mapPosition={StepData.address.lat != null ? [StepData.address.lat, StepData.address.lng] : null}
-                                    markerPosition={StepData.address.lat != null ? [StepData.address.lat, StepData.address.lng] : null}
+                                    mapPosition={FormData.address.lat != null ? [FormData.address.lat, FormData.address.lng] : null}
+                                    markerPosition={FormData.address.lat != null ? [FormData.address.lat, FormData.address.lng] : null}
                                     mapZoom={18}
-                                    currentLocation={StepData.address.lat != null ? false : true}
+                                    currentLocation={FormData.address.lat != null ? false : true}
                                 />
                             }
-                            {StepData && StepData.address && StepData.address.lat == null &&
+                            {FormData && FormData.address && FormData.address.lat == null &&
                                 <ZaminehMap
                                     onClick={onMapClick}
                                     mapZoom={18}
@@ -157,8 +147,8 @@ export const RegisterForm = ({
                             <Uploader
                                 server='/gallery-app/gallery/upload-image/logo/'
                                 name="logo"
-                                Load={(StepData && StepData.logo && StepData.logo.link) ? StepData.logo.link : null}
-                                files={(StepData && StepData.logo && StepData.logo.name) ? StepData.logo.name : null}
+                                Load={(FormData && FormData.logo && FormData.logo.link) ? FormData.logo.link : null}
+                                files={(FormData && FormData.logo && FormData.logo.name) ? FormData.logo.name : null}
                             />
                         </FormGroup>
                     </Col>
@@ -168,8 +158,8 @@ export const RegisterForm = ({
                             <Uploader
                                 server='/gallery-app/gallery/upload-image/cover/'
                                 name="cover"
-                                Load={(StepData && StepData.cover && StepData.cover.link) ? StepData.cover.link : null}
-                                files={(StepData && StepData.cover && StepData.cover.name) ? StepData.cover.name : null}
+                                Load={(FormData && FormData.cover && FormData.cover.link) ? FormData.cover.link : null}
+                                files={(FormData && FormData.cover && FormData.cover.name) ? FormData.cover.name : null}
                             />
                         </FormGroup>
                     </Col>
@@ -179,8 +169,8 @@ export const RegisterForm = ({
                             <Uploader
                                 server='/gallery-app/gallery/upload-image/permission/'
                                 name="permission"
-                                Load={(StepData && StepData.permission && StepData.permission.link) ? StepData.permission.link : null}
-                                files={(StepData && StepData.permission && StepData.permission.name) ? StepData.permission.name : null}
+                                Load={(FormData && FormData.permission && FormData.permission.link) ? FormData.permission.link : null}
+                                files={(FormData && FormData.permission && FormData.permission.name) ? FormData.permission.name : null}
                             />
                         </FormGroup>
                     </Col>
@@ -265,19 +255,6 @@ export const RegisterForm = ({
                         </FormGroup>
                     </Col>
 
-                    <Col lg={6} md={6} sm={12} xs={12}>
-                        <FormGroup>
-                            <Label className={LabelRequired}>شماره تماس</Label>
-                            <Field
-                                name="phone_num"
-                                component={AdaptedInput}
-                                placeholder="شماره تماس"
-                                validate={MobileValidator}
-                                control
-                            />
-                            <Error name="phone_num" />
-                        </FormGroup>
-                    </Col>
 
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
