@@ -1,7 +1,7 @@
 # Zamineh React Web Application
 
 clone Project 
-`git clone https://github.com/svahdati/Zamineh.git`
+`git clone https://github.com/seraj/Zamineh.git`
 
 install Project Dependencies with NPM
 
