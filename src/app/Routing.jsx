@@ -53,16 +53,15 @@ export default function Routing({ isLogined }) {
     return (
 
         <Switch>
+
+            {/* Home Page */}
             <Route
                 path="/"
                 exact
                 render={() => <Home isLogined={isLogined} />}
             />
-            <Route
-                path="/l"
-                exact
-                render={() => <LoadingHome isLogined={isLogined} />}
-            />
+
+            {/* Login Page */}
             <Route
                 path="/login"
                 exact
@@ -70,15 +69,27 @@ export default function Routing({ isLogined }) {
                     client_id={cookie.load('client_id', { path: '/' })}
                     client_secret={cookie.load('client_secret', { path: '/' })}
                 />} />
+
+
+            {/* Magzine */}
             <Route
                 path={Urls().Magzine()}
                 render={() => <Articles isLogined={isLogined} />}
             />
+
+
+            {/* Artists */}
             <Route
                 path={Urls().artists()}
                 exact
                 render={() => <Artists isLogined={isLogined} />}
             />
+            <Route
+                path={`${Urls().artists()}:artistChar`}
+                component={ArtistAlphabet}
+            />
+
+            {/* Galleries */}
             <Route
                 path={Urls().galleries()}
                 exact
@@ -89,10 +100,10 @@ export default function Routing({ isLogined }) {
                 exact
                 render={() => <GalleryAlphabet />}
             />
-            <Route
-                path={`${Urls().artists()}:artistChar`}
-                component={ArtistAlphabet}
-            />
+
+
+
+            {/* Artist & Gallery Registration */}
             <Route
                 exact
                 path={Urls().ArtistRegistration()}
@@ -108,15 +119,22 @@ export default function Routing({ isLogined }) {
                 path={Urls().GalleryRegistration()}
                 render={() => <GalleryRegistration />}
             />
+
+
             <Route
                 path={`${Urls().arts()}:artsId`}
                 render={() => <Articles />}
             />
+
+
+            {/* Search */}
             <Route
                 path={Urls().search()}
                 exact
                 render={() => <Search isLogined={isLogined} />}
             />
+
+            {/* Collections */}
             <Route
                 path={Urls().collect()}
                 exact
@@ -127,6 +145,8 @@ export default function Routing({ isLogined }) {
                 exact
                 render={() => <Collections isLogined={isLogined} />}
             />
+
+            {/* 404 */}
             <Route component={NoMatch} />
         </Switch>
 

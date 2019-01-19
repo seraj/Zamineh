@@ -60,7 +60,7 @@ class ArtistToFolllow extends Component {
     }
     onFollowClick = (id, Type, index) => {
         var Artist = this.state.artist[Type];
-        // console.log('clicked On', Artist)
+        // console.log('clicked On', Artist[index])
 
         axios.post(`${Urls().api()}/follow/toggle/`, {
             id: id,
@@ -106,7 +106,7 @@ class ArtistToFolllow extends Component {
                                 <SingleArtist
                                     key={item.id}
                                     item={item}
-                                    index={index}
+                                    artistIndex={index}
                                     onFollowClick={this.onFollowClick}
                                     openModal={this.openModal}
                                     handleLogin={this.props.handleLogin}

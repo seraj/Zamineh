@@ -380,6 +380,10 @@
         // min-height: 170px;
         font-weight: bold;
         font-size: 21px !important;
+
+        &:hover {
+            background-color: darken(#f3f3f3, 20%) !important
+        }
     }
 }
 

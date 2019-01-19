@@ -55,16 +55,13 @@ class Artists extends Component {
         this.setState({ currentTab: value })
     }
     onFollowClick = (id, Type, index, parentIndex, type) => {
-        console.log(parentIndex, index)
         var Artist = type == 'BigArtist' ? this.state.artist.featured_artists : this.state.artist.genre_set[parentIndex].artist_set;
-        // console.log('clicked On', Artist)
 
         axios.post(`${Urls().api()}/follow/toggle/`, {
             id: id,
             type: 'artists'
         }).then((response) => {
             Artist[index].is_flw = response.data.state;
-            // console.log(Artist[index].is_flw)
             this.setState({
                 Artist
             })
