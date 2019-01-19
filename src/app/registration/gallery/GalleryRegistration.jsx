@@ -69,6 +69,11 @@ class GalleryRegistration extends React.Component {
             playerID: '12',
             showLoginError: false,
             successBox: false,
+            message: {
+                type: '',
+                title: '',
+                message: '',
+            },
             timer: '10',
 
             Maplatlng: [],
@@ -105,7 +110,12 @@ class GalleryRegistration extends React.Component {
                 if (error.response.status == 406) {
                     this.setState({
                         successBox: true,
-                        timer: 15,
+                        message: {
+                            type: 'info',
+                            title: 'گالری ثبت شده دارید',
+                            message: 'شما با این شماره یک گالری ثبت کرده اید.در صورت نیاز شما میتوانید با شماره‌ی دیگر ثبت نام کنید',
+                        },
+                        timer: 1500,
                     })
                 }
             })
@@ -234,6 +244,15 @@ class GalleryRegistration extends React.Component {
                     .then(() => {
                         Toast('success', 'اطلاعات شما با موفقیت ثبت شد');
                         this.BtnSubmitLoading(false)
+                        this.setState({
+                            successBox: true,
+                            message: {
+                                type: 'success',
+                                title: 'گالری شما با موفقیت ثبد شد',
+                                message: 'گالری مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید.',
+                            },
+                            timer: 1500,
+                        })
                     })
                     .catch(error => {
                         this.BtnSubmitLoading(false)
@@ -259,6 +278,7 @@ class GalleryRegistration extends React.Component {
 
             Loading,
             successBox,
+            message,
             timer
 
         } = this.state
@@ -277,9 +297,9 @@ class GalleryRegistration extends React.Component {
                                 <div className="page-content registration">
                                     {successBox &&
                                         <MessageBox
-                                            title="ثبت موفق"
-                                            message="گالری مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید."
-                                            type="info"
+                                            title={message.title}
+                                            message={message.message}
+                                            type={message.type}
                                             buttonText="رفتن به پروفایل"
                                             seconds={timer}
                                             afterTimeFinished={this.afterTimeFinished}

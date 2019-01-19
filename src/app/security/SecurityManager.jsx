@@ -173,16 +173,18 @@ export default function SecurityManager() {
         getRegClientIDSecret(type, page) {
 
             if (type == 'secret') {
-                return page == 'Gallery' ?
-                    cookie.load('gallery_auth_client_secret', { path: Urls().GalleryRegistration() })
-                    :
-                    cookie.load('artist_auth_client_secret', { path: Urls().ArtistRegistration() })
+                if (page == 'Gallery') {
+                    return cookie.load('gallery_auth_client_secret', { path: Urls().GalleryRegistration() })
+                } else {
+                    return cookie.load('artist_auth_client_secret', { path: Urls().ArtistRegistration() })
+                }
             }
             if (type == 'id') {
-                return page == 'Gallery' ?
-                    cookie.load('gallery_auth_client_id', { path: Urls().GalleryRegistration() })
-                    :
-                    cookie.load('artist_auth_client_id', { path: Urls().ArtistRegistration() })
+                if (page == 'Gallery') {
+                    return cookie.load('gallery_auth_client_id', { path: Urls().GalleryRegistration() })
+                } else {
+                    return cookie.load('artist_auth_client_id', { path: Urls().ArtistRegistration() })
+                }
             }
         }
 

@@ -24,6 +24,7 @@ import {
     Select,
     Textarea
 } from "@smooth-ui/core-sc";
+import MessageBox from "../../components/ui-components/MessageBox/MessageBox"
 
 
 
@@ -72,6 +73,15 @@ class AuthorizationForm extends React.Component {
             playerID: '123456789',
             showLoginError: false,
             loading: false,
+            typeFa: this.props.type == 'Gallery' ? 'گالری' : 'هنرمند',
+            successBox: false,
+            message: {
+                type: '',
+                title: '',
+                message: '',
+            },
+            timer: '10',
+
             checkMobileNumberStep1: !SecurityManager().hasGalleryRegToken(),
             MobileValidationStep2: false,
             loginForm: false,
@@ -179,6 +189,7 @@ class AuthorizationForm extends React.Component {
     };
     loginSubmit = values => {
         this.setState({ loading: true });
+
         axios
             .post(`${Urls().api()}${this.props.loginAPI}`, {
                 client_id: SecurityManager().getRegClientIDSecret('id', this.props.type),
@@ -189,14 +200,20 @@ class AuthorizationForm extends React.Component {
                 user_type: this.props.type
             })
             .then(response => {
-                this.setState({ loading: false });
+                this.setState({
+                    loading: false,
+                    successBox: true,
+                    message: {
+                        type: 'info',
+                        title: 'در حال انتقال به پروفایل',
+                        message: `شما با این شماره یک ${this.state.typeFa} ثبت شده دارید.بزودی به پروفایل انتقال داده خواهید شد`,
+                    },
+                    timer: 150,
+                });
 
                 this.props.setAccessTokens(response.data.access_token, response.data.refresh_token)
+            })
 
-            })
-            .then(() => {
-                window.location.href = '/profile'
-            })
             .catch(error => {
                 this.setState({ loading: false });
             });
@@ -216,6 +233,12 @@ class AuthorizationForm extends React.Component {
     AdaptedTextarea = this.adapt(Textarea);
 
 
+
+    afterTimeFinished = () => {
+        window.location.replace(Urls().Profile());
+
+    }
+
     render() {
         const {
             username,
@@ -224,7 +247,11 @@ class AuthorizationForm extends React.Component {
             loginForm,
             showLoginError,
             errorMessage,
-            loading
+            loading,
+            successBox,
+            message,
+            timer
+
 
         } = this.state
         var url = window.location.href;
@@ -233,6 +260,16 @@ class AuthorizationForm extends React.Component {
 
                 {checkMobileNumberStep1 &&
                     <Row className="justify-content-md-center">
+                        {successBox &&
+                            <MessageBox
+                                title={message.title}
+                                message={message.message}
+                                type={message.type}
+                                buttonText="رفتن به پروفایل"
+                                seconds={timer}
+                                afterTimeFinished={this.afterTimeFinished}
+                            />
+                        }
                         <Col lg={6} md={8} sm={12} xs={12}>
 
                             <Form

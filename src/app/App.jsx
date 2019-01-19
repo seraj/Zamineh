@@ -200,6 +200,7 @@ class App extends React.Component {
             var client_id = cookie.load('client_id', { path: '/' });
             var client_secret = cookie.load('client_secret', { path: '/' });
             var auth_client_id = cookie.load('auth_client_id', { path: '/' });
+            var auth_client_secret = cookie.load('auth_client_secret', { path: '/' });
             var galleryReg_auth_client_id = cookie.load('gallery_auth_client_id', { path: '/' });
             var artistReg_auth_client_secret = cookie.load('artist_auth_client_secret', { path: '/' });
 

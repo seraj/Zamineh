@@ -99,6 +99,11 @@ class ArtistRegistration extends React.Component {
             playerID: '123456789',
             showLoginError: false,
             successBox: false,
+            message: {
+                type: '',
+                title: '',
+                message: '',
+            },
             timer: '10',
 
             Maplatlng: [],
@@ -152,7 +157,12 @@ class ArtistRegistration extends React.Component {
                 if (error.response.status == 406) {
                     this.setState({
                         successBox: true,
-                        timer: 25,
+                        message: {
+                            type: 'info',
+                            title: 'هنرمند ثبت شده دارید',
+                            message: 'شما با این شماره یک هنرمند ثبت کرده اید.در صورت نیاز شما میتوانید با شماره‌ی دیگر ثبت نام کنید',
+                        },
+                        timer: 1500,
                     })
                 }
             })
@@ -636,9 +646,17 @@ class ArtistRegistration extends React.Component {
                 .then(response => {
                     Toast('success', `مجموعه شماره ${ColIndex + 1} با موفقیت ثبت شد`)
                     ColData.loading = false;
-                    ColData.submitted = true
+                    ColData.submitted = true;
+
                     this.setState({
-                        ColData
+                        ColData,
+                        successBox: true,
+                        message: {
+                            type: 'success',
+                            title: 'ثبت موفق',
+                            message: 'اطلاعات مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید.',
+                        },
+                        timer: 1500,
                     })
                 })
 
@@ -701,6 +719,7 @@ class ArtistRegistration extends React.Component {
             loadingDiv,
             ModalToggle,
             successBox,
+            message,
             timer
 
         } = this.state
@@ -720,9 +739,9 @@ class ArtistRegistration extends React.Component {
 
                                     {successBox &&
                                         <MessageBox
-                                            title="ثبت موفق"
-                                            message="اطلاعات مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید."
-                                            type="info"
+                                            title={message.title}
+                                            message={message.message}
+                                            type={message.type}
                                             buttonText="رفتن به پروفایل"
                                             seconds={timer}
                                             afterTimeFinished={this.afterTimeFinished}

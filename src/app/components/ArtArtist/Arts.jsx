@@ -40,9 +40,15 @@ export const SingleArt = (props) => (
                 <span className="content gallery_name">
                     {props.item.title}
                 </span>
-                <span className="content gallery_name">
-                    <Link to={`${Urls().gallery()}${props.item.gallery.slug}`}>{props.item.gallery.name}</Link>
-                </span>
+                {props.item.gallery != null &&
+                    <span className="content gallery_name">
+                        {props.item.gallery.slug ?
+                            <Link to={`${Urls().gallery()}${props.item.gallery.slug}`}>{props.item.gallery.name}</Link>
+                            :
+                            props.item.gallery ? props.item.gallery.name : ''
+                        }
+                    </span>
+                }
 
             </div>
         </div>
