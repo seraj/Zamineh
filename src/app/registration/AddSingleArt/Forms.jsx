@@ -94,6 +94,7 @@ export const Collection = ({
                             type="error"
                             style={{ marginBottom: 15 }}
                             icon
+                            rtl
                         />
                     </Col>
                 }

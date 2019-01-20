@@ -1,8 +1,14 @@
 {
   "name": "zamineh",
   "version": "1.0.0",
-  "description": "Zamineh React web application",
+  "description": "Zamineh Website",
   "main": "index.jsx",
+  "author": "Seraj Vahdati <svahdati71@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seraj/Zamineh.git"
+  },
   "scripts": {
     "start": "webpack-dev-server --host 0.0.0.0 --port 8001 --open --mode development",
     "build-css": "node-sass-chokidar src/ -o src/",
@@ -11,8 +17,6 @@
     "custom-build": "webpack --mode production && rm -rf ./static/build && cp -R build ./static/",
     "build-static": "cp -rf ./static/imgs ./dist/static/ && mkdir ./dist/static/css/ && cp -rf ./static/css/*.css ./dist/static/css && mkdir ./dist/template/ && mv ./dist/index.html ./dist/template/index.html && cp -rf ./static/fonts ./dist/static/"
   },
-  "author": "Seraj Vahdati",
-  "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",

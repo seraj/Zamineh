@@ -233,6 +233,7 @@ export const Step1 = ({
                 <Alert
                     message="..."
                     type="warning"
+                    rtl
                 />
 
             </div>
@@ -272,7 +273,9 @@ export const Step2 = ({ Field, ValidateTextArea }) => {
                             message="محدودیت برای زندگی نامه"
                             description="زندگی نامه شما میبایست حداقل ۵۰۰ کلمه داشته باشد"
                             type="warning"
-                            closable />
+                            closable 
+                            rtl
+                            />
 
                     </Col>
 
@@ -456,7 +459,7 @@ export const Step4 = ({
                                 message="خب مجموعه که انتخاب شد چی باید به کاربر بگیم که بفهمه چه خبره؟"
                                 type="warning"
                                 icon
-
+                                rtl
                             />
                         }
                         {values && values.type == 'collection_arts' &&
@@ -464,6 +467,7 @@ export const Step4 = ({
                                 message="خب مجموعه که انتخاب شد چی باید به کاربر بگیم که بفهمه چه خبره؟"
                                 type="info"
                                 icon
+                                rtl
                             />
                         }
                         {values && values.type == '2collections' &&
@@ -471,6 +475,7 @@ export const Step4 = ({
                                 message="خب مجموعه که انتخاب شد چی باید به کاربر بگیم که بفهمه چه خبره؟"
                                 type="info"
                                 icon
+                                rtl
                             />
                         }
 
@@ -575,6 +580,7 @@ export const Step4 = ({
                                     message="۵ اثر مختلط نیز باید وارد کنید"
                                     type="info"
                                     icon
+                                    rtl
                                 />
                             </Col>
                             <FieldArray name="art_set">

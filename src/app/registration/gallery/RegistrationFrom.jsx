@@ -178,7 +178,9 @@ export const RegisterForm = ({
                         <Alert
                             message="لطفا موارد مورد نظر را با دقت بارگذاری کنید."
                             type="warning"
-                        /></Col>
+                            rtl
+                        />
+                        </Col>
                 </Row>
             </div>
 
@@ -336,6 +338,7 @@ export const RegisterForm = ({
                 <Alert
                     message="..."
                     type="warning"
+                    rtl
                 />
 
             </div>

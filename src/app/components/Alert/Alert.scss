@@ -1,6 +1,6 @@
-$alert-prefix-cls: ".sv-alert";
+$prefix-class: ".ReactAlert";
 
-$alert-message-color : rgba(0, 0, 0, 0.85);
+$message-color : rgba(0, 0, 0, 0.85);
 $info-color : #1890ff;
 $success-color : #52c41a;
 $error-color : #f5222d;
@@ -16,7 +16,7 @@ $font-size-lg:20px;
 $font-size-base:16px;
 $font-size-sm:12px;
 
-#{$alert-prefix-cls} {
+#{$prefix-class} {
     font-size: $font-size-base;
     line-height: 1.5;
     color: rgba(0, 0, 0, 0.65);
@@ -26,8 +26,10 @@ $font-size-sm:12px;
     padding: 0;
     list-style: none;
     position: relative;
-    padding: 8px 37px 8px 15px;
+    padding: 8px 15px 8px 37px;
     border-radius: 4px;
+    text-align: left;
+
 
 
 
@@ -37,7 +39,7 @@ $font-size-sm:12px;
 
     &-icon {
         top: 8.5px;
-        right: 16px;
+        left: 16px;
         position: absolute;
     }
 
@@ -51,7 +53,7 @@ $font-size-sm:12px;
         border: 1px solid #b7eb8f;
         background-color: #f6ffed;
 
-        #{$alert-prefix-cls}-icon {
+        #{$prefix-class}-icon {
             color: $success-color;
         }
     }
@@ -60,7 +62,7 @@ $font-size-sm:12px;
         border: 1px solid #91d5ff;
         background-color: #e6f7ff;
 
-        #{$alert-prefix-cls}-icon {
+        #{$prefix-class}-icon {
             color: $info-color;
         }
     }
@@ -69,7 +71,7 @@ $font-size-sm:12px;
         border: 1px solid #ffe58f;
         background-color: #fffbe6;
 
-        #{$alert-prefix-cls}-icon {
+        #{$prefix-class}-icon {
             color: $warning-color;
         }
     }
@@ -78,7 +80,7 @@ $font-size-sm:12px;
         border: 1px solid #ffa39e;
         background-color: #fff1f0;
 
-        #{$alert-prefix-cls}-icon {
+        #{$prefix-class}-icon {
             color: $error-color;
         }
     }
@@ -86,7 +88,7 @@ $font-size-sm:12px;
     &-close-icon {
         font-size: $font-size-sm;
         position: absolute;
-        left: 16px;
+        right: 16px;
         top: 8px;
         line-height: 22px;
         overflow: hidden;
@@ -104,11 +106,11 @@ $font-size-sm:12px;
 
     &-close-text {
         position: absolute;
-        left: 16px;
+        right: 16px;
     }
 
     &-with-description {
-        padding: 15px 64px 15px 15px;
+        padding: 15px 15px 15px 64px;
         position: relative;
         border-radius: 4px;
         color: $text-color;
@@ -122,21 +124,17 @@ $font-size-sm:12px;
     &-with-description &-icon {
         position: absolute;
         top: 16px;
-        right: 24px;
+        left: 24px;
         font-size: 24px;
     }
 
     &-with-description &-close-icon {
-        position: absolute;
         top: 16px;
-        left: 16px;
-        cursor: pointer;
-        font-size: $font-size-sm;
     }
 
     &-with-description &-message {
         font-size: $font-size-lg;
-        color: $alert-message-color;
+        color: $message-color;
         display: block;
         margin-bottom: 4px;
     }
@@ -166,7 +164,7 @@ $font-size-sm:12px;
     }
 
     &-closable {
-        padding-left: 30px !important;
+        padding-right: 30px !important;
     }
 }
 
@@ -195,5 +193,43 @@ $font-size-sm:12px;
         opacity: 0;
         transform-origin: 0% 0%;
         transform: scaleY(0);
+    }
+}
+
+.rtl {
+    padding: 8px 37px 8px 15px;
+    text-align: right;
+
+    #{$prefix-class} {
+
+        &-description {}
+
+        &-icon {
+            right: 16px !important;
+        }
+
+        &-close-icon {
+            left: 16px;
+            right: auto;
+        }
+    }
+
+    &#{$prefix-class} {
+
+        &-with-description {
+            padding: 15px 64px 15px 15px;
+        }
+
+        &-with-description &-icon {
+            right: 24px;
+            left: auto;
+        }
+
+        &-closable {
+            padding-left: 30px !important;
+            padding-right: 64px !important;
+        }
+
+
     }
 }

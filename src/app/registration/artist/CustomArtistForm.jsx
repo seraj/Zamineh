@@ -92,6 +92,7 @@ export const Exhibition = ({
                             type="error"
                             style={{ marginBottom: 15 }}
                             icon
+                            rtl
                         />
                     </Col>
                 }
@@ -284,6 +285,7 @@ export const Collection = ({
                             type="error"
                             style={{ marginBottom: 15 }}
                             icon
+                            rtl
                         />
                     </Col>
                 }

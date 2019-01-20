@@ -313,6 +313,7 @@ class AuthorizationForm extends React.Component {
                                 description="دقت کنید که این شماره تماس صرفا برای ثبت هنرمند میباشد"
                                 message="شماره تماس برای ثبت هنرمند"
                                 type="warning"
+                                rtl
                             />
                         </Col>
                     </Row>
