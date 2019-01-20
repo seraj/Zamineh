@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Urls from "../../components/Urls";
+import Urls from "../../Urls";
 
 import { FormGroup } from "@smooth-ui/core-sc";
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
-import styles from "./Gallery.scss"
+import styles from "./Galleries.scss"
 
 
 const GalleryForm = (props) => {

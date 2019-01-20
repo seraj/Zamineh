@@ -1,0 +1,41 @@
+@import "../../../static/scss/variables";
+@import "../../../static/scss/_mixins";
+@import "../../../static/scss/_rem";
+
+.h1 {
+    margin: 40px 0;
+}
+
+:local(.GalleryAlphabet) {
+    padding: 40px 0;
+
+    .center-h1 {
+        @extend .h1;
+    }
+}
+
+:local(.AZrow) {
+    width: 100%;
+    padding: 40px 0;
+    border-top: 1px solid #ccc;
+
+    .letter,
+    .column {
+        display: inline-block;
+        width: 25%;
+        vertical-align: top;
+    }
+
+    .letter {
+        font-size: 50px;
+        line-height: 1;
+    }
+
+    .column {
+        li {
+            font-size: 17px;
+            vertical-align: top;
+            color: #666;
+        }
+    }
+}

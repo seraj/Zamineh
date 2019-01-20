@@ -4,13 +4,13 @@ import axios from "axios";
 import Container from "reactstrap/lib/Container";
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
-import ModelManager from '../Models';
-import { BackLink } from "../General"
+import ModelManager from '../../Models';
+import { BackLink } from "../../General"
 
 
-import Urls from "../Urls";
-import Section from "../Section/Section";
-import styles from "./Gallery.scss"
+import Urls from "../../Urls";
+import Section from "../../Section/Section";
+import styles from "./GalleryAlphabet.scss"
 
 
 class GalleryAlphabet extends Component {

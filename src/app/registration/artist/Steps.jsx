@@ -18,7 +18,6 @@ import {
     Select,
     Textarea,
 } from "@smooth-ui/core-sc";
-import Alert from "../../components/Alert/Alert";
 import InputTypeahead from "../components/InputTypeahead";
 import InputAsyncTypeahead from "../components/InputAsyncTypeahead";
 import { Exhibition, Collection, SingleArt } from "./CustomArtistForm";
@@ -26,6 +25,7 @@ import ZaminehMap from '../../components/map/ZaminehMap';
 
 
 
+import Alert from "../../components/Alert/Alert";
 import Divider from "../../components/Divider";
 import Uploader from "../../components/Uploader";
 

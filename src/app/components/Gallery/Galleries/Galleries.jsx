@@ -6,18 +6,17 @@ import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import queryString from 'query-string';
 
-import ModelManager from '../Models';
-import Pagination from '../Pagination/Pagination';
+import ModelManager from '../../Models';
+import Pagination from '../../Pagination/Pagination';
 
-import Login from "../../login/Login";
+import Login from "../../../login/Login";
 import GalleryForm from "./GalleryForm"
 import { FeatureSet, ShowSet, GenreSet, ResultsGrid } from "./SingleGallery";
-import Error from "../Error";
-import Urls from "../Urls";
-import Section from "../Section/Section";
-import { Loading } from "../Spinner/Spinner";
+import Error from "../../Error";
+import Urls from "../../Urls";
+import Section from "../../Section/Section";
+import { Loading } from "../../Spinner/Spinner";
 
-import styles from "./Gallery.scss"
 
 
 class Galleries extends Component {

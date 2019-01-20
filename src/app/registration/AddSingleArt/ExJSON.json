@@ -1,0 +1,195 @@
+{
+  "collection_set": [{
+      "id": 97,
+      "name": "غلام",
+      "desc": "یییشسیشسیشسیشسی",
+      "art_set": [{
+          "id": 166,
+          "name": "ااس",
+          "year": "1299",
+          "mat_set": [{
+            "id": 4,
+            "name": "سنگ"
+          }],
+          "medium_set": [{
+            "id": 1,
+            "name": "نقاشی"
+          }],
+          "size": {
+            "unit": "mm",
+            "width": "23.00",
+            "height": "23.00",
+            "depth": "33.00"
+          },
+          "submitted": true,
+          "gallery": [{
+            "id": 8,
+            "name": "sd"
+          }],
+          "img": ""
+        },
+        {
+          "id": 167,
+          "name": "تست-۱۱۱",
+          "year": "1333",
+          "mat_set": [{
+            "id": 1,
+            "name": "چوب"
+          }],
+          "medium_set": [{
+            "id": 1,
+            "name": "نقاشی"
+          }],
+          "size": {
+            "unit": "mm",
+            "width": "233.00",
+            "height": "23.00",
+            "depth": "1.00"
+          },
+          "submitted": true,
+          "gallery": [{
+            "id": 9,
+            "name": "یشسیشسی"
+          }],
+          "img": ""
+        },
+        {
+          "id": 168,
+          "name": "شحت",
+          "year": "1399",
+          "mat_set": [{
+            "id": 4,
+            "name": "سنگ"
+          }],
+          "medium_set": [{
+            "id": 1,
+            "name": "نقاشی"
+          }],
+          "size": {
+            "unit": "m",
+            "width": "23.00",
+            "height": "434.00",
+            "depth": "32.00"
+          },
+          "submitted": true,
+          "gallery": [{
+            "id": 1,
+            "name": "گالری داوینچی",
+            "slug": "%DA%AF%D8%A7%D9%84%D8%B1%DB%8C-%D8%AF%D8%A7%D9%88%DB%8C%D9%86%DA%86%DB%8C",
+            "phone_num": "02122929229",
+            "cover": "https://api.zamineh.net/media/Galleries/1/Cover_Photo/app-image-2019-01-16_144218.1394450330.png"
+          }],
+          "img": ""
+        },
+        {
+          "id": 169,
+          "name": "یبیش",
+          "year": "1398",
+          "mat_set": [{
+            "id": 4,
+            "name": "سنگ"
+          }],
+          "medium_set": [{
+            "id": 1,
+            "name": "نقاشی"
+          }],
+          "size": {
+            "unit": "mm",
+            "width": "233.00",
+            "height": "123.00",
+            "depth": "23.00"
+          },
+          "submitted": true,
+          "gallery": [{
+            "id": 1,
+            "name": "گالری داوینچی",
+            "slug": "%DA%AF%D8%A7%D9%84%D8%B1%DB%8C-%D8%AF%D8%A7%D9%88%DB%8C%D9%86%DA%86%DB%8C",
+            "phone_num": "02122929229",
+            "cover": "https://api.zamineh.net/media/Galleries/1/Cover_Photo/app-image-2019-01-16_144218.1394450330.png"
+          }],
+          "img": ""
+        },
+        {
+          "id": 181,
+          "name": "قاسم الملک",
+          "year": "1299",
+          "mat_set": [{
+            "id": 1,
+            "name": "چوب"
+          }],
+          "medium_set": [{
+            "id": 4,
+            "name": "مجسمه"
+          }],
+          "size": {
+            "unit": "m",
+            "width": "1.00",
+            "height": "2.00",
+            "depth": "1.00"
+          },
+          "submitted": true,
+          "gallery": [{
+            "id": 1,
+            "name": "گالری داوینچی",
+            "slug": "%DA%AF%D8%A7%D9%84%D8%B1%DB%8C-%D8%AF%D8%A7%D9%88%DB%8C%D9%86%DA%86%DB%8C",
+            "phone_num": "02122929229",
+            "cover": "https://api.zamineh.net/media/Galleries/1/Cover_Photo/app-image-2019-01-16_144218.1394450330.png"
+          }],
+          "img": ""
+        }
+      ],
+      "submitted": true
+    },
+    {
+      "id": 105,
+      "name": "",
+      "desc": "",
+      "art_set": [{
+        "id": 182,
+        "name": "",
+        "year": null,
+        "mat_set": [
+
+        ],
+        "medium_set": null,
+        "size": null,
+        "submitted": false,
+        "gallery": [{
+          "id": 1,
+          "name": "گالری داوینچی",
+          "slug": "%DA%AF%D8%A7%D9%84%D8%B1%DB%8C-%D8%AF%D8%A7%D9%88%DB%8C%D9%86%DA%86%DB%8C",
+          "phone_num": "02122929229",
+          "cover": "https://api.zamineh.net/media/Galleries/1/Cover_Photo/app-image-2019-01-16_144218.1394450330.png"
+        }],
+        "img": ""
+      }],
+      "submitted": false
+    }
+  ],
+  "art_set": [{
+    "id": 166,
+    "name": "ااس",
+    "year": "1299",
+    "mat_set": [{
+      "id": 4,
+      "name": "سنگ"
+    }],
+    "medium_set": [{
+      "id": 1,
+      "name": "نقاشی"
+    }],
+    "size": {
+      "unit": "mm",
+      "width": "23.00",
+      "height": "23.00",
+      "depth": "33.00"
+    },
+    "submitted": true,
+    "gallery": [{
+      "id": 8,
+      "name": "sd"
+    }],
+    "img": ""
+  }]
+
+}

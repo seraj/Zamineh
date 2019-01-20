@@ -1,0 +1,87 @@
+@import "../../../static/scss/variables";
+@import "../../../static/scss/_mixins";
+@import "../../../static/scss/_rem";
+
+:local(.header) {
+    padding-top: 30px;
+    margin-bottom: 50px;
+
+
+}
+
+:local(.galleryHeader) {
+
+    .info,
+    .icon {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .info {
+        width: calc(100% - 170px);
+        margin-left: 30px;
+
+        .name {
+            font-size: 37px;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .location {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.5;
+            min-height: 1.5em;
+            margin-bottom: 10px;
+        }
+    }
+
+    .icon {
+        text-align: center;
+
+        .img {
+            display: inline-block;
+            width: 140px;
+            height: 140px;
+            line-height: 140px;
+            vertical-align: middle;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+:local(.tabs) {
+    padding: 20px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+
+    a {
+        font-weight: bold;
+        color: $primary-color;
+
+        &.active,
+        &:hover {
+            color: $secondery-color
+        }
+    }
+}
+
+:local(.separator) {
+    display: inline-block;
+    margin: 0 15px -2px 15px;
+    width: 1px;
+    height: .9em;
+    vertical-align: baseline;
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    background-color: #666;
+}

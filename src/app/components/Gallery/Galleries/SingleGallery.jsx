@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
-import Urls from "../Urls";
+import Urls from "../../Urls";
 import Flickity from "react-flickity-component";
-import { Img } from "../General"
-import { IconArrowLeft } from "../Icons";
-import { FollowButton } from "../ui-components/Buttons";
-import styles from "./Gallery.scss"
-import DefaultStyle from "../../static/scss/_boxStyle.scss"
+import { Img } from "../../General"
+import { IconArrowLeft } from "../../Icons";
+import { FollowButton } from "../../ui-components/Buttons";
+import styles from "./Galleries.scss"
+import DefaultStyle from "../../../static/scss/_boxStyle.scss"
 
 
 

@@ -13,13 +13,17 @@ import Loadable from 'react-loadable';
 // import Home from './home/Home';
 import Artists from './components/Artists/Artists';
 import ArtistAlphabet from './components/Artists/ArtistAlphabet';
-import Galleries from './components/Gallery/Galleries';
-import GalleryAlphabet from './components/Gallery/GalleryAlphabet';
+
+import Galleries from './components/Gallery/Galleries/Galleries';
+import Gallery from './components/Gallery/Single/Gallery';
+
+import GalleryAlphabet from './components/Gallery/GalleryAlphabet/GalleryAlphabet';
+
 import Search from './components/Search/Search'
 import Collect from './components/Collect/Collect'
 import Collections from './components/Collections/Collections'
 import Articles from './article/Articles';
-import AddSingleArtForm from './registration/AddSingleArtForm';
+import AddSingleArtForm from './registration/AddSingleArt/AddSingleArtForm';
 import ArtistRegistration from './registration/artist/ArtistRegistration';
 import GalleryRegistration from './registration/gallery/GalleryRegistration';
 import Section from "./components/Section/Section";
@@ -100,6 +104,10 @@ export default function Routing({ isLogined }) {
                 exact
                 render={() => <GalleryAlphabet />}
             />
+            <Route
+                path={`${Urls().gallery()}:slug`}
+                component={Gallery}
+            />
 
 
 
@@ -111,7 +119,7 @@ export default function Routing({ isLogined }) {
             />
             <Route
                 exact
-                path={`${Urls().ArtistRegistration()}/addsingleart`}
+                path={`${Urls().AddSingleArt()}`}
                 render={() => <AddSingleArtForm />}
             />
             <Route
@@ -122,7 +130,7 @@ export default function Routing({ isLogined }) {
 
 
             <Route
-                path={`${Urls().arts()}:artsId`}
+                path={`${Urls().arts()}: artsId`}
                 render={() => <Articles />}
             />
 

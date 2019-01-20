@@ -48,203 +48,13 @@ const unSubmittedArt = (Arts) => {
         })
     )
 }
-export const Exhibition = ({
-    SingleArtSubmit,
-    SingleEXBSubmit,
-    StepData,
-    StepConfig,
-    input,
-    select,
-    radio,
-    textarea,
-    LabelRequired,
-    addArt,
-    key,
-    name,
-    onExbRemoveClick,
-    handleRemoveExbArt,
-    onChangeDatepicker,
-    index,
-    values }, ...props) => {
-    const exbIndex = index
-    const ExbData = StepData.exb_set[index]
-    const unSubmittedArts = values.exb_set[index] ? unSubmittedArt(values.exb_set[index].art_set).length : null;
 
-    return (
-        <div className={`${styles.RegistrationSection} part ${ExbData && ExbData.submitted ? `submitted` : ``}`}>
-            {ExbData && ExbData.loading &&
-                <Loading />
-            }
-            <LinkButton onClick={onExbRemoveClick} className={styles.removethis}>حذف این نمایشگاه</LinkButton>
-            <Row>
-                <Field
-                    name={`${name}.id`}
-                    component={input}
-                    hidden
-                />
-                <Col xs={12}>
-                    <Divider text={`مشخصات نمایشگاه ${index + 1}`} orientation="right" />
-                </Col>
-                {unSubmittedArts > 0 &&
-                    <Col xs={12}>
-                        <Alert
-                            message={`شما در این نمایشگاه ${unSubmittedArts} اثر ثبت نشده دارید.لطفا نسبت به تکمیل اطلاعات اثر اقدام نمایید`}
-                            type="error"
-                            style={{ marginBottom: 15 }}
-                            icon
-                        />
-                    </Col>
-                }
-                <Col lg={3} md={4} sm={12} xs={12}>
-
-                    <FormGroup>
-                        <Label className={LabelRequired}>نمایشگاه</Label>
-                        <div className="clearfix"></div>
-                        <RadioGroup>
-                            <FormCheck inline>
-                                <Field
-                                    name={`${name}.type`}
-                                    component={radio}
-                                    type="radio"
-                                    id={`${name}.solo`}
-                                    value="solo"
-                                />
-                                <FormCheckLabel htmlFor={`${name}.solo`}>انفرادی</FormCheckLabel>
-                            </FormCheck>
-                            <FormCheck inline>
-                                <Field
-                                    name={`${name}.type`}
-                                    component={radio}
-                                    type="radio"
-                                    id={`${name}.group`}
-                                    value="group"
-                                />
-                                <FormCheckLabel htmlFor={`${name}.group`}>گروهی</FormCheckLabel>
-                            </FormCheck>
-
-                        </RadioGroup>
-
-                        <Error name={`${name}.type`} />
-                    </FormGroup>
-                </Col>
-                <Col lg={3} md={4} sm={12} xs={12}>
-                    <FormGroup>
-                        <Label className={LabelRequired}>نام مجموعه</Label>
-                        <Field
-                            name={`${name}.name`}
-                            component={input}
-                            placeholder="نام مجموعه"
-                            validate={value => value ? undefined : "وارد کردن نام مجموعه میباشد"}
-                            control
-                        />
-                        <Error name={`${name}.name`} />
-                    </FormGroup>
-                </Col>
-                <Col lg={3} md={4} sm={12} xs={12}>
-                    <FormGroup>
-                        <Label className={LabelRequired}>زمان برگذاری</Label>
-                        <PersianDatePicker
-                            name={`${name}.date`}
-                            // defaultValue="1991-03-21"
-                            onChangeDatepicker={onChangeDatepicker}
-
-                        />
-                        <Error name={`${name}.date`} />
-                    </FormGroup>
-                </Col>
-                <Col lg={3} md={4} sm={12} xs={12}>
-                    <FormGroup>
-                        <Label className={LabelRequired}>محل برگذاری</Label>
-                        <Field
-                            name={`${name}.address`}
-                            component={input}
-                            placeholder="محل برگذاری"
-                            validate={value => value ? undefined : "وارد کردن محل برگذاری میباشد"}
-                            control
-                        />
-                        <Error name={`${name}.address`} />
-                    </FormGroup>
-                </Col>
-                <Col lg={12} md={12} sm={12} xs={12}>
-                    <FormGroup>
-                        <Label className={LabelRequired}>دلیل برگذاری را شرح دهید #مثلا</Label>
-                        <Field
-                            name={`${name}.desc`}
-                            component={textarea}
-                            maxLength="500"
-                            placeholder="..."
-                            validate={value => value ? undefined : "الزامی"}
-                            control
-                        />
-                        <Error name={`${name}.desc`} />
-                    </FormGroup>
-                </Col>
-
-                <Col xs={12}>
-                    <Divider text="تمام آثار این نمایشگاه" orientation="right" />
-                </Col>
-
-
-
-                <FieldArray name={`${name}.art_set`}>
-                    {({ fields }) =>
-                        <React.Fragment>
-                            {fields.map((name, index) => (
-                                <SingleArt
-                                    key={index}
-                                    name={name}
-                                    StepData={StepData}
-                                    StepConfig={StepConfig}
-                                    ServerData={StepData.exb_set[exbIndex].art_set[index]}
-                                    LocalData={values.exb_set[exbIndex].art_set[index]}
-                                    index={index}
-                                    ParentIndex={exbIndex}
-                                    input={input}
-                                    select={select}
-                                    values={values}
-                                    LabelRequired={LabelRequired}
-                                    SingleArtSubmit={() => SingleArtSubmit(values, index, exbIndex)}
-                                    onArtRemoveClick={() => handleRemoveExbArt(fields, 'art_id', values, exbIndex, index)}
-
-
-
-                                />
-
-                            ))}
-                            <Col lg={12} md={12} sm={12} xs={12}>
-                                <div className={styles.addSectionButton}>
-                                    <button
-                                        type="button"
-                                        onClick={() => addArt(fields.push, 'Art', values.exb_set[exbIndex].id)}>
-                                        <i></i>
-                                        <span>اضافه کردن اثر</span>
-                                    </button>
-                                </div>
-                            </Col>
-                        </React.Fragment>
-                    }
-
-                </FieldArray>
-
-                <Col sm={12} className="text-left">
-                    <LinkButton
-                        onClick={() => SingleEXBSubmit(values, exbIndex)}
-                        className="zbtn black bradius"
-                    >ثبت نمایشگاه</LinkButton>
-                </Col>
-            </Row>
-        </div>
-
-
-
-    )
-}
 
 export const Collection = ({
-    SingleArtSubmit,
-    Step4_SingleColSubmit,
-    StepData,
-    StepConfig,
+    singleArtSubmit,
+    singleColSubmit,
+    data,
+    config,
     input,
     select,
     radio,
@@ -256,11 +66,11 @@ export const Collection = ({
     ModalToggle,
     name,
     onCollectionRemoveClick,
-    Step4_handleRemove,
+    handleRemove,
     index,
     values }, ...props) => {
     const ColIndex = index
-    const ColData = StepData.collection_set[index]
+    const ColData = data.collection_set[index]
     const unSubmittedArts = values.collection_set[index] ? unSubmittedArt(values.collection_set[index].art_set).length : null;
     return (
         <div className={`${styles.RegistrationSection} part ${ColData && ColData.submitted ? `submitted` : ``}`}>
@@ -328,9 +138,9 @@ export const Collection = ({
                                 <SingleArt
                                     key={index}
                                     name={name}
-                                    StepData={StepData}
-                                    StepConfig={StepConfig}
-                                    ServerData={StepData.collection_set[ColIndex].art_set[index]}
+                                    data={data}
+                                    config={config}
+                                    ServerData={data.collection_set[ColIndex].art_set[index]}
                                     LocalData={values.collection_set[ColIndex].art_set[index]}
                                     index={index}
                                     input={input}
@@ -338,8 +148,8 @@ export const Collection = ({
                                     hasExtraFields
                                     values={values}
                                     LabelRequired={LabelRequired}
-                                    SingleArtSubmit={() => SingleArtSubmit(values, index, ColIndex)}
-                                    onArtRemoveClick={() => Step4_handleRemove(fields, 'art_id', values, ColIndex, index, 'CollectionArt')}
+                                    singleArtSubmit={() => singleArtSubmit(values, index, ColIndex)}
+                                    onArtRemoveClick={() => handleRemove(fields, 'art_id', values, ColIndex, index, 'CollectionArt')}
                                 />
 
                             ))}
@@ -371,7 +181,7 @@ export const Collection = ({
                                                 isOpen={ModalToggle}
                                                 toggle={openArtModal}
                                                 className={styles.importArts}
-                                                title={"ثبت نام / ورودرون ریزی آثار مختلط"}
+                                                title={'درون ریزی آثار مختلط'}
                                             >
                                                 <Row>
                                                     <Col xs={12}>
@@ -406,7 +216,7 @@ export const Collection = ({
 
                 <Col sm={12} className="text-left">
                     <LinkButton
-                        onClick={() => Step4_SingleColSubmit(values, ColIndex)}
+                        onClick={() => singleColSubmit(values, ColIndex)}
                         className="zbtn black bradius"
                     >ثبت مجموعه</LinkButton>
                 </Col>
@@ -418,11 +228,11 @@ export const Collection = ({
     )
 }
 export const SingleArt = ({
-    SingleArtSubmit,
+    singleArtSubmit,
     input,
     select,
-    StepData,
-    StepConfig,
+    data,
+    config,
     ServerData,
     LocalData,
     name,
@@ -519,7 +329,7 @@ export const SingleArt = ({
                                 arrow={false}
                             >
                                 <option value="" disabled>انتخاب واحد اندازه گیری</option>
-                                {StepConfig && StepConfig.unit.map((item, index) => (
+                                {config && config.unit.map((item, index) => (
                                     <option value={item.value} key={index}>{item.title}</option>
 
                                 ))}
@@ -601,7 +411,7 @@ export const SingleArt = ({
                     </Col>
                     <Col xs={12}>
                         <LinkButton
-                            onClick={SingleArtSubmit}
+                            onClick={singleArtSubmit}
                             className="zbtn black bradius d-block"
                         >ثبت</LinkButton>
                     </Col>

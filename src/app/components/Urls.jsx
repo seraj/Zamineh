@@ -23,6 +23,9 @@ export default function Urls() {
         medium() {
             return '/medium/'
         },
+
+
+        // Galleries
         galleries() {
             return '/galleries/'
         },
@@ -32,6 +35,9 @@ export default function Urls() {
         gallery() {
             return '/gallery/'
         },
+
+
+
         show() {
             return '/show/';
         },
@@ -67,7 +73,6 @@ export default function Urls() {
             }
             return url
         },
-        // Registration URL
 
         // Registration URL
         ArtistRegistration() {
@@ -75,6 +80,9 @@ export default function Urls() {
         },
         GalleryRegistration() {
             return '/registration/gallery';
+        },
+        AddSingleArt() {
+            return '/AddSingleArt';
         },
 
         Profile() {
