@@ -399,9 +399,7 @@ class AddSingleArtForm extends React.Component {
                                                             <Divider text={`آثار مختلط`} />
                                                             <Alert
                                                                 message="۵ اثر مختلط نیز باید وارد کنید"
-                                                                description="شنحیباشمتیامشیتلمشیتل شیمل شیلما شسمتالیش"
                                                                 type="info"
-                                                                closable
                                                                 icon
                                                                 rtl
                                                             />
