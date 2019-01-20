@@ -158,11 +158,11 @@ class ArtistRegistration extends React.Component {
                     this.setState({
                         successBox: true,
                         message: {
-                            type: 'info',
+                            type: '',
                             title: 'هنرمند ثبت شده دارید',
                             message: 'شما با این شماره یک هنرمند ثبت کرده اید.در صورت نیاز شما میتوانید با شماره‌ی دیگر ثبت نام کنید',
                         },
-                        timer: 1500,
+                        timer: 15,
                     })
                 }
             })
@@ -656,7 +656,7 @@ class ArtistRegistration extends React.Component {
                             title: 'ثبت موفق',
                             message: 'اطلاعات مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید.',
                         },
-                        timer: 1500,
+                        timer: 15,
                     })
                 })
 

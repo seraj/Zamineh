@@ -213,7 +213,9 @@ class AuthorizationForm extends React.Component {
 
                 this.props.setAccessTokens(response.data.access_token, response.data.refresh_token)
             })
-
+            .then(() => {
+                this.props.afterLogin()
+            })
             .catch(error => {
                 this.setState({ loading: false });
             });

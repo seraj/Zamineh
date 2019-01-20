@@ -111,11 +111,11 @@ class GalleryRegistration extends React.Component {
                     this.setState({
                         successBox: true,
                         message: {
-                            type: 'info',
+                            type: '',
                             title: 'گالری ثبت شده دارید',
                             message: 'شما با این شماره یک گالری ثبت کرده اید.در صورت نیاز شما میتوانید با شماره‌ی دیگر ثبت نام کنید',
                         },
-                        timer: 1500,
+                        timer: 15,
                     })
                 }
             })
@@ -251,7 +251,7 @@ class GalleryRegistration extends React.Component {
                                 title: 'گالری شما با موفقیت ثبد شد',
                                 message: 'گالری مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید.',
                             },
-                            timer: 1500,
+                            timer: 15,
                         })
                     })
                     .catch(error => {
