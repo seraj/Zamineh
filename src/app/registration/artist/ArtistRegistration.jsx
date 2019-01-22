@@ -280,7 +280,6 @@ class ArtistRegistration extends React.Component {
                 })
                 .catch(error => {
                     this.BtnSubmitLoading(false)
-
                 })
         }
     }
@@ -303,7 +302,6 @@ class ArtistRegistration extends React.Component {
                     this.BtnSubmitLoading(false)
                 })
         }
-
     }
 
     // End Steps Submit Actions
@@ -315,7 +313,6 @@ class ArtistRegistration extends React.Component {
 
 
     onMapClick = (event) => {
-
         this.setState({
             Maplatlng: event.latlng
         })
@@ -359,7 +356,8 @@ class ArtistRegistration extends React.Component {
                 // console.log(error);
             })
     }
-    AddArt = (pushFunction, type, exbID) => {
+
+    addArt = (pushFunction, type, exbID) => {
         axios.post(`${Urls().api()}/gallery-app/exb-art/create/`, {
             type: type,
             id: exbID ? exbID : null
@@ -372,9 +370,9 @@ class ArtistRegistration extends React.Component {
 
             .catch(error => {
                 // console.log(error);
-
             })
     }
+
     SingleEXBSubmit = (values, exbIndex) => {
         const exbID = values.exb_set[exbIndex].id
         var ExbValue = values.exb_set[exbIndex];
@@ -511,7 +509,7 @@ class ArtistRegistration extends React.Component {
 
             })
     }
-    Step4_addArt = (pushFunction, type, ColID) => {
+    Step4_AddArt = (pushFunction, type, ColID) => {
         axios.post(`${Urls().api()}/gallery-app/collection-art/`, {
             type: type,
             collection_id: ColID ? ColID : null
@@ -856,7 +854,7 @@ class ArtistRegistration extends React.Component {
                                                                     SingleEXBSubmit={this.SingleEXBSubmit}
                                                                     SingleArtSubmit={this.SingleArtSubmit}
                                                                     addExhibition={this.addExhibition}
-                                                                    AddArt={this.AddArt}
+                                                                    AddArt={this.addArt}
                                                                     handleExhibition={this.handleExhibition}
                                                                     handleRemoveExbArt={this.handleRemoveExbArt}
                                                                     onChangeDatepicker={this.onChangeDatepicker}
@@ -912,7 +910,7 @@ class ArtistRegistration extends React.Component {
                                                                     Step4_SingleArtSubmit={this.Step4_SingleArtSubmit}
                                                                     Step4_SingleColSubmit={this.Step4_SingleColSubmit}
                                                                     Step4_onChangeType={this.Step4_onChangeType}
-                                                                    AddArt={this.Step4_addArt}
+                                                                    AddArt={this.Step4_AddArt}
                                                                     importArttoCollection={this.importArttoCollection}
                                                                     openArtModal={this.openArtModal}
                                                                     Step4_handleRemove={this.Step4_handleRemove}

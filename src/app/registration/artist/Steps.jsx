@@ -110,6 +110,8 @@ export const Step1 = ({
                                 server='/gallery-app/artist/profile-pic/'
                                 name="profile_pic"
                                 files={StepData ? StepData.profile_pic : null}
+                            // Load={(StepData && StepData.profile_pic && StepData.profile_pic.link) ? StepData.profile_pic.link : null}
+
                             />
 
 
@@ -273,9 +275,9 @@ export const Step2 = ({ Field, ValidateTextArea }) => {
                             message="محدودیت برای زندگی نامه"
                             description="زندگی نامه شما میبایست حداقل ۵۰۰ کلمه داشته باشد"
                             type="warning"
-                            closable 
+                            closable
                             rtl
-                            />
+                        />
 
                     </Col>
 

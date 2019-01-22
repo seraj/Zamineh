@@ -200,6 +200,8 @@ class AuthorizationForm extends React.Component {
                 user_type: this.props.type
             })
             .then(response => {
+                this.props.afterLogin()
+
                 this.setState({
                     loading: false,
                     successBox: true,
@@ -208,14 +210,12 @@ class AuthorizationForm extends React.Component {
                         title: 'در حال انتقال به پروفایل',
                         message: `شما با این شماره یک ${this.state.typeFa} ثبت شده دارید.بزودی به پروفایل انتقال داده خواهید شد`,
                     },
-                    timer: 150,
+                    timer: 15,
                 });
 
                 this.props.setAccessTokens(response.data.access_token, response.data.refresh_token)
             })
-            .then(() => {
-                this.props.afterLogin()
-            })
+
             .catch(error => {
                 this.setState({ loading: false });
             });

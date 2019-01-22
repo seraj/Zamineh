@@ -47,8 +47,13 @@ const unSubmittedArt = (Arts) => {
             return arts.submitted === false;
         })
     )
-}
 
+}
+const Condition = ({ when, is, children }) => (
+    <Field name={when} subscription={{ value: true }}>
+        {({ input: { value } }) => (value === is ? children : null)}
+    </Field>
+);
 
 export const Collection = ({
     singleArtSubmit,
@@ -72,6 +77,11 @@ export const Collection = ({
     const ColIndex = index
     const ColData = data.collection_set[index]
     const unSubmittedArts = values.collection_set[index] ? unSubmittedArt(values.collection_set[index].art_set).length : null;
+
+    const ServerData = data.collection_set[ColIndex];
+    const CoverUploadServer = `/gallery-app/artist/collection/upload-image/${values.collection_set[ColIndex] ? values.collection_set[ColIndex].id : ''}/cover/`;
+    const LogoUploadServer = `/gallery-app/artist/collection/upload-image/${values.collection_set[ColIndex] ? values.collection_set[ColIndex].id : ''}/logo/`;
+
     return (
         <div className={`${styles.RegistrationSection} part ${ColData && ColData.submitted ? `submitted` : ``}`}>
             {ColData && ColData.loading &&
@@ -125,11 +135,35 @@ export const Collection = ({
                         <Error name={`${name}.desc`} />
                     </FormGroup>
                 </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <Label className={LabelRequired}>کاور مجموعه</Label>
+                    <Uploader
+                        server={CoverUploadServer}
+                        name={`${name}.img`}
+                        files={ServerData ? ServerData.cover : null}
+                        Load={(ServerData && ServerData.cover && ServerData.cover.link) ? ServerData.cover.link : null}
+                        // Multiple
+                        // maxFiles={5}
+                        allowImagePreview={false}
+                    />
+                </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <Label className={LabelRequired}>لوگو مجموعه</Label>
+                    <Uploader
+                        server={LogoUploadServer}
+                        name={`${name}.img`}
+                        files={ServerData ? ServerData.logo : null}
+                        Load={(ServerData && ServerData.logo && ServerData.logo.link) ? ServerData.logo.link : null}
+
+                        // Multiple
+                        // maxFiles={5}
+                        allowImagePreview={false}
+                    />
+                </Col>
 
                 <Col xs={12}>
                     <Divider text="تمام آثار این مجموعه" orientation="right" />
                 </Col>
-
 
 
                 <FieldArray name={`${name}.art_set`}>
@@ -145,6 +179,7 @@ export const Collection = ({
                                     LocalData={values.collection_set[ColIndex].art_set[index]}
                                     index={index}
                                     input={input}
+                                    radio={radio}
                                     select={select}
                                     hasExtraFields
                                     values={values}
@@ -156,58 +191,65 @@ export const Collection = ({
                             ))}
                             <Col xs={12}>
                                 <Row>
-                                    <Col xs={SubmittedArt(values.art_set).length > 0 ? 6 : 12}>
-                                        <div className={styles.addSectionButton}>
-                                            <button
-                                                type="button"
-                                                className=""
-                                                onClick={() => addArt(fields.push, 'Art', values.collection_set[ColIndex].id)}>
-                                                <i></i>
-                                                <span>اضافه کردن اثر</span>
-                                            </button>
-                                        </div>
-                                    </Col>
-                                    {SubmittedArt(values.art_set).length > 0 &&
-                                        <Col xs={6}>
-                                            <div className={styles.importArtButton}>
+
+                                    <React.Fragment>
+                                        <Col xs={12}>
+                                            <div className={styles.addSectionButton}>
                                                 <button
                                                     type="button"
                                                     className=""
-                                                    onClick={() => openArtModal()}>
+                                                    onClick={() => addArt(fields.push, values.collection_set[ColIndex].id)}>
                                                     <i></i>
-                                                    <span>درون ریزی آثار</span>
+                                                    <span>اضافه کردن اثر</span>
                                                 </button>
                                             </div>
-                                            <Modal
-                                                isOpen={ModalToggle}
-                                                toggle={openArtModal}
-                                                className={styles.importArts}
-                                                title={'درون ریزی آثار مختلط'}
-                                            >
-                                                <Row>
-                                                    <Col xs={12}>
-                                                        <p>شما میتوانید آثار ثبت شده را برای استفاده در این قسمت انتخاب کنید</p>
-                                                    </Col>
-                                                    {values && values.art_set &&
-                                                        SubmittedArt(values.art_set).map((arts, index) => (
-                                                            <Col key={index} xs={12}>
-                                                                <div className="_art">
-                                                                    {arts.name}
-                                                                    <a
-                                                                        className={`import-button`}
-                                                                        onClick={() => importArttoCollection(index, arts.id, values.collection_set[ColIndex].id)}>
-                                                                    </a>
-                                                                </div>
-                                                            </Col>
-
-                                                        ))
-
-                                                    }
-                                                </Row>
-                                            </Modal>
-
                                         </Col>
-                                    }
+                                        {/*
+                                            {SubmittedArt(values.art_set).length > 0 &&
+                                                <Col xs={6}>
+                                                    <div className={styles.importArtButton}>
+                                                        <button
+                                                            type="button"
+                                                            className=""
+                                                            onClick={() => openArtModal()}>
+                                                            <i></i>
+                                                            <span>درون ریزی آثار</span>
+                                                        </button>
+                                                    </div>
+                                                    <Modal
+                                                        isOpen={ModalToggle}
+                                                        toggle={openArtModal}
+                                                        className={styles.importArts}
+                                                        title={'درون ریزی آثار مختلط'}
+                                                    >
+                                                        <Row>
+                                                            <Col xs={12}>
+                                                                <p>شما میتوانید آثار ثبت شده را برای استفاده در این قسمت انتخاب کنید</p>
+                                                            </Col>
+                                                            {values && values.art_set &&
+                                                                SubmittedArt(values.art_set).map((arts, index) => (
+                                                                    <Col key={index} xs={12}>
+                                                                        <div className="_art">
+                                                                            {arts.name}
+                                                                            <a
+                                                                                className={`import-button`}
+                                                                                onClick={() => importArttoCollection(index, arts.id, values.collection_set[ColIndex].id)}>
+                                                                            </a>
+                                                                        </div>
+                                                                    </Col>
+
+                                                                ))
+
+                                                            }
+                                                            
+                                                        </Row>
+                                                    </Modal>
+
+                                                </Col>
+                                }
+                                 */}
+                                    </React.Fragment>
+
                                 </Row>
                             </Col>
                         </React.Fragment>
@@ -222,7 +264,7 @@ export const Collection = ({
                     >ثبت مجموعه</LinkButton>
                 </Col>
             </Row>
-        </div>
+        </div >
 
 
 
@@ -232,6 +274,7 @@ export const SingleArt = ({
     singleArtSubmit,
     input,
     select,
+    radio,
     data,
     config,
     ServerData,
@@ -267,7 +310,7 @@ export const SingleArt = ({
                                 name={`${name}.name`}
                                 component={input}
                                 placeholder="نام اثر"
-                                validate={value => value ? undefined : "وارد کردن نام اثر میباشد"}
+                                validate={value => value ? undefined : "وارد کردن نام اثر الزامی میباشد"}
                                 control
                             />
                             <Error name={`${name}.name`} />
@@ -279,9 +322,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.year`}
                                 component={input}
-                                value="sdsada"
                                 placeholder="سال تولید اثر"
-                                validate={value => value ? undefined : "وارد کردن سال تولید اثر میباشد"}
+                                validate={value => value ? undefined : "وارد کردن سال تولید اثر الزامی میباشد"}
                                 control
                             />
                             <Error name={`${name}.year`} />
@@ -325,14 +367,13 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.unit`}
                                 component={select}
-                                validate={value => value ? undefined : "واردن کردن واحد اجباری میباشد"}
+                                validate={value => value ? undefined : "واردن کردن واحد الزامی میباشد"}
                                 control
                                 arrow={false}
                             >
                                 <option value="" disabled>انتخاب واحد اندازه گیری</option>
                                 {config && config.unit.map((item, index) => (
                                     <option value={item.value} key={index}>{item.title}</option>
-
                                 ))}
                             </Field>
 
@@ -379,26 +420,55 @@ export const SingleArt = ({
                             <Error name={`${name}.size.depth`} />
                         </FormGroup>
                     </Col>
-                    {hasExtraFields && [
-                        <Col lg={12} md={12} sm={12} xs={12}>
-                            <Divider text={`گالری`} orientation="right" />
-                        </Col>,
-                        <Col lg={12} md={12} sm={12} xs={12}>
-                            <FormGroup>
-                                <Label className={LabelRequired}>گالری مالک اثر</Label>
-                                <InputAsyncTypeahead
-                                    allowNew
-                                    newSelectionPrefix="اضافه کردن این گالری:"
-                                    name={`${name}.gallery`}
-                                    api="/gallery-app/gallery/autocomplete/?phrase"
-                                    placeholder="نام گالری مالک اثر"
-                                    validate={value => value ? undefined : "وارد کردن نام گالری الزامی میباشد"}
-                                />
-                                <Error name={`${name}.gallery`} />
-                            </FormGroup>
-                        </Col>
-                    ]}
-
+                    {LocalData && LocalData.price &&
+                        <React.Fragment>
+                            <Col lg={12} md={12} sm={12} xs={12}>
+                                <Divider text={`مشخصات برای فروش اثر`} orientation="right" />
+                            </Col>
+                            <Col lg={6} md={6} sm={12} xs={12}>
+                                <FormGroup>
+                                    <Label className={LabelRequired}>اثر برای فروش است؟</Label>
+                                    <div className="clearfix" />
+                                    <RadioGroup>
+                                        <FormCheck inline>
+                                            <Field
+                                                name={`${name}.price.is_for_sale`}
+                                                component={radio}
+                                                type="radio"
+                                                id="yes"
+                                                value="yes"
+                                            />
+                                            <FormCheckLabel htmlFor="yes">بله</FormCheckLabel>
+                                        </FormCheck>
+                                        <FormCheck inline>
+                                            <Field
+                                                name={`${name}.price.is_for_sale`}
+                                                component={radio}
+                                                type="radio"
+                                                id="no"
+                                                value="no"
+                                            />
+                                            <FormCheckLabel htmlFor="no">خیر</FormCheckLabel>
+                                        </FormCheck>
+                                    </RadioGroup>
+                                </FormGroup>
+                            </Col>
+                            <Col lg={6} md={6} sm={12} xs={12}>
+                                <FormGroup>
+                                    <Label className={LocalData && LocalData.price.is_for_sale == 'yes' ? LabelRequired : ''}>قیمت اثر (تومان)</Label>
+                                    <Field
+                                        name={`${name}.price.price`}
+                                        component={input}
+                                        disabled={LocalData && LocalData.price.is_for_sale == 'yes' ? false : true}
+                                        placeholder="قیمت اثر برای فروش"
+                                        // validate={LocalData.price.is_for_sale == 'yes' ? value => value ? undefined : "وارد کردن عمق اثر الزامی میباشد" : ''}
+                                        control
+                                    />
+                                    <Error name={`${name}.price.price`} />
+                                </FormGroup>
+                            </Col>
+                        </React.Fragment>
+                    }
                     <Col xs={12}>
                         <Label className={LabelRequired}>بارگذاری آثار</Label>
                         <Uploader

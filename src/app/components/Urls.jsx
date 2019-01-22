@@ -82,7 +82,7 @@ export default function Urls() {
             return '/registration/gallery';
         },
         AddSingleArt() {
-            return '/AddSingleArt';
+            return '/registration/artist/singleart';
         },
 
         Profile() {
