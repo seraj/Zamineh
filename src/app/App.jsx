@@ -75,19 +75,19 @@ class App extends React.Component {
                         :
                         SecurityManager().getArtistRegAuthToken();
 
-                    clientID = GalleryRegistrationPage ?
-                        SecurityManager().getRegClientIDSecret('id', 'Gallery')
-                        :
-                        SecurityManager().getRegClientIDSecret('id', 'Artist');
+                    // clientID = GalleryRegistrationPage ?
+                    //     SecurityManager().getRegClientIDSecret('id', 'Gallery')
+                    //     :
+                    //     SecurityManager().getRegClientIDSecret('id', 'Artist');
 
-                    clientSecret = GalleryRegistrationPage ?
-                        SecurityManager().getRegClientIDSecret('secret', 'Gallery')
-                        :
-                        SecurityManager().getRegClientIDSecret('secret', 'Artist');
+                    // clientSecret = GalleryRegistrationPage ?
+                    //     SecurityManager().getRegClientIDSecret('secret', 'Gallery')
+                    //     :
+                    //     SecurityManager().getRegClientIDSecret('secret', 'Artist');
                 } else {
                     token = SecurityManager().getAuthToken();
-                    clientID = cookie.load("client_id", { path: "/" });
-                    clientSecret = cookie.load("client_secret", { path: "/" });
+                    // clientID = cookie.load("client_id", { path: "/" });
+                    // clientSecret = cookie.load("client_secret", { path: "/" });
                 }
 
                 if (token && token !== null && token !== 'null') {

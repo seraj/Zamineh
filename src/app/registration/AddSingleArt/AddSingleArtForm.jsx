@@ -337,6 +337,11 @@ class AddSingleArtForm extends React.Component {
         })
     }
 
+    setAccessTokens = (Token, RefreshToken) => {
+        SecurityManager().setArtistRegAccessToken(Token);
+        SecurityManager().setArtistRegRefreshToken(RefreshToken);
+    }
+
     render() {
         const { data, config, ModalToggle, showForm } = this.state
         var hasToken = SecurityManager().hasArtistRegToken()
