@@ -112,7 +112,7 @@ class AddSingleArtForm extends React.Component {
     }
     componentDidMount() {
         if (SecurityManager().hasArtistRegToken()) {
-            this.getFormConfig()
+            this.getFormData()
         }
     }
     focusOnErrors = createDecorator()
@@ -128,7 +128,7 @@ class AddSingleArtForm extends React.Component {
             data
         })
     }
-    getFormConfig = () => {
+    getFormData = () => {
         axios.get(`${Urls().api()}/gallery-app/collection/create-update/`)
             .then(response => {
                 this.setState({
@@ -264,7 +264,7 @@ class AddSingleArtForm extends React.Component {
             ID = values.art_set[ArtIndex].id
         }
 
-        axios.delete(`${Urls().api()}/gallery-app/collection-art/?${type}=${ID}`).then(response => {
+        axios.delete(`${Urls().api()}/gallery-app/artist/art/create-update/?id=${ID}`).then(response => {
             Toast('success', `${Name} مورد نظر با موفقیت حذف شد`)
             FARemove.remove(CurrentIndex)
         })
@@ -288,7 +288,7 @@ class AddSingleArtForm extends React.Component {
             .then(response => {
                 pushFunction({ id: response.data.id })
             }).then(() => {
-                this.getFormConfig()
+                // this.getFormData()
             })
             .catch(error => {
 
@@ -360,7 +360,7 @@ class AddSingleArtForm extends React.Component {
                                 <div className={styles.RegistrationSection}>
                                     {!hasToken &&
                                         <AuthorizationForm
-                                            afterLogin={this.getFormConfig}
+                                            afterLogin={this.getFormData}
                                             checkMobileAPI="/gallery-app/gallery/check/"
                                             validationAPI="/gallery-app/phone/validate/"
                                             loginAPI="/gallery-app/gallery/login/"
