@@ -61,9 +61,9 @@ class Uploader extends React.Component {
                     acceptedFileTypes={['image/png', 'image/*']}
                     maxFiles={maxFiles}
                     name='image'
-                    oninit={() => this.handleUploadFile()}
+                    // oninit={() => this.handleUploadFile()}
                     allowImagePreview={allowImagePreview}
-
+                    allowDrop
                     allowImageValidateSize
 
 
@@ -162,6 +162,7 @@ class Uploader extends React.Component {
 
 
                 >
+
                     <File src={this.props.files} origin="local" />
 
 

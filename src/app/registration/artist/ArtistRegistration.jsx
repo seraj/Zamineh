@@ -199,15 +199,16 @@ class ArtistRegistration extends React.Component {
 
     //* ـــــــــــــــــــ */
     // Steps Submit Actions
-
-    BtnSubmitLoading(value) {
+    BtnSubmitLoading = value => {
         var StepData = this.state.StepData;
-        StepData.SubmitBtnLoading = value;
+        // StepData.SubmitBtnLoading = value;
         this.setState({
-            StepData
+            StepData: {
+                SubmitBtnLoading: value
+            }
         })
     }
-    ArtistRegisterStep1 = values => {
+    artistRegisterStep1 = values => {
         var StepData = this.state.StepData;
         if (!Step1Validation(values)) {
             Toast('warning', 'اطلاعات تکمیل نمیباشد');
@@ -231,7 +232,7 @@ class ArtistRegistration extends React.Component {
                     website: values.website,
                     phone_num: NumbersConvertor().convertToLatin(values.phone_num),
                     sheba_num: NumbersConvertor().convertToLatin(values.sheba_num),
-                    gallery: values.gallery[0]
+                    gallery: values.gallery ? values.gallery[0] : null
                 })
                 .then(() => {
                     Toast('success', 'اطلاعات شما با موفقیت ثبت شد');
@@ -245,7 +246,7 @@ class ArtistRegistration extends React.Component {
                 })
         }
     }
-    ArtistRegisterStep2 = values => {
+    artistRegisterStep2 = values => {
         this.BtnSubmitLoading(true)
         axios
             .post(`${Urls().api()}/gallery-app/artist/portfolio-step2/`, values)
@@ -261,7 +262,7 @@ class ArtistRegistration extends React.Component {
                 this.BtnSubmitLoading(false)
             })
     }
-    ArtistRegisterStep3 = values => {
+    artistRegisterStep3 = values => {
         if (!AllExbValidation(values)) {
             Toast('warning', 'تمام اطلاعات نمایشگاه‌ها باید ثبت شود');
         }
@@ -283,7 +284,7 @@ class ArtistRegistration extends React.Component {
                 })
         }
     }
-    ArtistRegisterStep4 = values => {
+    artistRegisterStep4 = values => {
 
         if (!CollectionAllArtValidation(values)) {
             Toast('warning', 'تمام اطلاعات مجموعه‌ها باید ثبت شود');
@@ -734,7 +735,6 @@ class ArtistRegistration extends React.Component {
                         <Row>
                             <Col xs={12}>
                                 <div className="page-content registration">
-
                                     {successBox &&
                                         <MessageBox
                                             title={message.title}
@@ -767,7 +767,7 @@ class ArtistRegistration extends React.Component {
                                             <Col xs={12}>
                                                 <Form
                                                     decorators={[this.focusOnErrors]}
-                                                    onSubmit={this.ArtistRegisterStep1}
+                                                    onSubmit={this.artistRegisterStep1}
                                                     initialValues={
                                                         StepData !== '' ? StepData : null
                                                     }
@@ -801,7 +801,7 @@ class ArtistRegistration extends React.Component {
                                             <Col xs={12}>
                                                 <Form
                                                     decorators={[this.focusOnErrors]}
-                                                    onSubmit={this.ArtistRegisterStep2}
+                                                    onSubmit={this.artistRegisterStep2}
                                                     initialValues={
                                                         StepData !== '' ? StepData : null
                                                     }
@@ -830,7 +830,7 @@ class ArtistRegistration extends React.Component {
                                             <Col xs={12}>
                                                 <Form
                                                     decorators={[this.focusOnErrors]}
-                                                    onSubmit={this.ArtistRegisterStep3}
+                                                    onSubmit={this.artistRegisterStep3}
                                                     mutators={{
                                                         ...arrayMutators,
                                                         setFieldData
@@ -886,7 +886,7 @@ class ArtistRegistration extends React.Component {
                                             <Col xs={12}>
                                                 <Form
                                                     decorators={[this.focusOnErrors]}
-                                                    onSubmit={this.ArtistRegisterStep4}
+                                                    onSubmit={this.artistRegisterStep4}
                                                     mutators={{
                                                         ...arrayMutators,
                                                         setFieldData

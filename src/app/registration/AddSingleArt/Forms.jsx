@@ -140,7 +140,7 @@ export const Collection = ({
                     <Uploader
                         server={CoverUploadServer}
                         name={`${name}.img`}
-                        files={ServerData ? ServerData.cover : null}
+                        files={(ServerData && ServerData.cover && ServerData.cover.name) ? ServerData.cover.name : null}
                         Load={(ServerData && ServerData.cover && ServerData.cover.link) ? ServerData.cover.link : null}
                         // Multiple
                         // maxFiles={5}
@@ -152,7 +152,7 @@ export const Collection = ({
                     <Uploader
                         server={LogoUploadServer}
                         name={`${name}.img`}
-                        files={ServerData ? ServerData.logo : null}
+                        files={(ServerData && ServerData.logo && ServerData.logo.link) ? ServerData.logo.name : null}
                         Load={(ServerData && ServerData.logo && ServerData.logo.link) ? ServerData.logo.link : null}
 
                         // Multiple
@@ -286,7 +286,7 @@ export const SingleArt = ({
     LabelRequired,
     values
 }) => {
-    const UploadServer = `/gallery-app/art/upload-img/${LocalData ? LocalData.id : ''}/`;
+    const UploadServer = `/gallery-app/artist/art/upload-image/${LocalData ? LocalData.id : ''}/`;
     return (
         <Col lg={6} md={6} sm={12} xs={12}>
             <div className={`_art ${ServerData && ServerData.submitted ? `submitted` : ``}`}>
@@ -474,9 +474,9 @@ export const SingleArt = ({
                         <Uploader
                             server={UploadServer}
                             name={`${name}.img`}
-                            files={ServerData ? ServerData.img : null}
-                            // Multiple
-                            // maxFiles={5}
+                            files={ServerData ? ServerData.img_set : null}
+                            Multiple
+                            maxFiles={50}
                             allowImagePreview={false}
                         />
                     </Col>

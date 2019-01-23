@@ -8,10 +8,10 @@ export default function StepBar({ currentStep, page }) {
 
         <Steps labelPlacement="vertical" current={currentStep - 1} status="process">
             {page == 'artist' && [
-                <Step title="مشخصات هنرمند" />,
-                <Step title="زندگی نامه" />,
-                <Step title="نمایشگاه‌ها و آثار هنرمند" />,
-                <Step title="آثار برای داوری" />,
+                <Step key="1" title="مشخصات هنرمند" />,
+                <Step key="2" title="زندگی نامه" />,
+                <Step key="3" title="نمایشگاه‌ها و آثار هنرمند" />,
+                <Step key="4" title="آثار برای داوری" />,
             ]}
         </Steps>
     );
