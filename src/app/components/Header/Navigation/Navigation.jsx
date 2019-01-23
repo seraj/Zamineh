@@ -5,6 +5,8 @@ import Nav from 'reactstrap/lib/Nav';
 import NavItem from 'reactstrap/lib/NavItem';
 import styles from "../Header.scss"
 import NavStyle from "./Navigation.scss"
+
+
 function MoreLinks({ links }) {
     const url = window.location.href;
 

@@ -175,14 +175,14 @@ export default function SecurityManager() {
             if (type == 'secret') {
                 if (page == 'Gallery') {
                     return cookie.load('gallery_auth_client_secret', { path: Urls().GalleryRegistration() })
-                } else {
+                } else if (page == 'Artist') {
                     return cookie.load('artist_auth_client_secret', { path: Urls().ArtistRegistration() })
                 }
             }
             if (type == 'id') {
                 if (page == 'Gallery') {
                     return cookie.load('gallery_auth_client_id', { path: Urls().GalleryRegistration() })
-                } else {
+                } else if (page == 'Artist') {
                     return cookie.load('artist_auth_client_id', { path: Urls().ArtistRegistration() })
                 }
             }

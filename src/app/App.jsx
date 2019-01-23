@@ -65,18 +65,38 @@ class App extends React.Component {
             .interceptors
             .request
             .use(function (config) {
-                var token = "";
+                var token = '';
+                var clientID = '';
+                var clientSecret = '';
                 if (RegistrationPage) {
 
                     token = GalleryRegistrationPage ?
                         SecurityManager().getGalleryRegAuthToken()
                         :
-                        SecurityManager().getArtistRegAuthToken()
+                        SecurityManager().getArtistRegAuthToken();
+
+                    clientID = GalleryRegistrationPage ?
+                        SecurityManager().getRegClientIDSecret('id', 'Gallery')
+                        :
+                        SecurityManager().getRegClientIDSecret('id', 'Artist');
+
+                    clientSecret = GalleryRegistrationPage ?
+                        SecurityManager().getRegClientIDSecret('secret', 'Gallery')
+                        :
+                        SecurityManager().getRegClientIDSecret('secret', 'Artist');
                 } else {
-                    token = SecurityManager().getAuthToken()
+                    token = SecurityManager().getAuthToken();
+                    clientID = cookie.load("client_id", { path: "/" });
+                    clientSecret = cookie.load("client_secret", { path: "/" });
                 }
+
                 if (token && token !== null && token !== 'null') {
-                    config.headers.Authorization = `Bearer ${token}`;
+                    config.headers = {
+                        Authorization: `Bearer ${token}`
+                    }
+                    // config.headers.auth_part_1 = clientID;
+                    // config.headers.auth_part_2 = clientSecret;
+
                 }
                 return config;
             },
@@ -221,9 +241,10 @@ class App extends React.Component {
                     if (artistReg_auth_client_secret == "" || artistReg_auth_client_secret == undefined) {
                         await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`, {
                             is_gallery: true
-                        }).then((response) => {
-                            SecurityManager().setArtistRegClientIDSecret(response.data.client_id, response.data.client_secret)
-                        });
+                        })
+                            .then((response) => {
+                                SecurityManager().setArtistRegClientIDSecret(response.data.client_id, response.data.client_secret)
+                            });
                     }
                 }
             }
@@ -231,10 +252,11 @@ class App extends React.Component {
 
 
             if (auth_client_id == "" || auth_client_id == undefined) {
-                await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`).then((response) => {
-                    cookie.save('auth_client_id', response.data.client_id, { path: '/' });
-                    cookie.save('auth_client_secret', response.data.client_secret, { path: '/' });
-                });
+                await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`)
+                    .then((response) => {
+                        cookie.save('auth_client_id', response.data.client_id, { path: '/' });
+                        cookie.save('auth_client_secret', response.data.client_secret, { path: '/' });
+                    });
                 auth_client_id = await cookie.load('auth_client_id', { path: '/' });
                 auth_client_secret = await cookie.load('auth_client_secret', { path: '/' });
             }
@@ -242,10 +264,11 @@ class App extends React.Component {
 
 
             if (client_id == "" || client_id == undefined) {
-                await axios.post(`${Urls().api()}/2sFrKCs7p8L5fhtV/me37TEkRuXKVz/`).then((response) => {
-                    cookie.save('client_id', response.data.client_id, { path: '/' });
-                    cookie.save('client_secret', response.data.client_secret, { path: '/' });
-                });
+                await axios.post(`${Urls().api()}/2sFrKCs7p8L5fhtV/me37TEkRuXKVz/`)
+                    .then((response) => {
+                        cookie.save('client_id', response.data.client_id, { path: '/' });
+                        cookie.save('client_secret', response.data.client_secret, { path: '/' });
+                    });
                 client_id = await cookie.load('client_id', { path: '/' });
                 client_secret = await cookie.load('client_secret', { path: '/' });
             }
