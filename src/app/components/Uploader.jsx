@@ -48,6 +48,7 @@ class Uploader extends React.Component {
             Multiple,
             maxFiles,
             allowImagePreview,
+            files,
             Load,
         } = this.props;
 
@@ -58,6 +59,10 @@ class Uploader extends React.Component {
                     ref={ref => this.pond = ref}
                     allowMultiple={Multiple}
                     allowFileTypeValidation
+
+                    allowFileSizeValidation
+                    maxFileSize="3MB"
+
                     acceptedFileTypes={['image/png', 'image/*']}
                     maxFiles={maxFiles}
                     name='image'
@@ -65,8 +70,6 @@ class Uploader extends React.Component {
                     allowImagePreview={allowImagePreview}
                     allowDrop
                     allowImageValidateSize
-
-
                     allowReplace
 
                     labelIdle='فایل را اینجا بکشید یا انتخاب کنید'
@@ -84,7 +87,8 @@ class Uploader extends React.Component {
                     labelButtonProcessItem="بارگذاری"
                     labelFileLoadError="خطای بارگذاری"
                     labelFileWaitingForSize='حجم تصویر شناسایی نشد'
-
+                    labelMaxFileSizeExceeded='حجم عکس زیاد است'
+                    labelMaxFileSize='حجم فایل آپلودی باید {filesize} باشد'
 
 
 
@@ -151,7 +155,7 @@ class Uploader extends React.Component {
                             load();
                         },
                         restore: './restore/',
-                        load: Load ? Load : null,
+                        load: Multiple && Load ? Load.map(img => img.link) : (Load ? Load : null),
                         fetch: './fetch/'
                     }}
                     onupdatefiles={(fileItems) => {
@@ -163,7 +167,14 @@ class Uploader extends React.Component {
 
                 >
 
-                    <File src={this.props.files} origin="local" />
+
+                    {this.props.Multiple ?
+                        this.props.files.map((file) => (
+                            <File key={file.id} src={file.name} origin="local" />
+                        ))
+                        :
+                        <File src={this.props.files} origin="local" />
+                    }
 
 
 

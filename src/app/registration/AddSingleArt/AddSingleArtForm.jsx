@@ -105,7 +105,7 @@ class AddSingleArtForm extends React.Component {
         super(props);
         this.state = {
             data: [],
-            cofig: [],
+            config: [],
             showForm: false,
             ModalToggle: false
         }
@@ -136,6 +136,19 @@ class AddSingleArtForm extends React.Component {
                     showForm: true
                 })
             })
+            .then(() => {
+                this.getFormConfig()
+            })
+    }
+    getFormConfig = () => {
+        axios.get(`${Urls().api()}/gallery-app/configs/`)
+            .then(response => {
+                this.setState({
+                    config: response.data,
+                    showForm: true
+                })
+            })
+
     }
     singleArtSubmit = (values, Artindex, ColIndex, ArtType) => {
         var ArtValue = '';
@@ -149,7 +162,7 @@ class AddSingleArtForm extends React.Component {
         }
         console.log(ArtValue)
 
-        if (!SingleCollectionArtValidation(ArtValue)) {
+        if (SingleCollectionArtValidation(ArtValue)) {
             Toast('warning', `لطفا تمام فیلدهای مربوط به اثر شماره ${Artindex + 1} را پر کنید`);
             ArtData.submitted = false;
             ArtValue.submitted = false

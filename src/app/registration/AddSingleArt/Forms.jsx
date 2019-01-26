@@ -372,7 +372,7 @@ export const SingleArt = ({
                                 arrow={false}
                             >
                                 <option value="" disabled>انتخاب واحد اندازه گیری</option>
-                                {config && config.unit.map((item, index) => (
+                                {config && config.unit && config.unit.map((item, index) => (
                                     <option value={item.value} key={index}>{item.title}</option>
                                 ))}
                             </Field>
@@ -475,6 +475,7 @@ export const SingleArt = ({
                             server={UploadServer}
                             name={`${name}.img`}
                             files={ServerData ? ServerData.img_set : null}
+                            load={ServerData ? ServerData.img_set : null}
                             Multiple
                             maxFiles={50}
                             allowImagePreview={false}
