@@ -45,9 +45,10 @@ import {
 import {
 
     SingleCollectionValidation,
+    SingleArtValidation,
     SingleCollectionArtValidation,
     CollectionAllArtValidation,
-} from '../artist/ArtistFormValidation';
+} from './Validation';
 import styles from "../Registration.scss"
 
 
@@ -162,8 +163,9 @@ class AddSingleArtForm extends React.Component {
         }
         console.log(ArtValue)
 
-        if (SingleCollectionArtValidation(ArtValue)) {
+        if (!SingleArtValidation(ArtValue)) {
             Toast('warning', `لطفا تمام فیلدهای مربوط به اثر شماره ${Artindex + 1} را پر کنید`);
+            console.log(ArtValue)
             ArtData.submitted = false;
             ArtValue.submitted = false
             this.setState({
@@ -171,12 +173,19 @@ class AddSingleArtForm extends React.Component {
             }, () => {
                 this.forceUpdate()
             })
+        } else if (ArtValue.price.is_for_sale === 'yes' && ArtValue.price.price == null) {
+            Toast('warning', `لطفا قیمت مربوط به اثر شماره ${Artindex + 1} را وارد کنید کنید`);
+
         } else {
             ArtData.loading = true;
             this.setState({
                 ArtData
             })
-            axios.post(`${Urls().api()}/gallery-app/artist/portfolio-step4/art/`, ArtValue)
+            axios.post(`${Urls().api()}/gallery-app/artist/art/create-update/`, ArtValue, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
                 .then(response => {
                     Toast('success', `اثر شماره ${Artindex + 1} با موفقیت ثبت شد`)
                     ArtData.loading = false;
@@ -188,7 +197,6 @@ class AddSingleArtForm extends React.Component {
                         this.forceUpdate()
                     })
                 })
-
                 .catch(error => {
                     ArtData.loading = false;
                     ArtData.submitted = false;
@@ -219,13 +227,13 @@ class AddSingleArtForm extends React.Component {
             ColValue.art_set == '' ||
             ColValue.art_set == undefined
         ) {
-            Toast('warning', 'هر مجموعه حداقل باید دارای ۵ اثر باشد');
+            Toast('warning', 'حداقل یک اثر باید برای مجموعه ثبت کنید');
         }
         else if (!CollectionAllArtValidation(ColValue.art_set)) {
             Toast('warning', 'لطفا اطلاعات آثار را تکمیل نمایید');
         }
-        else if (ColValue.art_set.length < 5) {
-            Toast('warning', 'هر مجموعه حداقل باید دارای ۵ اثر باشد.');
+        else if (ColValue.art_set.length < 1) {
+            Toast('warning', 'هر مجموعه حداقل باید دارای 1 اثر باشد.');
         }
         else {
             ColData.loading = true;

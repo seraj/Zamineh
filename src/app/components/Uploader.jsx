@@ -168,7 +168,7 @@ class Uploader extends React.Component {
                 >
 
 
-                    {this.props.Multiple ?
+                    {this.props.Multiple && this.props.files ?
                         this.props.files.map((file) => (
                             <File key={file.id} src={file.name} origin="local" />
                         ))

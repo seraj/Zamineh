@@ -180,6 +180,7 @@ export const Collection = ({
                                     index={index}
                                     input={input}
                                     radio={radio}
+                                    textarea={textarea}
                                     select={select}
                                     hasExtraFields
                                     values={values}
@@ -275,6 +276,7 @@ export const SingleArt = ({
     input,
     select,
     radio,
+    textarea,
     data,
     config,
     ServerData,
@@ -480,6 +482,32 @@ export const SingleArt = ({
                             maxFiles={50}
                             allowImagePreview={false}
                         />
+                    </Col>
+                    <Col lg={12} md={12} sm={12} xs={12}>
+                        <FormGroup>
+                            <Label className={LabelRequired}>درباره اثر</Label>
+                            <Field
+                                name={`${name}.bio`}
+                                component={textarea}
+                                maxLength="500"
+                                placeholder=""
+                                validate={value => value ? undefined : "الزامی"}
+                                control
+                            />
+                            <Error name={`${name}.bio`} />
+                        </FormGroup>
+                    </Col>
+                    <Col lg={12} md={12} sm={12} xs={12}>
+                        <FormGroup>
+                            <Label>جزئیات بیشتر در مورد اثر</Label>
+                            <Field
+                                name={`${name}.quote`}
+                                component={textarea}
+                                maxLength="500"
+                                placeholder=""
+                                control
+                            />
+                        </FormGroup>
                     </Col>
                     <Col xs={12}>
                         <LinkButton

@@ -153,7 +153,7 @@ class GalleryRegistration extends React.Component {
         this.setState({
             Maplatlng: event.latlng
         })
-        console.log(this.state.Maplatlng)
+        // console.log(this.state.Maplatlng)
     }
 
     BtnSubmitLoading(value) {
@@ -196,13 +196,12 @@ class GalleryRegistration extends React.Component {
             Holiday[i] = { "name": values.holiday_set[i] };
         }
 
-        window.alert(JSON.stringify(Holiday, 0, 2));
+        // window.alert(JSON.stringify(Holiday, 0, 2));
     };
     handleFormSubmit = values => {
         var FormData = this.state.FormData;
 
 
-        console.log(HolidaySet)
         if (!this.Validation(values)) {
             Toast('warning', 'اطلاعات تکمیل نمیباشد');
         }
