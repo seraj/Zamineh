@@ -240,7 +240,7 @@ class AddSingleArtForm extends React.Component {
             this.setState({
                 ColData
             })
-            axios.post(`${Urls().api()}/gallery-app/artist/portfolio-step4/collection/`, ColValue)
+            axios.post(`${Urls().api()}/gallery-app/collection/create-update/`, ColValue)
                 .then(response => {
                     Toast('success', `مجموعه شماره ${ColIndex + 1} با موفقیت ثبت شد`)
                     ColData.loading = false;
