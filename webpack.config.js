@@ -168,7 +168,7 @@ module.exports = (env, options) => {
         new TerserPlugin({
           cache: true,
           parallel: true,
-          sourceMap: true,
+          sourceMap: false,
           terserOptions: {
             compress: {
               drop_console: true,

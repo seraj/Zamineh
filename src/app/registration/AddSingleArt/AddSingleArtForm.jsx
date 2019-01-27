@@ -532,7 +532,7 @@ class AddSingleArtForm extends React.Component {
                                                                                     />
                                                                                 </React.Fragment>
                                                                             ))}
-                                                                            {values && values.art_set && values.art_set.length < 1 &&
+                                                                            {values && values.art_set &&
                                                                                 <Col lg={6} md={6} sm={12} xs={12}>
                                                                                     <div className={styles.addSectionButton}>
                                                                                         <button
