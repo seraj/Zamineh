@@ -230,24 +230,24 @@ class AppHeader extends React.Component {
                 >
                     <Row>
                         <Col lg={6} md={6} sm={6} xs={12}>
-                            <Link to={Urls().ArtistRegistration()} onClick={this.closeRegisterModal}>
+                            <a href={Urls().ArtistRegistration()} onClick={this.closeRegisterModal}>
                                 <button
                                     style={{ width: '100%', marginBottom: 15 }}
                                     className={`zbtn artist`}
                                 >
                                     {/*<ArtistIcon />*/}
                                     ثبت هنرمند</button>
-                            </Link>
+                            </a>
                         </Col>
                         <Col lg={6} md={6} sm={6} xs={12}>
-                            <Link to={Urls().GalleryRegistration()} onClick={this.closeRegisterModal}>
+                            <a href={Urls().GalleryRegistration()} onClick={this.closeRegisterModal}>
                                 <button
                                     style={{ width: '100%' }}
                                     className={`zbtn gallery`}
                                 >
                                     {/*<GalleryIcon />*/}
                                     ثبت گالری</button>
-                            </Link>
+                            </a>
                         </Col>
                     </Row>
                 </Modal>

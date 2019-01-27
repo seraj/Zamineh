@@ -136,7 +136,20 @@ class ArtistRegistration extends React.Component {
             }).then(() => {
                 this.getStepData(this.state.currentStep)
                 this.getStepConfig(this.state.currentStep)
-            });
+            })
+            .catch(error => {
+                if (error.response.status == 406) {
+                    this.setState({
+                        successBox: true,
+                        message: {
+                            type: '',
+                            title: 'هنرمند ثبت شده دارید',
+                            message: 'شما با این شماره یک هنرمند ثبت کرده اید.در صورت نیاز شما میتوانید با شماره‌ی دیگر ثبت نام کنید',
+                        },
+                        timer: 15,
+                    })
+                }
+            })
     }
     getStepData = (step) => {
         // console.log('step', step)
@@ -153,7 +166,8 @@ class ArtistRegistration extends React.Component {
                         loadingDiv: ''
                     })
                 }, 200);
-            }).catch(error => {
+            })
+            .catch(error => {
                 if (error.response.status == 406) {
                     this.setState({
                         successBox: true,
@@ -185,16 +199,6 @@ class ArtistRegistration extends React.Component {
         })
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
     //* ـــــــــــــــــــ */
@@ -745,8 +749,9 @@ class ArtistRegistration extends React.Component {
                                             afterTimeFinished={this.afterTimeFinished}
                                         />
                                     }
-                                    <StepBar currentStep={currentStep} page="artist" />
-
+                                    {!successBox &&
+                                        <StepBar currentStep={currentStep} page="artist" />
+                                    }
                                     <div className={Loading ? `LoadingData` : ''}></div>
 
 
