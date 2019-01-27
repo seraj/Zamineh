@@ -1,17 +1,17 @@
-import React from "react"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import axios from "axios";
-import Container from "reactstrap/lib/Container";
+import React from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import axios from 'axios';
+import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import queryString from 'query-string';
 
 
-import Login from "../../../login/Login";
-import Urls from "../../Urls";
-import Section from "../../Section/Section";
+import Login from '../../../login/Login';
+import Urls from '../../Urls';
+import Section from '../../Section/Section';
 
-import styles from "./Gallery.scss"
+import styles from './Gallery.scss'
 
 
 
@@ -59,10 +59,10 @@ class Gallery extends React.Component {
     tabComponents = (slug) => {
         var component;
         switch (slug) {
-            case "shows":
+            case 'shows':
                 component = shows;
                 break;
-            case "works":
+            case 'works':
                 component = works;
                 break;
             default:
@@ -82,13 +82,13 @@ class Gallery extends React.Component {
                             <Col xs={12}>
                                 <div className={styles.header}>
                                     <div className={styles.galleryHeader}>
-                                        <div className="info">
-                                            <h1 className="name">{this.props.match.params.slug} </h1>
-                                            <span className="location">{location.pathname}</span>
+                                        <div className='info'>
+                                            <h1 className='name'>{this.props.match.params.slug} </h1>
+                                            <span className='location'>{location.pathname}</span>
                                         </div>
-                                        <div className="icon">
-                                            <div className="img">
-                                                <img src="https://d32dm0rphc51dk.cloudfront.net/LuKVGRd8rMcdk3OXvazA3w/square140.png" alt="" />
+                                        <div className='icon'>
+                                            <div className='img'>
+                                                <img src='https://d32dm0rphc51dk.cloudfront.net/LuKVGRd8rMcdk3OXvazA3w/square140.png' alt='' />
                                             </div>
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@ class Gallery extends React.Component {
                                             ))}
                                         </nav>
 
-                                        <div className="content">
+                                        <div className='content'>
 
                                             {this.state.tabs && this.state.tabs.map((tabs, index) => (
 

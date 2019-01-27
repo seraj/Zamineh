@@ -2,8 +2,8 @@ import React from 'react';
 import Modal from 'reactstrap/lib/Modal'
 import ModalHeader from 'reactstrap/lib/ModalHeader';
 import ModalBody from 'reactstrap/lib/ModalBody';
-import styles from "./Modal.scss"
-import "./Modal.scss"
+import styles from './Modal.scss'
+import './Modal.scss'
 const ZaminehModal = (
     {
         title,
@@ -14,7 +14,7 @@ const ZaminehModal = (
     }) => {
 
 
-    const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
+    const closeBtn = <button className='close' onClick={toggle}>&times;</button>;
 
     return (
         <Modal

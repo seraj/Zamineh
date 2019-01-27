@@ -3,7 +3,7 @@ export function SingleCollectionValidation(value) {
     if (
         value.name == '' ||
         value.name == undefined ||
-        value.desc == "" ||
+        value.desc == '' ||
         value.desc == null
     ) {
         return false
@@ -21,13 +21,13 @@ export function CollectionAllArtValidation(value) {
             element.name == undefined ||
             element.year == '' ||
             element.year == undefined ||
-            element.mat_set == "" ||
+            element.mat_set == '' ||
             element.mat_set == null ||
-            element.medium_set == "" ||
+            element.medium_set == '' ||
             element.medium_set == null ||
-            element.bio == "" ||
+            element.bio == '' ||
             element.bio == null ||
-            element.size == "" ||
+            element.size == '' ||
             element.size == null ||
             element.size.width == undefined ||
             element.size.height == undefined ||
@@ -47,13 +47,13 @@ export function SingleArtValidation(value) {
         value.name == undefined ||
         value.year == '' ||
         value.year == undefined ||
-        value.mat_set == "" ||
+        value.mat_set == '' ||
         value.mat_set == null ||
-        value.medium_set == "" ||
+        value.medium_set == '' ||
         value.medium_set == null ||
-        value.bio == "" ||
+        value.bio == '' ||
         value.bio == null ||
-        value.size == "" ||
+        value.size == '' ||
         value.size == null ||
         value.size.width == undefined ||
         value.size.height == undefined ||
@@ -75,13 +75,13 @@ export function SingleCollectionArtValidation(value) {
             element.name == undefined ||
             element.year == '' ||
             element.year == undefined ||
-            element.mat_set == "" ||
+            element.mat_set == '' ||
             element.mat_set == null ||
-            element.medium_set == "" ||
+            element.medium_set == '' ||
             element.medium_set == null ||
-            element.bio == "" ||
+            element.bio == '' ||
             element.bio == null ||
-            element.size == "" ||
+            element.size == '' ||
             element.size == null ||
             element.size.width == undefined ||
             element.size.height == undefined ||

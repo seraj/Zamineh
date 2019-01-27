@@ -1,5 +1,5 @@
-import React from "react";
-import Arts from "./Arts";
+import React from 'react';
+import Arts from './Arts';
 import ModelManager from '../../components/Models';
 
 class Categories extends React.Component {
@@ -11,7 +11,7 @@ class Categories extends React.Component {
           visible
           ExtraClass={item.ExtraClass}
           isFollow={item.is_flw}
-          mode="cats"
+          mode='cats'
           id={item.id}
           artist={item.artist}
           gallery={item.gallery}

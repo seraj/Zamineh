@@ -1,22 +1,22 @@
-import React from "react";
+import React from 'react';
 import ReactPaginate from 'react-paginate';
 
-import styles from "./Pagination.scss"
+import styles from './Pagination.scss'
 
 const Pagination = (props) => (
     <React.Fragment>
         <ReactPaginate
-            previousLabel={"قبلی"}
+            previousLabel={'قبلی'}
             pageCount={props.pageCount}
             onPageChange={props.onPageChange}
-            nextLabel={"بعدی"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
+            nextLabel={'بعدی'}
+            breakLabel={'...'}
+            breakClassName={'break-me'}
             marginPagesDisplayed={2}
             pageRangeDisplayed={3}
             containerClassName={styles.pagination}
-            subContainerClassName={"pages pagination"}
-            activeClassName={"active"}
+            subContainerClassName={'pages pagination'}
+            activeClassName={'active'}
         />
     </React.Fragment >
 );

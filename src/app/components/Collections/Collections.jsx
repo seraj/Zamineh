@@ -1,17 +1,17 @@
-import React, { Suspense } from "react";
-import { Link } from "react-router-dom";
+import React, { Suspense } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Container, Row, Col } from 'reactstrap';
-import axios from "axios";
+import axios from 'axios';
 import queryString from 'query-string';
-import Urls from "../Urls"
+import Urls from '../Urls'
 import ModelManager from '../Models';
-import Section from "../Section/Section";
-import CollectionsMetaTags from "./CollectionsMetaTags"
-import { CollectionSet } from "./CollectionSet"
+import Section from '../Section/Section';
+import CollectionsMetaTags from './CollectionsMetaTags'
+import { CollectionSet } from './CollectionSet'
 
-import { Loading } from "../Spinner/Spinner";
-import styles from "./Collections.scss"
+import { Loading } from '../Spinner/Spinner';
+import styles from './Collections.scss'
 
 
 class Collections extends React.Component {
@@ -57,9 +57,9 @@ class Collections extends React.Component {
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <div className="section_header_single">
+                                <div className='section_header_single'>
                                     <h1>{ModelManager().convertModelName('collections')}</h1>
-                                    <Link to={Urls().collect()} className="view-all">{ModelManager().convertModelName('collect')}</Link>
+                                    <Link to={Urls().collect()} className='view-all'>{ModelManager().convertModelName('collect')}</Link>
 
                                 </div>
 

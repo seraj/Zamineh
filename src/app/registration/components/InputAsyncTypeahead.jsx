@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { Field } from 'react-final-form-html5-validation'
-import { AsyncTypeahead } from "react-bootstrap-typeahead";
+import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 // import GithubMenuItem from './MenuItem';
 import makeAndHandleRequest from './makeAndHandleRequest';
-import arrify from "arrify";
+import arrify from 'arrify';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 
@@ -24,7 +24,7 @@ class InputAsyncTypeahead extends React.Component {
   render() {
 
     return (
-      <div className="InputTypeahead">
+      <div className='InputTypeahead'>
         <Field
           name={this.props.name}
           validate={this.props.validate}
@@ -34,12 +34,12 @@ class InputAsyncTypeahead extends React.Component {
           newSelectionPrefix={this.props.newSelectionPrefix ? this.props.newSelectionPrefix : 'اضافه کردن این ایتم:'}
           component={AdaptedTypeahead}
           placeholder={this.props.placeholder}
-          labelKey="name"
+          labelKey='name'
           format={arrify}
           minLength={1}
-          searchText="جستجو..."
-          emptyLabel="یافت نشد."
-          promptText="برای جستجو تایپ کنید..."
+          searchText='جستجو...'
+          emptyLabel='یافت نشد.'
+          promptText='برای جستجو تایپ کنید...'
           options={this.state.options}
           onSearch={this._handleSearch}
           isLoading={this.state.isLoading}

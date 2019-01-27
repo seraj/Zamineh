@@ -3,16 +3,16 @@ import axios from 'axios';
 import cookie from 'react-cookies';
 import queryString from 'query-string';
 
-import SecurityManager from "../../security/SecurityManager";
-import Urls from "../../components/Urls";
-import Alert from "../../components/Alert/Alert";
+import SecurityManager from '../../security/SecurityManager';
+import Urls from '../../components/Urls';
+import Alert from '../../components/Alert/Alert';
 
-import Row from "reactstrap/lib/Row";
-import Col from "reactstrap/lib/Col";
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 
 
 import NumbersConvertor from '../../components/NumbersConvertor';
-import { Form } from "react-final-form";
+import { Form } from 'react-final-form';
 import { Field } from 'react-final-form-html5-validation'
 import {
     Checkbox,
@@ -23,8 +23,8 @@ import {
     Radio,
     Select,
     Textarea
-} from "@smooth-ui/core-sc";
-import MessageBox from "../../components/ui-components/MessageBox/MessageBox"
+} from '@smooth-ui/core-sc';
+import MessageBox from '../../components/ui-components/MessageBox/MessageBox'
 
 
 
@@ -45,16 +45,16 @@ const SubmitButton = ({ Loading, Text, values }) => (
     <React.Fragment>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
-                <Row className="justify-content-center">
+                <Row className='justify-content-center'>
 
                     <Col lg={12} md={12} sm={12} xs={12}>
                         <button
-                            type="submit"
+                            type='submit'
                             style={{ width: '100%', marginBottom: 10 }}
                             disabled={Loading}
-                            variant="primary"
+                            variant='primary'
                             className={`zbtn next black bradius ${Loading ? `spinning` : null}`}
-                        >{Text} <i className="fas fa-angle-left" /></button>
+                        >{Text} <i className='fas fa-angle-left' /></button>
                     </Col>
                 </Row>
             </Col>
@@ -121,15 +121,15 @@ class AuthorizationForm extends React.Component {
             .post(
                 `${Urls().api()}${this.props.checkMobileAPI}`,
                 {
-                    client_id: cookie.load("client_id", { path: "/" }),
-                    client_secret: cookie.load("client_secret", { path: "/" }),
+                    client_id: cookie.load('client_id', { path: '/' }),
+                    client_secret: cookie.load('client_secret', { path: '/' }),
                     player_id: this.state.playerID,
                     username: values.username,
                     user_type: this.props.type
                 }
             )
             .then(response => {
-                if (response.data.sms_exc == "") {
+                if (response.data.sms_exc == '') {
                     if (response.data.has_client === false) {
                         this.setState({
                             username: values.username,
@@ -196,7 +196,7 @@ class AuthorizationForm extends React.Component {
                 client_secret: SecurityManager().getRegClientIDSecret('secret', this.props.type),
                 username: this.state.username,
                 password: values.password,
-                grant_type: "password",
+                grant_type: 'password',
                 user_type: this.props.type
             })
             .then(response => {
@@ -261,13 +261,13 @@ class AuthorizationForm extends React.Component {
             <React.Fragment>
 
                 {checkMobileNumberStep1 &&
-                    <Row className="justify-content-md-center">
+                    <Row className='justify-content-md-center'>
                         {successBox &&
                             <MessageBox
                                 title={message.title}
                                 message={message.message}
                                 type={message.type}
-                                buttonText="رفتن به پروفایل"
+                                buttonText='رفتن به پروفایل'
                                 seconds={timer}
                                 afterTimeFinished={this.afterTimeFinished}
                             />
@@ -282,26 +282,26 @@ class AuthorizationForm extends React.Component {
                                         <FormGroup>
                                             <Label>شماره تلفن</Label>
                                             <Field
-                                                name="username"
+                                                name='username'
                                                 component={this.AdaptedInput}
-                                                placeholder="شماره تلفن"
+                                                placeholder='شماره تلفن'
                                                 maxLength={11}
-                                                tooLong="شماره تلفن باید ۱۱ رقم باشد"
+                                                tooLong='شماره تلفن باید ۱۱ رقم باشد'
                                                 validate={this.MobileValidator}
                                                 control
                                             />
-                                            <Error name="username" />
+                                            <Error name='username' />
                                         </FormGroup>
 
 
 
                                         <SubmitButton
-                                            Text="ثبت شماره موبایل"
+                                            Text='ثبت شماره موبایل'
                                             Loading={loading}
                                             values={values}
                                         />
                                         {showLoginError &&
-                                            <p className="formError">{errorMessage}</p>
+                                            <p className='formError'>{errorMessage}</p>
                                         }
 
 
@@ -310,9 +310,9 @@ class AuthorizationForm extends React.Component {
                             />
                             <Alert
                                 style={{ marginTop: 16 }}
-                                description="دقت کنید که این شماره تماس صرفا برای ثبت هنرمند میباشد"
-                                message="شماره تماس برای ثبت هنرمند"
-                                type="warning"
+                                description='دقت کنید که این شماره تماس صرفا برای ثبت هنرمند میباشد'
+                                message='شماره تماس برای ثبت هنرمند'
+                                type='warning'
                                 rtl
                             />
                         </Col>
@@ -324,7 +324,7 @@ class AuthorizationForm extends React.Component {
 
 
                 {MobileValidationStep2 &&
-                    <Row className="justify-content-md-center">
+                    <Row className='justify-content-md-center'>
                         <Col lg={6} md={8} sm={12} xs={12}>
                             <Form
                                 onSubmit={this.confirmMobileCode}
@@ -332,49 +332,49 @@ class AuthorizationForm extends React.Component {
                                 initialValues={{ username: username }}
 
                                 render={({ handleSubmit, form, submitting, pristine, values }) => (
-                                    <form onSubmit={handleSubmit} autoComplete="off">
+                                    <form onSubmit={handleSubmit} autoComplete='off'>
                                         <FormGroup>
                                             <Label>شماره تلفن</Label>
                                             <Field
-                                                name="username"
+                                                name='username'
                                                 component={this.AdaptedInput}
                                                 disabled
                                                 control
                                             />
-                                            <Error name="username" />
+                                            <Error name='username' />
                                         </FormGroup>
                                         <FormGroup>
                                             <Label>کد تایید</Label>
                                             <Field
-                                                name="code"
-                                                autoComplete="off"
+                                                name='code'
+                                                autoComplete='off'
                                                 component={this.AdaptedInput}
-                                                placeholder="کد تایید"
-                                                validate={value => value ? undefined : "وارد کردن کد تایید الزامی میباشد"}
+                                                placeholder='کد تایید'
+                                                validate={value => value ? undefined : 'وارد کردن کد تایید الزامی میباشد'}
                                                 control
                                             />
-                                            <Error name="code" />
+                                            <Error name='code' />
                                         </FormGroup>
                                         <FormGroup>
                                             <Label>رمز عبور</Label>
                                             <Field
-                                                name="password"
-                                                type="password"
+                                                name='password'
+                                                type='password'
                                                 component={this.AdaptedInput}
-                                                placeholder="رمز عبور"
-                                                validate={value => value ? undefined : "وارد کردن نام کامل الزامی میباشد"}
+                                                placeholder='رمز عبور'
+                                                validate={value => value ? undefined : 'وارد کردن نام کامل الزامی میباشد'}
                                                 control
                                             />
-                                            <Error name="password" />
+                                            <Error name='password' />
                                         </FormGroup>
 
                                         <SubmitButton
-                                            Text="تایید"
+                                            Text='تایید'
                                             Loading={loading}
                                             values={values}
                                         />
                                         {showLoginError &&
-                                            <p className="formError">{errorMessage}</p>
+                                            <p className='formError'>{errorMessage}</p>
                                         }
                                     </form>
                                 )}
@@ -389,7 +389,7 @@ class AuthorizationForm extends React.Component {
 
 
                 {loginForm &&
-                    <Row className="justify-content-md-center">
+                    <Row className='justify-content-md-center'>
                         <Col lg={6} md={8} sm={12} xs={12}>
                             <Form
                                 onSubmit={this.loginSubmit}
@@ -399,34 +399,34 @@ class AuthorizationForm extends React.Component {
                                         <FormGroup>
                                             <Label>شماره تلفن</Label>
                                             <Field
-                                                name="username"
+                                                name='username'
                                                 component={this.AdaptedInput}
                                                 disabled
                                                 control
                                             />
-                                            <Error name="username" />
+                                            <Error name='username' />
                                         </FormGroup>
 
                                         <FormGroup>
                                             <Label>رمز عبور</Label>
                                             <Field
-                                                name="password"
-                                                type="password"
+                                                name='password'
+                                                type='password'
                                                 component={this.AdaptedInput}
-                                                placeholder="رمز عبور"
-                                                validate={value => value ? undefined : "وارد کردن نام کامل الزامی میباشد"}
+                                                placeholder='رمز عبور'
+                                                validate={value => value ? undefined : 'وارد کردن نام کامل الزامی میباشد'}
                                                 control
                                             />
-                                            <Error name="password" />
+                                            <Error name='password' />
                                         </FormGroup>
 
                                         <SubmitButton
-                                            Text="ثبت"
+                                            Text='ثبت'
                                             Loading={loading}
                                             values={values}
                                         />
                                         {showLoginError &&
-                                            <p className="formError">{errorMessage}</p>
+                                            <p className='formError'>{errorMessage}</p>
                                         }
                                     </form>
                                 )}

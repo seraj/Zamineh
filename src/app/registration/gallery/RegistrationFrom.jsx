@@ -1,6 +1,6 @@
 import React from 'react';
-import Row from "reactstrap/lib/Row";
-import Col from "reactstrap/lib/Col";
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 
 import { Field } from 'react-final-form-html5-validation'
 import Steps, { Step } from 'rc-steps';
@@ -14,16 +14,16 @@ import {
     Input,
     Label,
     Textarea,
-} from "@smooth-ui/core-sc";
-import Alert from "../../components/Alert/Alert";
+} from '@smooth-ui/core-sc';
+import Alert from '../../components/Alert/Alert';
 import ZaminehMap from '../../components/map/ZaminehMap';
 
 
 
-import Divider from "../../components/Divider";
-import Uploader from "../../components/Uploader";
+import Divider from '../../components/Divider';
+import Uploader from '../../components/Uploader';
 
-import styles from "../Registration.scss"
+import styles from '../Registration.scss'
 
 
 const adapt = Component => ({
@@ -70,7 +70,7 @@ export const RegisterForm = ({
                         hidden
                     />
                     <Col xs={12}>
-                        <Divider text="اطلاعات گالری" />
+                        <Divider text='اطلاعات گالری' />
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <Row>
@@ -78,39 +78,39 @@ export const RegisterForm = ({
                                 <FormGroup>
                                     <Label className={LabelRequired}>نام گالری</Label>
                                     <Field
-                                        name="name"
+                                        name='name'
                                         component={AdaptedInput}
-                                        placeholder="نام گالری"
-                                        validate={value => value ? undefined : "وارد کردن نام گالری الزامی میباشد"}
+                                        placeholder='نام گالری'
+                                        validate={value => value ? undefined : 'وارد کردن نام گالری الزامی میباشد'}
                                         control
                                     />
-                                    <Error name="name" />
+                                    <Error name='name' />
                                 </FormGroup>
                             </Col>
                             <Col lg={12} md={12} sm={12} xs={12}>
                                 <FormGroup>
                                     <Label className={LabelRequired}>آدرس گالری</Label>
                                     <Field
-                                        name="address.address"
+                                        name='address.address'
                                         component={AdaptedInput}
-                                        placeholder="آدرس گالری"
-                                        validate={value => value ? undefined : "وارد کردن آدرس گالری الزامی میباشد"}
+                                        placeholder='آدرس گالری'
+                                        validate={value => value ? undefined : 'وارد کردن آدرس گالری الزامی میباشد'}
                                         control
                                     />
-                                    <Error name="address" />
+                                    <Error name='address' />
                                 </FormGroup>
                             </Col>
                             <Col lg={12} md={12} sm={12} xs={12}>
                                 <FormGroup>
                                     <Label className={LabelRequired}>شماره تماس گالری</Label>
                                     <Field
-                                        name="address.tel"
+                                        name='address.tel'
                                         component={AdaptedInput}
-                                        placeholder="شماره تماس گالری"
-                                        validate={value => value ? undefined : "وارد کردن شماره تماس گالری الزامی میباشد"}
+                                        placeholder='شماره تماس گالری'
+                                        validate={value => value ? undefined : 'وارد کردن شماره تماس گالری الزامی میباشد'}
                                         control
                                     />
-                                    <Error name="address.tel" />
+                                    <Error name='address.tel' />
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -139,14 +139,14 @@ export const RegisterForm = ({
                     </Col>
 
                     <Col xs={12}>
-                        <Divider text="بارگذاری تصاویر مورد نیاز" />
+                        <Divider text='بارگذاری تصاویر مورد نیاز' />
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label>لوگو یا نشان گالری</Label>
                             <Uploader
                                 server='/gallery-app/gallery/upload-image/logo/'
-                                name="logo"
+                                name='logo'
                                 Load={(FormData && FormData.logo && FormData.logo.link) ? FormData.logo.link : null}
                                 files={(FormData && FormData.logo && FormData.logo.name) ? FormData.logo.name : null}
                             />
@@ -157,7 +157,7 @@ export const RegisterForm = ({
                             <Label>کاور گالری</Label>
                             <Uploader
                                 server='/gallery-app/gallery/upload-image/cover/'
-                                name="cover"
+                                name='cover'
                                 Load={(FormData && FormData.cover && FormData.cover.link) ? FormData.cover.link : null}
                                 files={(FormData && FormData.cover && FormData.cover.name) ? FormData.cover.name : null}
                             />
@@ -168,7 +168,7 @@ export const RegisterForm = ({
                             <Label>مجوز گالری</Label>
                             <Uploader
                                 server='/gallery-app/gallery/upload-image/permission/'
-                                name="permission"
+                                name='permission'
                                 Load={(FormData && FormData.permission && FormData.permission.link) ? FormData.permission.link : null}
                                 files={(FormData && FormData.permission && FormData.permission.name) ? FormData.permission.name : null}
                             />
@@ -176,55 +176,55 @@ export const RegisterForm = ({
                     </Col>
                     <Col xs={12}>
                         <Alert
-                            message="لطفا موارد مورد نظر را با دقت بارگذاری کنید."
-                            type="warning"
+                            message='لطفا موارد مورد نظر را با دقت بارگذاری کنید.'
+                            type='warning'
                             rtl
                         />
-                        </Col>
+                    </Col>
                 </Row>
             </div>
 
             <div className={styles.RegistrationSection}>
                 <Row>
                     <Col xs={12}>
-                        <Divider text="اطلاعات تماس" />
+                        <Divider text='اطلاعات تماس' />
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>ساعت شروع به کار گالری</Label>
                             <Field
-                                type="time"
-                                // min="12:00"
-                                // rangeUnderflow="مقدار نمیتواند از ساعت فلان کمتر باشد"
-                                // max="18:00"
-                                // rangeOverflow="مقدار نمیتواند از ساعت فلان بیشتر باشد"
-                                name="work_hours.start_time"
+                                type='time'
+                                // min='12:00'
+                                // rangeUnderflow='مقدار نمیتواند از ساعت فلان کمتر باشد'
+                                // max='18:00'
+                                // rangeOverflow='مقدار نمیتواند از ساعت فلان بیشتر باشد'
+                                name='work_hours.start_time'
                                 component={AdaptedInput}
-                                placeholder="شروع"
-                                validate={value => value ? undefined : "وارد کردن ساعت شروع گالری الزامی میباشد"}
+                                placeholder='شروع'
+                                validate={value => value ? undefined : 'وارد کردن ساعت شروع گالری الزامی میباشد'}
                                 control
                             />
-                            <Error name="work_hours.start_time" />
+                            <Error name='work_hours.start_time' />
                         </FormGroup>
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>ساعت پایان به کار گالری</Label>
                             <Field
-                                type="time"
-                                name="work_hours.end_time"
+                                type='time'
+                                name='work_hours.end_time'
                                 component={AdaptedInput}
-                                placeholder="پایان"
-                                validate={value => value ? undefined : "وارد کردن ساعت پایان گالری الزامی میباشد"}
+                                placeholder='پایان'
+                                validate={value => value ? undefined : "وارد کردن ساعت پایا' گالری الزامی میباشد"}
                                 control
                             />
-                            <Error name="work_hours.end_time" />
+                            <Error name='work_hours.end_time' />
                         </FormGroup>
                     </Col>
                     <Col xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>روزهای تعطیلی گالری</Label>
-                            <div className="clearfix"></div>
+                            <div className='clearfix'></div>
                             <div className={styles.CustomBox}>
                                 {StepConfig &&
                                     StepConfig.weekday_set.map((item, index) => (
@@ -234,12 +234,12 @@ export const RegisterForm = ({
                                                 component={AdaptedCheckbox}
                                                 id={item.value}
                                                 value={item.value}
-                                                type="checkbox"
+                                                type='checkbox'
                                             />
                                             <FormCheckLabel htmlFor={item.value} className={`${(values.holiday_set && values.holiday_set.includes(item.value)) ? `checked` : ``}`}>{item.title}</FormCheckLabel>
                                         </FormCheck>
                                     ))}
-                                <Error name="holiday_set" />
+                                <Error name='holiday_set' />
                             </div>
                         </FormGroup>
                     </Col>
@@ -247,13 +247,13 @@ export const RegisterForm = ({
                         <FormGroup>
                             <Label className={LabelRequired}>ایمیل</Label>
                             <Field
-                                name="email"
+                                name='email'
                                 component={AdaptedInput}
-                                placeholder="ایمیل"
-                                validate={value => value ? undefined : "وارد کردن ایمیل الزامی میباشد"}
+                                placeholder='ایمیل'
+                                validate={value => value ? undefined : 'وارد کردن ایمیل الزامی میباشد'}
                                 control
                             />
-                            <Error name="email" />
+                            <Error name='email' />
                         </FormGroup>
                     </Col>
 
@@ -262,13 +262,13 @@ export const RegisterForm = ({
                         <FormGroup>
                             <Label>شماره شبا</Label>
                             <Field
-                                name="sheba_num"
+                                name='sheba_num'
                                 component={AdaptedInput}
-                                placeholder="شماره شبا"
+                                placeholder='شماره شبا'
                                 validate={ValidateShebaNum}
                                 control
                             />
-                            <Error name="sheba_num" />
+                            <Error name='sheba_num' />
                         </FormGroup>
                     </Col>
 
@@ -290,32 +290,32 @@ export const RegisterForm = ({
                     }
 
                     <Col xs={12}>
-                        <Divider text="مشخصات برگذار کننده" />
+                        <Divider text='مشخصات برگذار کننده' />
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>مدیر گرداننده گالری</Label>
                             <Field
-                                name="owner.name"
+                                name='owner.name'
                                 component={AdaptedInput}
-                                placeholder="مدیر گرداننده گالری"
-                                validate={value => value ? undefined : "وارد کردن نام مدیر گرداننده گالری الزامی میباشد"}
+                                placeholder='مدیر گرداننده گالری'
+                                validate={value => value ? undefined : 'وارد کردن نام مدیر گرداننده گالری الزامی میباشد'}
                                 control
                             />
-                            <Error name="owner.name" />
+                            <Error name='owner.name' />
                         </FormGroup>
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>شماره تماس</Label>
                             <Field
-                                name="owner.tel"
+                                name='owner.tel'
                                 component={AdaptedInput}
-                                placeholder="شماره تماس مدیر گرداننده گالری"
-                                validate={value => value ? undefined : "وارد کردن شماره تماس مدیر گرداننده گالری الزامی میباشد"}
+                                placeholder='شماره تماس مدیر گرداننده گالری'
+                                validate={value => value ? undefined : 'وارد کردن شماره تماس مدیر گرداننده گالری الزامی میباشد'}
                                 control
                             />
-                            <Error name="owner.tel" />
+                            <Error name='owner.tel' />
                         </FormGroup>
                     </Col>
 
@@ -323,21 +323,21 @@ export const RegisterForm = ({
                         <FormGroup>
                             <Label className={LabelRequired}>درباره گالری</Label>
                             <Field
-                                name="about"
+                                name='about'
                                 maxLength={200}
                                 component={AdaptedTextarea}
-                                placeholder="..."
-                                minHeight="90px"
-                                validate={value => value ? undefined : "وارد کردن این ایتم الزامی میباشد"}
+                                placeholder='...'
+                                minHeight='90px'
+                                validate={value => value ? undefined : 'وارد کردن این ایتم الزامی میباشد'}
                                 control
                             />
-                            <Error name="about" />
+                            <Error name='about' />
                         </FormGroup>
                     </Col>
                 </Row>
                 <Alert
-                    message="..."
-                    type="warning"
+                    message='...'
+                    type='warning'
                     rtl
                 />
 

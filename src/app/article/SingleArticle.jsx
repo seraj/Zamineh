@@ -39,7 +39,7 @@ class SingleArticle extends React.Component {
             <React.Fragment>
                 <Container>
                     <Row>
-                        <Col xs="12">
+                        <Col xs='12'>
 
                         </Col>
                     </Row>

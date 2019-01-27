@@ -53,23 +53,23 @@ export default function Urls() {
         withProps(model) {
             var url;
             switch (model) {
-                case "article":
+                case 'article':
                     url = this.Magzine();
                     break;
-                case "artist":
+                case 'artist':
                     url = this.artist();
                     break;
-                case "gallery":
+                case 'gallery':
                     url = this.gallery();
                     break;
-                case "show":
+                case 'show':
                     url = this.show();
                     break;
-                case "medium":
+                case 'medium':
                     url = this.medium();
                     break;
                 default:
-                    url = "/";
+                    url = '/';
             }
             return url
         },

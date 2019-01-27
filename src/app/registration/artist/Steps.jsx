@@ -1,6 +1,6 @@
 import React from 'react';
-import Row from "reactstrap/lib/Row";
-import Col from "reactstrap/lib/Col";
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 
 import { Field } from 'react-final-form-html5-validation'
 import { FieldArray } from 'react-final-form-arrays'
@@ -17,19 +17,19 @@ import {
     RadioGroup,
     Select,
     Textarea,
-} from "@smooth-ui/core-sc";
-import InputTypeahead from "../components/InputTypeahead";
-import InputAsyncTypeahead from "../components/InputAsyncTypeahead";
-import { Exhibition, Collection, SingleArt } from "./CustomArtistForm";
+} from '@smooth-ui/core-sc';
+import InputTypeahead from '../components/InputTypeahead';
+import InputAsyncTypeahead from '../components/InputAsyncTypeahead';
+import { Exhibition, Collection, SingleArt } from './CustomArtistForm';
 import ZaminehMap from '../../components/map/ZaminehMap';
 
 
 
-import Alert from "../../components/Alert/Alert";
-import Divider from "../../components/Divider";
-import Uploader from "../../components/Uploader";
+import Alert from '../../components/Alert/Alert';
+import Divider from '../../components/Divider';
+import Uploader from '../../components/Uploader';
 
-import styles from "../Registration.scss"
+import styles from '../Registration.scss'
 
 
 const adapt = Component => ({
@@ -75,32 +75,32 @@ export const Step1 = ({
                         hidden
                     />
                     <Col xs={12}>
-                        <Divider text="مشخصات فردی" />
+                        <Divider text='مشخصات فردی' />
                     </Col>
                     <Col lg={4} md={4} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>نام</Label>
                             <Field
-                                name="first_name"
+                                name='first_name'
                                 component={AdaptedInput}
-                                placeholder="نام"
-                                validate={value => value ? undefined : "وارد کردن نام الزامی میباشد"}
+                                placeholder='نام'
+                                validate={value => value ? undefined : 'وارد کردن نام الزامی میباشد'}
                                 control
                             />
-                            <Error name="first_name" />
+                            <Error name='first_name' />
                         </FormGroup>
                     </Col>
                     <Col lg={4} md={4} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>نام خانوادگی</Label>
                             <Field
-                                name="last_name"
+                                name='last_name'
                                 component={AdaptedInput}
-                                placeholder="نام خانوادگی"
-                                validate={value => value ? undefined : "وارد کردن نام خانوادگی الزامی میباشد"}
+                                placeholder='نام خانوادگی'
+                                validate={value => value ? undefined : 'وارد کردن نام خانوادگی الزامی میباشد'}
                                 control
                             />
-                            <Error name="last_name" />
+                            <Error name='last_name' />
                         </FormGroup>
                     </Col>
                     <Col lg={4} md={4} sm={12} xs={12}>
@@ -108,7 +108,7 @@ export const Step1 = ({
                             <Label>عکس پروفایل</Label>
                             <Uploader
                                 server='/gallery-app/artist/profile-pic/'
-                                name="profile_pic"
+                                name='profile_pic'
                                 files={StepData ? StepData.profile_pic : null}
                             // Load={(StepData && StepData.profile_pic && StepData.profile_pic.link) ? StepData.profile_pic.link : null}
 
@@ -122,20 +122,20 @@ export const Step1 = ({
             <div className={styles.RegistrationSection}>
                 <Row>
                     <Col xs={12}>
-                        <Divider text="نشانی فلان" />
+                        <Divider text='نشانی فلان' />
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>آدرس</Label>
                             <Field
-                                name="address"
+                                name='address'
                                 component={AdaptedTextarea}
-                                placeholder="آدرس"
-                                minHeight="150px"
-                                validate={value => value ? undefined : "وارد کردن آدرس الزامی میباشد"}
+                                placeholder='آدرس'
+                                minHeight='150px'
+                                validate={value => value ? undefined : 'وارد کردن آدرس الزامی میباشد'}
                                 control
                             />
-                            <Error name="address" />
+                            <Error name='address' />
                         </FormGroup>
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
@@ -165,76 +165,76 @@ export const Step1 = ({
             <div className={styles.RegistrationSection}>
                 <Row>
                     <Col xs={12}>
-                        <Divider text="اطلاعات تماس" />
+                        <Divider text='اطلاعات تماس' />
                     </Col>
                     <Col lg={4} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>ایمیل</Label>
                             <Field
-                                name="email"
+                                name='email'
                                 component={AdaptedInput}
-                                placeholder="ایمیل"
-                                validate={value => value ? undefined : "وارد کردن ایمیل الزامی میباشد"}
+                                placeholder='ایمیل'
+                                validate={value => value ? undefined : 'وارد کردن ایمیل الزامی میباشد'}
                                 control
                             />
-                            <Error name="email" />
+                            <Error name='email' />
                         </FormGroup>
                     </Col>
                     <Col lg={4} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label>وبسایت</Label>
                             <Field
-                                name="website"
+                                name='website'
                                 component={AdaptedInput}
-                                placeholder="وبسایت"
-                                // validate={value => value ? undefined : "وارد کردن وبسایت الزامی میباشد"}
+                                placeholder='وبسایت'
+                                // validate={value => value ? undefined : 'وارد کردن وبسایت الزامی میباشد'}
                                 control
                             />
-                            <Error name="website" />
+                            <Error name='website' />
                         </FormGroup>
                     </Col>
                     <Col lg={4} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>شماره تماس</Label>
                             <Field
-                                name="phone_num"
+                                name='phone_num'
                                 component={AdaptedInput}
-                                placeholder="شماره تماس"
+                                placeholder='شماره تماس'
                                 validate={MobileValidator}
                                 control
                             />
-                            <Error name="phone_num" />
+                            <Error name='phone_num' />
                         </FormGroup>
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label>شماره شبا</Label>
                             <Field
-                                name="sheba_num"
+                                name='sheba_num'
                                 component={AdaptedInput}
-                                placeholder="شماره شبا"
+                                placeholder='شماره شبا'
                                 validate={ValidateShebaNum}
                                 control
                             />
-                            <Error name="sheba_num" />
+                            <Error name='sheba_num' />
                         </FormGroup>
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label>انتخاب گالری</Label>
                             <InputAsyncTypeahead
-                                name="gallery"
-                                api="/gallery-app/gallery/autocomplete/?phrase"
-                                placeholder="جستجوی گالری مد نظر"
-                            // validate={value => value ? undefined : "وارد کردن نام گالری الزامی میباشد"}
+                                name='gallery'
+                                api='/gallery-app/gallery/autocomplete/?phrase'
+                                placeholder='جستجوی گالری مد نظر'
+                            // validate={value => value ? undefined : 'وارد کردن نام گالری الزامی میباشد'}
                             />
-                            <Error name="gallery" />
+                            <Error name='gallery' />
                         </FormGroup>
                     </Col>
                 </Row>
                 <Alert
-                    message="..."
-                    type="warning"
+                    message='...'
+                    type='warning'
                     rtl
                 />
 
@@ -249,32 +249,32 @@ export const Step2 = ({ Field, ValidateTextArea }) => {
             <div className={styles.RegistrationSection}>
                 <Row>
                     <Col xs={12}>
-                        <Divider text="زندگی نامه" />
+                        <Divider text='زندگی نامه' />
                     </Col>
                     <Col lg={12} md={12} sm={12} xs={12}>
 
                         <FormGroup>
                             <Label className={LabelRequired}>زندگینامه</Label>
                             <Field
-                                name="bio"
+                                name='bio'
                                 component={AdaptedTextarea}
-                                maxHeight="200px"
-                                minHeight="150px"
+                                maxHeight='200px'
+                                minHeight='150px'
                                 validate={ValidateTextArea}
-                                row="10"
+                                row='10'
 
-                                tooShort="حداقل ۵۰۰ کلمه باید بنویسید"
-                                placeholder="بیوگرافی حرفه‌ای شما"
-                                // validate={value => value ? undefined : "وارد کردن زندگینامه میباشد"}
+                                tooShort='حداقل ۵۰۰ کلمه باید بنویسید'
+                                placeholder='بیوگرافی حرفه‌ای شما'
+                                // validate={value => value ? undefined : 'وارد کردن زندگینامه میباشد'}
                                 control
                             />
-                            <Error name="bio" />
+                            <Error name='bio' />
                         </FormGroup>
 
                         <Alert
-                            message="محدودیت برای زندگی نامه"
-                            description="زندگی نامه شما میبایست حداقل ۵۰۰ کلمه داشته باشد"
-                            type="warning"
+                            message='محدودیت برای زندگی نامه'
+                            description='زندگی نامه شما میبایست حداقل ۵۰۰ کلمه داشته باشد'
+                            type='warning'
                             closable
                             rtl
                         />
@@ -292,8 +292,8 @@ export const Step2 = ({ Field, ValidateTextArea }) => {
                                 allowNew
                                 clearButton
                                 name={`book_set`}
-                                validate={value => value ? undefined : "وارد کردن نام کتاب ها الزامی میباشد"}
-                                placeholder="اسم کتاب خود را وارد کنید"
+                                validate={value => value ? undefined : 'وارد کردن نام کتاب ها الزامی میباشد'}
+                                placeholder='اسم کتاب خود را وارد کنید'
                             />
                             <Error name={`book_set`} />
                         </FormGroup>
@@ -306,8 +306,8 @@ export const Step2 = ({ Field, ValidateTextArea }) => {
                                 allowNew
                                 clearButton
                                 name={`press_set`}
-                                validate={value => value ? undefined : "وارد کردن لینک الزامی میباشد"}
-                                placeholder="لینک"
+                                validate={value => value ? undefined : 'وارد کردن لینک الزامی میباشد'}
+                                placeholder='لینک'
                             />
                             <Error name={`press_set`} />
                         </FormGroup>
@@ -320,8 +320,8 @@ export const Step2 = ({ Field, ValidateTextArea }) => {
                                 allowNew
                                 clearButton
                                 name={`prov_set`}
-                                validate={value => value ? undefined : "وارد کردن prov الزامی میباشد"}
-                                placeholder="اسم prov خود را وارد کنید"
+                                validate={value => value ? undefined : 'وارد کردن prov الزامی میباشد'}
+                                placeholder='اسم prov خود را وارد کنید'
                             />
                             <Error name={`prov_set`} />
                         </FormGroup>
@@ -345,7 +345,7 @@ export const Step3 = ({
     values
 }) => {
     return (
-        <FieldArray name="exb_set">
+        <FieldArray name='exb_set'>
             {({ fields }) =>
                 <React.Fragment>
                     {fields.map((name, index) => (
@@ -374,8 +374,8 @@ export const Step3 = ({
                     <Col lg={12} md={12} sm={12} xs={12}>
                         <div className={styles.addSectionButton}>
                             <button
-                                type="button"
-                                className=""
+                                type='button'
+                                className=''
                                 onClick={() => addExhibition(fields.push, 'Exb'
                                 )}>
                                 <i></i>
@@ -410,72 +410,72 @@ export const Step4 = ({
             <div className={styles.RegistrationSection}>
                 <Row>
                     <Col xs={12}>
-                        <Divider text="آثار برای داوری" />
+                        <Divider text='آثار برای داوری' />
                     </Col>
                     <Col lg={12} md={12} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>تعداد آثار</Label>
-                            <div className="clearfix"></div>
+                            <div className='clearfix'></div>
                             <div className={styles.CustomBox}>
                                 <RadioGroup>
                                     <FormCheck inline>
                                         <Field
-                                            name="type"
+                                            name='type'
                                             component={AdaptedRadio}
-                                            type="radio"
-                                            id="mix"
-                                            value="mix"
+                                            type='radio'
+                                            id='mix'
+                                            value='mix'
                                             onChange={() => Step4_onChangeType('mix')}
                                         />
-                                        <FormCheckLabel htmlFor="mix" className={`${values.type == 'mix' ? `checked` : ``} ${loadingDiv == 'mix' ? `spinning` : ``}`}>10 کار مختلط</FormCheckLabel>
+                                        <FormCheckLabel htmlFor='mix' className={`${values.type == 'mix' ? `checked` : ``} ${loadingDiv == 'mix' ? `spinning` : ``}`}>10 کار مختلط</FormCheckLabel>
                                     </FormCheck>
                                     <FormCheck inline>
                                         <Field
-                                            name="type"
+                                            name='type'
                                             component={AdaptedRadio}
-                                            type="radio"
+                                            type='radio'
                                             hidden
-                                            id="collection_arts"
-                                            value="collection_arts"
+                                            id='collection_arts'
+                                            value='collection_arts'
                                             onChange={() => Step4_onChangeType('collection_arts')}
                                         />
-                                        <FormCheckLabel htmlFor="collection_arts" className={`${values.type == 'collection_arts' ? `checked` : ``} ${loadingDiv == 'collection_arts' ? `spinning` : ``}`}>مجموعه</FormCheckLabel>
+                                        <FormCheckLabel htmlFor='collection_arts' className={`${values.type == 'collection_arts' ? `checked` : ``} ${loadingDiv == 'collection_arts' ? `spinning` : ``}`}>مجموعه</FormCheckLabel>
                                     </FormCheck>
                                     <FormCheck inline>
                                         <Field
-                                            name="type"
+                                            name='type'
                                             component={AdaptedRadio}
-                                            type="radio"
-                                            id="2collections"
-                                            value="2collections"
+                                            type='radio'
+                                            id='2collections'
+                                            value='2collections'
                                             onChange={() => Step4_onChangeType('2collections')}
                                         />
-                                        <FormCheckLabel htmlFor="2collections" className={`${values.type == '2collections' ? `checked` : ``} ${loadingDiv == '2collections' ? `spinning` : ``}`}>حداقل ۲ مجموعه</FormCheckLabel>
+                                        <FormCheckLabel htmlFor='2collections' className={`${values.type == '2collections' ? `checked` : ``} ${loadingDiv == '2collections' ? `spinning` : ``}`}>حداقل ۲ مجموعه</FormCheckLabel>
                                     </FormCheck>
                                 </RadioGroup>
-                                <Error name="type" />
+                                <Error name='type' />
                             </div>
                         </FormGroup>
                         {values && values.type == 'mix' &&
                             <Alert
-                                message="خب مجموعه که انتخاب شد چی باید به کاربر بگیم که بفهمه چه خبره؟"
-                                type="warning"
+                                message='خب مجموعه که انتخاب شد چی باید به کاربر بگیم که بفهمه چه خبره؟'
+                                type='warning'
                                 icon
                                 rtl
                             />
                         }
                         {values && values.type == 'collection_arts' &&
                             <Alert
-                                message="خب مجموعه که انتخاب شد چی باید به کاربر بگیم که بفهمه چه خبره؟"
-                                type="info"
+                                message='خب مجموعه که انتخاب شد چی باید به کاربر بگیم که بفهمه چه خبره؟'
+                                type='info'
                                 icon
                                 rtl
                             />
                         }
                         {values && values.type == '2collections' &&
                             <Alert
-                                message="خب مجموعه که انتخاب شد چی باید به کاربر بگیم که بفهمه چه خبره؟"
-                                type="info"
+                                message='خب مجموعه که انتخاب شد چی باید به کاربر بگیم که بفهمه چه خبره؟'
+                                type='info'
                                 icon
                                 rtl
                             />
@@ -487,7 +487,7 @@ export const Step4 = ({
                         <Divider text={`آثار`} />
                     </Col>
                     {values && values.type == 'mix' &&
-                        <FieldArray name="art_set">
+                        <FieldArray name='art_set'>
                             {({ fields }) =>
                                 <React.Fragment>
                                     {fields.map((name, index) => (
@@ -514,8 +514,8 @@ export const Step4 = ({
                                         <Col lg={6} md={6} sm={12} xs={12}>
                                             <div className={styles.addSectionButton}>
                                                 <button
-                                                    type="button"
-                                                    className=""
+                                                    type='button'
+                                                    className=''
                                                     onClick={() => AddArt(fields.push, 'Art')}>
                                                     <i></i>
                                                     <span>اضافه کردن اثر</span>
@@ -530,7 +530,7 @@ export const Step4 = ({
                     {values && values.type === 'collection_arts' &&
                         <React.Fragment>
                             <Col lg={12} md={12} sm={12} xs={12}>
-                                <FieldArray name="collection_set">
+                                <FieldArray name='collection_set'>
                                     {({ fields }) =>
                                         <React.Fragment>
                                             {fields.map((name, index) => (
@@ -563,8 +563,8 @@ export const Step4 = ({
                                                 <Col lg={12} md={12} sm={12} xs={12}>
                                                     <div className={styles.addSectionButton}>
                                                         <button
-                                                            type="button"
-                                                            className=""
+                                                            type='button'
+                                                            className=''
                                                             onClick={() => Step4_addCollection(fields.push, 'Collection', values.type)}>
                                                             <i></i>
                                                             <span>اضافه کردن نمایشگاه</span>
@@ -579,13 +579,13 @@ export const Step4 = ({
                             <Col lg={12} md={12} sm={12} xs={12} style={{ marginBottom: 10 }}>
                                 <Divider text={`آثار مختلط`} />
                                 <Alert
-                                    message="۵ اثر مختلط نیز باید وارد کنید"
-                                    type="info"
+                                    message='۵ اثر مختلط نیز باید وارد کنید'
+                                    type='info'
                                     icon
                                     rtl
                                 />
                             </Col>
-                            <FieldArray name="art_set">
+                            <FieldArray name='art_set'>
                                 {({ fields }) =>
                                     <React.Fragment>
                                         {fields.map((name, index) => (
@@ -612,8 +612,8 @@ export const Step4 = ({
                                             <Col lg={6} md={6} sm={12} xs={12}>
                                                 <div className={styles.addSectionButton}>
                                                     <button
-                                                        type="button"
-                                                        className=""
+                                                        type='button'
+                                                        className=''
                                                         onClick={() => AddArt(fields.push, 'Art')}>
                                                         <i></i>
                                                         <span>اضافه کردن اثر</span>
@@ -630,7 +630,7 @@ export const Step4 = ({
                         <React.Fragment>
 
                             <Col lg={12} md={12} sm={12} xs={12}>
-                                <FieldArray name="collection_set">
+                                <FieldArray name='collection_set'>
                                     {({ fields }) =>
                                         <React.Fragment>
                                             {fields.map((name, index) => (
@@ -662,8 +662,8 @@ export const Step4 = ({
                                             <Col lg={12} md={12} sm={12} xs={12}>
                                                 <div className={styles.addSectionButton}>
                                                     <button
-                                                        type="button"
-                                                        className=""
+                                                        type='button'
+                                                        className=''
                                                         onClick={() => Step4_addCollection(fields.push, 'Collection')}>
                                                         <i></i>
                                                         <span>اضافه کردن نمایشگاه</span>

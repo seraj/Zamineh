@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Flickity from "react-flickity-component";
-import Container from "reactstrap/lib/Container";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Flickity from 'react-flickity-component';
+import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 
-import Login from "../../login/Login";
-import { SingleArtist } from "../../components/Artists/SingleArtist";
-import Error from "../../components/Error";
-import Urls from "../../components/Urls";
-import Section from "../../components/Section/Section";
+import Login from '../../login/Login';
+import { SingleArtist } from '../../components/Artists/SingleArtist';
+import Error from '../../components/Error';
+import Urls from '../../components/Urls';
+import Section from '../../components/Section/Section';
 
 
 const flickityOptions = {
@@ -17,7 +17,7 @@ const flickityOptions = {
     pageDots: false,
     contain: true,
     rightToLeft: true,
-    cellAlign: "right",
+    cellAlign: 'right',
     groupCells: true,
     wrapAround: true
 
@@ -95,8 +95,8 @@ class ArtistToFolllow extends Component {
                 Artist &&
                 <Row>
                     <Flickity
-                        className={"carousel items"}
-                        elementType={"div"}
+                        className={'carousel items'}
+                        elementType={'div'}
                         options={flickityOptions}
                         disableImagesLoaded={false}
                         reloadOnUpdate
@@ -135,40 +135,40 @@ class ArtistToFolllow extends Component {
             <React.Fragment>
                 <Section ExtraClass={sectionName}>
                     <Container>
-                        <div className="section_header">
+                        <div className='section_header'>
                             <h1>{title}</h1>
-                            <div className="tabs">
+                            <div className='tabs'>
                                 {handleLogin && this.state.artist.for_you != '' &&
                                     <div
-                                        className="tab"
-                                        onClick={() => this.onTabClick("foryou")} className={`tab${this.state.currentTab === "foryou" ? ' active' : ''}`}
+                                        className='tab'
+                                        onClick={() => this.onTabClick('foryou')} className={`tab${this.state.currentTab === 'foryou' ? ' active' : ''}`}
                                     >برای شما</div>}
                                 {this.state.artist.trend_set != '' &&
                                     <div
-                                        className="tab"
-                                        onClick={() => this.onTabClick("trending")} className={`tab${this.state.currentTab === "trending" ? ' active' : ''}`}
+                                        className='tab'
+                                        onClick={() => this.onTabClick('trending')} className={`tab${this.state.currentTab === 'trending' ? ' active' : ''}`}
                                     >ترند</div>
                                 }
                                 {this.state.artist.pop_set != '' &&
                                     <div
-                                        className="tab"
-                                        onClick={() => this.onTabClick("popular")} className={`tab${this.state.currentTab === "popular" ? ' active' : ''}`}
+                                        className='tab'
+                                        onClick={() => this.onTabClick('popular')} className={`tab${this.state.currentTab === 'popular' ? ' active' : ''}`}
                                     >محبوب</div>
                                 }
                             </div>
 
                         </div>
-                        {this.state.currentTab === "foryou" && this.state.artist.for_you &&
+                        {this.state.currentTab === 'foryou' && this.state.artist.for_you &&
                             <React.Fragment>
                                 {this.renderItems('for_you')}
                             </React.Fragment>
                         }
-                        {this.state.currentTab === "trending" && this.state.artist.trend_set &&
+                        {this.state.currentTab === 'trending' && this.state.artist.trend_set &&
                             <React.Fragment>
                                 {this.renderItems('trend_set')}
                             </React.Fragment>
                         }
-                        {this.state.currentTab === "popular" && this.state.artist.pop_set &&
+                        {this.state.currentTab === 'popular' && this.state.artist.pop_set &&
                             <React.Fragment>
                                 {this.renderItems('pop_set')}
                             </React.Fragment>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function Divider({ type = 'sv-divider-horizontal', orientation = '', text = '' }) {
     return (<div
@@ -6,6 +6,6 @@ export default function Divider({ type = 'sv-divider-horizontal', orientation = 
         sv-divider ${type} 
         ${text ? `sv-divider-with-text${(orientation != `` ? `-${orientation}` : ``)}` : ``}`}
         orientation={orientation} >
-        {text && <span className="sv-divider-inner-text">{text}</span>}
+        {text && <span className='sv-divider-inner-text'>{text}</span>}
     </div>)
 }

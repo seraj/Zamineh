@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import InputRange from 'react-input-range-rtl';
-import NumbersConvertor from "../NumbersConvertor";
-import ThousandSeparator from "../ThousandSeparator";
+import NumbersConvertor from '../NumbersConvertor';
+import ThousandSeparator from '../ThousandSeparator';
 import 'react-input-range-rtl/lib/css/index.css'
-import styles from "./Filters.scss"
+import styles from './Filters.scss'
 
 export function Filters({ ExtraClass = '', ...props }) {
     return <div className={`${styles.Filtering} ${ExtraClass}`} {...props} />;
@@ -11,7 +11,7 @@ export function Filters({ ExtraClass = '', ...props }) {
 export function FilterBox({ name, title, ...props }) {
     return (
         <div className={`${styles.filterBox} ${name}`}>
-            <span className="title">{title}</span>
+            <span className='title'>{title}</span>
             <div {...props} />
         </div>
     );
@@ -19,11 +19,11 @@ export function FilterBox({ name, title, ...props }) {
 export function InputSlider({ max, min, unit, ...props }) {
     return (
         <div className={styles.inputSlider}>
-            <div className="slide-values">
-                <span className="min">{NumbersConvertor().convertToPersian(ThousandSeparator(min))} {unit}</span>
-                <span className="max">{NumbersConvertor().convertToPersian(ThousandSeparator(max))} {unit}</span>
+            <div className='slide-values'>
+                <span className='min'>{NumbersConvertor().convertToPersian(ThousandSeparator(min))} {unit}</span>
+                <span className='max'>{NumbersConvertor().convertToPersian(ThousandSeparator(max))} {unit}</span>
             </div>
-            <div className="inputSlider">
+            <div className='inputSlider'>
                 <InputRange
                     maxValue={props.maxValue}
                     minValue={props.minValue}

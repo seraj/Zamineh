@@ -1,11 +1,12 @@
-import React from "react"
+import React from 'react'
 import axios from 'axios';
+import queryString from 'query-string';
 import { withRouter } from 'react-router-dom'
-import Row from "reactstrap/lib/Row";
-import Container from "reactstrap/lib/Container";
-import Col from "reactstrap/lib/Col";
+import Row from 'reactstrap/lib/Row';
+import Container from 'reactstrap/lib/Container';
+import Col from 'reactstrap/lib/Col';
 
-import { Form } from "react-final-form";
+import { Form } from 'react-final-form';
 
 import { Field } from 'react-final-form-html5-validation'
 import { FieldArray } from 'react-final-form-arrays'
@@ -13,20 +14,20 @@ import arrayMutators from 'final-form-arrays'
 import setFieldData from 'final-form-set-field-data'
 import createDecorator from 'final-form-focus'
 import { Toast } from '../../components/Toast/Toast';
-import AuthorizationForm from "../components/AuthorizationForm"
+import AuthorizationForm from '../components/AuthorizationForm'
 
 
-import SecurityManager from "../../security/SecurityManager";
-import Urls from "../../components/Urls";
+import SecurityManager from '../../security/SecurityManager';
+import Urls from '../../components/Urls';
 
-import { Collection, SingleArt } from "./Forms";
+import { Collection, SingleArt } from './Forms';
 
-import Section from "../../components/Section/Section";
+import Section from '../../components/Section/Section';
 
-import Alert from "../../components/Alert/Alert";
-import Divider from "../../components/Divider";
+import Alert from '../../components/Alert/Alert';
+import Divider from '../../components/Divider';
 
-import json from "./ExJSON.json"
+import json from './ExJSON.json'
 
 import {
     Checkbox,
@@ -40,7 +41,7 @@ import {
     RadioGroup,
     Select,
     Textarea,
-} from "@smooth-ui/core-sc";
+} from '@smooth-ui/core-sc';
 
 import {
 
@@ -49,7 +50,7 @@ import {
     SingleCollectionArtValidation,
     CollectionAllArtValidation,
 } from './Validation';
-import styles from "../Registration.scss"
+import styles from '../Registration.scss'
 
 
 
@@ -62,12 +63,12 @@ const SubmitSeciton = ({ data, Text, values }) => (
 
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <button
-                            type="submit"
+                            type='submit'
                             style={{ width: '100%', marginBottom: 10 }}
                             disabled={data.SubmitBtnLoading}
-                            variant="primary"
+                            variant='primary'
                             className={`zbtn next black bradius ${data.SubmitBtnLoading ? `spinning` : null}`}
-                        >{Text} <i className="fas fa-angle-left" /></button>
+                        >{Text} <i className='fas fa-angle-left' /></button>
                     </Col>
                 </Row>
             </Col>
@@ -108,12 +109,16 @@ class AddSingleArtForm extends React.Component {
             data: [],
             config: [],
             showForm: false,
+            loadingDiv: '',
+            type: '',
             ModalToggle: false
         }
     }
     componentDidMount() {
+        const parsed = queryString.parse(location.search);
+
         if (SecurityManager().hasArtistRegToken()) {
-            this.getFormData()
+            this.getFormData('collection', parsed['collection_id'])
         }
     }
     focusOnErrors = createDecorator()
@@ -129,12 +134,17 @@ class AddSingleArtForm extends React.Component {
             data
         })
     }
-    getFormData = () => {
-        axios.get(`${Urls().api()}/gallery-app/collection/create-update/`)
+    getFormData = (type, id) => {
+        let Type = type == 'art' ? 'artist/art' : 'collection'
+        axios.get(`${Urls().api()}/gallery-app/${Type}/create-update/`, {
+            params: id ? id : null
+        })
             .then(response => {
                 this.setState({
                     data: response.data,
-                    showForm: true
+                    showForm: true,
+                    type: type,
+                    loadingDiv: ''
                 })
             })
             .then(() => {
@@ -351,7 +361,13 @@ class AddSingleArtForm extends React.Component {
 
     }
 
+    onChangeType = (portfolio_type) => {
+        this.setState({
+            loadingDiv: portfolio_type
+        })
 
+        this.getFormData(portfolio_type === 'art' ? 'art' : 'collection')
+    }
     openArtModal = () => {
         this.setState({
             ModalToggle: !this.state.ModalToggle
@@ -364,16 +380,23 @@ class AddSingleArtForm extends React.Component {
     }
 
     render() {
-        const { data, config, ModalToggle, showForm } = this.state
+        const {
+            data,
+            config,
+            ModalToggle,
+            loadingDiv,
+            type,
+            showForm
+        } = this.state
         var hasToken = SecurityManager().hasArtistRegToken()
-
+        console.log(this.state.data)
         return (
             <React.Fragment>
                 <Section ExtraClass={'content singlePage'}>
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <div className="section_header_single">
+                                <div className='section_header_single'>
                                     <h1>ثبت مجموعه و اثر</h1>
                                 </div>
                             </Col>
@@ -382,10 +405,10 @@ class AddSingleArtForm extends React.Component {
                                     {!hasToken &&
                                         <AuthorizationForm
                                             afterLogin={this.getFormData}
-                                            checkMobileAPI="/gallery-app/gallery/check/"
-                                            validationAPI="/gallery-app/phone/validate/"
-                                            loginAPI="/gallery-app/gallery/login/"
-                                            type="Artist"
+                                            checkMobileAPI='/gallery-app/gallery/check/'
+                                            validationAPI='/gallery-app/phone/validate/'
+                                            loginAPI='/gallery-app/gallery/login/'
+                                            type='Artist'
                                             setAccessTokens={this.setAccessTokens}
                                         />
                                     }
@@ -414,10 +437,43 @@ class AddSingleArtForm extends React.Component {
                                                         <Row>
 
                                                             <React.Fragment>
-
+                                                                <Col lg={12} md={12} sm={12} xs={12}>
+                                                                    <FormGroup>
+                                                                        <Label className={LabelRequired}>نوع ثبت اثر (تکی یا مجموعه)</Label>
+                                                                        <div className='clearfix'></div>
+                                                                        <div className={styles.CustomBox}>
+                                                                            <RadioGroup>
+                                                                                <FormCheck inline>
+                                                                                    <Field
+                                                                                        name='type'
+                                                                                        component={AdaptedRadio}
+                                                                                        type='radio'
+                                                                                        id='art'
+                                                                                        value='art'
+                                                                                        onChange={() => this.onChangeType('art')}
+                                                                                    />
+                                                                                    <FormCheckLabel htmlFor='art' className={`${type == 'art' ? `checked` : ``} ${loadingDiv == 'art' ? `spinning` : ``}`}>اثر</FormCheckLabel>
+                                                                                </FormCheck>
+                                                                                <FormCheck inline>
+                                                                                    <Field
+                                                                                        name='type'
+                                                                                        component={AdaptedRadio}
+                                                                                        type='radio'
+                                                                                        hidden
+                                                                                        id='collection_arts'
+                                                                                        value='collection_arts'
+                                                                                        onChange={() => this.onChangeType('collection_arts')}
+                                                                                    />
+                                                                                    <FormCheckLabel htmlFor='collection_arts' className={`${type == 'collection' ? `checked` : ``} ${loadingDiv == 'collection_arts' ? `spinning` : ``}`}>مجموعه</FormCheckLabel>
+                                                                                </FormCheck>
+                                                                            </RadioGroup>
+                                                                            <Error name='type' />
+                                                                        </div>
+                                                                    </FormGroup>
+                                                                </Col>
                                                                 <Col lg={12} md={12} sm={12} xs={12}>
 
-                                                                    <FieldArray name="collection_set">
+                                                                    <FieldArray name='collection_set'>
                                                                         {({ fields }) =>
                                                                             <React.Fragment>
                                                                                 {fields.map((name, index) => (
@@ -451,7 +507,7 @@ class AddSingleArtForm extends React.Component {
                                                                     </FieldArray>
                                                                 </Col>
 
-                                                                <FieldArray name="art_set">
+                                                                <FieldArray name='art_set'>
                                                                     {({ fields }) =>
                                                                         <React.Fragment>
                                                                             {fields.map((name, index) => (
@@ -461,11 +517,13 @@ class AddSingleArtForm extends React.Component {
                                                                                         name={name}
                                                                                         data={data}
                                                                                         config={config}
-                                                                                        ServerData={data.art_set[index]}
+                                                                                        ServerData={data.art_set ? data.art_set[index] : null}
                                                                                         LocalData={values.art_set[index]}
                                                                                         index={index}
                                                                                         input={AdaptedInput}
                                                                                         select={AdaptedSelect}
+                                                                                        textarea={AdaptedTextarea}
+                                                                                        radio={AdaptedRadio}
                                                                                         values={values}
                                                                                         LabelRequired={LabelRequired}
                                                                                         singleArtSubmit={() => this.singleArtSubmit(values, index, null, 'SingleArt')}
@@ -478,8 +536,8 @@ class AddSingleArtForm extends React.Component {
                                                                                 <Col lg={6} md={6} sm={12} xs={12}>
                                                                                     <div className={styles.addSectionButton}>
                                                                                         <button
-                                                                                            type="button"
-                                                                                            className=""
+                                                                                            type='button'
+                                                                                            className=''
                                                                                             onClick={() => this.AddSingleArt(fields.push, 'Art')}>
                                                                                             <i></i>
                                                                                             <span>اضافه کردن اثر</span>
@@ -494,7 +552,7 @@ class AddSingleArtForm extends React.Component {
                                                         </Row>
 
                                                         <SubmitSeciton
-                                                            Text="ثبت نهایی"
+                                                            Text='ثبت نهایی'
                                                             data={data}
                                                             values={values}
 

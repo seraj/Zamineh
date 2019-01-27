@@ -1,6 +1,6 @@
 import React from 'react';
-import Urls from "./components/Urls";
-import Container from "reactstrap/lib/Container";
+import Urls from './components/Urls';
+import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import {
@@ -26,9 +26,9 @@ import Articles from './article/Articles';
 import AddSingleArtForm from './registration/AddSingleArt/AddSingleArtForm';
 import ArtistRegistration from './registration/artist/ArtistRegistration';
 import GalleryRegistration from './registration/gallery/GalleryRegistration';
-import Section from "./components/Section/Section";
+import Section from './components/Section/Section';
 
-import { LoadingHome } from "./components/Loaders/Loaders";
+import { LoadingHome } from './components/Loaders/Loaders';
 
 
 
@@ -60,14 +60,14 @@ export default function Routing({ isLogined }) {
 
             {/* Home Page */}
             <Route
-                path="/"
+                path='/'
                 exact
                 render={() => <Home isLogined={isLogined} />}
             />
 
             {/* Login Page */}
             <Route
-                path="/login"
+                path='/login'
                 exact
                 render={() => <Login
                     client_id={cookie.load('client_id', { path: '/' })}

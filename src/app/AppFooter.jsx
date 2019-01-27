@@ -10,7 +10,7 @@ import {
 
 function Logo() {
     return (
-        <div className="logo">
+        <div className='logo'>
             <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 283.46 228.93'>
                 <defs />
                 <g id='Layer_2' data-name='Layer 2'>
@@ -43,22 +43,22 @@ function Column(props) {
 }
 function Content(props) {
     return (
-        <section className="footer-links" {...props} />
+        <section className='footer-links' {...props} />
     );
 }
 function Links(props) {
     return (
-        <section className="links" {...props} />
+        <section className='links' {...props} />
     );
 }
 function Title(props) {
     return (
-        <span className="title" {...props} />
+        <span className='title' {...props} />
     );
 }
 function NavItem({ href, context }) {
     return (
-        <li className="NavItem">
+        <li className='NavItem'>
             <a href={href}>
                 {context}
             </a>
@@ -67,7 +67,7 @@ function NavItem({ href, context }) {
 }
 function Copyright(props) {
     return (
-        <div className="copyright" {...props} />
+        <div className='copyright' {...props} />
     );
 }
 class AppFooter extends React.Component {
@@ -89,39 +89,39 @@ class AppFooter extends React.Component {
             <React.Fragment>
                 <footer>
                     <Container>
-                        <section className="footer">
+                        <section className='footer'>
                             <Row>
 
-                                <Column lg="6" md="6" sm="12" xs="12">
+                                <Column lg='6' md='6' sm='12' xs='12'>
                                     <Row>
-                                        <Column lg="4" md="4" sm="12" xs="12">
+                                        <Column lg='4' md='4' sm='12' xs='12'>
                                             <Content>
                                                 <Links>
                                                     <Title>درباره ما</Title>
                                                     <ul>
-                                                        <NavItem href="#" context="تست س" />
+                                                        <NavItem href='#' context='تست س' />
 
                                                     </ul>
                                                 </Links>
                                             </Content>
                                         </Column>
-                                        <Column lg="4" md="4" sm="12" xs="12">
+                                        <Column lg='4' md='4' sm='12' xs='12'>
                                             <Content>
                                                 <Links>
                                                     <Title>درباره ما</Title>
                                                     <ul>
-                                                        <NavItem href="#" context="تست س" />
+                                                        <NavItem href='#' context='تست س' />
 
                                                     </ul>
                                                 </Links>
                                             </Content>
                                         </Column>
-                                        <Column lg="4" md="4" sm="12" xs="12">
+                                        <Column lg='4' md='4' sm='12' xs='12'>
                                             <Content>
                                                 <Links>
                                                     <Title>درباره ما</Title>
                                                     <ul>
-                                                        <NavItem href="#" context="تست س" />
+                                                        <NavItem href='#' context='تست س' />
 
                                                     </ul>
                                                 </Links>
@@ -130,25 +130,25 @@ class AppFooter extends React.Component {
 
                                     </Row>
                                 </Column>
-                                <Column lg="6" md="6" sm="12" xs="12">
+                                <Column lg='6' md='6' sm='12' xs='12'>
                                     <Row>
-                                        <Column lg="6" md="6" sm="12" xs="12">
+                                        <Column lg='6' md='6' sm='12' xs='12'>
                                             <Content>
                                                 <Links>
                                                     <Title>درباره ما</Title>
                                                     <ul>
-                                                        <NavItem href="#" context="تست س" />
+                                                        <NavItem href='#' context='تست س' />
 
                                                     </ul>
                                                 </Links>
                                             </Content>
                                         </Column>
-                                        <Column lg="6" md="6" sm="12" xs="12">
+                                        <Column lg='6' md='6' sm='12' xs='12'>
                                             <Content>
                                                 <Links>
                                                     <Title>درباره ما</Title>
                                                     <ul>
-                                                        <NavItem href="#" context="تست س" />
+                                                        <NavItem href='#' context='تست س' />
 
                                                     </ul>
                                                 </Links>
@@ -161,10 +161,10 @@ class AppFooter extends React.Component {
                         </section>
                         <Copyright>
                             <Row>
-                                <Column xs="auto" className="links">
+                                <Column xs='auto' className='links'>
                                     <Logo />
                                 </Column>
-                                <Column xs="auto" className="socials">
+                                <Column xs='auto' className='socials'>
 
                                 </Column>
                             </Row>

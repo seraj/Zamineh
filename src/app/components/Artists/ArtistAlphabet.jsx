@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import axios from "axios";
-import Container from "reactstrap/lib/Container";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import axios from 'axios';
+import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import ModelManager from '../Models';
 import Pagination from '../Pagination/Pagination';
-import { BackLink } from "../General"
+import { BackLink } from '../General'
 
-import AlphabetSet from "./AlphabetSet"
+import AlphabetSet from './AlphabetSet'
 
-import Urls from "..//Urls";
-import Section from "../Section/Section";
-import styles from "./Artists.scss"
+import Urls from '..//Urls';
+import Section from '../Section/Section';
+import styles from './Artists.scss'
 
 
 class ArtistAlphabet extends Component {
@@ -73,7 +73,7 @@ class ArtistAlphabet extends Component {
                             </Col>
                             <Col xs={12}>
                                 <div className={styles.letters}>
-                                    <h1 className="center-h1">{ModelManager().convertModelName('artists')} - {match.params.artistChar}</h1>
+                                    <h1 className='center-h1'>{ModelManager().convertModelName('artists')} - {match.params.artistChar}</h1>
                                     <BackLink
                                         Text={ModelManager().convertModelName('artists')}
                                         pageLink={Urls().artists()}

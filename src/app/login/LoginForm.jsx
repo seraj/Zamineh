@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { Form } from "react-final-form";
-import Row from "reactstrap/lib/Row";
-import Col from "reactstrap/lib/Col";
+import { Form } from 'react-final-form';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 import {
     Box,
     Button,
@@ -14,28 +14,28 @@ import {
     Radio,
     Select,
     Textarea
-} from "@smooth-ui/core-sc";
+} from '@smooth-ui/core-sc';
 import PersianDatePicker from '../components/datepicker/PersianDatePicker';
 import NumbersConvertor from '../components/NumbersConvertor';
 
 import { Field } from 'react-final-form-html5-validation'
 
-import styles from "./Login.scss"
+import styles from './Login.scss'
 
 const SubmitButton = ({ Loading, Text }) => (
     <React.Fragment>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
-                <Row className="justify-content-center">
+                <Row className='justify-content-center'>
 
                     <Col lg={12} md={12} sm={12} xs={12}>
                         <Button
-                            type="submit"
+                            type='submit'
                             style={{ width: '100%', marginBottom: 10 }}
                             disabled={Loading}
-                            variant="primary"
+                            variant='primary'
                             className={`zbtn next black bradius ${Loading ? `spinning` : null}`}
-                        >{Text} <i className="fas fa-angle-left" /></Button>
+                        >{Text} <i className='fas fa-angle-left' /></Button>
                     </Col>
                 </Row>
             </Col>
@@ -66,7 +66,7 @@ const Error = ({ name }) => (
     </Field>
 );
 
-const required = value => (value ? undefined : "الزامی");
+const required = value => (value ? undefined : 'الزامی');
 const MobileValidator = value => {
 
     var regexp = /^[0][9][0-9]{9,9}$/;
@@ -113,25 +113,25 @@ const LoginForm = (props) => {
                                     <FormGroup>
                                         <Label>شماره تلفن</Label>
                                         <Field
-                                            name="username"
+                                            name='username'
                                             component={AdaptedInput}
-                                            placeholder="شماره تلفن"
+                                            placeholder='شماره تلفن'
                                             maxLength={11}
-                                            tooLong="That name is too long!"
+                                            tooLong='That name is too long!'
                                             validate={MobileValidator}
                                             control
                                         />
-                                        <Error name="username" />
+                                        <Error name='username' />
                                     </FormGroup>
 
 
 
                                     <SubmitButton
-                                        Text="ثبت شماره موبایل"
+                                        Text='ثبت شماره موبایل'
                                         Loading={loading}
                                     />
                                     {showLoginError &&
-                                        <p className="formError">{errorMessage}</p>
+                                        <p className='formError'>{errorMessage}</p>
                                     }
                                 </form>
                             )}
@@ -150,33 +150,33 @@ const LoginForm = (props) => {
                                     <FormGroup>
                                         <Label>شماره تلفن</Label>
                                         <Field
-                                            name="username"
+                                            name='username'
                                             component={AdaptedInput}
                                             disabled
                                             control
                                         />
-                                        <Error name="username" />
+                                        <Error name='username' />
                                     </FormGroup>
 
                                     <FormGroup>
                                         <Label>رمز عبور</Label>
                                         <Field
-                                            name="password"
-                                            type="password"
+                                            name='password'
+                                            type='password'
                                             component={AdaptedInput}
-                                            placeholder="رمز عبور"
-                                            validate={value => value ? undefined : "وارد کردن رمز عبور الزامی میباشد"}
+                                            placeholder='رمز عبور'
+                                            validate={value => value ? undefined : 'وارد کردن رمز عبور الزامی میباشد'}
                                             control
                                         />
-                                        <Error name="password" />
+                                        <Error name='password' />
                                     </FormGroup>
 
                                     <SubmitButton
-                                        Text="ورود"
+                                        Text='ورود'
                                         Loading={loading}
                                     />
                                     {showLoginError &&
-                                        <p className="formError">{errorMessage}</p>
+                                        <p className='formError'>{errorMessage}</p>
                                     }
                                 </form>
                             )}
@@ -194,19 +194,19 @@ const LoginForm = (props) => {
                                     <FormGroup>
                                         <Label>کد تایید</Label>
                                         <Field
-                                            name="code"
+                                            name='code'
                                             component={AdaptedInput}
-                                            placeholder="کد تایید"
-                                            validate={value => value ? undefined : "وارد کردن کد تایید الزامی میباشد"}
+                                            placeholder='کد تایید'
+                                            validate={value => value ? undefined : 'وارد کردن کد تایید الزامی میباشد'}
                                             control
                                         />
-                                        <Error name="code" />
+                                        <Error name='code' />
                                     </FormGroup>
 
 
 
                                     <SubmitButton
-                                        Text="تایید"
+                                        Text='تایید'
                                         Loading={loading}
                                     />
 
@@ -228,84 +228,84 @@ const LoginForm = (props) => {
                                     <FormGroup>
                                         <Label>نام و نام خانوادگی</Label>
                                         <Field
-                                            name="fullname"
+                                            name='fullname'
                                             component={AdaptedInput}
-                                            placeholder="نام و نام خانوادگی"
-                                            validate={value => value ? undefined : "وارد کردن نام کامل الزامی میباشد"}
+                                            placeholder='نام و نام خانوادگی'
+                                            validate={value => value ? undefined : 'وارد کردن نام کامل الزامی میباشد'}
                                             control
                                         />
-                                        <Error name="fullname" />
+                                        <Error name='fullname' />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label>رمز عبور</Label>
                                         <Field
-                                            name="password"
-                                            type="password"
+                                            name='password'
+                                            type='password'
                                             component={AdaptedInput}
-                                            placeholder="رمز عبور"
-                                            validate={value => value ? undefined : "وارد کردن نام کامل الزامی میباشد"}
+                                            placeholder='رمز عبور'
+                                            validate={value => value ? undefined : 'وارد کردن نام کامل الزامی میباشد'}
                                             control
                                         />
-                                        <Error name="password" />
+                                        <Error name='password' />
                                     </FormGroup>
                                     {/* <FormGroup>
                                         <Label>نام و نام خانوادگی</Label>
                                         <Field
-                                            name="fullname"
+                                            name='fullname'
                                             component={AdaptedInput}
-                                            placeholder="نام و نام خانوادگی"
-                                            validate={value => value ? undefined : "وارد کردن نام کامل الزامی میباشد"}
+                                            placeholder='نام و نام خانوادگی'
+                                            validate={value => value ? undefined : 'وارد کردن نام کامل الزامی میباشد'}
                                             control
                                         />
-                                        <Error name="fullname" />
+                                        <Error name='fullname' />
                                     </FormGroup> */}
                                     <FormGroup>
                                         <Label>تاریخ تولد</Label>
                                         <PersianDatePicker
-                                            defaultValue="1991-03-21"
+                                            defaultValue='1991-03-21'
                                             onChangeDatepicker={onChangeDatepicker}
                                             birthday_start={birthday_start}
                                             birthday_end={birthday_end}
                                         />
 
 
-                                        <Error name="birthday" />
+                                        <Error name='birthday' />
 
                                     </FormGroup>
                                     <FormGroup>
                                         <Label>ایمیل</Label>
                                         <Field
-                                            name="email"
+                                            name='email'
                                             component={AdaptedInput}
-                                            placeholder="ایمیل"
-                                            validate={value => value ? undefined : "وارد کردن ایمیل میباشد"}
+                                            placeholder='ایمیل'
+                                            validate={value => value ? undefined : 'وارد کردن ایمیل میباشد'}
                                             control
                                         />
-                                        <Error name="email" />
+                                        <Error name='email' />
                                     </FormGroup>
 
                                     <FormGroup>
                                         <Label>محل سکونت</Label>
                                         <Field
-                                            name="city_id"
+                                            name='city_id'
                                             component={AdaptedSelect}
-                                            validate={value => value ? undefined : "واردن کردن محل سکونت اجباری میباشد"}
+                                            validate={value => value ? undefined : 'واردن کردن محل سکونت اجباری میباشد'}
                                             control
                                         >
-                                            <option value=""></option>
+                                            <option value=''></option>
                                             {cities && cities.map((item, index) => (
                                                 <option value={item.id} key={index}>{item.name}</option>
 
                                             ))}
                                         </Field>
-                                        <Error name="city_id" />
+                                        <Error name='city_id' />
                                     </FormGroup>
 
 
 
 
                                     <SubmitButton
-                                        Text="ثبت نهایی"
+                                        Text='ثبت نهایی'
                                         Loading={loading}
                                     />
 

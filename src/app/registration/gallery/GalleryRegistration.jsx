@@ -2,16 +2,16 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import axios from 'axios';
-import SecurityManager from "../../security/SecurityManager";
-import Urls from "../../components/Urls";
-import Section from "../../components/Section/Section";
+import SecurityManager from '../../security/SecurityManager';
+import Urls from '../../components/Urls';
+import Section from '../../components/Section/Section';
 
-import Container from "reactstrap/lib/Container";
-import Row from "reactstrap/lib/Row";
-import Col from "reactstrap/lib/Col";
+import Container from 'reactstrap/lib/Container';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 
 
-import { Form } from "react-final-form";
+import { Form } from 'react-final-form';
 import { Field } from 'react-final-form-html5-validation'
 import createDecorator from 'final-form-focus'
 
@@ -20,10 +20,10 @@ import { Toast } from '../../components/Toast/Toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-import AuthorizationForm from "../components/AuthorizationForm"
+import AuthorizationForm from '../components/AuthorizationForm'
 import NumbersConvertor from '../../components/NumbersConvertor';
 import RegisterMetaTags from '../RegisterMetaTags';
-import { RegisterForm } from "./RegistrationFrom";
+import { RegisterForm } from './RegistrationFrom';
 
 import {
     Step1Validation,
@@ -31,7 +31,7 @@ import {
     ValidateShebaNum
 } from '../artist/ArtistFormValidation';
 
-import MessageBox from "../../components/ui-components/MessageBox/MessageBox"
+import MessageBox from '../../components/ui-components/MessageBox/MessageBox'
 
 import '../Registration.scss';
 
@@ -44,12 +44,12 @@ const SubmitSeciton = ({ FormData, Text, values }) => (
 
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <button
-                            type="submit"
+                            type='submit'
                             style={{ width: '100%', marginBottom: 10 }}
                             disabled={FormData.SubmitBtnLoading}
-                            variant="primary"
+                            variant='primary'
                             className={`zbtn next black bradius ${FormData.SubmitBtnLoading ? `spinning` : null}`}
-                        >{Text} <i className="fas fa-angle-left" /></button>
+                        >{Text} <i className='fas fa-angle-left' /></button>
                     </Col>
                 </Row>
             </Col>
@@ -169,17 +169,17 @@ class GalleryRegistration extends React.Component {
             value.address.address == undefined ||
             value.address.address == '' ||
             value.address.tel == undefined ||
-            value.address.tel == "" ||
+            value.address.tel == '' ||
             value.work_hours.start_time == undefined ||
-            value.work_hours.start_time == "" ||
+            value.work_hours.start_time == '' ||
             value.work_hours.end_time == undefined ||
-            value.work_hours.end_time == "" ||
+            value.work_hours.end_time == '' ||
             value.holiday_set == undefined ||
-            value.holiday_set == "" ||
+            value.holiday_set == '' ||
             value.email == null ||
-            value.email == "" ||
+            value.email == '' ||
             value.sheba_num == null ||
-            value.sheba_num == "" ||
+            value.sheba_num == '' ||
             value.owner.name == undefined ||
             value.owner.name == '' ||
             value.owner.tel == undefined ||
@@ -193,7 +193,7 @@ class GalleryRegistration extends React.Component {
     onSubmit = async values => {
         var Holiday = []
         for (var i = 0; i < values.holiday_set.length; i++) {
-            Holiday[i] = { "name": values.holiday_set[i] };
+            Holiday[i] = { 'name': values.holiday_set[i] };
         }
 
         // window.alert(JSON.stringify(Holiday, 0, 2));
@@ -218,7 +218,7 @@ class GalleryRegistration extends React.Component {
             else {
                 var HolidaySet = []
                 for (var i = 0; i < values.holiday_set.length; i++) {
-                    HolidaySet[i] = { "name": values.holiday_set[i] };
+                    HolidaySet[i] = { 'name': values.holiday_set[i] };
                 }
                 this.BtnSubmitLoading(true)
                 axios
@@ -293,13 +293,13 @@ class GalleryRegistration extends React.Component {
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <div className="page-content registration">
+                                <div className='page-content registration'>
                                     {successBox &&
                                         <MessageBox
                                             title={message.title}
                                             message={message.message}
                                             type={message.type}
-                                            buttonText="رفتن به پروفایل"
+                                            buttonText='رفتن به پروفایل'
                                             seconds={timer}
                                             afterTimeFinished={this.afterTimeFinished}
                                         />
@@ -309,10 +309,10 @@ class GalleryRegistration extends React.Component {
                                     {!hasToken &&
                                         <AuthorizationForm
                                             afterLogin={this.getFormConfig}
-                                            checkMobileAPI="/gallery-app/gallery/check/"
-                                            validationAPI="/gallery-app/phone/validate/"
-                                            loginAPI="/gallery-app/gallery/login/"
-                                            type="Gallery"
+                                            checkMobileAPI='/gallery-app/gallery/check/'
+                                            validationAPI='/gallery-app/phone/validate/'
+                                            loginAPI='/gallery-app/gallery/login/'
+                                            type='Gallery'
                                             setAccessTokens={this.setAccessTokens}
                                         />
                                     }
@@ -340,7 +340,7 @@ class GalleryRegistration extends React.Component {
                                                             />
 
                                                             <SubmitSeciton
-                                                                Text="ثبت نام گالری"
+                                                                Text='ثبت نام گالری'
                                                                 FormData={FormData}
                                                                 currentStep={currentStep}
                                                                 values={values}

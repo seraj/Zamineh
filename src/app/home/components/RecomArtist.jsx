@@ -1,5 +1,5 @@
-import React from "react";
-import Arts from "./Arts";
+import React from 'react';
+import Arts from './Arts';
 
 class RecomArtist extends React.Component {
     renderItems = () => {
@@ -11,8 +11,8 @@ class RecomArtist extends React.Component {
                     ExtraClass={item.ExtraClass}
                     isFollow={item.is_flw}
                     id={item.id}
-                    viewsLink="link"
-                    mode="artists"
+                    viewsLink='link'
+                    mode='artists'
                     key={index}
                     query={`slug=${item.slug}`}
                     title={item.name}

@@ -38,11 +38,11 @@ export function TextAreaWordLimit(value, limitCount) {
 
   var str = value
   //exclude  start and end white-space
-  str = str.replace(/(^\s*)|(\s*$)/gi, "");
+  str = str.replace(/(^\s*)|(\s*$)/gi, '');
   //convert 2 or more spaces to 1  
-  str = str.replace(/[ ]{2,}/gi, " ");
+  str = str.replace(/[ ]{2,}/gi, ' ');
   // exclude newline with a start spacing  
-  str = str.replace(/\n /, "\n");
+  str = str.replace(/\n /, '\n');
   var strlength = str.split(' ').length
   if (strlength > limitCount) {
     return false

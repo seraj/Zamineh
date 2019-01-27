@@ -7,16 +7,16 @@ import 'react-toastify/dist/ReactToastify.css';
 export function Toast(type, message) {
     var ToastMessage;
     switch (type) {
-        case "error":
+        case 'error':
             ToastMessage = toast.error(message);
             break;
-        case "warning":
+        case 'warning':
             ToastMessage = toast.warning(message);
             break;
-        case "success":
+        case 'success':
             ToastMessage = toast.success(message);
             break;
-        case "info":
+        case 'info':
             ToastMessage = toast.info(message);
             break;
         default:
@@ -27,7 +27,7 @@ export function Toast(type, message) {
 export function ToastMessageBox() {
     return (
         <ToastContainer
-            position="top-right"
+            position='top-right'
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}

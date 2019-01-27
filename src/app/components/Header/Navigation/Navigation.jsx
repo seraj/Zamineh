@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import ReactResizeDetector from 'react-resize-detector';
 import Nav from 'reactstrap/lib/Nav';
 import NavItem from 'reactstrap/lib/NavItem';
-import styles from "../Header.scss"
-import NavStyle from "./Navigation.scss"
+import styles from '../Header.scss'
+import NavStyle from './Navigation.scss'
 
 
 function MoreLinks({ links }) {
@@ -12,9 +12,9 @@ function MoreLinks({ links }) {
 
     return (
         <span
-            data-anchor="right"
+            data-anchor='right'
             className={styles.zaminehDropdown}
-            data-mode="hover"
+            data-mode='hover'
         >
             <div className={`nav-link ${NavStyle.MoreBtn}`} >
                 بیشتر
@@ -117,7 +117,7 @@ export function MobileNav({ navList, className }) {
             {navList &&
                 navList.map((item, index) => (
                     <NavItem key={index}>
-                        <Link className="nav-link" to={item.link}>
+                        <Link className='nav-link' to={item.link}>
                             {item.name}
                         </Link>
                     </NavItem>

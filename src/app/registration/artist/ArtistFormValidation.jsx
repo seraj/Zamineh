@@ -10,11 +10,11 @@ export function Step1Validation(value) {
         value.first_name == undefined ||
         value.last_name == '' ||
         value.last_name == undefined ||
-        value.address == "" ||
+        value.address == '' ||
         value.address == undefined ||
-        value.email == "" ||
+        value.email == '' ||
         value.email == undefined ||
-        value.phone_num == "" ||
+        value.phone_num == '' ||
         value.phone_num == undefined
     ) {
         return false
@@ -63,11 +63,11 @@ export function AllExbValidation(value) {
             element.type == undefined ||
             element.name == '' ||
             element.name == undefined ||
-            element.date == "" ||
+            element.date == '' ||
             element.date == null ||
-            element.address == "" ||
+            element.address == '' ||
             element.address == null ||
-            element.desc == "" ||
+            element.desc == '' ||
             element.desc == null ||
             element.submitted == false
         ) {
@@ -83,11 +83,11 @@ export function SingleExbValidation(value) {
         value.type == undefined ||
         value.name == '' ||
         value.name == undefined ||
-        value.date == "" ||
+        value.date == '' ||
         value.date == null ||
-        value.address == "" ||
+        value.address == '' ||
         value.address == null ||
-        value.desc == "" ||
+        value.desc == '' ||
         value.desc == null
     ) {
         return false
@@ -106,9 +106,9 @@ export function AllArtValidation(value) {
             element.name == undefined ||
             element.year == '' ||
             element.year == undefined ||
-            element.mat_set == "" ||
+            element.mat_set == '' ||
             element.mat_set == null ||
-            element.size == "" ||
+            element.size == '' ||
             element.size == null ||
             element.size.width == undefined ||
             element.size.height == undefined ||
@@ -131,16 +131,16 @@ export function CollectionAllArtValidation(value) {
             element.name == undefined ||
             element.year == '' ||
             element.year == undefined ||
-            element.mat_set == "" ||
+            element.mat_set == '' ||
             element.mat_set == null ||
-            element.medium_set == "" ||
+            element.medium_set == '' ||
             element.medium_set == null ||
-            element.size == "" ||
+            element.size == '' ||
             element.size == null ||
             element.size.width == undefined ||
             element.size.height == undefined ||
             element.size.depth == undefined ||
-            element.gallery == "" ||
+            element.gallery == '' ||
             element.gallery == null ||
             element.submitted == false
         ) {
@@ -154,7 +154,7 @@ export function SingleCollectionValidation(value) {
     if (
         value.name == '' ||
         value.name == undefined ||
-        value.desc == "" ||
+        value.desc == '' ||
         value.desc == null
     ) {
         return false
@@ -172,16 +172,16 @@ export function SingleCollectionArtValidation(value) {
             element.name == undefined ||
             element.year == '' ||
             element.year == undefined ||
-            element.mat_set == "" ||
+            element.mat_set == '' ||
             element.mat_set == null ||
-            element.medium_set == "" ||
+            element.medium_set == '' ||
             element.medium_set == null ||
-            element.size == "" ||
+            element.size == '' ||
             element.size == null ||
             element.size.width == undefined ||
             element.size.height == undefined ||
             element.size.depth == undefined ||
-            element.gallery == "" ||
+            element.gallery == '' ||
             element.gallery == null ||
             element.submitted == false
         ) {
@@ -197,9 +197,9 @@ export function SingleArtValidation(value) {
         value.name == undefined ||
         value.year == '' ||
         value.year == undefined ||
-        value.mat_set == "" ||
+        value.mat_set == '' ||
         value.mat_set == null ||
-        value.size == "" ||
+        value.size == '' ||
         value.size == null ||
         value.size.width == undefined ||
         value.size.height == undefined ||

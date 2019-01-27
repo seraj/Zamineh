@@ -39,10 +39,10 @@ export function Spinner({ size = 'small', ...props }) {
                 viewBox={`0 0 ${baseSize} ${baseSize}`}
             >
                 <circle
-                    fill="none"
-                    stroke="currentColor"
+                    fill='none'
+                    stroke='currentColor'
                     strokeWidth={strokeWidth}
-                    strokeLinecap="round"
+                    strokeLinecap='round'
                     cx={pathSize}
                     cy={pathSize}
                     r={pathRadius}
@@ -51,15 +51,15 @@ export function Spinner({ size = 'small', ...props }) {
         </div>
     );
 }
-export function Loading({ text = 'لطفا صبر کنید', background = "#00000026" }) {
+export function Loading({ text = 'لطفا صبر کنید', background = '#00000026' }) {
     return (
         <div className={styles.loadingAnimation} style={{ background: background }}>
             <div className={styles.center}>
-                <span className="loader">
-                    <span className="loader-inner">
+                <span className='loader'>
+                    <span className='loader-inner'>
                     </span>
                 </span>
-                <span className="text">{text}</span>
+                <span className='text'>{text}</span>
             </div>
         </div>
     )

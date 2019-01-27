@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Urls from "../Urls";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Urls from '../Urls';
 
 import 'react-input-range-rtl/lib/css/index.css'
-import styles from "./Collections.scss"
+import styles from './Collections.scss'
 
 function SingleCollection({ item }) {
     return (

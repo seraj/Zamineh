@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Flickity from "react-flickity-component";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Flickity from 'react-flickity-component';
 import { Spinner } from '../../components/Spinner/Spinner';
 import SecurityManager from '../../security/SecurityManager'
-import Login from "../../login/Login";
+import Login from '../../login/Login';
 
-import Follow from "./Follow";
-import SingleArts from "./SingleArts";
-import Error from "../../components/Error";
-import Urls from "../../components/Urls";
-import Section from "../../components/Section/Section";
+import Follow from './Follow';
+import SingleArts from './SingleArts';
+import Error from '../../components/Error';
+import Urls from '../../components/Urls';
+import Section from '../../components/Section/Section';
 
-import { flickityOptions } from "../../components/FlickityOptions";
+import { flickityOptions } from '../../components/FlickityOptions';
 
 // const SingleArts = React.lazy(() => import('./SingleArts'));
 const isLogined = SecurityManager().isLogined();
@@ -31,10 +31,10 @@ class Arts extends Component {
 
   componentDidMount() {
 
-    let url = "";
+    let url = '';
     let mode = (this.props.mode);
 
-    if (this.props.type == "all") {
+    if (this.props.type == 'all') {
       url = `${Urls().api()}/for-you/${mode}/?type=${
         this.props.type
         }`;
@@ -141,9 +141,9 @@ class Arts extends Component {
           <Section ExtraClass={sectionName}>
 
 
-            <div className="section_header">
+            <div className='section_header'>
               {hasannotation &&
-                <div className="annotation">
+                <div className='annotation'>
                   {annotation} {based_name && <a href={Urls().artist() + based_slug}>{based_name}</a>}
                 </div>
               }
@@ -159,21 +159,21 @@ class Arts extends Component {
 
               }
               {viewsLink &&
-                <a href={viewsLink} className="view-all">
+                <a href={viewsLink} className='view-all'>
                   نمایش همه
             </a>
               }
             </div>
             <Flickity
-              className={"carousel items"}
-              elementType={"div"}
+              className={'carousel items'}
+              elementType={'div'}
               options={flickityOptions}
               disableImagesLoaded={false}
               reloadOnUpdate
             >
-              {type == "all" && (
-                <div className="artist_list">
-                  <div className="content">
+              {type == 'all' && (
+                <div className='artist_list'>
+                  <div className='content'>
                     {this.state.arts.artist_set &&
                       this.state.arts.artist_set.map(item => (
                         <a key={item.id} href={item.slug}>{item.name}</a>

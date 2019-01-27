@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import axios from "axios";
-import Popover from "reactstrap/lib/Popover";
-import PopoverBody from "reactstrap/lib/PopoverBody";
+import React, { Component } from 'react';
+import axios from 'axios';
+import Popover from 'reactstrap/lib/Popover';
+import PopoverBody from 'reactstrap/lib/PopoverBody';
 import SecurityManager from '../../security/SecurityManager'
-import Login from "../../login/Login";
+import Login from '../../login/Login';
 
-import { Img } from "../../components/General";
-import Urls from "../../components/Urls";
-import { IconPlus } from "../../components/Icons";
+import { Img } from '../../components/General';
+import Urls from '../../components/Urls';
+import { IconPlus } from '../../components/Icons';
 
 class Follow extends Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class Follow extends Component {
                 isFollow: response.data.state
             })
             if (response.data.state) {
-                if (type == "artists" && hassPopover) {
+                if (type == 'artists' && hassPopover) {
                     this.setState({
                         followPopover: true,
                         popoverContent: response.data.new_follow_set
@@ -104,21 +104,21 @@ class Follow extends Component {
                         :
                         () => this.openModal(true)}
                 >
-                    <div className="plus-button">
-                        <div className="follow-button-icon">
-                            <IconPlus height="20px" width="20px" fill="transparent" stroke="#333" />
+                    <div className='plus-button'>
+                        <div className='follow-button-icon'>
+                            <IconPlus height='20px' width='20px' fill='transparent' stroke='#333' />
                         </div>
-                        <div className="follow-button-text"></div>
+                        <div className='follow-button-text'></div>
                     </div>
                 </div>
                 {isLogined &&
-                    <Popover className={`follow-popover ${followPopover ? 'show' : ''}`} placement="bottom" isOpen={followPopover} target={`${mode}_${id}`} toggle={this.togglePopover}>
+                    <Popover className={`follow-popover ${followPopover ? 'show' : ''}`} placement='bottom' isOpen={followPopover} target={`${mode}_${id}`} toggle={this.togglePopover}>
                         <PopoverBody>
-                            <div className="header">
-                                <span className="header-text">هنرمندان دیگر برای دنبال کردن</span>
-                                <span class="popover-close">×</span>
+                            <div className='header'>
+                                <span className='header-text'>هنرمندان دیگر برای دنبال کردن</span>
+                                <span class='popover-close'>×</span>
                             </div>
-                            <div className="popover-artists">
+                            <div className='popover-artists'>
                                 <ul>
                                     {popoverContent &&
                                         popoverContent.map((item, index) => (
@@ -128,12 +128,12 @@ class Follow extends Component {
                                                         img={item.img.img}
                                                         width={item.img.ratio * 30}
                                                         alt={item.name}
-                                                        width="30"
-                                                        height="30"
+                                                        width='30'
+                                                        height='30'
                                                         style={{ background: '#e0e0e0', marginLeft: 10, width: 30, height: 30, float: 'right' }}
                                                     />
-                                                    <a href={`${Urls().artist()}${item.slug}`} className="artist-name">{item.name}</a>
-                                                    <a className={`follow-button ${item.is_flw ? 'following' : ''}`} onClick={() => this.popoverFollowClick(item.id, "artists", 1, index)}></a>
+                                                    <a href={`${Urls().artist()}${item.slug}`} className='artist-name'>{item.name}</a>
+                                                    <a className={`follow-button ${item.is_flw ? 'following' : ''}`} onClick={() => this.popoverFollowClick(item.id, 'artists', 1, index)}></a>
                                                 </div>
                                             </li>
                                         ))}

@@ -4,7 +4,7 @@ var sass = require('gulp-ruby-sass');
 var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var uglifyjs = require('gulp-uglifyjs');
-var rename = require("gulp-rename");
+var rename = require('gulp-rename');
 var inject = require('gulp-inject');
 var removeFiles = require('gulp-remove-files');
 

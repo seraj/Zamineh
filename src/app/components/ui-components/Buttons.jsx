@@ -1,5 +1,5 @@
-import DefaultStyle from "../../static/scss/_boxStyle.scss"
-import React from "react";
+import DefaultStyle from '../../static/scss/_boxStyle.scss'
+import React from 'react';
 
 export const FollowButton = (props) => {
     return (

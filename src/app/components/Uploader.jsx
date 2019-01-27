@@ -1,7 +1,7 @@
 
 import React from 'react';
 import axios from 'axios';
-import Urls from "../components/Urls";
+import Urls from '../components/Urls';
 import PropTypes from 'prop-types';
 import { FilePond, File, registerPlugin } from 'react-filepond';
 import SecurityManager from '../security/SecurityManager';
@@ -61,7 +61,7 @@ class Uploader extends React.Component {
                     allowFileTypeValidation
 
                     allowFileSizeValidation
-                    maxFileSize="3MB"
+                    maxFileSize='3MB'
 
                     acceptedFileTypes={['image/png', 'image/*']}
                     maxFiles={maxFiles}
@@ -73,19 +73,19 @@ class Uploader extends React.Component {
                     allowReplace
 
                     labelIdle='فایل را اینجا بکشید یا انتخاب کنید'
-                    labelFileLoading="در حال بارگذاری..."
-                    labelFileProcessing="در حال بارگذاری"
-                    labelFileProcessingComplete="بارگذاری با موفقیت انجام شد"
-                    labelTapToUndo="برای پاک کردن کلیک کنید"
-                    labelTapToCancel="لغو کردن بارگذاری"
-                    labelTapToRetry="دوباره سعی کن"
-                    labelButtonRemoveItem="حذف"
-                    labelButtonAbortItemLoad="لغو بارگذاری"
-                    labelButtonRetryItemLoad="دوباره"
-                    labelButtonAbortItemProcessing="لغو عملیات"
-                    labelButtonUndoItemProcessing="برگشت"
-                    labelButtonProcessItem="بارگذاری"
-                    labelFileLoadError="خطای بارگذاری"
+                    labelFileLoading='در حال بارگذاری...'
+                    labelFileProcessing='در حال بارگذاری'
+                    labelFileProcessingComplete='بارگذاری با موفقیت انجام شد'
+                    labelTapToUndo='برای پاک کردن کلیک کنید'
+                    labelTapToCancel='لغو کردن بارگذاری'
+                    labelTapToRetry='دوباره سعی کن'
+                    labelButtonRemoveItem='حذف'
+                    labelButtonAbortItemLoad='لغو بارگذاری'
+                    labelButtonRetryItemLoad='دوباره'
+                    labelButtonAbortItemProcessing='لغو عملیات'
+                    labelButtonUndoItemProcessing='برگشت'
+                    labelButtonProcessItem='بارگذاری'
+                    labelFileLoadError='خطای بارگذاری'
                     labelFileWaitingForSize='حجم تصویر شناسایی نشد'
                     labelMaxFileSizeExceeded='حجم عکس زیاد است'
                     labelMaxFileSize='حجم فایل آپلودی باید {filesize} باشد'
@@ -170,10 +170,10 @@ class Uploader extends React.Component {
 
                     {this.props.Multiple && this.props.files ?
                         this.props.files.map((file) => (
-                            <File key={file.id} src={file.name} origin="local" />
+                            <File key={file.id} src={file.name} origin='local' />
                         ))
                         :
-                        <File src={this.props.files} origin="local" />
+                        <File src={this.props.files} origin='local' />
                     }
 
 

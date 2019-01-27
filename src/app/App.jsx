@@ -9,15 +9,15 @@ import { ToastMessageBox, Toast } from './components/Toast/Toast';
 import queryString from 'query-string';
 import {
     isMobile
-} from "react-device-detect";
+} from 'react-device-detect';
 
 import cookie from 'react-cookies';
 import SecurityManager from './security/SecurityManager'
-import Urls from "./components/Urls";
+import Urls from './components/Urls';
 
 /* Components */
-import Routing from "./Routing";
-import Login from "./login/Login";
+import Routing from './Routing';
+import Login from './login/Login';
 import Header from './components/Header/Header';
 import AppFooter from './AppFooter';
 
@@ -86,8 +86,8 @@ class App extends React.Component {
                     //     SecurityManager().getRegClientIDSecret('secret', 'Artist');
                 } else {
                     token = SecurityManager().getAuthToken();
-                    // clientID = cookie.load("client_id", { path: "/" });
-                    // clientSecret = cookie.load("client_secret", { path: "/" });
+                    // clientID = cookie.load('client_id', { path: '/' });
+                    // clientSecret = cookie.load('client_secret', { path: '/' });
                 }
 
                 if (token && token !== null && token !== 'null') {
@@ -229,7 +229,7 @@ class App extends React.Component {
 
 
                 if (GalleryRegistrationPage) {
-                    if (galleryReg_auth_client_id == "" || galleryReg_auth_client_id == undefined) {
+                    if (galleryReg_auth_client_id == '' || galleryReg_auth_client_id == undefined) {
                         await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`, {
                             is_gallery: true
                         }).then((response) => {
@@ -238,7 +238,7 @@ class App extends React.Component {
                     }
                 }
                 if (ArtistRegistrationPage) {
-                    if (artistReg_auth_client_secret == "" || artistReg_auth_client_secret == undefined) {
+                    if (artistReg_auth_client_secret == '' || artistReg_auth_client_secret == undefined) {
                         await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`, {
                             is_gallery: true
                         })
@@ -251,7 +251,7 @@ class App extends React.Component {
 
 
 
-            if (auth_client_id == "" || auth_client_id == undefined) {
+            if (auth_client_id == '' || auth_client_id == undefined) {
                 await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`)
                     .then((response) => {
                         cookie.save('auth_client_id', response.data.client_id, { path: '/' });
@@ -263,7 +263,7 @@ class App extends React.Component {
 
 
 
-            if (client_id == "" || client_id == undefined) {
+            if (client_id == '' || client_id == undefined) {
                 await axios.post(`${Urls().api()}/2sFrKCs7p8L5fhtV/me37TEkRuXKVz/`)
                     .then((response) => {
                         cookie.save('client_id', response.data.client_id, { path: '/' });

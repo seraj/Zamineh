@@ -3,29 +3,33 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import axios from 'axios';
 import Loadable from 'react-loadable';
-import moment from "moment-jalaali";
-import SecurityManager from "../../security/SecurityManager";
-import Urls from "../../components/Urls";
-import Section from "../../components/Section/Section";
+import moment from 'moment-jalaali';
+import {
+    isMobile
+} from 'react-device-detect';
 
-import Container from "reactstrap/lib/Container";
-import Row from "reactstrap/lib/Row";
-import Col from "reactstrap/lib/Col";
+import SecurityManager from '../../security/SecurityManager';
+import Urls from '../../components/Urls';
+import Section from '../../components/Section/Section';
+
+import Container from 'reactstrap/lib/Container';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 
 
-import { Form } from "react-final-form";
+import { Form } from 'react-final-form';
 import { Field } from 'react-final-form-html5-validation'
 import setFieldData from 'final-form-set-field-data'
 import createDecorator from 'final-form-focus'
 import arrayMutators from 'final-form-arrays'
 import { Toast } from '../../components/Toast/Toast';
 
-import AuthorizationForm from "../components/AuthorizationForm"
+import AuthorizationForm from '../components/AuthorizationForm'
 import NumbersConvertor from '../../components/NumbersConvertor';
 import RegisterMetaTags from '../RegisterMetaTags';
-import { Step1, Step2, Step3 } from "./Steps";
-import StepBar from "../../components/StepBar/StepBar"
-import MessageBox from "../../components/ui-components/MessageBox/MessageBox"
+import { Step1, Step2, Step3 } from './Steps';
+import StepBar from '../../components/StepBar/StepBar'
+import MessageBox from '../../components/ui-components/MessageBox/MessageBox'
 
 const Step4 = Loadable({
     loader: () => import('./Steps').then(module => module.Step4),
@@ -60,17 +64,17 @@ const SubmitSeciton = ({ StepData, Text, values, currentStep, goToSteps }) => (
                                 onClick={() => goToSteps(currentStep - 1)}
                                 style={{ width: '100%', marginBottom: 10 }}
                                 className={`zbtn blank previous bradius`}
-                            >بازگشت به مرحله قبل <i className="fas fa-angle-right" /></a>
+                            >بازگشت به مرحله قبل <i className='fas fa-angle-right' /></a>
                         </Col>
                     }
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <button
-                            type="submit"
+                            type='submit'
                             style={{ width: '100%', marginBottom: 10 }}
                             disabled={StepData.SubmitBtnLoading}
-                            variant="primary"
+                            variant='primary'
                             className={`zbtn next black bradius ${StepData.SubmitBtnLoading ? `spinning` : null}`}
-                        >{Text} <i className="fas fa-angle-left" /></button>
+                        >{Text} <i className='fas fa-angle-left' /></button>
                     </Col>
                 </Row>
             </Col>
@@ -299,7 +303,13 @@ class ArtistRegistration extends React.Component {
                 .post(`${Urls().api()}/gallery-app/artist/portfolio-step4/`)
                 .then(() => {
                     Toast('success', 'اطلاعات شما با موفقیت ثبت شد');
-                    this.BtnSubmitLoading(false)
+                    this.BtnSubmitLoading(false);
+                    if (parsed['xeYDSM2fWgsJvFuN'] == 'ios' && isMobile) {
+                        console.log('ios')
+                    }
+                    else if (parsed['xeYDSM2fWgsJvFuN'] == 'android') {
+                        console.log('android')
+                    }
                 }).then(() => {
                     this.getSteps()
                 })
@@ -325,7 +335,7 @@ class ArtistRegistration extends React.Component {
     }
     onChangeDatepicker = async value => {
         const date = await `${value.jYear()}-${value.jMonth() + 1}-${value.jDate()}`;
-        const endate = moment(date, "jYYYY-jM-jD").format("YYYY-MM-DD");
+        const endate = moment(date, 'jYYYY-jM-jD').format('YYYY-MM-DD');
         await this.setState(
             {
                 datePicker: endate
@@ -577,7 +587,7 @@ class ArtistRegistration extends React.Component {
             }, () => {
                 this.forceUpdate()
             })
-        } else if (ArtValue.gallery == undefined || ArtValue.gallery == "") {
+        } else if (ArtValue.gallery == undefined || ArtValue.gallery == '') {
             Toast('warning', `اطلاعات گالری مالک اثر برای اثر شماره ${Artindex + 1} را تکمیل نمایید`);
             ArtData.submitted = false;
             ArtValue.submitted = false
@@ -738,19 +748,19 @@ class ArtistRegistration extends React.Component {
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <div className="page-content registration">
+                                <div className='page-content registration'>
                                     {successBox &&
                                         <MessageBox
                                             title={message.title}
                                             message={message.message}
                                             type={message.type}
-                                            buttonText="رفتن به پروفایل"
+                                            buttonText='رفتن به پروفایل'
                                             seconds={timer}
                                             afterTimeFinished={this.afterTimeFinished}
                                         />
                                     }
                                     {!successBox &&
-                                        <StepBar currentStep={currentStep} page="artist" />
+                                        <StepBar currentStep={currentStep} page='artist' />
                                     }
                                     <div className={Loading ? `LoadingData` : ''}></div>
 
@@ -758,10 +768,10 @@ class ArtistRegistration extends React.Component {
                                     {!hasToken &&
                                         <AuthorizationForm
                                             afterLogin={this.getSteps}
-                                            checkMobileAPI="/gallery-app/gallery/check/"
-                                            validationAPI="/gallery-app/phone/validate/"
-                                            loginAPI="/gallery-app/gallery/login/"
-                                            type="Artist"
+                                            checkMobileAPI='/gallery-app/gallery/check/'
+                                            validationAPI='/gallery-app/phone/validate/'
+                                            loginAPI='/gallery-app/gallery/login/'
+                                            type='Artist'
                                             setAccessTokens={this.setAccessTokens}
                                         />
                                     }
@@ -787,7 +797,7 @@ class ArtistRegistration extends React.Component {
                                                             />
 
                                                             <SubmitSeciton
-                                                                Text="ثبت اطلاعات و رفتن به مرحله ۲"
+                                                                Text='ثبت اطلاعات و رفتن به مرحله ۲'
                                                                 StepData={StepData}
                                                                 currentStep={currentStep}
                                                                 values={values}
@@ -817,7 +827,7 @@ class ArtistRegistration extends React.Component {
                                                                 ValidateTextArea={ValidateTextArea}
                                                             />
                                                             <SubmitSeciton
-                                                                Text="ثبت اطلاعات و رفتن به مرحله ۳"
+                                                                Text='ثبت اطلاعات و رفتن به مرحله ۳'
                                                                 StepData={StepData}
                                                                 currentStep={currentStep}
                                                                 values={values}
@@ -872,7 +882,7 @@ class ArtistRegistration extends React.Component {
 
 
                                                                 <SubmitSeciton
-                                                                    Text="ثبت اطلاعات و رفتن به مرحله ۴"
+                                                                    Text='ثبت اطلاعات و رفتن به مرحله ۴'
                                                                     StepData={StepData}
                                                                     currentStep={currentStep}
                                                                     values={values}
@@ -927,7 +937,7 @@ class ArtistRegistration extends React.Component {
 
                                                                 />
                                                                 <SubmitSeciton
-                                                                    Text="ثبت نهایی اطلاعات"
+                                                                    Text='ثبت نهایی اطلاعات'
                                                                     StepData={StepData}
                                                                     currentStep={currentStep}
                                                                     values={values}

@@ -38,7 +38,7 @@ class ZaminehMap extends Component {
                 L.tileLayer.wms('http://map.ir/shiveh', {
                     layers: 'Shiveh:ShivehGSLD256',
                     format: 'image/png',
-                    attribution: '&copy; <a href="http://corp.map.ir">Map.ir</a> contributors'
+                    attribution: '&copy; <a href=`http://corp.map.ir`>Map.ir</a> contributors'
                 }),
             ]
         });
@@ -65,7 +65,7 @@ class ZaminehMap extends Component {
                 })
                     .on('locationerror', function (e) {
                         console.log(e);
-                        console.log("Location access denied.");
+                        console.log('Location access denied.');
                     });
 
 
@@ -100,7 +100,7 @@ class ZaminehMap extends Component {
     }
     render() {
         return (
-            <div id={"map"} />
+            <div id={'map'} />
         );
     }
 }

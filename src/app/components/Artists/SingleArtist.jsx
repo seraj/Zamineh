@@ -1,21 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
-import Urls from "../../components/Urls";
-import Flickity from "react-flickity-component";
-import styles from "./Artists.scss"
-import DefaultStyle from "../../static/scss/_boxStyle.scss"
-import { Img } from "../../components/General"
+import Urls from '../../components/Urls';
+import Flickity from 'react-flickity-component';
+import styles from './Artists.scss'
+import DefaultStyle from '../../static/scss/_boxStyle.scss'
+import { Img } from '../../components/General'
 
-import { IconArrowLeft } from "../../components/Icons";
+import { IconArrowLeft } from '../../components/Icons';
 
 const flickityOptions = {
     initialIndex: 0,
     pageDots: false,
     contain: true,
     rightToLeft: true,
-    cellAlign: "right",
+    cellAlign: 'right',
     groupCells: 2
     // wrapAround: true
 };
@@ -24,11 +24,11 @@ const flickityOptions = {
 export const TopArtists = (props) => (
     <React.Fragment>
         <div className={styles.TopArtistCarousel}>
-            <h1 className="center-h1">{props.title}</h1>
+            <h1 className='center-h1'>{props.title}</h1>
             <Row>
                 <Flickity
-                    className={"carousel items"}
-                    elementType={"div"}
+                    className={'carousel items'}
+                    elementType={'div'}
                     options={flickityOptions}
                     disableImagesLoaded={false}
                     reloadOnUpdate
@@ -56,7 +56,7 @@ export const TopSingleArtist = (props) => (
 
             <div className={`${DefaultStyle.BorderedBox} big`}>
                 <Link to={`${Urls().artist()}${props.item.slug}`}>
-                    <div className="thumb img-hoverable">
+                    <div className='thumb img-hoverable'>
                         <Img
                             img={props.item.img}
                             alt={props.item.name}
@@ -65,7 +65,7 @@ export const TopSingleArtist = (props) => (
 
                 </Link>
                 <div className={DefaultStyle.box_details_inline}>
-                    <div className="details_right">
+                    <div className='details_right'>
                         <Link to={`${Urls().artist()}${props.item.slug}`}>
                             <span className={`${DefaultStyle.BoxContent} bold`}>{props.item.name}</span>
                         </Link>
@@ -78,7 +78,7 @@ export const TopSingleArtist = (props) => (
                         }
 
                     </div>
-                    <div className="details_left">
+                    <div className='details_left'>
                         <button
                             className={`${DefaultStyle.followBtn} big ${props.item.is_flw ? 'following' : ''}`}
                             onClick={
@@ -99,7 +99,7 @@ export const SingleArtist = (props) => (
         <div className={`${styles.SingleArtist} ${styles.simpleArtist} `}>
 
             <div className={DefaultStyle.BorderedBox}>
-                <div className="thumb img-hoverable">
+                <div className='thumb img-hoverable'>
                     <Link to={`${Urls().artist()}${props.item.slug}`}>
                         <Img
                             img={props.item.img.img}
@@ -147,10 +147,10 @@ export const FeatureArtist = (props) => {
                             {item.name}
                             <i>
                                 <IconArrowLeft
-                                    height="20px"
-                                    width="20px"
-                                    fill="transparent"
-                                    stroke="#6b6b6b"
+                                    height='20px'
+                                    width='20px'
+                                    fill='transparent'
+                                    stroke='#6b6b6b'
                                 />
                             </i>
                         </Link>

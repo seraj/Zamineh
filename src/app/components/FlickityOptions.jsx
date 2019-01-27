@@ -6,7 +6,7 @@ export const flickityOptions = {
     pageDots: false,
     contain: true,
     rightToLeft: true,
-    cellAlign: "right",
+    cellAlign: 'right',
     groupCells: true
 
     //   groupCells: true

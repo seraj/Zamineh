@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
 // import Loadable from 'react-loadable';
 // import ContentLoader from 'react-content-loader'
 
-import Container from "reactstrap/lib/Container";
+import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 
 import ModelManager from '../Models';
 
-import AlphabetSet from "./AlphabetSet"
-import Login from "../../login/Login";
-import { FeatureArtist, TopArtists } from "./SingleArtist";
-import Error from "..//Error";
-import Urls from "../Urls";
-import Section from "../Section/Section";
+import AlphabetSet from './AlphabetSet'
+import Login from '../../login/Login';
+import { FeatureArtist, TopArtists } from './SingleArtist';
+import Error from '..//Error';
+import Urls from '../Urls';
+import Section from '../Section/Section';
 
 // const TopArtists = Loadable({
 //     loader: () => import('./SingleArtist').then(module => module.TopArtists),
@@ -91,7 +91,7 @@ class Artists extends Component {
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <div className="section_header_single">
+                                <div className='section_header_single'>
                                     <h1>{ModelManager().convertModelName('artists')}</h1>
 
                                 </div>
@@ -99,7 +99,7 @@ class Artists extends Component {
                         </Row>
                         <AlphabetSet />
                         <TopArtists
-                            title="هنرمندان بولد"
+                            title='هنرمندان بولد'
                             item={this.state.artist.featured_artists}
                             onFollowClick={this.onFollowClick}
                             openModal={this.openModal}

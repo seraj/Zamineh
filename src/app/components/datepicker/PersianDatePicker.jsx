@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import moment from 'moment-jalaali';
 
 import { DatePicker } from 'react-persian-datepicker';
-import datepickerStyle from "./datepicker.css";
+import datepickerStyle from './datepicker.css';
 
 class PersianDatePicker extends React.Component {
     constructor(props) {
@@ -33,10 +33,10 @@ class PersianDatePicker extends React.Component {
         }
         return (
             <DatePicker
-                mode="monthSelector"
-                className="datepickerInput"
+                mode='monthSelector'
+                className='datepickerInput'
                 calendarStyles={styles}
-                inputFormat="jYYYY/jM/jD"
+                inputFormat='jYYYY/jM/jD'
                 defaultValue={datePickerValue}
                 min={birthday_start ? min_date : null}
                 max={birthday_end ? max_date : null}

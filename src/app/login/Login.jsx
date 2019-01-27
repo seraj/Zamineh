@@ -1,13 +1,13 @@
-import React from "react";
-import axios from "axios";
-import cookie from "react-cookies";
+import React from 'react';
+import axios from 'axios';
+import cookie from 'react-cookies';
 
-import LoginForm from "./LoginForm";
-import SecurityManager from "../security/SecurityManager";
-import NumbersConvertor from "../components/NumbersConvertor";
-import Urls from "../components/Urls";
-import moment from "moment-jalaali";
-import LoginModal from "./LoginModal";
+import LoginForm from './LoginForm';
+import SecurityManager from '../security/SecurityManager';
+import NumbersConvertor from '../components/NumbersConvertor';
+import Urls from '../components/Urls';
+import moment from 'moment-jalaali';
+import LoginModal from './LoginModal';
 
 class Login extends React.Component {
   constructor(props) {
@@ -20,11 +20,11 @@ class Login extends React.Component {
       isMobileValidationStep2: false,
       signUpFormStep3: false,
       showLoginError: false,
-      errorMessage: "",
+      errorMessage: '',
       birthday_start: '',
       birthday_end: '',
       cities: [],
-      birthday: ""
+      birthday: ''
     };
   }
   componentDidMount = () => { };
@@ -38,15 +38,15 @@ class Login extends React.Component {
       .post(
         `${Urls().api()}/client-app/client/check/`,
         {
-          client_id: cookie.load("client_id", { path: "/" }),
-          client_secret: cookie.load("client_secret", { path: "/" }),
-          player_id: "12345539",
+          client_id: cookie.load('client_id', { path: '/' }),
+          client_secret: cookie.load('client_secret', { path: '/' }),
+          player_id: '12345539',
           username: values.username
         },
         {}
       )
       .then(response => {
-        if (response.data.sms_exc == "") {
+        if (response.data.sms_exc == '') {
           if (response.data.has_client === false) {
             this.setState({
               username: values.username,
@@ -83,9 +83,9 @@ class Login extends React.Component {
       .post(
         `${Urls().api()}/client-app/phone/validate/`,
         {
-          client_id: cookie.load("client_id", { path: "/" }),
-          client_secret: cookie.load("client_secret", { path: "/" }),
-          player_id: "12345539",
+          client_id: cookie.load('client_id', { path: '/' }),
+          client_secret: cookie.load('client_secret', { path: '/' }),
+          player_id: '12345539',
           username: this.state.username,
           code: values.code
         },
@@ -112,11 +112,11 @@ class Login extends React.Component {
 
     axios
       .post(`${Urls().api()}/client-app/login/`, {
-        client_id: cookie.load("client_id", { path: "/" }),
-        client_secret: cookie.load("client_secret", { path: "/" }),
+        client_id: cookie.load('client_id', { path: '/' }),
+        client_secret: cookie.load('client_secret', { path: '/' }),
         username: this.state.username,
         password: values.password,
-        grant_type: "password"
+        grant_type: 'password'
       })
       .then(response => {
         // localStorage.setItem('access_token', response.data.access_token);
@@ -140,9 +140,9 @@ class Login extends React.Component {
 
     axios
       .post(`${Urls().api()}/client-app/register/`, {
-        client_id: cookie.load("client_id", { path: "/" }),
-        client_secret: cookie.load("client_secret", { path: "/" }),
-        username: this.state.username ? this.state.username : "09120535594",
+        client_id: cookie.load('client_id', { path: '/' }),
+        client_secret: cookie.load('client_secret', { path: '/' }),
+        username: this.state.username ? this.state.username : '09120535594',
         password: values.password,
         name: values.fullname,
         birthday: this.state.birthday,
@@ -161,8 +161,8 @@ class Login extends React.Component {
   getBirthyears = () => {
     axios
       .post(`${Urls().api()}/birthday/range/`, {
-        client_id: cookie.load("client_id", { path: "/" }),
-        client_secret: cookie.load("client_secret", { path: "/" })
+        client_id: cookie.load('client_id', { path: '/' }),
+        client_secret: cookie.load('client_secret', { path: '/' })
       })
       .then(response => {
         this.setState({
@@ -177,8 +177,8 @@ class Login extends React.Component {
   getCities = () => {
     axios
       .post(`${Urls().api()}/cities/`, {
-        client_id: cookie.load("client_id", { path: "/" }),
-        client_secret: cookie.load("client_secret", { path: "/" })
+        client_id: cookie.load('client_id', { path: '/' }),
+        client_secret: cookie.load('client_secret', { path: '/' })
       })
       .then(response => {
         this.setState({
@@ -192,7 +192,7 @@ class Login extends React.Component {
   onChangeDatepicker = async value => {
     const date = await `${value.jYear()}-${value.jMonth() +
       1}-${value.jDate()}`;
-    const endate = moment(date, "jYYYY-jM-jD").format("YYYY-MM-DD");
+    const endate = moment(date, 'jYYYY-jM-jD').format('YYYY-MM-DD');
     console.log(value);
     await this.setState(
       {

@@ -8,20 +8,20 @@ import {
     Button,
     RadioGroup,
 
-} from "@smooth-ui/core-sc";
-import Row from "reactstrap/lib/Row";
-import Col from "reactstrap/lib/Col";
+} from '@smooth-ui/core-sc';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 import Modal from '../../components/ui-components/Modal/Modal'
 import { Field } from 'react-final-form-html5-validation'
 import { FieldArray } from 'react-final-form-arrays'
-import Divider from "../../components/Divider";
-import Uploader from "../../components/Uploader";
+import Divider from '../../components/Divider';
+import Uploader from '../../components/Uploader';
 import PersianDatePicker from '../../components/datepicker/PersianDatePicker';
-import Alert from "../../components/Alert/Alert";
-import { Loading } from "../../components/Spinner/Spinner";
+import Alert from '../../components/Alert/Alert';
+import { Loading } from '../../components/Spinner/Spinner';
 
-import InputAsyncTypeahead from "../components/InputAsyncTypeahead";
-import styles from "../Registration.scss"
+import InputAsyncTypeahead from '../components/InputAsyncTypeahead';
+import styles from '../Registration.scss'
 
 
 const LinkButton = Button.withComponent('a')
@@ -36,7 +36,7 @@ const Error = ({ name }) => (
 );
 const SubmittedArt = (Arts) => {
     return (
-        Arts.filter(arts => {
+        Arts && Arts.filter(arts => {
             return arts.submitted === true;
         })
     )
@@ -75,10 +75,10 @@ export const Collection = ({
     index,
     values }, ...props) => {
     const ColIndex = index
-    const ColData = data.collection_set[index]
+    const ColData = data.collection_set ? data.collection_set[index] : null
     const unSubmittedArts = values.collection_set[index] ? unSubmittedArt(values.collection_set[index].art_set).length : null;
 
-    const ServerData = data.collection_set[ColIndex];
+    const ServerData = data.collection_set ? data.collection_set[ColIndex] : null;
     const CoverUploadServer = `/gallery-app/artist/collection/upload-image/${values.collection_set[ColIndex] ? values.collection_set[ColIndex].id : ''}/cover/`;
     const LogoUploadServer = `/gallery-app/artist/collection/upload-image/${values.collection_set[ColIndex] ? values.collection_set[ColIndex].id : ''}/logo/`;
 
@@ -95,13 +95,13 @@ export const Collection = ({
                     hidden
                 />
                 <Col xs={12}>
-                    <Divider text={`مشخصات مجموعه ${index + 1}`} orientation="right" />
+                    <Divider text={`مشخصات مجموعه ${index + 1}`} orientation='right' />
                 </Col>
                 {unSubmittedArts > 0 &&
                     <Col xs={12}>
                         <Alert
                             message={`شما در این مجموعه ${unSubmittedArts} اثر ثبت نشده دارید.لطفا نسبت به تکمیل اطلاعات اثر اقدام نمایید`}
-                            type="error"
+                            type='error'
                             style={{ marginBottom: 15 }}
                             icon
                             rtl
@@ -114,8 +114,8 @@ export const Collection = ({
                         <Field
                             name={`${name}.name`}
                             component={input}
-                            placeholder="نام مجموعه"
-                            validate={value => value ? undefined : "وارد کردن نام مجموعه میباشد"}
+                            placeholder='نام مجموعه'
+                            validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
                             control
                         />
                         <Error name={`${name}.name`} />
@@ -127,9 +127,9 @@ export const Collection = ({
                         <Field
                             name={`${name}.desc`}
                             component={textarea}
-                            maxLength="500"
-                            placeholder="..."
-                            validate={value => value ? undefined : "الزامی"}
+                            maxLength='500'
+                            placeholder='...'
+                            validate={value => value ? undefined : 'الزامی'}
                             control
                         />
                         <Error name={`${name}.desc`} />
@@ -162,7 +162,7 @@ export const Collection = ({
                 </Col>
 
                 <Col xs={12}>
-                    <Divider text="تمام آثار این مجموعه" orientation="right" />
+                    <Divider text='تمام آثار این مجموعه' orientation='right' />
                 </Col>
 
 
@@ -197,58 +197,57 @@ export const Collection = ({
                                         <Col xs={12}>
                                             <div className={styles.addSectionButton}>
                                                 <button
-                                                    type="button"
-                                                    className=""
+                                                    type='button'
+                                                    className=''
                                                     onClick={() => addArt(fields.push, values.collection_set[ColIndex].id)}>
                                                     <i></i>
                                                     <span>اضافه کردن اثر</span>
                                                 </button>
                                             </div>
                                         </Col>
-                                        {/*
-                                            {SubmittedArt(values.art_set).length > 0 &&
-                                                <Col xs={6}>
-                                                    <div className={styles.importArtButton}>
-                                                        <button
-                                                            type="button"
-                                                            className=""
-                                                            onClick={() => openArtModal()}>
-                                                            <i></i>
-                                                            <span>درون ریزی آثار</span>
-                                                        </button>
-                                                    </div>
-                                                    <Modal
-                                                        isOpen={ModalToggle}
-                                                        toggle={openArtModal}
-                                                        className={styles.importArts}
-                                                        title={'درون ریزی آثار مختلط'}
-                                                    >
-                                                        <Row>
-                                                            <Col xs={12}>
-                                                                <p>شما میتوانید آثار ثبت شده را برای استفاده در این قسمت انتخاب کنید</p>
-                                                            </Col>
-                                                            {values && values.art_set &&
-                                                                SubmittedArt(values.art_set).map((arts, index) => (
-                                                                    <Col key={index} xs={12}>
-                                                                        <div className="_art">
-                                                                            {arts.name}
-                                                                            <a
-                                                                                className={`import-button`}
-                                                                                onClick={() => importArttoCollection(index, arts.id, values.collection_set[ColIndex].id)}>
-                                                                            </a>
-                                                                        </div>
-                                                                    </Col>
+                                        {values.art_set && SubmittedArt(values.art_set).length > 0 &&
+                                            <Col xs={6}>
+                                                <div className={styles.importArtButton}>
+                                                    <button
+                                                        type='button'
+                                                        className=''
+                                                        onClick={() => openArtModal()}>
+                                                        <i></i>
+                                                        <span>درون ریزی آثار</span>
+                                                    </button>
+                                                </div>
+                                                <Modal
+                                                    isOpen={ModalToggle}
+                                                    toggle={openArtModal}
+                                                    className={styles.importArts}
+                                                    title={'درون ریزی آثار مختلط'}
+                                                >
+                                                    <Row>
+                                                        <Col xs={12}>
+                                                            <p>شما میتوانید آثار ثبت شده را برای استفاده در این قسمت انتخاب کنید</p>
+                                                        </Col>
+                                                        {values && values.art_set &&
+                                                            SubmittedArt(values.art_set).map((arts, index) => (
+                                                                <Col key={index} xs={12}>
+                                                                    <div className='_art'>
+                                                                        {arts.name}
+                                                                        <a
+                                                                            className={`import-button`}
+                                                                            onClick={() => importArttoCollection(index, arts.id, values.collection_set[ColIndex].id)}>
+                                                                        </a>
+                                                                    </div>
+                                                                </Col>
 
-                                                                ))
+                                                            ))
 
-                                                            }
-                                                            
-                                                        </Row>
-                                                    </Modal>
+                                                        }
 
-                                                </Col>
-                                }
-                                 */}
+                                                    </Row>
+                                                </Modal>
+
+                                            </Col>
+                                        }
+
                                     </React.Fragment>
 
                                 </Row>
@@ -258,10 +257,10 @@ export const Collection = ({
 
                 </FieldArray>
 
-                <Col sm={12} className="text-left">
+                <Col sm={12} className='text-left'>
                     <LinkButton
                         onClick={() => singleColSubmit(values, ColIndex)}
-                        className="zbtn black bradius"
+                        className='zbtn black bradius'
                     >ثبت مجموعه</LinkButton>
                 </Col>
             </Row>
@@ -303,7 +302,7 @@ export const SingleArt = ({
                         hidden
                     />
                     <Col lg={12} md={12} sm={12} xs={12}>
-                        <Divider text={`اثر شماره ${index + 1}`} orientation="right" />
+                        <Divider text={`اثر شماره ${index + 1}`} orientation='right' />
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
@@ -311,8 +310,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.name`}
                                 component={input}
-                                placeholder="نام اثر"
-                                validate={value => value ? undefined : "وارد کردن نام اثر الزامی میباشد"}
+                                placeholder='نام اثر'
+                                validate={value => value ? undefined : 'وارد کردن نام اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.name`} />
@@ -324,8 +323,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.year`}
                                 component={input}
-                                placeholder="سال تولید اثر"
-                                validate={value => value ? undefined : "وارد کردن سال تولید اثر الزامی میباشد"}
+                                placeholder='سال تولید اثر'
+                                validate={value => value ? undefined : 'وارد کردن سال تولید اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.year`} />
@@ -338,9 +337,9 @@ export const SingleArt = ({
                                 multiple
                                 clearButton
                                 name={`${name}.mat_set`}
-                                api="/gallery-app/material/autocomplete/?phrase"
-                                placeholder="متریال استفاده شده در اثر"
-                                validate={value => value ? undefined : "وارد کردن متریال الزامی میباشد"}
+                                api='/gallery-app/material/autocomplete/?phrase'
+                                placeholder='متریال استفاده شده در اثر'
+                                validate={value => value ? undefined : 'وارد کردن متریال الزامی میباشد'}
                             />
                             <Error name={`${name}.mat_set`} />
                         </FormGroup>
@@ -352,16 +351,16 @@ export const SingleArt = ({
                                 <InputAsyncTypeahead
                                     clearButton
                                     name={`${name}.medium_set`}
-                                    api="/gallery-app/medium/autocomplete/?phrase"
-                                    placeholder="بستر استفاده شده در اثر"
-                                    validate={value => value ? undefined : "وارد کردن بستر الزامی میباشد"}
+                                    api='/gallery-app/medium/autocomplete/?phrase'
+                                    placeholder='بستر استفاده شده در اثر'
+                                    validate={value => value ? undefined : 'وارد کردن بستر الزامی میباشد'}
                                 />
                                 <Error name={`${name}.medium_set`} />
                             </FormGroup>
                         </Col>
                     }
                     <Col lg={12} md={12} sm={12} xs={12}>
-                        <Divider text={`ابعاد اثر`} orientation="right" />
+                        <Divider text={`ابعاد اثر`} orientation='right' />
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
@@ -369,11 +368,11 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.unit`}
                                 component={select}
-                                validate={value => value ? undefined : "واردن کردن واحد الزامی میباشد"}
+                                validate={value => value ? undefined : 'واردن کردن واحد الزامی میباشد'}
                                 control
                                 arrow={false}
                             >
-                                <option value="" disabled>انتخاب واحد اندازه گیری</option>
+                                <option value='' disabled>انتخاب واحد اندازه گیری</option>
                                 {config && config.unit && config.unit.map((item, index) => (
                                     <option value={item.value} key={index}>{item.title}</option>
                                 ))}
@@ -389,8 +388,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.width`}
                                 component={input}
-                                placeholder="طول اثر"
-                                validate={value => value ? undefined : "وارد کردن طول اثر الزامی میباشد"}
+                                placeholder='طول اثر'
+                                validate={value => value ? undefined : 'وارد کردن طول اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.size.width`} />
@@ -402,8 +401,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.height`}
                                 component={input}
-                                placeholder="ارتفاع اثر"
-                                validate={value => value ? undefined : "وارد کردن ارتفاع اثر الزامی میباشد"}
+                                placeholder='ارتفاع اثر'
+                                validate={value => value ? undefined : 'وارد کردن ارتفاع اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.size.height`} />
@@ -415,8 +414,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.depth`}
                                 component={input}
-                                placeholder="عمق اثر"
-                                validate={value => value ? undefined : "وارد کردن عمق اثر الزامی میباشد"}
+                                placeholder='عمق اثر'
+                                validate={value => value ? undefined : 'وارد کردن عمق اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.size.depth`} />
@@ -425,32 +424,32 @@ export const SingleArt = ({
                     {LocalData && LocalData.price &&
                         <React.Fragment>
                             <Col lg={12} md={12} sm={12} xs={12}>
-                                <Divider text={`مشخصات برای فروش اثر`} orientation="right" />
+                                <Divider text={`مشخصات برای فروش اثر`} orientation='right' />
                             </Col>
                             <Col lg={6} md={6} sm={12} xs={12}>
                                 <FormGroup>
                                     <Label className={LabelRequired}>اثر برای فروش است؟</Label>
-                                    <div className="clearfix" />
+                                    <div className='clearfix' />
                                     <RadioGroup>
                                         <FormCheck inline>
                                             <Field
                                                 name={`${name}.price.is_for_sale`}
                                                 component={radio}
-                                                type="radio"
-                                                id="yes"
-                                                value="yes"
+                                                type='radio'
+                                                id='yes'
+                                                value='yes'
                                             />
-                                            <FormCheckLabel htmlFor="yes">بله</FormCheckLabel>
+                                            <FormCheckLabel htmlFor='yes'>بله</FormCheckLabel>
                                         </FormCheck>
                                         <FormCheck inline>
                                             <Field
                                                 name={`${name}.price.is_for_sale`}
                                                 component={radio}
-                                                type="radio"
-                                                id="no"
-                                                value="no"
+                                                type='radio'
+                                                id='no'
+                                                value='no'
                                             />
-                                            <FormCheckLabel htmlFor="no">خیر</FormCheckLabel>
+                                            <FormCheckLabel htmlFor='no'>خیر</FormCheckLabel>
                                         </FormCheck>
                                     </RadioGroup>
                                 </FormGroup>
@@ -462,8 +461,8 @@ export const SingleArt = ({
                                         name={`${name}.price.price`}
                                         component={input}
                                         disabled={LocalData && LocalData.price.is_for_sale == 'yes' ? false : true}
-                                        placeholder="قیمت اثر برای فروش"
-                                        // validate={LocalData.price.is_for_sale == 'yes' ? value => value ? undefined : "وارد کردن عمق اثر الزامی میباشد" : ''}
+                                        placeholder='قیمت اثر برای فروش'
+                                        // validate={LocalData.price.is_for_sale == 'yes' ? value => value ? undefined : 'وارد کردن عمق اثر الزامی میباشد' : ''}
                                         control
                                     />
                                     <Error name={`${name}.price.price`} />
@@ -489,9 +488,9 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.bio`}
                                 component={textarea}
-                                maxLength="500"
-                                placeholder=""
-                                validate={value => value ? undefined : "الزامی"}
+                                maxLength='500'
+                                placeholder=''
+                                validate={value => value ? undefined : 'الزامی'}
                                 control
                             />
                             <Error name={`${name}.bio`} />
@@ -503,8 +502,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.quote`}
                                 component={textarea}
-                                maxLength="500"
-                                placeholder=""
+                                maxLength='500'
+                                placeholder=''
                                 control
                             />
                         </FormGroup>
@@ -512,7 +511,7 @@ export const SingleArt = ({
                     <Col xs={12}>
                         <LinkButton
                             onClick={singleArtSubmit}
-                            className="zbtn black bradius d-block"
+                            className='zbtn black bradius d-block'
                         >ثبت</LinkButton>
                     </Col>
                 </Row>

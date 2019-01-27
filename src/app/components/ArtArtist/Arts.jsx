@@ -1,27 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { IconSave } from "../Icons";
-import { Img } from "../General"
-import NumbersConvertor from "../NumbersConvertor";
-import ThousandSeparator from "../ThousandSeparator";
-import Urls from "../Urls";
-import styles from "./Arts.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { IconSave } from '../Icons';
+import { Img } from '../General'
+import NumbersConvertor from '../NumbersConvertor';
+import ThousandSeparator from '../ThousandSeparator';
+import Urls from '../Urls';
+import styles from './Arts.scss';
 
 
 export const SingleArt = (props) => (
     <React.Fragment>
         <div className={styles.Arts}>
-            <div className="thumb">
+            <div className='thumb'>
                 <Link to={`${Urls().arts()}${props.item.slug}`}>
                     <Img
                         img={props.item.img.img}
                         alt={props.item.title}
                         width='100%'
-                        divHeight="200px"
+                        divHeight='200px'
                     />
                 </Link>
                 <div
-                    className={"save_art " + ((props.item.is_saved) ? 'saved' : '') + ((props.item.save_loading) ? ' loading' : '')}
+                    className={'save_art ' + ((props.item.is_saved) ? 'saved' : '') + ((props.item.save_loading) ? ' loading' : '')}
                     onClick={
                         props.isLogined ?
                             () => props.onSaveItemClick(props.ArtIndex)
@@ -29,19 +29,19 @@ export const SingleArt = (props) => (
                             () => props.openModal(true)
                     }
                     id={props.item.id}>
-                    {props.item.save_loading && <div className="loadingSpinner"></div>}
-                    <IconSave height="80%" width="90%" fill="transparent" stroke="#fff" />
+                    {props.item.save_loading && <div className='loadingSpinner'></div>}
+                    <IconSave height='80%' width='90%' fill='transparent' stroke='#fff' />
                 </div>
             </div>
 
-            <div className="art_details">
-                <span className="content item_price"><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{NumbersConvertor().convertToPersian(ThousandSeparator(props.item.price))} تومان</Link></span>
-                <span className="content item_artist_name"><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>
-                <span className="content gallery_name">
+            <div className='art_details'>
+                <span className='content item_price'><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{NumbersConvertor().convertToPersian(ThousandSeparator(props.item.price))} تومان</Link></span>
+                <span className='content item_artist_name'><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>
+                <span className='content gallery_name'>
                     {props.item.title}
                 </span>
                 {props.item.gallery != null &&
-                    <span className="content gallery_name">
+                    <span className='content gallery_name'>
                         {props.item.gallery.slug ?
                             <Link to={`${Urls().gallery()}${props.item.gallery.slug}`}>{props.item.gallery.name}</Link>
                             :

@@ -17,8 +17,8 @@ const LoginModal = (props) => {
         <Modal
             isOpen={isOpen}
             toggle={toggle}
-            className="LoginModal"
-            title={"ثبت نام / ورود"}
+            className='LoginModal'
+            title={'ثبت نام / ورود'}
         >
             <Login
                 birthday_start={birthday_start}

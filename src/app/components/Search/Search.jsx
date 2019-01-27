@@ -1,15 +1,15 @@
-import React, { Suspense } from "react";
+import React, { Suspense } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import axios from "axios";
+import axios from 'axios';
 import queryString from 'query-string';
-import Urls from "../Urls"
-import Section from "../Section/Section";
-import SearchMetaTags from "./SearchMetaTags"
-import { IconArrowLeft } from "../../components/Icons";
+import Urls from '../Urls'
+import Section from '../Section/Section';
+import SearchMetaTags from './SearchMetaTags'
+import { IconArrowLeft } from '../../components/Icons';
 import ModelManager from '../../components/Models';
 import Pagination from '../Pagination/Pagination';
-import { Spinner, Loading } from "../Spinner/Spinner";
-import styles from "./Search.scss"
+import { Spinner, Loading } from '../Spinner/Spinner';
+import styles from './Search.scss'
 
 
 const ResultsItem = (props) => {
@@ -24,7 +24,7 @@ const ResultsItem = (props) => {
             {(props.item.model != 'artist' && props.item.model != 'category') &&
                 <div className={`${styles.ResultItems}-thumbnail`}>
                     <div className={`${styles.ResultItems}-fallback`}>
-                        <img src={props.item.img} width="70" height="70" />
+                        <img src={props.item.img} width='70' height='70' />
                     </div>
                 </div>
             }
@@ -47,10 +47,10 @@ const ResultsItem = (props) => {
             </div>
             <div className={`${styles.ResultItems}-icon`}>
                 <IconArrowLeft
-                    height="30px"
-                    width="30px"
-                    fill="transparent"
-                    stroke="#333"
+                    height='30px'
+                    width='30px'
+                    fill='transparent'
+                    stroke='#333'
                 />
             </div>
         </a>
@@ -75,7 +75,12 @@ class Search extends React.Component {
             page = 1;
         }
         axios
-            .get(`${Urls().api()}/search/?phrase=${queryString.parse(location.search)['query']}&page=${page}`)
+            .get(`${Urls().api()}/search/`, {
+                params: {
+                    phrase: queryString.parse(location.search)['query'],
+                    page: page
+                }
+            })
             .then(response => {
                 this.setState({
                     Results: response.data.results,
@@ -105,14 +110,14 @@ class Search extends React.Component {
                 <Section ExtraClass={'content singlePage'}>
                     <Container>
                         <Row>
-                            <Col xs="12">
+                            <Col xs='12'>
                                 <div className={styles.SearchPage}>
                                     {parsed['query'] != '' &&
-                                        <span className="searchFor">جستجو برای “{parsed['query']}”</span>
+                                        <span className='searchFor'>جستجو برای “{parsed['query']}”</span>
                                     }
                                     <div className={styles.searchResult}>
                                         {this.state.Loading &&
-                                            <Loading text="" background="#fff" />
+                                            <Loading text='' background='#fff' />
                                         }
                                         {this.state.Results &&
                                             this.state.Results.map(items => (

@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Urls from "../../Urls";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Urls from '../../Urls';
 
-import { FormGroup } from "@smooth-ui/core-sc";
+import { FormGroup } from '@smooth-ui/core-sc';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
-import styles from "./Galleries.scss"
+import styles from './Galleries.scss'
 
 
 const GalleryForm = (props) => {
@@ -27,14 +27,14 @@ const GalleryForm = (props) => {
                     >
                         <input
                             onFocus={onInputFocus}
-                            autoComplete="off"
+                            autoComplete='off'
                             value={FormValues.city_id.currentValue}
                             onChange={(e) => handleFormChange(e)}
                             disabled
-                            name="city_id"
-                            placeholder="شهر برگذاری"
+                            name='city_id'
+                            placeholder='شهر برگذاری'
                         />
-                        <i className="fas fa-angle-down" />
+                        <i className='fas fa-angle-down' />
                         {FormValues.city_id && FormValues.city_id.dropdown &&
                             <ul className={styles.FormValues}>
                                 {FormValues.city_id.values.map(item => (
@@ -51,11 +51,11 @@ const GalleryForm = (props) => {
                         <input
                             onFocus={onInputFocus}
                             value={FormValues.genre_id.currentValue}
-                            name="genre_id"
-                            autoComplete="off"
-                            placeholder="دسته بندی"
+                            name='genre_id'
+                            autoComplete='off'
+                            placeholder='دسته بندی'
                         />
-                        <i className="fas fa-angle-down" />
+                        <i className='fas fa-angle-down' />
                         {FormValues.genre_id && FormValues.genre_id.dropdown &&
                             <ul className={styles.FormValues}>
                                 {FormValues.genre_id.values.map(item => (
@@ -73,11 +73,11 @@ const GalleryForm = (props) => {
                     >
                         <input
                             onChange={onGallerySearch}
-                            name="galleries"
-                            autoComplete="off"
-                            placeholder="همه‌ی نمایشگاه‌ها"
+                            name='galleries'
+                            autoComplete='off'
+                            placeholder='همه‌ی نمایشگاه‌ها'
                         />
-                        <i className="fas fa-search" />
+                        <i className='fas fa-search' />
                         {FormValues.galleries && FormValues.galleries.dropdown &&
                             <ul className={styles.FormValues}>
                                 {FormValues.galleries.values.map(item => (

@@ -8,20 +8,20 @@ import {
     Button,
     RadioGroup,
 
-} from "@smooth-ui/core-sc";
-import Row from "reactstrap/lib/Row";
-import Col from "reactstrap/lib/Col";
+} from '@smooth-ui/core-sc';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 import Modal from '../../components/ui-components/Modal/Modal'
 import { Field } from 'react-final-form-html5-validation'
 import { FieldArray } from 'react-final-form-arrays'
-import Divider from "../../components/Divider";
-import Uploader from "../../components/Uploader";
+import Divider from '../../components/Divider';
+import Uploader from '../../components/Uploader';
 import PersianDatePicker from '../../components/datepicker/PersianDatePicker';
-import Alert from "../../components/Alert/Alert";
-import { Loading } from "../../components/Spinner/Spinner";
+import Alert from '../../components/Alert/Alert';
+import { Loading } from '../../components/Spinner/Spinner';
 
-import InputAsyncTypeahead from "../components/InputAsyncTypeahead";
-import styles from "../Registration.scss"
+import InputAsyncTypeahead from '../components/InputAsyncTypeahead';
+import styles from '../Registration.scss'
 
 
 const LinkButton = Button.withComponent('a')
@@ -83,13 +83,13 @@ export const Exhibition = ({
                     hidden
                 />
                 <Col xs={12}>
-                    <Divider text={`مشخصات نمایشگاه ${index + 1}`} orientation="right" />
+                    <Divider text={`مشخصات نمایشگاه ${index + 1}`} orientation='right' />
                 </Col>
                 {unSubmittedArts > 0 &&
                     <Col xs={12}>
                         <Alert
                             message={`شما در این نمایشگاه ${unSubmittedArts} اثر ثبت نشده دارید.لطفا نسبت به تکمیل اطلاعات اثر اقدام نمایید`}
-                            type="error"
+                            type='error'
                             style={{ marginBottom: 15 }}
                             icon
                             rtl
@@ -100,15 +100,15 @@ export const Exhibition = ({
 
                     <FormGroup>
                         <Label className={LabelRequired}>نمایشگاه</Label>
-                        <div className="clearfix"></div>
+                        <div className='clearfix'></div>
                         <RadioGroup>
                             <FormCheck inline>
                                 <Field
                                     name={`${name}.type`}
                                     component={radio}
-                                    type="radio"
+                                    type='radio'
                                     id={`${name}.solo`}
-                                    value="solo"
+                                    value='solo'
                                 />
                                 <FormCheckLabel htmlFor={`${name}.solo`}>انفرادی</FormCheckLabel>
                             </FormCheck>
@@ -116,9 +116,9 @@ export const Exhibition = ({
                                 <Field
                                     name={`${name}.type`}
                                     component={radio}
-                                    type="radio"
+                                    type='radio'
                                     id={`${name}.group`}
-                                    value="group"
+                                    value='group'
                                 />
                                 <FormCheckLabel htmlFor={`${name}.group`}>گروهی</FormCheckLabel>
                             </FormCheck>
@@ -134,8 +134,8 @@ export const Exhibition = ({
                         <Field
                             name={`${name}.name`}
                             component={input}
-                            placeholder="نام مجموعه"
-                            validate={value => value ? undefined : "وارد کردن نام مجموعه میباشد"}
+                            placeholder='نام مجموعه'
+                            validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
                             control
                         />
                         <Error name={`${name}.name`} />
@@ -146,7 +146,7 @@ export const Exhibition = ({
                         <Label className={LabelRequired}>زمان برگذاری</Label>
                         <PersianDatePicker
                             name={`${name}.date`}
-                            // defaultValue="1991-03-21"
+                            // defaultValue='1991-03-21'
                             onChangeDatepicker={onChangeDatepicker}
 
                         />
@@ -159,8 +159,8 @@ export const Exhibition = ({
                         <Field
                             name={`${name}.address`}
                             component={input}
-                            placeholder="محل برگذاری"
-                            validate={value => value ? undefined : "وارد کردن محل برگذاری میباشد"}
+                            placeholder='محل برگذاری'
+                            validate={value => value ? undefined : 'وارد کردن محل برگذاری میباشد'}
                             control
                         />
                         <Error name={`${name}.address`} />
@@ -172,9 +172,9 @@ export const Exhibition = ({
                         <Field
                             name={`${name}.desc`}
                             component={textarea}
-                            maxLength="500"
-                            placeholder="..."
-                            validate={value => value ? undefined : "الزامی"}
+                            maxLength='500'
+                            placeholder='...'
+                            validate={value => value ? undefined : 'الزامی'}
                             control
                         />
                         <Error name={`${name}.desc`} />
@@ -182,7 +182,7 @@ export const Exhibition = ({
                 </Col>
 
                 <Col xs={12}>
-                    <Divider text="تمام آثار این نمایشگاه" orientation="right" />
+                    <Divider text='تمام آثار این نمایشگاه' orientation='right' />
                 </Col>
 
 
@@ -215,7 +215,7 @@ export const Exhibition = ({
                             <Col lg={12} md={12} sm={12} xs={12}>
                                 <div className={styles.addSectionButton}>
                                     <button
-                                        type="button"
+                                        type='button'
                                         onClick={() => addArt(fields.push, 'Art', values.exb_set[exbIndex].id)}>
                                         <i></i>
                                         <span>اضافه کردن اثر</span>
@@ -227,10 +227,10 @@ export const Exhibition = ({
 
                 </FieldArray>
 
-                <Col sm={12} className="text-left">
+                <Col sm={12} className='text-left'>
                     <LinkButton
                         onClick={() => SingleEXBSubmit(values, exbIndex)}
-                        className="zbtn black bradius"
+                        className='zbtn black bradius'
                     >ثبت نمایشگاه</LinkButton>
                 </Col>
             </Row>
@@ -276,13 +276,13 @@ export const Collection = ({
                     hidden
                 />
                 <Col xs={12}>
-                    <Divider text={`مشخصات مجموعه ${index + 1}`} orientation="right" />
+                    <Divider text={`مشخصات مجموعه ${index + 1}`} orientation='right' />
                 </Col>
                 {unSubmittedArts > 0 &&
                     <Col xs={12}>
                         <Alert
                             message={`شما در این مجموعه ${unSubmittedArts} اثر ثبت نشده دارید.لطفا نسبت به تکمیل اطلاعات اثر اقدام نمایید`}
-                            type="error"
+                            type='error'
                             style={{ marginBottom: 15 }}
                             icon
                             rtl
@@ -295,8 +295,8 @@ export const Collection = ({
                         <Field
                             name={`${name}.name`}
                             component={input}
-                            placeholder="نام مجموعه"
-                            validate={value => value ? undefined : "وارد کردن نام مجموعه میباشد"}
+                            placeholder='نام مجموعه'
+                            validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
                             control
                         />
                         <Error name={`${name}.name`} />
@@ -308,9 +308,9 @@ export const Collection = ({
                         <Field
                             name={`${name}.desc`}
                             component={textarea}
-                            maxLength="500"
-                            placeholder="..."
-                            validate={value => value ? undefined : "الزامی"}
+                            maxLength='500'
+                            placeholder='...'
+                            validate={value => value ? undefined : 'الزامی'}
                             control
                         />
                         <Error name={`${name}.desc`} />
@@ -318,7 +318,7 @@ export const Collection = ({
                 </Col>
 
                 <Col xs={12}>
-                    <Divider text="تمام آثار این مجموعه" orientation="right" />
+                    <Divider text='تمام آثار این مجموعه' orientation='right' />
                 </Col>
 
 
@@ -350,8 +350,8 @@ export const Collection = ({
                                     <Col xs={SubmittedArt(values.art_set).length > 0 ? 6 : 12}>
                                         <div className={styles.addSectionButton}>
                                             <button
-                                                type="button"
-                                                className=""
+                                                type='button'
+                                                className=''
                                                 onClick={() => addArt(fields.push, 'Art', values.collection_set[ColIndex].id)}>
                                                 <i></i>
                                                 <span>اضافه کردن اثر</span>
@@ -362,8 +362,8 @@ export const Collection = ({
                                         <Col xs={6}>
                                             <div className={styles.importArtButton}>
                                                 <button
-                                                    type="button"
-                                                    className=""
+                                                    type='button'
+                                                    className=''
                                                     onClick={() => openArtModal()}>
                                                     <i></i>
                                                     <span>درون ریزی آثار</span>
@@ -373,7 +373,7 @@ export const Collection = ({
                                                 isOpen={ModalToggle}
                                                 toggle={openArtModal}
                                                 className={styles.importArts}
-                                                title={"ثبت نام / ورودرون ریزی آثار مختلط"}
+                                                title={'ثبت نام / ورودرون ریزی آثار مختلط'}
                                             >
                                                 <Row>
                                                     <Col xs={12}>
@@ -382,7 +382,7 @@ export const Collection = ({
                                                     {values && values.art_set &&
                                                         SubmittedArt(values.art_set).map((arts, index) => (
                                                             <Col key={index} xs={12}>
-                                                                <div className="_art">
+                                                                <div className='_art'>
                                                                     {arts.name}
                                                                     <a
                                                                         className={`import-button`}
@@ -406,10 +406,10 @@ export const Collection = ({
 
                 </FieldArray>
 
-                <Col sm={12} className="text-left">
+                <Col sm={12} className='text-left'>
                     <LinkButton
                         onClick={() => Step4_SingleColSubmit(values, ColIndex)}
-                        className="zbtn black bradius"
+                        className='zbtn black bradius'
                     >ثبت مجموعه</LinkButton>
                 </Col>
             </Row>
@@ -449,7 +449,7 @@ export const SingleArt = ({
                         hidden
                     />
                     <Col lg={12} md={12} sm={12} xs={12}>
-                        <Divider text={`اثر شماره ${index + 1}`} orientation="right" />
+                        <Divider text={`اثر شماره ${index + 1}`} orientation='right' />
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
@@ -457,8 +457,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.name`}
                                 component={input}
-                                placeholder="نام اثر"
-                                validate={value => value ? undefined : "وارد کردن نام اثر میباشد"}
+                                placeholder='نام اثر'
+                                validate={value => value ? undefined : 'وارد کردن نام اثر میباشد'}
                                 control
                             />
                             <Error name={`${name}.name`} />
@@ -470,9 +470,9 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.year`}
                                 component={input}
-                                value="sdsada"
-                                placeholder="سال تولید اثر"
-                                validate={value => value ? undefined : "وارد کردن سال تولید اثر میباشد"}
+                                value='sdsada'
+                                placeholder='سال تولید اثر'
+                                validate={value => value ? undefined : 'وارد کردن سال تولید اثر میباشد'}
                                 control
                             />
                             <Error name={`${name}.year`} />
@@ -485,9 +485,9 @@ export const SingleArt = ({
                                 multiple
                                 clearButton
                                 name={`${name}.mat_set`}
-                                api="/gallery-app/material/autocomplete/?phrase"
-                                placeholder="متریال استفاده شده در اثر"
-                                validate={value => value ? undefined : "وارد کردن متریال الزامی میباشد"}
+                                api='/gallery-app/material/autocomplete/?phrase'
+                                placeholder='متریال استفاده شده در اثر'
+                                validate={value => value ? undefined : 'وارد کردن متریال الزامی میباشد'}
                             />
                             <Error name={`${name}.mat_set`} />
                         </FormGroup>
@@ -499,16 +499,16 @@ export const SingleArt = ({
                                 <InputAsyncTypeahead
                                     clearButton
                                     name={`${name}.medium_set`}
-                                    api="/gallery-app/medium/autocomplete/?phrase"
-                                    placeholder="بستر استفاده شده در اثر"
-                                    validate={value => value ? undefined : "وارد کردن بستر الزامی میباشد"}
+                                    api='/gallery-app/medium/autocomplete/?phrase'
+                                    placeholder='بستر استفاده شده در اثر'
+                                    validate={value => value ? undefined : 'وارد کردن بستر الزامی میباشد'}
                                 />
                                 <Error name={`${name}.medium_set`} />
                             </FormGroup>
                         </Col>
                     }
                     <Col lg={12} md={12} sm={12} xs={12}>
-                        <Divider text={`ابعاد اثر`} orientation="right" />
+                        <Divider text={`ابعاد اثر`} orientation='right' />
                     </Col>
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
@@ -516,11 +516,11 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.unit`}
                                 component={select}
-                                validate={value => value ? undefined : "واردن کردن واحد اجباری میباشد"}
+                                validate={value => value ? undefined : 'واردن کردن واحد اجباری میباشد'}
                                 control
                                 arrow={false}
                             >
-                                <option value="" disabled>انتخاب واحد اندازه گیری</option>
+                                <option value='' disabled>انتخاب واحد اندازه گیری</option>
                                 {StepConfig && StepConfig.unit.map((item, index) => (
                                     <option value={item.value} key={index}>{item.title}</option>
 
@@ -537,8 +537,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.width`}
                                 component={input}
-                                placeholder="طول اثر"
-                                validate={value => value ? undefined : "وارد کردن طول اثر الزامی میباشد"}
+                                placeholder='طول اثر'
+                                validate={value => value ? undefined : 'وارد کردن طول اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.size.width`} />
@@ -550,8 +550,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.height`}
                                 component={input}
-                                placeholder="ارتفاع اثر"
-                                validate={value => value ? undefined : "وارد کردن ارتفاع اثر الزامی میباشد"}
+                                placeholder='ارتفاع اثر'
+                                validate={value => value ? undefined : 'وارد کردن ارتفاع اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.size.height`} />
@@ -563,8 +563,8 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.depth`}
                                 component={input}
-                                placeholder="عمق اثر"
-                                validate={value => value ? undefined : "وارد کردن عمق اثر الزامی میباشد"}
+                                placeholder='عمق اثر'
+                                validate={value => value ? undefined : 'وارد کردن عمق اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.size.depth`} />
@@ -572,18 +572,18 @@ export const SingleArt = ({
                     </Col>
                     {hasExtraFields && [
                         <Col lg={12} md={12} sm={12} xs={12}>
-                            <Divider text={`گالری`} orientation="right" />
+                            <Divider text={`گالری`} orientation='right' />
                         </Col>,
                         <Col lg={12} md={12} sm={12} xs={12}>
                             <FormGroup>
                                 <Label className={LabelRequired}>گالری مالک اثر</Label>
                                 <InputAsyncTypeahead
                                     allowNew
-                                    newSelectionPrefix="اضافه کردن این گالری:"
+                                    newSelectionPrefix='اضافه کردن این گالری:'
                                     name={`${name}.gallery`}
-                                    api="/gallery-app/gallery/autocomplete/?phrase"
-                                    placeholder="نام گالری مالک اثر"
-                                    validate={value => value ? undefined : "وارد کردن نام گالری الزامی میباشد"}
+                                    api='/gallery-app/gallery/autocomplete/?phrase'
+                                    placeholder='نام گالری مالک اثر'
+                                    validate={value => value ? undefined : 'وارد کردن نام گالری الزامی میباشد'}
                                 />
                                 <Error name={`${name}.gallery`} />
                             </FormGroup>
@@ -604,7 +604,7 @@ export const SingleArt = ({
                     <Col xs={12}>
                         <LinkButton
                             onClick={SingleArtSubmit}
-                            className="zbtn black bradius d-block"
+                            className='zbtn black bradius d-block'
                         >ثبت</LinkButton>
                     </Col>
                 </Row>

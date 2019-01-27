@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Field } from 'react-final-form-html5-validation'
 import axios from 'axios'
-import Urls from "../../components/Urls";
+import Urls from '../../components/Urls';
 
 
 
@@ -23,7 +23,7 @@ class DynamicSelect extends React.Component {
     render() {
 
         return (
-            <div className="DynamicSelect">
+            <div className='DynamicSelect'>
                 <Field
                     name={this.props.name}
                     validate={this.props.validate}
@@ -31,7 +31,7 @@ class DynamicSelect extends React.Component {
                     placeholder={this.props.placeholder}
                     control
                 >
-                    <option value="">{this.props.placeholder}</option>
+                    <option value=''>{this.props.placeholder}</option>
                     {this.state.options && this.state.options.map((item, index) => (
                         <option value={item.value} key={index}>{item.title}</option>
 
@@ -64,7 +64,7 @@ class DynamicSelect extends React.Component {
 // name={`${name}.size.unit`}
 // component={select}
 // placeholder='انتخاب واحد اندازه گیری'
-// validate={value => value ? undefined : "وارد کردن واحد الزامی میباشد"}
-// server="gallery-app/artist/step-configs/?step=step3"
+// validate={value => value ? undefined : 'وارد کردن واحد الزامی میباشد'}
+// server='gallery-app/artist/step-configs/?step=step3'
 // />
 export default DynamicSelect;

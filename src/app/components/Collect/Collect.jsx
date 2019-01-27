@@ -1,27 +1,27 @@
-import React, { Suspense } from "react";
-import { Link } from "react-router-dom";
+import React, { Suspense } from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from 'reactstrap';
-import axios from "axios";
+import axios from 'axios';
 import queryString from 'query-string';
 import SecurityManager from '../../security/SecurityManager'
-import Login from "../../login/Login";
+import Login from '../../login/Login';
 
-import Urls from "../Urls"
+import Urls from '../Urls'
 import { CustomInput, Form, FormGroup, Label } from 'reactstrap';
-import { Filters, InputSlider, FilterBox } from "../Filters/Filters";
-import Section from "../Section/Section";
+import { Filters, InputSlider, FilterBox } from '../Filters/Filters';
+import Section from '../Section/Section';
 
-import NumbersConvertor from "../NumbersConvertor";
+import NumbersConvertor from '../NumbersConvertor';
 import ModelManager from '../Models';
 
-import CollectMetaTags from "./CollectMetaTags"
+import CollectMetaTags from './CollectMetaTags'
 import Pagination from '../Pagination/Pagination';
-import { Loading } from "../Spinner/Spinner";
-import { ThreeColumn } from "../ArtArtist/Arts";
+import { Loading } from '../Spinner/Spinner';
+import { ThreeColumn } from '../ArtArtist/Arts';
 
 
 
-import styles from "./Collect.scss"
+import styles from './Collect.scss'
 
 const isLogined = SecurityManager().isLogined();
 
@@ -218,9 +218,9 @@ class Collect extends React.Component {
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <div className="section_header_single">
+                                <div className='section_header_single'>
                                     <h1>{ModelManager().convertModelName('collect')} هنرمندان</h1>
-                                    <Link to={Urls().collections()} className="view-all">{ModelManager().convertModelName('collections')}</Link>
+                                    <Link to={Urls().collections()} className='view-all'>{ModelManager().convertModelName('collections')}</Link>
                                 </div>
 
                             </Col>
@@ -228,11 +228,11 @@ class Collect extends React.Component {
                                 <Filters>
                                     <Form ref={this.collectFormRef}>
                                         {FormLoading &&
-                                            <Loading text="" />
+                                            <Loading text='' />
                                         }
                                         <FilterBox
                                             title={ModelManager().convertModelName('medium')}
-                                            name="medium"
+                                            name='medium'
                                         >
                                             {config && config.mediums &&
                                                 <React.Fragment>
@@ -241,9 +241,9 @@ class Collect extends React.Component {
                                                             key={index}
                                                             onChange={e => this.handleFormChange(e, 'medium')}
                                                             value={item.id}
-                                                            type="radio"
+                                                            type='radio'
                                                             id={item.id}
-                                                            name="medium"
+                                                            name='medium'
                                                             label={item.name}
                                                         />
                                                     ))}
@@ -252,8 +252,8 @@ class Collect extends React.Component {
                                         </FilterBox>
 
                                         <FilterBox
-                                            title="قیمت"
-                                            name="priceRange"
+                                            title='قیمت'
+                                            name='priceRange'
                                         >
                                             <InputSlider
                                                 max={priceRange.max}
@@ -268,8 +268,8 @@ class Collect extends React.Component {
                                         </FilterBox>
 
                                         <FilterBox
-                                            title="بازه زمانی"
-                                            name="years"
+                                            title='بازه زمانی'
+                                            name='years'
                                         >
                                             {config && config.years &&
                                                 <React.Fragment>
@@ -278,8 +278,8 @@ class Collect extends React.Component {
                                                             key={index}
                                                             onChange={e => this.handleFormChange(e, 'year')}
                                                             value={item.value}
-                                                            type="radio"
-                                                            name="year"
+                                                            type='radio'
+                                                            name='year'
                                                             id={item.value}
                                                             label={NumbersConvertor().convertToPersian(item.title)}
                                                         />
@@ -293,16 +293,16 @@ class Collect extends React.Component {
                             <Col lg={9} md={10} sm={12} xs={12}>
                                 <div className={styles.CollectPage}>
                                     {config && config.years &&
-                                        <Form inline className="simpleSelect alignEnd" style={{ margin: '0px 0 15px' }}>
-                                            <Label for="sorts">مرتب سازی :</Label>
+                                        <Form inline className='simpleSelect alignEnd' style={{ margin: '0px 0 15px' }}>
+                                            <Label for='sorts'>مرتب سازی :</Label>
 
                                             <CustomInput
-                                                type="select"
-                                                id="sorts"
-                                                name="sorts"
+                                                type='select'
+                                                id='sorts'
+                                                name='sorts'
                                                 onChange={e => this.handleFormChange(e, 'sort')}
                                             >
-                                                <option value="">انتخاب</option>
+                                                <option value=''>انتخاب</option>
                                                 {config.sorts.map((item, index) => (
                                                     <option key={index} value={item.value}>{item.title}</option>
                                                 ))}

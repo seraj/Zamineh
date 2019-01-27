@@ -3,7 +3,7 @@ class Localsetting {
     static getConfig = function () {
 
         const config = {
-            baseUrl: "https://zamineh.net/",
+            baseUrl: 'https://zamineh.net/',
             testComp: true,
             apiUrl: 'https://api.zamineh.net/'
 

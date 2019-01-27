@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { IconSave } from "../../components/Icons";
-import { Img } from "../../components/General";
-import NumbersConvertor from "../../components/NumbersConvertor";
-import ThousandSeparator from "../../components/ThousandSeparator";
-import Urls from "../../components/Urls";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { IconSave } from '../../components/Icons';
+import { Img } from '../../components/General';
+import NumbersConvertor from '../../components/NumbersConvertor';
+import ThousandSeparator from '../../components/ThousandSeparator';
+import Urls from '../../components/Urls';
 
 const SingleArts = (props) => (
   <React.Fragment>
-    <div className="Arts">
-      <div className="thumb">
+    <div className='Arts'>
+      <div className='thumb'>
         <Link to={`${Urls().arts()}${props.item.slug}`}>
           <Img
             img={props.item.img.img}
@@ -18,7 +18,7 @@ const SingleArts = (props) => (
           />
         </Link>
         <div
-          className={"save_art " + ((props.item.is_saved) ? 'saved' : '') + ((props.item.save_loading) ? ' loading' : '')}
+          className={'save_art ' + ((props.item.is_saved) ? 'saved' : '') + ((props.item.save_loading) ? ' loading' : '')}
           onClick={
             props.isLogined ?
               () => props.onSaveItemClick(props.ArtIndex)
@@ -27,13 +27,13 @@ const SingleArts = (props) => (
           }
 
           id={props.item.id}>
-          {props.item.save_loading && <div className="loadingSpinner"></div>}
-          <IconSave height="80%" width="90%" fill="transparent" stroke="#fff" />
+          {props.item.save_loading && <div className='loadingSpinner'></div>}
+          <IconSave height='80%' width='90%' fill='transparent' stroke='#fff' />
         </div>
       </div>
-      <div className="art_details">
-        <span className="content item_title"><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>
-        <span className="content gallery_name">
+      <div className='art_details'>
+        <span className='content item_title'><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>
+        <span className='content gallery_name'>
           {props.item.gallery != null &&
             props.item.gallery.slug ?
             <Link to={`${Urls().gallery()}${props.item.gallery.slug}`}>{props.item.gallery.name}</Link>
@@ -42,7 +42,7 @@ const SingleArts = (props) => (
           }
         </span>
         {props.item.price &&
-          <span className="content price">{NumbersConvertor().convertToPersian(ThousandSeparator(props.item.price))} تومان</span>
+          <span className='content price'>{NumbersConvertor().convertToPersian(ThousandSeparator(props.item.price))} تومان</span>
         }
       </div>
     </div>

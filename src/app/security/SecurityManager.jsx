@@ -1,6 +1,6 @@
 import axios from 'axios';
 import cookie from 'react-cookies'
-import Urls from "../components/Urls";
+import Urls from '../components/Urls';
 
 export default function SecurityManager() {
 

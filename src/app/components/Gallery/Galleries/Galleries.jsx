@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import Container from "reactstrap/lib/Container";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import queryString from 'query-string';
@@ -9,13 +9,13 @@ import queryString from 'query-string';
 import ModelManager from '../../Models';
 import Pagination from '../../Pagination/Pagination';
 
-import Login from "../../../login/Login";
-import GalleryForm from "./GalleryForm"
-import { FeatureSet, ShowSet, GenreSet, ResultsGrid } from "./SingleGallery";
-import Error from "../../Error";
-import Urls from "../../Urls";
-import Section from "../../Section/Section";
-import { Loading } from "../../Spinner/Spinner";
+import Login from '../../../login/Login';
+import GalleryForm from './GalleryForm'
+import { FeatureSet, ShowSet, GenreSet, ResultsGrid } from './SingleGallery';
+import Error from '../../Error';
+import Urls from '../../Urls';
+import Section from '../../Section/Section';
+import { Loading } from '../../Spinner/Spinner';
 
 
 
@@ -194,20 +194,20 @@ class Galleries extends Component {
 
         var Galleries;
         switch (Type) {
-            case "show_set":
+            case 'show_set':
                 Galleries = this.state.show_set;
                 break;
-            case "genre_set":
+            case 'genre_set':
                 Galleries = this.state.genre_set[parentIndex].gallery_set;
                 break;
-            case "feature_set":
+            case 'feature_set':
                 Galleries = this.state.featured_galleries[parentIndex].gallery_set;
                 break;
-            case "gallery_set":
+            case 'gallery_set':
                 Galleries = this.state.gallery_set;
                 break;
             default:
-                Galleries = "/";
+                Galleries = '/';
         }
         console.log(id, parentIndex, index)
         // console.log('clicked On', Galleries)
@@ -246,9 +246,9 @@ class Galleries extends Component {
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <div className="section_header_single">
+                                <div className='section_header_single'>
                                     <h1>همه‌ی {ModelManager().convertModelName('galleries')}</h1>
-                                    <Link to={Urls().galleriesAZ()} className="view-all">الف-ی</Link>
+                                    <Link to={Urls().galleriesAZ()} className='view-all'>الف-ی</Link>
 
                                 </div>
                             </Col>

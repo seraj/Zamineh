@@ -1,14 +1,14 @@
-import React from "react";
-import axios from "axios";
-import Urls from "../../Urls"
-import styles from "./SearchForm.scss"
+import React from 'react';
+import axios from 'axios';
+import Urls from '../../Urls'
+import styles from './SearchForm.scss'
 const ResultsItem = (props) => {
     return (
         <a
             href={`${Urls().withProps(props.item.model)}${props.item.slug}`}
             className={styles.resultItems}
         >
-            <img src={props.item.img} alt={props.item.name} width="32px" height="32px" />
+            <img src={props.item.img} alt={props.item.name} width='32px' height='32px' />
             <span>{props.item.name}</span>
         </a>
     )
@@ -62,22 +62,22 @@ class SearchForm extends React.Component {
 
                     <form onSubmit={this.onSubmit}>
                         <input
-                            name="query"
-                            type="text"
-                            autoComplete="off"
-                            placeholder="جستجو در زمینه"
+                            name='query'
+                            type='text'
+                            autoComplete='off'
+                            placeholder='جستجو در زمینه'
                             onChange={this.handleChange}
                         />
 
-                        <a className="icon-search">
-                            <i className="fas fa-search" />
+                        <a className='icon-search'>
+                            <i className='fas fa-search' />
                         </a>
 
                         <div className={styles.Results} style={{
-                            display: this.state.value != "" ? 'block' : 'none',
+                            display: this.state.value != '' ? 'block' : 'none',
                             ...this.ResultPopUp
                         }} >
-                            <span className="searchFor">جستجو برای “{this.state.value}”</span>
+                            <span className='searchFor'>جستجو برای “{this.state.value}”</span>
                             {
                                 this.state.Results &&
                                 this.state.Results.map(items => (

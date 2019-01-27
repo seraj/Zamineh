@@ -1,5 +1,5 @@
-import React from "react"
-import styles from "./MessageBox.scss"
+import React from 'react'
+import styles from './MessageBox.scss'
 import NumbersConvertor from '../../NumbersConvertor';
 
 
@@ -11,7 +11,7 @@ function Timer(seconds, afterTimeFinished) {
             document.getElementById('timer').innerHTML = NumbersConvertor().convertToPersian(seconds);
         } else {
             clearInterval(timer);
-            document.getElementById('timer').innerHTML = "...";
+            document.getElementById('timer').innerHTML = '...';
             afterTimeFinished ? afterTimeFinished() : null
         }
 
@@ -32,7 +32,7 @@ export default function MessageBox({
             <h2>{title}</h2>
             <span>{message}</span>
             {!buttonText && seconds &&
-                <div className={styles.timer} id="timer" />
+                <div className={styles.timer} id='timer' />
             }
             {buttonText &&
                 <button
@@ -41,7 +41,7 @@ export default function MessageBox({
                     className={` zbtn next ${styles.button} ${type} bradius`}
                 >{buttonText}
 
-                    {seconds ? <i className={styles.timer} id="timer" /> : ''}
+                    {seconds ? <i className={styles.timer} id='timer' /> : ''}
                 </button>
             }
         </div>

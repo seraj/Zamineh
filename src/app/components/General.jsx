@@ -1,8 +1,8 @@
 
 
-import React from "react";
-import { Link } from "react-router-dom";
-import { IconArrowRight } from "./Icons";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { IconArrowRight } from './Icons';
 import styles from './General.scss'
 export function Alphabetical() {
     const AlphaBet = [
@@ -108,7 +108,7 @@ export function Alphabetical() {
 }
 
 export function LimitContent(content, limit) {
-    const LimitedContent = content.substring(0, limit) + "...";
+    const LimitedContent = content.substring(0, limit) + '...';
     return LimitedContent
 }
 export function Img({ img, alt, width, height, divHeight, style }) {
@@ -135,10 +135,10 @@ export const BackLink = ({ Text, pageLink }) => {
         >
             <i>
                 <IconArrowRight
-                    height="20px"
-                    width="20px"
-                    fill="transparent"
-                    stroke="#333"
+                    height='20px'
+                    width='20px'
+                    fill='transparent'
+                    stroke='#333'
                 />
             </i>
             بازگشت به صفحه {Text}

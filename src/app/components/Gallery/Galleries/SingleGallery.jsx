@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
-import Urls from "../../Urls";
-import Flickity from "react-flickity-component";
-import { Img } from "../../General"
-import { IconArrowLeft } from "../../Icons";
-import { FollowButton } from "../../ui-components/Buttons";
-import styles from "./Galleries.scss"
-import DefaultStyle from "../../../static/scss/_boxStyle.scss"
+import Urls from '../../Urls';
+import Flickity from 'react-flickity-component';
+import { Img } from '../../General'
+import { IconArrowLeft } from '../../Icons';
+import { FollowButton } from '../../ui-components/Buttons';
+import styles from './Galleries.scss'
+import DefaultStyle from '../../../static/scss/_boxStyle.scss'
 
 
 
@@ -17,7 +17,7 @@ const TopGalleryflickityOptions = {
     pageDots: true,
     contain: true,
     rightToLeft: true,
-    cellAlign: "right",
+    cellAlign: 'right',
     groupCells: 1
     // wrapAround: true
 };
@@ -29,7 +29,7 @@ const flickityOptions = {
     pageDots: false,
     contain: true,
     rightToLeft: true,
-    cellAlign: "right",
+    cellAlign: 'right',
     groupCells: 1
     // wrapAround: true
 };
@@ -39,8 +39,8 @@ export const ShowSet = (props) => (
     <React.Fragment>
         <div className={styles.TopGalleryCarousel}>
             <Flickity
-                className={"carousel items"}
-                elementType={"div"}
+                className={'carousel items'}
+                elementType={'div'}
                 options={TopGalleryflickityOptions}
                 disableImagesLoaded={false}
                 reloadOnUpdate
@@ -65,7 +65,7 @@ export const SingleShowSet = (props) => (
         <div className={`${styles.TopShowSet}`}>
 
             <div className={`${DefaultStyle.BorderedBox} big`}>
-                <div className="right-section">
+                <div className='right-section'>
                     <Link to={`${Urls().show()}${props.item.slug}`}>
                         <div className={`thumb`}>
                             <Img
@@ -75,7 +75,7 @@ export const SingleShowSet = (props) => (
                         </div>
                     </Link>
                 </div>
-                <div className="left-section">
+                <div className='left-section'>
 
                     <div className={`${DefaultStyle.box_details_block} box`}>
                         {props.item.gallery &&
@@ -128,7 +128,7 @@ export const SingleGallery = (props) => (
                 </Link>
 
                 <div className={`${DefaultStyle.box_details_inline} flex`}>
-                    <div className="details_right">
+                    <div className='details_right'>
                         <Link to={`${Urls().gallery()}${props.item.slug}`}>
                             <span className={`${DefaultStyle.BoxContent} bold`}>{props.item.name}</span>
                         </Link>
@@ -136,7 +136,7 @@ export const SingleGallery = (props) => (
                             {props.item.address}
                         </span>
                     </div>
-                    <div className="details_left">
+                    <div className='details_left'>
                         <FollowButton
                             is_flw={props.item.is_flw}
                             handleLogin={props.handleLogin}
@@ -163,18 +163,18 @@ export const GenreSet = (props) => {
                             {item.name}
                             <i>
                                 <IconArrowLeft
-                                    height="20px"
-                                    width="20px"
-                                    fill="transparent"
-                                    stroke="#6b6b6b"
+                                    height='20px'
+                                    width='20px'
+                                    fill='transparent'
+                                    stroke='#6b6b6b'
                                 />
                             </i>
                         </Link>
                     </h4>
                     <Row>
                         <Flickity
-                            className={"carousel items"}
-                            elementType={"div"}
+                            className={'carousel items'}
+                            elementType={'div'}
                             options={flickityOptions}
                             disableImagesLoaded={false}
                             reloadOnUpdate
@@ -188,7 +188,7 @@ export const GenreSet = (props) => {
                                         onFollowClick={props.onFollowClick}
                                         openModal={props.openModal}
                                         handleLogin={props.handleLogin}
-                                        type="genre_set"
+                                        type='genre_set'
                                     />
                                 </Col>
                             ))}
@@ -212,8 +212,8 @@ export const FeatureSet = (props) => {
                     </h4>
                     <Row>
                         <Flickity
-                            className={"carousel items"}
-                            elementType={"div"}
+                            className={'carousel items'}
+                            elementType={'div'}
                             options={flickityOptions}
                             disableImagesLoaded={false}
                             reloadOnUpdate
@@ -227,7 +227,7 @@ export const FeatureSet = (props) => {
                                         onFollowClick={props.onFollowClick}
                                         openModal={props.openModal}
                                         handleLogin={props.handleLogin}
-                                        type="feature_set"
+                                        type='feature_set'
                                     />
                                 </Col>
                             ))}
@@ -258,7 +258,7 @@ export const ResultsGrid = (props) => {
                                 onFollowClick={props.onFollowClick}
                                 openModal={props.openModal}
                                 handleLogin={props.handleLogin}
-                                type="gallery_set"
+                                type='gallery_set'
                             />
                         </Col>
                     ))}
