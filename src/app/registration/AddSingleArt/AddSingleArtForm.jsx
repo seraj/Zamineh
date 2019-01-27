@@ -305,25 +305,32 @@ class AddSingleArtForm extends React.Component {
     }
 
 
-    AddSingleArt = (pushFunction, ColID) => {
+    AddSingleArt = (pushFunction, ColID, values) => {
 
         const Body = {
             collection_id: ColID ? ColID : null
         }
-        axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
-            params: {
-                collection_id: ColID ? ColID : null,
-                isAdd: true
-            }
-        })
-            .then(response => {
-                pushFunction({ id: response.data.id })
-            }).then(() => {
-                // this.getFormData()
-            })
-            .catch(error => {
+        var ArtValue = values.art_set
+        if (!SingleArtValidation(ArtValue)) {
+            Toast('warning', `ابتدا اثر فعلی را تکمیل کنی.`);
+        } else {
+            axios
+                .get(`${Urls().api()}/gallery-app/artist/art/create-update/`,
+                    {
+                        params: {
+                            collection_id: ColID ? ColID : null,
+                            isAdd: true
+                        }
+                    })
+                .then(response => {
+                    pushFunction({ id: response.data.id })
+                }).then(() => {
+                    // this.getFormData()
+                })
+                .catch(error => {
 
-            })
+                })
+        }
     }
 
     addCollection = async (pushFunction, type) => {
@@ -389,7 +396,6 @@ class AddSingleArtForm extends React.Component {
             showForm
         } = this.state
         var hasToken = SecurityManager().hasArtistRegToken()
-        console.log(this.state.data)
         return (
             <React.Fragment>
                 <Section ExtraClass={'content singlePage'}>
@@ -538,7 +544,7 @@ class AddSingleArtForm extends React.Component {
                                                                                         <button
                                                                                             type='button'
                                                                                             className=''
-                                                                                            onClick={() => this.AddSingleArt(fields.push, 'Art')}>
+                                                                                            onClick={() => this.AddSingleArt(fields.push, 'Art', values)}>
                                                                                             <i></i>
                                                                                             <span>اضافه کردن اثر</span>
                                                                                         </button>
@@ -550,13 +556,14 @@ class AddSingleArtForm extends React.Component {
                                                                 </FieldArray>
                                                             </React.Fragment>
                                                         </Row>
-
-                                                        <SubmitSeciton
-                                                            Text='ثبت نهایی'
-                                                            data={data}
-                                                            values={values}
-
-                                                        />
+                                                        {/*
+                                                                    <SubmitSeciton
+                                                                    Text='ثبت نهایی'
+                                                                    data={data}
+                                                                    values={values}
+                                                                    
+                                                                    />
+                                                        */}
                                                     </form>
                                                 )}
                                         />}
