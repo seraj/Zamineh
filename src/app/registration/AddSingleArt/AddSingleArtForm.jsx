@@ -116,15 +116,25 @@ class AddSingleArtForm extends React.Component {
     }
     componentDidMount() {
         const parsed = queryString.parse(location.search);
+        let type = '';
+        if (parsed['collection_id'] || parsed['art_id']) {
+            type = parsed['collection_id'] ? 'collection' : 'art'
+            console.log(type)
+        } else {
+            type = 'collection';
+        }
 
+        var idname = type == 'collection' ? parsed['collection_id'] : parsed['art_id']
         if (SecurityManager().hasArtistRegToken()) {
-            this.getFormData('collection', parsed['collection_id'])
+            this.getFormData(type, idname)
         }
     }
-    focusOnErrors = createDecorator()
 
+
+
+    focusOnErrors = createDecorator()
     handleSubmit = values => {
-        console.log(values)
+        // console.log(values)
     }
 
     btnSubmitLoading(value) {
@@ -137,7 +147,7 @@ class AddSingleArtForm extends React.Component {
     getFormData = (type, id) => {
         let Type = type == 'art' ? 'artist/art' : 'collection'
         axios.get(`${Urls().api()}/gallery-app/${Type}/create-update/`, {
-            params: id ? id : null
+            params: id ? { id: id } : null
         })
             .then(response => {
                 this.setState({
