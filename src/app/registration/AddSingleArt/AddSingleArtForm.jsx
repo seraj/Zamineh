@@ -181,7 +181,6 @@ class AddSingleArtForm extends React.Component {
             ArtValue = values.collection_set[ColIndex].art_set[Artindex];
             ArtValue.collection_id = values.collection_set[ColIndex].id;
             ArtData = this.state.data.collection_set[ColIndex].art_set[Artindex];
-            // ArtData.loading = false;
         }
         if (!SingleArtValidation(ArtValue)) {
             Toast('warning', `لطفا تمام فیلدهای مربوط به اثر شماره ${Artindex + 1} را پر کنید`);
