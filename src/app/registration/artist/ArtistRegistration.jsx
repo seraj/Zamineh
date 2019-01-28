@@ -218,6 +218,21 @@ class ArtistRegistration extends React.Component {
     }
     artistRegisterStep1 = values => {
         var StepData = this.state.StepData;
+
+        let data = {
+            first_name: values.first_name,
+            last_name: values.last_name,
+            address: {
+                address: values.address,
+                lat: StepData.lat ? values.lat : this.state.Maplatlng.lat,
+                lng: StepData.lng ? values.lng : this.state.Maplatlng.lng
+            },
+            email: values.email,
+            website: values.website,
+            phone_num: NumbersConvertor().convertToLatin(values.phone_num),
+            sheba_num: NumbersConvertor().convertToLatin(values.sheba_num),
+            gallery: values.gallery ? values.gallery[0] : null
+        }
         if (!Step1Validation(values)) {
             Toast('warning', 'اطلاعات تکمیل نمیباشد');
         }
@@ -228,20 +243,7 @@ class ArtistRegistration extends React.Component {
         else {
             this.BtnSubmitLoading(true)
             axios
-                .post(`${Urls().api()}/gallery-app/artist/portfolio-step1/`, {
-                    first_name: values.first_name,
-                    last_name: values.last_name,
-                    address: {
-                        address: values.address,
-                        lat: StepData.lat ? values.lat : this.state.Maplatlng.lat,
-                        lng: StepData.lng ? values.lng : this.state.Maplatlng.lng
-                    },
-                    email: values.email,
-                    website: values.website,
-                    phone_num: NumbersConvertor().convertToLatin(values.phone_num),
-                    sheba_num: NumbersConvertor().convertToLatin(values.sheba_num),
-                    gallery: values.gallery ? values.gallery[0] : null
-                })
+                .post(`${Urls().api()}/gallery-app/artist/portfolio-step1/`, data)
                 .then(() => {
                     Toast('success', 'اطلاعات شما با موفقیت ثبت شد');
                     this.BtnSubmitLoading(false)

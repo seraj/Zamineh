@@ -141,7 +141,7 @@ export const Step1 = ({
                     <Col lg={6} md={6} sm={12} xs={12}>
                         <FormGroup>
                             <Label className={LabelRequired}>آدرس روی نقشه</Label>
-                            {StepData && StepData.lat &&
+                            {StepData && StepData.lat ?
                                 <ZaminehMap
                                     onClick={onMapClick}
                                     mapPosition={StepData.lat != null ? [StepData.lat, StepData.lng] : null}
@@ -149,8 +149,7 @@ export const Step1 = ({
                                     mapZoom={18}
                                     currentLocation={StepData.lat != null ? false : true}
                                 />
-                            }
-                            {!StepData && !StepData.lat &&
+                                :
                                 <ZaminehMap
                                     onClick={onMapClick}
                                     mapZoom={18}
