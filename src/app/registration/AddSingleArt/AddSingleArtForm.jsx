@@ -333,7 +333,7 @@ class AddSingleArtForm extends React.Component {
                         }
                     })
                 .then(response => {
-                    pushFunction({ id: response.data.id })
+                    pushFunction(response.data.art_set[0])
                 }).then(() => {
                     // this.getFormData()
                 })
@@ -344,14 +344,14 @@ class AddSingleArtForm extends React.Component {
     }
 
     addCollection = async (pushFunction, type) => {
-        axios.post(`${Urls().api()}/gallery-app/collection/create-update/`,
+        axios.get(`${Urls().api()}/gallery-app/collection/create-update/`,
             {
                 params: {
                     isAdd: true
                 }
             })
             .then(response => {
-                pushFunction({ id: response.data.id, art_set: [] })
+                pushFunction(response.data.collection_set[0])
             }).then(() => {
                 // this.getFormData()
             })
@@ -581,14 +581,14 @@ class AddSingleArtForm extends React.Component {
                                                                 </FieldArray>
                                                             </React.Fragment>
                                                         </Row>
-                                                        {/*
-                                                                    <SubmitSeciton
-                                                                    Text='ثبت نهایی'
-                                                                    data={data}
-                                                                    values={values}
-                                                                    
-                                                                    />
-                                                        */}
+
+                                                        <SubmitSeciton
+                                                            Text='ثبت نهایی'
+                                                            data={data}
+                                                            values={values}
+
+                                                        />
+
                                                     </form>
                                                 )}
                                         />}
