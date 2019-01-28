@@ -175,7 +175,7 @@ export const Collection = ({
                                     name={name}
                                     data={data}
                                     config={config}
-                                    ServerData={data.collection_set[ColIndex].art_set[index]}
+                                    ServerData={data.collection_set ? data.collection_set[ColIndex].art_set[index] : null}
                                     LocalData={values.collection_set[ColIndex].art_set[index]}
                                     index={index}
                                     input={input}
@@ -199,7 +199,7 @@ export const Collection = ({
                                                 <button
                                                     type='button'
                                                     className=''
-                                                    onClick={() => addArt(fields.push, values.collection_set[ColIndex].id)}>
+                                                    onClick={() => addArt(fields.push, values.collection_set[ColIndex].id, values.collection_set[ColIndex])}>
                                                     <i></i>
                                                     <span>اضافه کردن اثر</span>
                                                 </button>

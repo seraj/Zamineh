@@ -321,8 +321,8 @@ class AddSingleArtForm extends React.Component {
             collection_id: ColID ? ColID : null
         }
         var ArtValue = values.art_set
-        if (!SingleArtValidation(ArtValue)) {
-            Toast('warning', `ابتدا اثر فعلی را تکمیل کنی.`);
+        if (ArtValue.length > 0 && !SingleArtValidation(ArtValue)) {
+            Toast('warning', `ابتدا اثر فعلی را تکمیل کنید.`);
         } else {
             axios
                 .get(`${Urls().api()}/gallery-app/artist/art/create-update/`,
@@ -344,13 +344,16 @@ class AddSingleArtForm extends React.Component {
     }
 
     addCollection = async (pushFunction, type) => {
-        axios.post(`${Urls().api()}/gallery-app/collection-art/`, {
-            type: type
-        })
+        axios.post(`${Urls().api()}/gallery-app/collection/create-update/`,
+            {
+                params: {
+                    isAdd: true
+                }
+            })
             .then(response => {
                 pushFunction({ id: response.data.id, art_set: [] })
             }).then(() => {
-                this.getSteps()
+                // this.getFormData()
             })
             .catch(error => {
 
@@ -517,7 +520,19 @@ class AddSingleArtForm extends React.Component {
                                                                                         />
                                                                                     </React.Fragment>
                                                                                 ))}
-
+                                                                                {values && values.collection_set &&
+                                                                                    <Col lg={12} md={12} sm={12} xs={12}>
+                                                                                        <div className={styles.addSectionButton}>
+                                                                                            <button
+                                                                                                type='button'
+                                                                                                className=''
+                                                                                                onClick={() => this.addCollection(fields.push, 'Art', values)}>
+                                                                                                <i></i>
+                                                                                                <span>اضافه کردن مجموعه</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </Col>
+                                                                                }
                                                                             </React.Fragment>
                                                                         }
                                                                     </FieldArray>
@@ -544,7 +559,7 @@ class AddSingleArtForm extends React.Component {
                                                                                         LabelRequired={LabelRequired}
                                                                                         singleArtSubmit={() => this.singleArtSubmit(values, index, null, 'SingleArt')}
                                                                                         hasExtraFields
-                                                                                        onArtRemoveClick={() => handleRemove(fields, 'art_id', values, 'Col Index', index)}
+                                                                                        onArtRemoveClick={() => this.handleRemove(fields, 'art_id', values, 'Col Index', index)}
                                                                                     />
                                                                                 </React.Fragment>
                                                                             ))}
@@ -554,7 +569,7 @@ class AddSingleArtForm extends React.Component {
                                                                                         <button
                                                                                             type='button'
                                                                                             className=''
-                                                                                            onClick={() => this.AddSingleArt(fields.push, 'Art', values)}>
+                                                                                            onClick={() => this.AddSingleArt(fields.push, '', values)}>
                                                                                             <i></i>
                                                                                             <span>اضافه کردن اثر</span>
                                                                                         </button>
