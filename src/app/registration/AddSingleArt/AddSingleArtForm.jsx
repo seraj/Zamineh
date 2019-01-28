@@ -181,6 +181,7 @@ class AddSingleArtForm extends React.Component {
             ArtValue = values.collection_set[ColIndex].art_set[Artindex];
             ArtValue.collection_id = values.collection_set[ColIndex].id;
             ArtData = this.state.data.collection_set[ColIndex].art_set[Artindex];
+            // ArtData.loading = false;
         }
         if (!SingleArtValidation(ArtValue)) {
             Toast('warning', `لطفا تمام فیلدهای مربوط به اثر شماره ${Artindex + 1} را پر کنید`);
@@ -197,9 +198,8 @@ class AddSingleArtForm extends React.Component {
 
         } else {
             ArtData.loading = true;
-            this.setState({
-                ArtData
-            })
+            this.setState({ ArtData })
+
             axios.post(`${Urls().api()}/gallery-app/artist/art/create-update/`, ArtValue, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -320,8 +320,9 @@ class AddSingleArtForm extends React.Component {
             collection_id: ColID ? ColID : null
         }
         var ArtValue = values.art_set
-        if (ArtValue.length > 0 && !SingleArtValidation(ArtValue)) {
-            Toast('warning', `ابتدا اثر فعلی را تکمیل کنید.`);
+        console.log(SingleCollectionArtValidation(ArtValue))
+        if (ArtValue.length > 0 && !SingleCollectionArtValidation(ArtValue)) {
+            Toast('warning', `ابتدا اثر قبلی را تکمیل کنید.`);
         } else {
             axios
                 .get(`${Urls().api()}/gallery-app/artist/art/create-update/`,
@@ -333,50 +334,6 @@ class AddSingleArtForm extends React.Component {
                     })
                 .then(response => {
                     pushFunction(response.data.art_set[0])
-                    // pushFunction({
-                    //     "id": 209,
-                    //     "name": "ss",
-                    //     "bio": "sadasd",
-                    //     "quote": "ddd",
-                    //     "year": '1332',
-                    //     "mat_set": [
-                    //         {
-                    //             "slug": "%D8%B3%D9%86%DA%AF",
-                    //             "id": 4,
-                    //             "name": "سنگ"
-                    //         }
-                    //     ],
-                    //     "medium_set": [
-                    //         {
-                    //             "slug": "%D9%85%D8%AC%D8%B3%D9%85%D9%87",
-                    //             "id": 4,
-                    //             "name": "مجسمه"
-                    //         }
-                    //     ],
-                    //     "size": {
-                    //         "width": "22",
-                    //         "height": "222",
-                    //         "depth": "11",
-                    //         "unit": "m"
-                    //     },
-                    //     "submitted": false,
-                    //     "img_set": [
-                    //         {
-                    //             "id": 269,
-                    //             "name": "Low_IMG-2019-01-28%2011%3A47%3A08.307457%2B03%3A30.jpg",
-                    //             "link": "https://test.zamineh.net/media/Arts/209/Images/Lows/"
-                    //         },
-                    //         {
-                    //             "id": 229,
-                    //             "name": "Low_IMG-2019-01-28%2011%3A47%3A08.307457%2B03%3A30.jpg",
-                    //             "link": "https://test.zamineh.net/media/Arts/209/Images/Lows/"
-                    //         }
-                    //     ],
-                    //     "price": {
-                    //         "price": "233",
-                    //         "is_for_sale": "yes"
-                    //     }
-                    // })
                 }).then(() => {
                     // this.getFormData()
                 })
@@ -389,7 +346,7 @@ class AddSingleArtForm extends React.Component {
     addCollection = async (pushFunction, values) => {
         var ColValue = values.collection_set
         if (ColValue.length > 0 && !SingleCollectionValidation(ColValue)) {
-            Toast('warning', `ابتدا مجموعه فعلی را تکمیل کنید.`);
+            Toast('warning', `ابتدا مجموعه قبلی را تکمیل کنید.`);
         } else {
             axios.get(`${Urls().api()}/gallery-app/collection/create-update/`,
                 {

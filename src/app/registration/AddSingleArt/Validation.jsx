@@ -69,7 +69,6 @@ export function SingleCollectionArtValidation(value) {
     var ret = true;
     for (let index = 0; index < value.length; index++) {
         const element = value[index];
-        console.log(element);
         if (
             element.name == '' ||
             element.name == undefined ||
