@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import queryString from 'query-string';
+import { isMobile } from 'react-device-detect';
 import { withRouter } from 'react-router-dom'
 import Row from 'reactstrap/lib/Row';
 import Container from 'reactstrap/lib/Container';
@@ -124,7 +125,7 @@ class AddCollections extends React.Component {
     detectParams = () => {
         const parsed = queryString.parse(location.search);
 
-        let parsedParam = parsed['collection_id'] ? 'collection_set' : 'art';
+        let parsedParam = parsed['art_id'] ? 'art' : 'collection_set';
         var idname = parsedParam == 'collection_set' ? parsed['collection_id'] : parsed['art_id']
 
         if (SecurityManager().hasArtistRegToken()) {
@@ -140,7 +141,6 @@ class AddCollections extends React.Component {
     }
     getFormData = (type, id) => {
         var Type = ''
-        console.log(type)
         switch (type) {
             case 'art':
                 Type = 'artist/art'
@@ -223,6 +223,16 @@ class AddCollections extends React.Component {
                         this.forceUpdate()
                     })
                 })
+                .then(() => {
+                    if (parsed['xeYDSM2fWgsJvFuN'] == 'ios' && isMobile) {
+                        // window.location.replace(`intent://whatever/#Intent;scheme=zamineh.panel.collection;package=com.nozhan.zaminehpanel;i.status=0/1;i.collection_id=${ColValue.id};end`)
+
+                    }
+                    else if (parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) {
+                        window.location.replace(`intent://whatever/#Intent;scheme=zamineh.panel.art;package=com.nozhan.zaminehpanel;i.status=0/1;art_id=${ArtValue.id};end`)
+
+                    }
+                })
                 .catch(error => {
                     ArtData.loading = false;
                     ArtData.submitted = false;
@@ -236,6 +246,9 @@ class AddCollections extends React.Component {
 
 
     singleColSubmit = (values, ColIndex) => {
+        const parsed = queryString.parse(location.search);
+
+
         const ColID = values.collection_set[ColIndex].id
         var ColValue = values.collection_set[ColIndex];
         var ColData = this.state.data.collection_set[ColIndex];
@@ -282,6 +295,15 @@ class AddCollections extends React.Component {
                         },
                         timer: 1500,
                     })
+                }).then(() => {
+                    if (parsed['xeYDSM2fWgsJvFuN'] == 'ios' && isMobile) {
+                        // window.location.replace(`intent://whatever/#Intent;scheme=zamineh.panel.collection;package=com.nozhan.zaminehpanel;i.status=0/1;i.collection_id=${ColValue.id};end`)
+
+                    }
+                    else if (parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) {
+                        window.location.replace(`intent://whatever/#Intent;scheme=zamineh.panel.collection;package=com.nozhan.zaminehpanel;i.status=0/1;i.collection_id=${ColValue.id};end`)
+
+                    }
                 })
 
                 .catch(error => {
@@ -294,8 +316,6 @@ class AddCollections extends React.Component {
                 })
         }
     }
-
-
 
 
     handleRemove = (FARemove, type, values, ColIndex, ArtIndex, CollectionType) => {

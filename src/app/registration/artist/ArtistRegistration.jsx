@@ -1,12 +1,11 @@
 
 import React from 'react';
 import { withRouter } from 'react-router-dom'
+import queryString from 'query-string';
 import axios from 'axios';
 import Loadable from 'react-loadable';
 import moment from 'moment-jalaali';
-import {
-    isMobile
-} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 import SecurityManager from '../../security/SecurityManager';
 import Urls from '../../components/Urls';
@@ -295,6 +294,8 @@ class ArtistRegistration extends React.Component {
         }
     }
     artistRegisterStep4 = values => {
+        const parsed = queryString.parse(location.search);
+
 
         if (!CollectionAllArtValidation(values)) {
             Toast('warning', 'تمام اطلاعات مجموعه‌ها باید ثبت شود');
@@ -307,10 +308,10 @@ class ArtistRegistration extends React.Component {
                     Toast('success', 'اطلاعات شما با موفقیت ثبت شد');
                     this.BtnSubmitLoading(false);
                     if (parsed['xeYDSM2fWgsJvFuN'] == 'ios' && isMobile) {
-                        console.log('ios')
+                        this.redirectToApp('ios')
                     }
-                    else if (parsed['xeYDSM2fWgsJvFuN'] == 'android') {
-                        console.log('android')
+                    else if (parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) {
+                        this.redirectToApp('android')
                     }
                 }).then(() => {
                     this.getSteps()
@@ -321,6 +322,17 @@ class ArtistRegistration extends React.Component {
         }
     }
 
+
+
+    redirectToApp = (os) => {
+        axios.post(`${Urls().api()}/gallery-app/auth/get-token/`)
+            .then(response => {
+                os === 'android' ?
+                    window.location = `intent://whatever/#Intent;scheme=zamineh.panel.signup;package=com.nozhan.zaminehpanel;S.access_token=${response.data.access_token};S.refresh_token=${response.data.refresh_token};token_type=${response.data.token_type};end`
+                    :
+                    window.location = `intent://whatever/#Intent;scheme=zamineh.panel.signup;package=com.nozhan.zaminehpanel;S.access_token=ACCESS_TOKEN;S.refresh_token=REFRESH_TOKEN;token_type=Bearer;end`
+            })
+    }
     // End Steps Submit Actions
     //* ـــــــــــــــــــ */
 
