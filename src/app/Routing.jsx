@@ -23,7 +23,8 @@ import Search from './components/Search/Search'
 import Collect from './components/Collect/Collect'
 import Collections from './components/Collections/Collections'
 import Articles from './article/Articles';
-import AddSingleArtForm from './registration/AddSingleArt/AddSingleArtForm';
+import AddCollections from './registration/AddCollExb/AddCollections';
+import AddExhibitions from './registration/AddCollExb/AddExhibitions';
 import ArtistRegistration from './registration/artist/ArtistRegistration';
 import GalleryRegistration from './registration/gallery/GalleryRegistration';
 import Section from './components/Section/Section';
@@ -119,8 +120,13 @@ export default function Routing({ isLogined }) {
             />
             <Route
                 exact
-                path={`${Urls().AddSingleArt()}`}
-                render={() => <AddSingleArtForm />}
+                path={`${Urls().AddCollections()}`}
+                render={() => <AddCollections />}
+            />
+            <Route
+                exact
+                path={`${Urls().AddExhibitions()}`}
+                render={() => <AddExhibitions />}
             />
             <Route
                 exact

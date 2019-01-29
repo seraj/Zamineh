@@ -81,8 +81,11 @@ export default function Urls() {
         GalleryRegistration() {
             return '/registration/gallery';
         },
-        AddSingleArt() {
-            return '/registration/artist/singleart';
+        AddCollections() {
+            return '/registration/artist/add-collection';
+        },
+        AddExhibitions() {
+            return '/registration/artist/add-exhibition';
         },
 
         Profile() {

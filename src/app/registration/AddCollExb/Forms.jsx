@@ -55,6 +55,235 @@ const Condition = ({ when, is, children }) => (
     </Field>
 );
 
+export const Exhibition = ({
+    singleArtSubmit,
+    singleExbSubmit,
+    data,
+    config,
+    input,
+    select,
+    radio,
+    textarea,
+    LabelRequired,
+    addArt,
+    importArts,
+    openArtModal,
+    ModalToggle,
+    name,
+    onRemoveClick,
+    handleRemove,
+    index,
+    values }) => {
+    const ExbIndex = index
+    const ExbData = data.exb_set ? data.exb_set[index] : null
+    const unSubmittedArts = values.exb_set[index] ? unSubmittedArt(values.exb_set[index].art_set).length : null;
+
+    const ServerData = data.exb_set ? data.exb_set[ExbIndex] : null;
+    const CoverUploadServer = `/gallery-app/artist/collection/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/cover/`;
+    const LogoUploadServer = `/gallery-app/artist/collection/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/logo/`;
+
+    return (
+        <div className={`${styles.RegistrationSection} part ${ExbData && ExbData.submitted ? `submitted` : ``}`}>
+            {ExbData && ExbData.loading &&
+                <Loading />
+            }
+            <LinkButton onClick={onRemoveClick} className={styles.removethis}>حذف این نمایشگاه</LinkButton>
+            <Row>
+                <Field
+                    name={`${name}.id`}
+                    component={input}
+                    hidden
+                />
+                <Col xs={12}>
+                    <Divider text={`مشخصات نمایشگاه ${index + 1}`} orientation='right' />
+                </Col>
+                {unSubmittedArts > 0 &&
+                    <Col xs={12}>
+                        <Alert
+                            message={`شما در این نمایشگاه ${unSubmittedArts} اثر ثبت نشده دارید.لطفا نسبت به تکمیل اطلاعات اثر اقدام نمایید`}
+                            type='error'
+                            style={{ marginBottom: 15 }}
+                            icon
+                            rtl
+                        />
+                    </Col>
+                }
+                <Col lg={3} md={4} sm={12} xs={12}>
+                    <FormGroup>
+                        <Label className={LabelRequired}>نام مجموعه</Label>
+                        <Field
+                            name={`${name}.name`}
+                            component={input}
+                            placeholder='نام مجموعه'
+                            validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
+                            control
+                        />
+                        <Error name={`${name}.name`} />
+                    </FormGroup>
+                </Col>
+                <Col lg={9} md={8} sm={12} xs={12}>
+                    <FormGroup>
+                        <Label className={LabelRequired}>دلیل برگذاری را شرح دهید #مثلا</Label>
+                        <Field
+                            name={`${name}.desc`}
+                            component={textarea}
+                            maxLength='500'
+                            placeholder='...'
+                            validate={value => value ? undefined : 'الزامی'}
+                            control
+                        />
+                        <Error name={`${name}.desc`} />
+                    </FormGroup>
+                </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <Label className={LabelRequired}>کاور مجموعه</Label>
+                    <Uploader
+                        server={CoverUploadServer}
+                        name={`${name}.img`}
+                        files={(ServerData && ServerData.cover && ServerData.cover.name) ? ServerData.cover.name : null}
+                        Load={(ServerData && ServerData.cover && ServerData.cover.link) ? ServerData.cover.link : null}
+                        // Multiple
+                        // maxFiles={5}
+                        allowImagePreview={false}
+                    />
+                </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <Label className={LabelRequired}>لوگو مجموعه</Label>
+                    <Uploader
+                        server={LogoUploadServer}
+                        name={`${name}.img`}
+                        files={(ServerData && ServerData.logo && ServerData.logo.link) ? ServerData.logo.name : null}
+                        Load={(ServerData && ServerData.logo && ServerData.logo.link) ? ServerData.logo.link : null}
+
+                        // Multiple
+                        // maxFiles={5}
+                        allowImagePreview={false}
+                    />
+                </Col>
+
+                <Col xs={12}>
+                    <Divider text='تمام آثار این مجموعه' orientation='right' />
+                </Col>
+
+
+                <FieldArray name={`${name}.art_set`}>
+                    {({ fields }) =>
+                        <React.Fragment>
+                            {fields.map((name, index) => (
+                                <SingleArt
+                                    key={index}
+                                    name={name}
+                                    data={data}
+                                    config={config}
+                                    ServerData={data.exb_set ? data.exb_set[ExbIndex].art_set[index] : null}
+                                    LocalData={values.exb_set[ExbIndex].art_set[index]}
+                                    index={index}
+                                    input={input}
+                                    radio={radio}
+                                    textarea={textarea}
+                                    select={select}
+                                    hasExtraFields
+                                    values={values}
+                                    LabelRequired={LabelRequired}
+                                    singleArtSubmit={() => singleArtSubmit(values, index, ExbIndex)}
+                                    onArtRemoveClick={() => handleRemove(fields, 'art_id', values, ExbIndex, index, 'CollectionArt')}
+                                />
+
+                            ))}
+                            <Col xs={12}>
+                                <Row>
+
+                                    <React.Fragment>
+                                        <Col xs={12}>
+                                            <div className={styles.addSectionButton}>
+                                                <button
+                                                    type='button'
+                                                    className=''
+                                                    onClick={() => addArt(fields.push, values.exb_set[ExbIndex].id, values.exb_set[ExbIndex])}>
+                                                    <i></i>
+                                                    <span>اضافه کردن اثر</span>
+                                                </button>
+                                            </div>
+                                        </Col>
+                                        {values.art_set && SubmittedArt(values.art_set).length > 0 &&
+                                            <Col xs={6}>
+                                                <div className={styles.importArtButton}>
+                                                    <button
+                                                        type='button'
+                                                        className=''
+                                                        onClick={() => openArtModal()}>
+                                                        <i></i>
+                                                        <span>درون ریزی آثار</span>
+                                                    </button>
+                                                </div>
+                                                <Modal
+                                                    isOpen={ModalToggle}
+                                                    toggle={openArtModal}
+                                                    className={styles.importArts}
+                                                    title={'درون ریزی آثار مختلط'}
+                                                >
+                                                    <Row>
+                                                        <Col xs={12}>
+                                                            <p>شما میتوانید آثار ثبت شده را برای استفاده در این قسمت انتخاب کنید</p>
+                                                        </Col>
+                                                        {values && values.art_set &&
+                                                            SubmittedArt(values.art_set).map((arts, index) => (
+                                                                <Col key={index} xs={12}>
+                                                                    <div className='_art'>
+                                                                        {arts.name}
+                                                                        <a
+                                                                            className={`import-button`}
+                                                                            onClick={() => importArts(index, arts.id, values.exb_set[ExbIndex].id)}>
+                                                                        </a>
+                                                                    </div>
+                                                                </Col>
+
+                                                            ))
+
+                                                        }
+
+                                                    </Row>
+                                                </Modal>
+
+                                            </Col>
+                                        }
+
+                                    </React.Fragment>
+
+                                </Row>
+                            </Col>
+                        </React.Fragment>
+                    }
+
+                </FieldArray>
+
+                <Col sm={12} className='text-left'>
+                    <LinkButton
+                        onClick={() => singleExbSubmit(values, ExbIndex)}
+                        className='zbtn black bradius'
+                    >ثبت نمایشگاه</LinkButton>
+                </Col>
+            </Row>
+        </div >
+
+
+
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const Collection = ({
     singleArtSubmit,
     singleColSubmit,
