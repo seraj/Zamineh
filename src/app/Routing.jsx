@@ -25,6 +25,7 @@ import Collections from './components/Collections/Collections'
 import Articles from './article/Articles';
 import AddCollections from './registration/AddCollExb/AddCollections';
 import AddExhibitions from './registration/AddCollExb/AddExhibitions';
+import AddSingleArt from './registration/AddCollExb/AddSingleArt';
 import ArtistRegistration from './registration/artist/ArtistRegistration';
 import GalleryRegistration from './registration/gallery/GalleryRegistration';
 import Section from './components/Section/Section';
@@ -117,6 +118,11 @@ export default function Routing({ isLogined }) {
                 exact
                 path={Urls().ArtistRegistration()}
                 render={() => <ArtistRegistration />}
+            />
+            <Route
+                exact
+                path={`${Urls().AddSingleArt()}`}
+                render={() => <AddSingleArt />}
             />
             <Route
                 exact
