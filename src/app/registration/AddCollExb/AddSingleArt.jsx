@@ -6,43 +6,19 @@ import { withRouter } from 'react-router-dom'
 import Row from 'reactstrap/lib/Row';
 import Container from 'reactstrap/lib/Container';
 import Col from 'reactstrap/lib/Col';
-
 import { Form } from 'react-final-form';
-
-import { Field } from 'react-final-form-html5-validation'
 import { FieldArray } from 'react-final-form-arrays'
 import arrayMutators from 'final-form-arrays'
 import setFieldData from 'final-form-set-field-data'
 import createDecorator from 'final-form-focus'
 import { Toast } from '../../components/Toast/Toast';
 import AuthorizationForm from '../components/AuthorizationForm'
-
-
 import SecurityManager from '../../security/SecurityManager';
 import Urls from '../../components/Urls';
 
 import { SingleArt } from './Forms';
 
 import Section from '../../components/Section/Section';
-
-import Alert from '../../components/Alert/Alert';
-import Divider from '../../components/Divider';
-
-import json from './ExJSON.json'
-
-import {
-    Checkbox,
-    ControlFeedback,
-    FormCheck,
-    FormCheckLabel,
-    FormGroup,
-    Input,
-    Label,
-    Radio,
-    RadioGroup,
-    Select,
-    Textarea,
-} from '@smooth-ui/core-sc';
 
 import {
 
@@ -80,28 +56,6 @@ const SubmitSeciton = ({ data, Text, values }) => (
 );
 
 
-
-const adapt = Component => ({
-    input,
-    meta: { valid,
-        touched },
-    ...rest
-}) => <Component {...input} {...rest} valid={touched ? valid : ''} />;
-const AdaptedInput = adapt(Input);
-const AdaptedCheckbox = adapt(Checkbox);
-const AdaptedRadio = adapt(Radio);
-const AdaptedSelect = adapt(Select);
-const AdaptedTextarea = adapt(Textarea);
-const LabelRequired = 'required';
-const Error = ({ name }) => (
-    <Field name={name} subscription={{ error: true, touched: true }}>
-        {({ meta: { touched, error } }) =>
-            touched && error ? (
-                <ControlFeedback valid={!error}>{error}</ControlFeedback>
-            ) : null
-        }
-    </Field>
-);
 class AddSingleArt extends React.Component {
 
     constructor(props) {
@@ -355,12 +309,7 @@ class AddSingleArt extends React.Component {
                                                                                         ServerData={data.art_set ? data.art_set[index] : null}
                                                                                         LocalData={values.art_set[index]}
                                                                                         index={index}
-                                                                                        input={AdaptedInput}
-                                                                                        select={AdaptedSelect}
-                                                                                        textarea={AdaptedTextarea}
-                                                                                        radio={AdaptedRadio}
                                                                                         values={values}
-                                                                                        LabelRequired={LabelRequired}
                                                                                         singleArtSubmit={() => this.singleArtSubmit(values, index, null, 'SingleArt')}
                                                                                         hasExtraFields
                                                                                         onArtRemoveClick={() => this.handleRemove(fields, 'art_id', values, 'Col Index', index)}

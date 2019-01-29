@@ -9,7 +9,6 @@ import Col from 'reactstrap/lib/Col';
 
 import { Form } from 'react-final-form';
 
-import { Field } from 'react-final-form-html5-validation'
 import { FieldArray } from 'react-final-form-arrays'
 import arrayMutators from 'final-form-arrays'
 import setFieldData from 'final-form-set-field-data'
@@ -25,24 +24,9 @@ import { Collection } from './Forms';
 
 import Section from '../../components/Section/Section';
 
-import Alert from '../../components/Alert/Alert';
-import Divider from '../../components/Divider';
-
 import json from './ExJSON.json'
 
-import {
-    Checkbox,
-    ControlFeedback,
-    FormCheck,
-    FormCheckLabel,
-    FormGroup,
-    Input,
-    Label,
-    Radio,
-    RadioGroup,
-    Select,
-    Textarea,
-} from '@smooth-ui/core-sc';
+
 
 import {
 
@@ -52,8 +36,6 @@ import {
     CollectionAllArtValidation,
 } from './Validation';
 import styles from '../Registration.scss'
-
-
 
 
 const SubmitSeciton = ({ data, Text, values }) => (
@@ -82,28 +64,6 @@ const SubmitSeciton = ({ data, Text, values }) => (
 );
 
 
-
-const adapt = Component => ({
-    input,
-    meta: { valid,
-        touched },
-    ...rest
-}) => <Component {...input} {...rest} valid={touched ? valid : ''} />;
-const AdaptedInput = adapt(Input);
-const AdaptedCheckbox = adapt(Checkbox);
-const AdaptedRadio = adapt(Radio);
-const AdaptedSelect = adapt(Select);
-const AdaptedTextarea = adapt(Textarea);
-const LabelRequired = 'required';
-const Error = ({ name }) => (
-    <Field name={name} subscription={{ error: true, touched: true }}>
-        {({ meta: { touched, error } }) =>
-            touched && error ? (
-                <ControlFeedback valid={!error}>{error}</ControlFeedback>
-            ) : null
-        }
-    </Field>
-);
 class AddCollections extends React.Component {
 
     constructor(props) {
@@ -453,11 +413,6 @@ class AddCollections extends React.Component {
                                                                                             index={index}
                                                                                             onCollectionRemoveClick={() => this.handleRemove(fields, 'collection_id', values, index, null)}
                                                                                             handleRemove={this.handleRemove}
-                                                                                            input={AdaptedInput}
-                                                                                            select={AdaptedSelect}
-                                                                                            radio={AdaptedRadio}
-                                                                                            textarea={AdaptedTextarea}
-                                                                                            LabelRequired={LabelRequired}
                                                                                             singleColSubmit={this.singleColSubmit}
                                                                                             singleArtSubmit={this.singleArtSubmit}
                                                                                             addArt={this.AddSingleArt}

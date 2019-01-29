@@ -1,12 +1,17 @@
 import React from 'react';
 import {
-    FormCheck,
+    Button,
+    Checkbox,
     ControlFeedback,
+    FormCheck,
     FormCheckLabel,
     FormGroup,
+    Input,
     Label,
-    Button,
+    Radio,
     RadioGroup,
+    Select,
+    Textarea,
 
 } from '@smooth-ui/core-sc';
 import Row from 'reactstrap/lib/Row';
@@ -22,6 +27,23 @@ import { Loading } from '../../components/Spinner/Spinner';
 
 import InputAsyncTypeahead from '../components/InputAsyncTypeahead';
 import styles from '../Registration.scss'
+
+
+
+
+const adapt = Component => ({
+    input,
+    meta: { valid,
+        touched },
+    ...rest
+}) => <Component {...input} {...rest} valid={touched ? valid : ''} />;
+const AdaptedInput = adapt(Input);
+const AdaptedCheckbox = adapt(Checkbox);
+const AdaptedRadio = adapt(Radio);
+const AdaptedSelect = adapt(Select);
+const AdaptedTextarea = adapt(Textarea);
+const LabelRequired = 'required';
+
 
 
 const LinkButton = Button.withComponent('a')
@@ -60,11 +82,7 @@ export const Exhibition = ({
     singleExbSubmit,
     data,
     config,
-    input,
-    select,
-    radio,
-    textarea,
-    LabelRequired,
+    onChangeDatepicker,
     addArt,
     importArts,
     openArtModal,
@@ -75,12 +93,13 @@ export const Exhibition = ({
     index,
     values }) => {
     const ExbIndex = index
-    const ExbData = data.exb_set ? data.exb_set[index] : null
-    const unSubmittedArts = values.exb_set[index] ? unSubmittedArt(values.exb_set[index].art_set).length : null;
+    const ExbData = data.exb_set ? data.exb_set[ExbIndex] : null
+    const unSubmittedArts = values.exb_set[ExbIndex] ? unSubmittedArt(values.exb_set[ExbIndex].art_set).length : null;
 
     const ServerData = data.exb_set ? data.exb_set[ExbIndex] : null;
-    const CoverUploadServer = `/gallery-app/artist/collection/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/cover/`;
-    const LogoUploadServer = `/gallery-app/artist/collection/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/logo/`;
+    const ImageUploadServer = `/gallery-app/artist/show/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/image/`;
+    const LogoUploadServer = `/gallery-app/artist/show/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/logo/`;
+
 
     return (
         <div className={`${styles.RegistrationSection} part ${ExbData && ExbData.submitted ? `submitted` : ``}`}>
@@ -91,7 +110,7 @@ export const Exhibition = ({
             <Row>
                 <Field
                     name={`${name}.id`}
-                    component={input}
+                    component={AdaptedInput}
                     hidden
                 />
                 <Col xs={12}>
@@ -110,12 +129,12 @@ export const Exhibition = ({
                 }
                 <Col lg={3} md={4} sm={12} xs={12}>
                     <FormGroup>
-                        <Label className={LabelRequired}>نام مجموعه</Label>
+                        <Label className={LabelRequired}>عنوان نمایشگاه</Label>
                         <Field
-                            name={`${name}.name`}
-                            component={input}
-                            placeholder='نام مجموعه'
-                            validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
+                            name={`${name}.title`}
+                            component={AdaptedInput}
+                            placeholder='عنوان نمایشگاه'
+                            validate={value => value ? undefined : 'وارد کردن عنوان نمایشگاه مجموعه میباشد'}
                             control
                         />
                         <Error name={`${name}.name`} />
@@ -123,10 +142,10 @@ export const Exhibition = ({
                 </Col>
                 <Col lg={9} md={8} sm={12} xs={12}>
                     <FormGroup>
-                        <Label className={LabelRequired}>دلیل برگذاری را شرح دهید #مثلا</Label>
+                        <Label className={LabelRequired}>دلیل برگذاری نمایشگاه</Label>
                         <Field
                             name={`${name}.desc`}
-                            component={textarea}
+                            component={AdaptedTextarea}
                             maxLength='500'
                             placeholder='...'
                             validate={value => value ? undefined : 'الزامی'}
@@ -135,28 +154,90 @@ export const Exhibition = ({
                         <Error name={`${name}.desc`} />
                     </FormGroup>
                 </Col>
+                <Col xs={12}>
+                    <Divider text={`زمان برگذاری`} orientation='right' />
+                </Col>
                 <Col lg={6} md={6} sm={12} xs={12}>
-                    <Label className={LabelRequired}>کاور مجموعه</Label>
+                    <FormGroup>
+                        <Label className={LabelRequired}>تاریخ شروع نمایشگاه</Label>
+                        <PersianDatePicker
+                            name={`${name}.start_date`}
+                            // defaultValue='1991-03-21'
+                            onChangeDatepicker={onChangeDatepicker}
+                        />
+                        <Error name={`${name}.start_date`} />
+                    </FormGroup>
+                </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <FormGroup>
+                        <Label className={LabelRequired}>تاریخ پایان نمایشگاه</Label>
+                        <PersianDatePicker
+                            name={`${name}.end_date`}
+                            // defaultValue='1991-03-21'
+                            onChangeDatepicker={onChangeDatepicker}
+                        />
+                        <Error name={`${name}.start_date`} />
+                    </FormGroup>
+                </Col>
+
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <FormGroup>
+                        <Label className={LabelRequired}>ساعت شروع به کار نمایشگاه</Label>
+                        <Field
+                            type='time'
+                            // min='12:00'
+                            // rangeUnderflow='مقدار نمیتواند از ساعت فلان کمتر باشد'
+                            // max='18:00'
+                            // rangeOverflow='مقدار نمیتواند از ساعت فلان بیشتر باشد'
+                            name={`${name}.start_time`}
+                            component={AdaptedInput}
+                            placeholder='شروع'
+                            validate={value => value ? undefined : 'وارد کردن ساعت شروع نمایشگاه الزامی میباشد'}
+                            control
+                        />
+                        <Error name={`${name}.start_time`} />
+                    </FormGroup>
+                </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <FormGroup>
+                        <Label className={LabelRequired}>ساعت پایان به کار نمایشگاه</Label>
+                        <Field
+                            type='time'
+                            // min='12:00'
+                            // rangeUnderflow='مقدار نمیتواند از ساعت فلان کمتر باشد'
+                            // max='18:00'
+                            // rangeOverflow='مقدار نمیتواند از ساعت فلان بیشتر باشد'
+                            name={`${name}.end_time`}
+                            component={AdaptedInput}
+                            placeholder='شروع'
+                            validate={value => value ? undefined : 'وارد کردن ساعت پایان نمایشگاه الزامی میباشد'}
+                            control
+                        />
+                        <Error name={`${name}.end_time`} />
+                    </FormGroup>
+                </Col>
+                <Col xs={12}>
+                    <Divider text='بارگذاری تصاویر نمایشگاه' orientation='right' />
+                </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <Label className={LabelRequired}>لوگو نمایشگاه</Label>
                     <Uploader
-                        server={CoverUploadServer}
+                        server={LogoUploadServer}
                         name={`${name}.img`}
-                        files={(ServerData && ServerData.cover && ServerData.cover.name) ? ServerData.cover.name : null}
-                        Load={(ServerData && ServerData.cover && ServerData.cover.link) ? ServerData.cover.link : null}
-                        // Multiple
-                        // maxFiles={5}
+                        files={(ServerData && ServerData.logo && ServerData.logo.name) ? ServerData.logo.name : null}
+                        Load={(ServerData && ServerData.logo && ServerData.logo.link) ? ServerData.logo.link : null}
                         allowImagePreview={false}
                     />
                 </Col>
                 <Col lg={6} md={6} sm={12} xs={12}>
-                    <Label className={LabelRequired}>لوگو مجموعه</Label>
+                    <Label className={LabelRequired}>تصاویر نمایشگاه</Label>
                     <Uploader
-                        server={LogoUploadServer}
+                        server={ImageUploadServer}
                         name={`${name}.img`}
-                        files={(ServerData && ServerData.logo && ServerData.logo.link) ? ServerData.logo.name : null}
-                        Load={(ServerData && ServerData.logo && ServerData.logo.link) ? ServerData.logo.link : null}
-
-                        // Multiple
-                        // maxFiles={5}
+                        files={ServerData ? ServerData.img_set : null}
+                        load={ServerData ? ServerData.img_set : null}
+                        Multiple
+                        maxFiles={50}
                         allowImagePreview={false}
                     />
                 </Col>
@@ -178,13 +259,7 @@ export const Exhibition = ({
                                     ServerData={data.exb_set ? data.exb_set[ExbIndex].art_set[index] : null}
                                     LocalData={values.exb_set[ExbIndex].art_set[index]}
                                     index={index}
-                                    input={input}
-                                    radio={radio}
-                                    textarea={textarea}
-                                    select={select}
-                                    hasExtraFields
                                     values={values}
-                                    LabelRequired={LabelRequired}
                                     singleArtSubmit={() => singleArtSubmit(values, index, ExbIndex)}
                                     onArtRemoveClick={() => handleRemove(fields, 'art_id', values, ExbIndex, index, 'CollectionArt')}
                                 />
@@ -289,11 +364,6 @@ export const Collection = ({
     singleColSubmit,
     data,
     config,
-    input,
-    select,
-    radio,
-    textarea,
-    LabelRequired,
     addArt,
     importArttoCollection,
     openArtModal,
@@ -320,7 +390,7 @@ export const Collection = ({
             <Row>
                 <Field
                     name={`${name}.id`}
-                    component={input}
+                    component={AdaptedInput}
                     hidden
                 />
                 <Col xs={12}>
@@ -342,7 +412,7 @@ export const Collection = ({
                         <Label className={LabelRequired}>نام مجموعه</Label>
                         <Field
                             name={`${name}.name`}
-                            component={input}
+                            component={AdaptedInput}
                             placeholder='نام مجموعه'
                             validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
                             control
@@ -355,7 +425,7 @@ export const Collection = ({
                         <Label className={LabelRequired}>دلیل برگذاری را شرح دهید #مثلا</Label>
                         <Field
                             name={`${name}.desc`}
-                            component={textarea}
+                            component={AdaptedTextarea}
                             maxLength='500'
                             placeholder='...'
                             validate={value => value ? undefined : 'الزامی'}
@@ -407,13 +477,7 @@ export const Collection = ({
                                     ServerData={data.collection_set ? data.collection_set[ColIndex].art_set[index] : null}
                                     LocalData={values.collection_set[ColIndex].art_set[index]}
                                     index={index}
-                                    input={input}
-                                    radio={radio}
-                                    textarea={textarea}
-                                    select={select}
-                                    hasExtraFields
                                     values={values}
-                                    LabelRequired={LabelRequired}
                                     singleArtSubmit={() => singleArtSubmit(values, index, ColIndex)}
                                     onArtRemoveClick={() => handleRemove(fields, 'art_id', values, ColIndex, index, 'CollectionArt')}
                                 />
@@ -501,10 +565,6 @@ export const Collection = ({
 }
 export const SingleArt = ({
     singleArtSubmit,
-    input,
-    select,
-    radio,
-    textarea,
     data,
     config,
     ServerData,
@@ -513,7 +573,7 @@ export const SingleArt = ({
     index,
     onArtRemoveClick,
     hasExtraFields,
-    LabelRequired,
+
     values
 }) => {
     const UploadServer = `/gallery-app/artist/art/upload-image/${LocalData ? LocalData.id : ''}/`;
@@ -527,7 +587,7 @@ export const SingleArt = ({
                 <Row>
                     <Field
                         name={`${name}.id`}
-                        component={input}
+                        component={AdaptedInput}
                         hidden
                     />
                     <Col lg={12} md={12} sm={12} xs={12}>
@@ -538,7 +598,7 @@ export const SingleArt = ({
                             <Label className={LabelRequired}>نام اثر</Label>
                             <Field
                                 name={`${name}.name`}
-                                component={input}
+                                component={AdaptedInput}
                                 placeholder='نام اثر'
                                 validate={value => value ? undefined : 'وارد کردن نام اثر الزامی میباشد'}
                                 control
@@ -551,7 +611,7 @@ export const SingleArt = ({
                             <Label className={LabelRequired}>سال تولید</Label>
                             <Field
                                 name={`${name}.year`}
-                                component={input}
+                                component={AdaptedInput}
                                 placeholder='سال تولید اثر'
                                 validate={value => value ? undefined : 'وارد کردن سال تولید اثر الزامی میباشد'}
                                 control
@@ -596,7 +656,7 @@ export const SingleArt = ({
                             <Label className={LabelRequired}>واحد</Label>
                             <Field
                                 name={`${name}.size.unit`}
-                                component={select}
+                                component={AdaptedSelect}
                                 validate={value => value ? undefined : 'واردن کردن واحد الزامی میباشد'}
                                 control
                                 arrow={false}
@@ -616,7 +676,7 @@ export const SingleArt = ({
                             <Label className={LabelRequired}>طول</Label>
                             <Field
                                 name={`${name}.size.width`}
-                                component={input}
+                                component={AdaptedInput}
                                 placeholder='طول اثر'
                                 validate={value => value ? undefined : 'وارد کردن طول اثر الزامی میباشد'}
                                 control
@@ -629,7 +689,7 @@ export const SingleArt = ({
                             <Label className={LabelRequired}>ارتفاع</Label>
                             <Field
                                 name={`${name}.size.height`}
-                                component={input}
+                                component={AdaptedInput}
                                 placeholder='ارتفاع اثر'
                                 validate={value => value ? undefined : 'وارد کردن ارتفاع اثر الزامی میباشد'}
                                 control
@@ -642,7 +702,7 @@ export const SingleArt = ({
                             <Label className={LabelRequired}>عمق</Label>
                             <Field
                                 name={`${name}.size.depth`}
-                                component={input}
+                                component={AdaptedInput}
                                 placeholder='عمق اثر'
                                 validate={value => value ? undefined : 'وارد کردن عمق اثر الزامی میباشد'}
                                 control
@@ -663,7 +723,7 @@ export const SingleArt = ({
                                         <FormCheck inline>
                                             <Field
                                                 name={`${name}.price.is_for_sale`}
-                                                component={radio}
+                                                component={AdaptedRadio}
                                                 type='radio'
                                                 id='yes'
                                                 value='yes'
@@ -673,7 +733,7 @@ export const SingleArt = ({
                                         <FormCheck inline>
                                             <Field
                                                 name={`${name}.price.is_for_sale`}
-                                                component={radio}
+                                                component={AdaptedRadio}
                                                 type='radio'
                                                 id='no'
                                                 value='no'
@@ -688,7 +748,7 @@ export const SingleArt = ({
                                     <Label className={LocalData && LocalData.price.is_for_sale == 'yes' ? LabelRequired : ''}>قیمت اثر (تومان)</Label>
                                     <Field
                                         name={`${name}.price.price`}
-                                        component={input}
+                                        component={AdaptedInput}
                                         disabled={LocalData && LocalData.price.is_for_sale == 'yes' ? false : true}
                                         placeholder='قیمت اثر برای فروش'
                                         // validate={LocalData.price.is_for_sale == 'yes' ? value => value ? undefined : 'وارد کردن عمق اثر الزامی میباشد' : ''}
@@ -716,7 +776,7 @@ export const SingleArt = ({
                             <Label className={LabelRequired}>درباره اثر</Label>
                             <Field
                                 name={`${name}.bio`}
-                                component={textarea}
+                                component={AdaptedTextarea}
                                 maxLength='500'
                                 placeholder=''
                                 validate={value => value ? undefined : 'الزامی'}
@@ -730,7 +790,7 @@ export const SingleArt = ({
                             <Label>جزئیات بیشتر در مورد اثر</Label>
                             <Field
                                 name={`${name}.quote`}
-                                component={textarea}
+                                component={AdaptedTextarea}
                                 maxLength='500'
                                 placeholder=''
                                 control

@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import moment from 'moment-jalaali';
 import queryString from 'query-string';
 import { withRouter } from 'react-router-dom'
 import Row from 'reactstrap/lib/Row';
@@ -8,7 +9,6 @@ import Col from 'reactstrap/lib/Col';
 
 import { Form } from 'react-final-form';
 
-import { Field } from 'react-final-form-html5-validation'
 import { FieldArray } from 'react-final-form-arrays'
 import arrayMutators from 'final-form-arrays'
 import setFieldData from 'final-form-set-field-data'
@@ -23,22 +23,9 @@ import Urls from '../../components/Urls';
 import { Exhibition } from './Forms';
 import Section from '../../components/Section/Section';
 
-import {
-    Checkbox,
-    ControlFeedback,
-    FormCheck,
-    FormCheckLabel,
-    FormGroup,
-    Input,
-    Label,
-    Radio,
-    RadioGroup,
-    Select,
-    Textarea,
-} from '@smooth-ui/core-sc';
+
 
 import {
-
     SingleCollectionValidation,
     SingleArtValidation,
     SingleCollectionArtValidation,
@@ -68,6 +55,7 @@ const SubmitSeciton = ({ data, Text, values }) => (
             </Col>
 
         </Row>
+        <pre>{JSON.stringify(values, 0, 2)}</pre>
         {/* 
     <pre>{JSON.stringify(values, 0, 2)}</pre>
     */}
@@ -75,28 +63,6 @@ const SubmitSeciton = ({ data, Text, values }) => (
 );
 
 
-
-const adapt = Component => ({
-    input,
-    meta: { valid,
-        touched },
-    ...rest
-}) => <Component {...input} {...rest} valid={touched ? valid : ''} />;
-const AdaptedInput = adapt(Input);
-const AdaptedCheckbox = adapt(Checkbox);
-const AdaptedRadio = adapt(Radio);
-const AdaptedSelect = adapt(Select);
-const AdaptedTextarea = adapt(Textarea);
-const LabelRequired = 'required';
-const Error = ({ name }) => (
-    <Field name={name} subscription={{ error: true, touched: true }}>
-        {({ meta: { touched, error } }) =>
-            touched && error ? (
-                <ControlFeedback valid={!error}>{error}</ControlFeedback>
-            ) : null
-        }
-    </Field>
-);
 class AddExhibitions extends React.Component {
 
     constructor(props) {
@@ -209,6 +175,7 @@ class AddExhibitions extends React.Component {
         const ColID = values.exb_set[ExbIndex].id
         var ExbValue = values.exb_set[ExbIndex];
         var ExbData = this.state.data.exb_set[ExbIndex];
+        ExbValue.date = this.state.datePicker ? this.state.datePicker : moment().format('YYYY-M-D');
 
         if (!SingleCollectionValidation(ExbValue)) {
             Toast('warning', 'لطفا تمام موارد الزامی را تکمیل نمایید');
@@ -343,6 +310,19 @@ class AddExhibitions extends React.Component {
     }
 
 
+    onChangeDatepicker = async value => {
+        const date = await `${value.jYear()}-${value.jMonth() + 1}-${value.jDate()}`;
+        const endate = moment(date, 'jYYYY-jM-jD').format('YYYY-MM-DD');
+        await this.setState(
+            {
+                datePicker: endate
+            },
+            () => {
+                this.forceUpdate();
+            }
+        );
+    };
+
     openArtModal = () => {
         this.setState({
             ModalToggle: !this.state.ModalToggle
@@ -424,11 +404,7 @@ class AddExhibitions extends React.Component {
                                                                                             index={index}
                                                                                             onCollectionRemoveClick={() => this.handleRemove(fields, 'exb_id', values, index, null)}
                                                                                             handleRemove={this.handleRemove}
-                                                                                            input={AdaptedInput}
-                                                                                            select={AdaptedSelect}
-                                                                                            radio={AdaptedRadio}
-                                                                                            textarea={AdaptedTextarea}
-                                                                                            LabelRequired={LabelRequired}
+                                                                                            onChangeDatepicker={this.onChangeDatepicker}
                                                                                             singleExbSubmit={this.singleExbSubmit}
                                                                                             singleArtSubmit={this.singleArtSubmit}
                                                                                             addArt={this.AddSingleArt}
