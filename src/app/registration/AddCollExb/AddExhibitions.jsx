@@ -285,9 +285,6 @@ class AddExhibitions extends React.Component {
             Toast('success', `${Name} مورد نظر با موفقیت حذف شد`)
             FARemove.remove(CurrentIndex)
         })
-            .catch(error => {
-
-            })
     }
 
 
@@ -307,11 +304,6 @@ class AddExhibitions extends React.Component {
                     })
                 .then(response => {
                     pushFunction(response.data.art_set[0])
-                }).then(() => {
-                    // this.getFormData()
-                })
-                .catch(error => {
-
                 })
         }
     }
@@ -329,8 +321,6 @@ class AddExhibitions extends React.Component {
                 })
                 .then(response => {
                     pushFunction(response.data.exb_set[0])
-                }).then(() => {
-                    // this.getFormData()
                 })
         }
     }
@@ -350,10 +340,6 @@ class AddExhibitions extends React.Component {
             .then(() => {
                 this.getSteps()
             })
-
-            .catch(error => {
-            })
-
     }
 
 

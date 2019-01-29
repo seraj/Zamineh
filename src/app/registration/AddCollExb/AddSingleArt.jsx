@@ -241,9 +241,7 @@ class AddSingleArt extends React.Component {
             Toast('success', `${Name} مورد نظر با موفقیت حذف شد`)
             FARemove.remove(CurrentIndex)
         })
-            .catch(error => {
 
-            })
     }
 
 
@@ -267,11 +265,6 @@ class AddSingleArt extends React.Component {
                     })
                 .then(response => {
                     pushFunction(response.data.art_set[0])
-                }).then(() => {
-                    // this.getFormData()
-                })
-                .catch(error => {
-
                 })
         }
     }

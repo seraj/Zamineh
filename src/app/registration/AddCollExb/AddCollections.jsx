@@ -312,9 +312,6 @@ class AddCollections extends React.Component {
             Toast('success', `${Name} مورد نظر با موفقیت حذف شد`)
             FARemove.remove(CurrentIndex)
         })
-            .catch(error => {
-
-            })
     }
 
 
@@ -338,11 +335,6 @@ class AddCollections extends React.Component {
                     })
                 .then(response => {
                     pushFunction(response.data.art_set[0])
-                }).then(() => {
-                    // this.getFormData()
-                })
-                .catch(error => {
-
                 })
         }
     }
@@ -360,8 +352,6 @@ class AddCollections extends React.Component {
                 })
                 .then(response => {
                     pushFunction(response.data.collection_set[0])
-                }).then(() => {
-                    // this.getFormData()
                 })
         }
     }
@@ -378,13 +368,6 @@ class AddCollections extends React.Component {
                     ArtData
                 })
             })
-            .then(() => {
-                this.getSteps()
-            })
-
-            .catch(error => {
-            })
-
     }
 
     openArtModal = () => {
