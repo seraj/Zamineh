@@ -69,6 +69,8 @@ class AddExhibitions extends React.Component {
         super(props);
         this.state = {
             data: [],
+            importedArt: [],
+            modalPageCount: '',
             config: [],
             showForm: false,
             ModalToggle: false
@@ -172,10 +174,8 @@ class AddExhibitions extends React.Component {
 
 
     singleExbSubmit = (values, ExbIndex) => {
-        const ColID = values.exb_set[ExbIndex].id
         var ExbValue = values.exb_set[ExbIndex];
         var ExbData = this.state.data.exb_set[ExbIndex];
-        ExbValue.date = this.state.datePicker ? this.state.datePicker : moment().format('YYYY-M-D');
 
         if (!SingleCollectionValidation(ExbValue)) {
             Toast('warning', 'لطفا تمام موارد الزامی را تکمیل نمایید');
@@ -254,7 +254,33 @@ class AddExhibitions extends React.Component {
         })
     }
 
-
+    handleRemoveArt = (FARemove, values, ExbIndex, ArtIndex, isAccepted) => {
+        var show_id = values.exb_set[ExbIndex].id;
+        var art_id = values.exb_set[ExbIndex].art_set[ArtIndex].id;
+        if (isAccepted) {
+            axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+                params: {
+                    show_id: show_id,
+                    id: art_id,
+                    is_delete: true
+                }
+            })
+                .then(response => {
+                    Toast('success', `اثر مورد نظر با موفقیت از مجموعه برداشته شد`)
+                    FARemove.remove(ArtIndex)
+                })
+        } else {
+            axios.delete(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+                params: {
+                    id: art_id,
+                }
+            })
+                .then(response => {
+                    Toast('success', `اثر مورد نظر با موفقیت از زمینه حذف شد`)
+                    FARemove.remove(ArtIndex)
+                })
+        }
+    }
     AddSingleArt = (pushFunction, ExbID, values) => {
         var ArtValue = values.art_set
         console.log(SingleCollectionArtValidation(ArtValue))
@@ -270,6 +296,7 @@ class AddExhibitions extends React.Component {
                         }
                     })
                 .then(response => {
+                    console.log(response.data.art_set[0])
                     pushFunction(response.data.art_set[0])
                 })
         }
@@ -291,43 +318,70 @@ class AddExhibitions extends React.Component {
                 })
         }
     }
-    importArttoExb = (Artindex, ArtID, CollectionID) => {
-        var ArtData = this.state.data.art_set
-        console.log(ArtID, CollectionID)
-        axios.post(`${Urls().api()}/gallery-app/artist/portfolio-step4/import/`, {
-            art_id: ArtID,
-            exb_id: CollectionID
+
+
+
+    onChangeDatepicker = async (value, index, name) => {
+        var currentValue = this.state.data.exb_set[index]
+        const date = await `${value.jYear()}-${value.jMonth() + 1}-${value.jDate()}`;
+        const endate = moment(date, 'jYYYY-jM-jD').format('YYYY-MM-DD');
+        currentValue[name] = endate
+        this.setState({ currentValue })
+    };
+    getArtsForImport = (page, id) => {
+        axios.get(`${Urls().api()}/gallery-app/artist/art/list/`, {
+            params: {
+                page: page ? page : 1,
+                show_id: id && id,
+                for_create: true
+            }
         })
             .then(response => {
-                ArtData.splice(Artindex, 1);
+                response.data.results.length != 0 ?
+                    this.setState({
+                        importedArt: response.data.results,
+                        modalPageCount: response.data.page_count,
+                    })
+                        .catch(error => {
+
+                        })
+                    :
+                    Toast('warning', `شما هیچ اثری برای درون ریزی ندارید`);
                 this.setState({
-                    ArtData
+                    ModalToggle: false
                 })
-            })
-            .then(() => {
-                this.getSteps()
+
             })
     }
 
-
-    onChangeDatepicker = async value => {
-        const date = await `${value.jYear()}-${value.jMonth() + 1}-${value.jDate()}`;
-        const endate = moment(date, 'jYYYY-jM-jD').format('YYYY-MM-DD');
-        await this.setState(
-            {
-                datePicker: endate
-            },
-            () => {
-                this.forceUpdate();
+    importArtfunc = (pushFunction, ArtID, show_id) => {
+        axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+            params: {
+                id: ArtID,
+                show_id: show_id
             }
-        );
+        })
+            .then(response => {
+                pushFunction(response.data.art_set[0])
+                this.getArtsForImport('', show_id)
+            })
+    }
+    handleModalPageClick = (data) => {
+        let selected = data.selected + 1;
+        this.setState({ selectedPage: selected, Loading: true }, () => {
+            this.getArtsForImport(selected);
+        });
     };
 
-    openArtModal = () => {
+    openArtModal = (id) => {
         this.setState({
             ModalToggle: !this.state.ModalToggle
         })
+        !this.state.ModalToggle ? this.getArtsForImport('', id) : null
+
     }
+
+
 
     setAccessTokens = (Token, RefreshToken) => {
         SecurityManager().setArtistRegAccessToken(Token);
@@ -340,8 +394,8 @@ class AddExhibitions extends React.Component {
             data,
             config,
             ModalToggle,
-            loadingDiv,
-            type,
+            importedArt,
+            modalPageCount,
             showForm
         } = this.state
         var hasToken = SecurityManager().hasArtistRegToken()
@@ -402,14 +456,20 @@ class AddExhibitions extends React.Component {
                                                                                             key={index}
                                                                                             name={name}
                                                                                             index={index}
-                                                                                            onCollectionRemoveClick={() => this.handleRemove(fields, 'exb_id', values, index, null)}
-                                                                                            handleRemove={this.handleRemove}
+                                                                                            onRemoveClick={() => this.handleRemove(fields, 'exb_id', values, index, null)}
+                                                                                            handleRemove={this.handleRemoveArt}
+
                                                                                             onChangeDatepicker={this.onChangeDatepicker}
                                                                                             singleExbSubmit={this.singleExbSubmit}
                                                                                             singleArtSubmit={this.singleArtSubmit}
                                                                                             addArt={this.AddSingleArt}
-                                                                                            importArts={this.importArttoExb}
+
+                                                                                            importArts={this.importArtfunc}
+                                                                                            importedArt={importedArt}
+                                                                                            artImportpageCount={modalPageCount}
                                                                                             openArtModal={this.openArtModal}
+                                                                                            handleModalPageClick={this.handleModalPageClick}
+
                                                                                             ModalToggle={ModalToggle}
                                                                                             values={values}
                                                                                             data={data}

@@ -313,7 +313,8 @@ class ArtistRegistration extends React.Component {
                     else if (parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) {
                         this.redirectToApp('android')
                     }
-                }).then(() => {
+                })
+                .then(() => {
                     this.getSteps()
                 })
                 .catch(error => {
@@ -323,9 +324,12 @@ class ArtistRegistration extends React.Component {
     }
 
 
-
     redirectToApp = (os) => {
-        axios.post(`${Urls().api()}/gallery-app/auth/get-token/`)
+        var body = {
+            client_id: SecurityManager().getRegClientIDSecret('id', 'Gallery'),
+            client_secret: SecurityManager().getRegClientIDSecret('secret', 'Gallery'),
+        }
+        axios.post(`${Urls().api()}/gallery-app/auth/get-token/`, body)
             .then(response => {
                 os === 'android' ?
                     window.location = `intent://whatever/#Intent;scheme=zamineh.panel.signup;package=com.nozhan.zaminehpanel;S.access_token=${response.data.access_token};S.refresh_token=${response.data.refresh_token};token_type=${response.data.token_type};end`

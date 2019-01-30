@@ -273,7 +273,22 @@ class AddCollections extends React.Component {
             FARemove.remove(CurrentIndex)
         })
     }
+    handleRemoveArt = (FARemove, values, ColIndex, ArtIndex) => {
+        var collection_id = values.collection_set[ColIndex].id;
+        var art_id = values.collection_set[ColIndex].art_set[ArtIndex].id;
 
+        axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+            params: {
+                collection_id: collection_id,
+                id: art_id,
+                is_delete: true
+            }
+        })
+            .then(response => {
+                Toast('success', `اثر مورد نظر با موفقیت حذف شد`)
+                FARemove.remove(ArtIndex)
+            })
+    }
 
     AddSingleArt = (pushFunction, ColID, values) => {
 
@@ -315,26 +330,66 @@ class AddCollections extends React.Component {
                 })
         }
     }
-    importArttoCollection = (Artindex, ArtID, CollectionID) => {
-        var ArtData = this.state.data.art_set
-        console.log(ArtID, CollectionID)
-        axios.post(`${Urls().api()}/gallery-app/artist/portfolio-step4/import/`, {
-            art_id: ArtID,
-            collection_id: CollectionID
+
+
+
+
+
+    getArtsForImport = (page, id) => {
+        axios.get(`${Urls().api()}/gallery-app/artist/art/list/`, {
+            params: {
+                page: page ? page : 1,
+                collection_id: id && id,
+                for_create: true
+            }
         })
             .then(response => {
-                ArtData.splice(Artindex, 1);
+                response.data.results.length != 0 ?
+                    this.setState({
+                        importedArt: response.data.results,
+                        modalPageCount: response.data.page_count,
+                    })
+                        .catch(error => {
+
+                        })
+                    :
+                    Toast('warning', `شما هیچ اثری برای درون ریزی ندارید`);
                 this.setState({
-                    ArtData
+                    ModalToggle: false
                 })
+
             })
     }
 
-    openArtModal = () => {
+
+
+    importArtfunc = (pushFunction, ArtID, collection_id) => {
+        axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+            params: {
+                id: ArtID,
+                collection_id: collection_id
+            }
+        })
+            .then(response => {
+                pushFunction(response.data.art_set[0])
+                this.getArtsForImport('', collection_id)
+            })
+    }
+    handleModalPageClick = (data) => {
+        let selected = data.selected + 1;
+        this.setState({ selectedPage: selected, Loading: true }, () => {
+            this.getArtsForImport(selected);
+        });
+    };
+
+    openArtModal = (id) => {
         this.setState({
             ModalToggle: !this.state.ModalToggle
         })
+        !this.state.ModalToggle ? this.getArtsForImport('', id) : null
     }
+
+
 
     setAccessTokens = (Token, RefreshToken) => {
         SecurityManager().setArtistRegAccessToken(Token);
@@ -347,8 +402,8 @@ class AddCollections extends React.Component {
             data,
             config,
             ModalToggle,
-            loadingDiv,
-            type,
+            importedArt,
+            modalPageCount,
             showForm
         } = this.state
         var hasToken = SecurityManager().hasArtistRegToken()
@@ -411,13 +466,18 @@ class AddCollections extends React.Component {
                                                                                             key={index}
                                                                                             name={name}
                                                                                             index={index}
-                                                                                            onCollectionRemoveClick={() => this.handleRemove(fields, 'collection_id', values, index, null)}
-                                                                                            handleRemove={this.handleRemove}
+                                                                                            onRemoveClick={() => this.handleRemove(fields, 'collection_id', values, index, null)}
+                                                                                            handleRemove={this.handleRemoveArt}
                                                                                             singleColSubmit={this.singleColSubmit}
                                                                                             singleArtSubmit={this.singleArtSubmit}
                                                                                             addArt={this.AddSingleArt}
-                                                                                            importArttoCollection={this.importArttoCollection}
+
+                                                                                            importArts={this.importArtfunc}
+                                                                                            importedArt={importedArt}
+                                                                                            artImportpageCount={modalPageCount}
                                                                                             openArtModal={this.openArtModal}
+                                                                                            handleModalPageClick={this.handleModalPageClick}
+
                                                                                             ModalToggle={ModalToggle}
                                                                                             values={values}
                                                                                             data={data}

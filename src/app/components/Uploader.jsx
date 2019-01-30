@@ -90,7 +90,7 @@ class Uploader extends React.Component {
                     labelMaxFileSizeExceeded='حجم عکس زیاد است'
                     labelMaxFileSize='حجم فایل آپلودی باید {filesize} باشد'
 
-
+                    disabled
 
 
 

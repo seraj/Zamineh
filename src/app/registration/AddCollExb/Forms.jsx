@@ -24,6 +24,7 @@ import Uploader from '../../components/Uploader';
 import PersianDatePicker from '../../components/datepicker/PersianDatePicker';
 import Alert from '../../components/Alert/Alert';
 import { Loading } from '../../components/Spinner/Spinner';
+import Pagination from '../../components/Pagination/Pagination';
 
 import InputAsyncTypeahead from '../components/InputAsyncTypeahead';
 import styles from '../Registration.scss'
@@ -86,12 +87,18 @@ export const Exhibition = ({
     addArt,
     importArts,
     openArtModal,
+
+    importedArt,
+    artImportpageCount,
     ModalToggle,
+    handleModalPageClick,
+
     name,
     onRemoveClick,
     handleRemove,
     index,
-    values }) => {
+    values
+}) => {
     const ExbIndex = index
     const ExbData = data.exb_set ? data.exb_set[ExbIndex] : null
     const unSubmittedArts = values.exb_set[ExbIndex] ? unSubmittedArt(values.exb_set[ExbIndex].art_set).length : null;
@@ -127,7 +134,7 @@ export const Exhibition = ({
                         />
                     </Col>
                 }
-                <Col lg={3} md={4} sm={12} xs={12}>
+                <Col lg={6} md={6} sm={12} xs={12}>
                     <FormGroup>
                         <Label className={LabelRequired}>عنوان نمایشگاه</Label>
                         <Field
@@ -140,7 +147,34 @@ export const Exhibition = ({
                         <Error name={`${name}.name`} />
                     </FormGroup>
                 </Col>
-                <Col lg={9} md={8} sm={12} xs={12}>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <FormGroup>
+                        <Label className={LabelRequired}>آدرس نمایشگاه</Label>
+                        <Field
+                            name={`${name}.address.address`}
+                            component={AdaptedInput}
+                            placeholder='آدرس نمایشگاه'
+                            validate={value => value ? undefined : 'وارد کردن آدرس نمایشگاه مجموعه میباشد'}
+                            control
+                        />
+                        <Error name={`${name}.name`} />
+                    </FormGroup>
+                </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <FormGroup>
+                        <Label className={LabelRequired}>جزئیات</Label>
+                        <Field
+                            name={`${name}.detail`}
+                            component={AdaptedTextarea}
+                            maxLength='500'
+                            placeholder='...'
+                            validate={value => value ? undefined : 'الزامی'}
+                            control
+                        />
+                        <Error name={`${name}.detail`} />
+                    </FormGroup>
+                </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
                     <FormGroup>
                         <Label className={LabelRequired}>دلیل برگذاری نمایشگاه</Label>
                         <Field
@@ -163,7 +197,7 @@ export const Exhibition = ({
                         <PersianDatePicker
                             name={`${name}.start_date`}
                             // defaultValue='1991-03-21'
-                            onChangeDatepicker={onChangeDatepicker}
+                            onChangeDatepicker={(e) => onChangeDatepicker(e, ExbIndex, `start_date`)}
                         />
                         <Error name={`${name}.start_date`} />
                     </FormGroup>
@@ -174,9 +208,9 @@ export const Exhibition = ({
                         <PersianDatePicker
                             name={`${name}.end_date`}
                             // defaultValue='1991-03-21'
-                            onChangeDatepicker={onChangeDatepicker}
+                            onChangeDatepicker={(e) => onChangeDatepicker(e, ExbIndex, `end_date`)}
                         />
-                        <Error name={`${name}.start_date`} />
+                        <Error name={`${name}.end_date`} />
                     </FormGroup>
                 </Col>
 
@@ -261,7 +295,7 @@ export const Exhibition = ({
                                     index={index}
                                     values={values}
                                     singleArtSubmit={() => singleArtSubmit(values, index, ExbIndex)}
-                                    onArtRemoveClick={() => handleRemove(fields, 'art_id', values, ExbIndex, index, 'CollectionArt')}
+                                    onArtRemoveClick={() => handleRemove(fields, values, ExbIndex, index, values.exb_set[ExbIndex].art_set[index].is_accepted)}
                                 />
 
                             ))}
@@ -269,7 +303,7 @@ export const Exhibition = ({
                                 <Row>
 
                                     <React.Fragment>
-                                        <Col xs={12}>
+                                        <Col lg={6} md={6} sm={12} xs={12}>
                                             <div className={styles.addSectionButton}>
                                                 <button
                                                     type='button'
@@ -280,48 +314,21 @@ export const Exhibition = ({
                                                 </button>
                                             </div>
                                         </Col>
-                                        {values.art_set && SubmittedArt(values.art_set).length > 0 &&
-                                            <Col xs={6}>
-                                                <div className={styles.importArtButton}>
-                                                    <button
-                                                        type='button'
-                                                        className=''
-                                                        onClick={() => openArtModal()}>
-                                                        <i></i>
-                                                        <span>درون ریزی آثار</span>
-                                                    </button>
-                                                </div>
-                                                <Modal
-                                                    isOpen={ModalToggle}
-                                                    toggle={openArtModal}
-                                                    className={styles.importArts}
-                                                    title={'درون ریزی آثار مختلط'}
-                                                >
-                                                    <Row>
-                                                        <Col xs={12}>
-                                                            <p>شما میتوانید آثار ثبت شده را برای استفاده در این قسمت انتخاب کنید</p>
-                                                        </Col>
-                                                        {values && values.art_set &&
-                                                            SubmittedArt(values.art_set).map((arts, index) => (
-                                                                <Col key={index} xs={12}>
-                                                                    <div className='_art'>
-                                                                        {arts.name}
-                                                                        <a
-                                                                            className={`import-button`}
-                                                                            onClick={() => importArts(index, arts.id, values.exb_set[ExbIndex].id)}>
-                                                                        </a>
-                                                                    </div>
-                                                                </Col>
+                                        <Col lg={6} md={6} sm={12} xs={12}>
 
-                                                            ))
+                                            <ArtImportModal
+                                                ModalToggle={ModalToggle}
+                                                openArtModal={() => openArtModal(values.exb_set[ExbIndex].id)}
+                                                importArts={importArts}
+                                                push={fields.push}
+                                                importedArt={importedArt}
+                                                artImportpageCount={artImportpageCount}
+                                                handleModalPageClick={handleModalPageClick}
+                                                values={values.exb_set[ExbIndex].id}
+                                            />
 
-                                                        }
+                                        </Col>
 
-                                                    </Row>
-                                                </Modal>
-
-                                            </Col>
-                                        }
 
                                     </React.Fragment>
 
@@ -365,14 +372,20 @@ export const Collection = ({
     data,
     config,
     addArt,
-    importArttoCollection,
+
+    importArts,
     openArtModal,
+    importedArt,
+    artImportpageCount,
     ModalToggle,
+    handleModalPageClick,
+
     name,
-    onCollectionRemoveClick,
+    onRemoveClick,
     handleRemove,
     index,
-    values }, ...props) => {
+    values
+}) => {
     const ColIndex = index
     const ColData = data.collection_set ? data.collection_set[index] : null
     const unSubmittedArts = values.collection_set[index] ? unSubmittedArt(values.collection_set[index].art_set).length : null;
@@ -386,7 +399,7 @@ export const Collection = ({
             {ColData && ColData.loading &&
                 <Loading />
             }
-            <LinkButton onClick={onCollectionRemoveClick} className={styles.removethis}>حذف این مجموعه</LinkButton>
+            <LinkButton onClick={onRemoveClick} className={styles.removethis}>حذف این مجموعه</LinkButton>
             <Row>
                 <Field
                     name={`${name}.id`}
@@ -479,7 +492,7 @@ export const Collection = ({
                                     index={index}
                                     values={values}
                                     singleArtSubmit={() => singleArtSubmit(values, index, ColIndex)}
-                                    onArtRemoveClick={() => handleRemove(fields, 'art_id', values, ColIndex, index, 'CollectionArt')}
+                                    onArtRemoveClick={() => handleRemove(fields, values, ColIndex, index, values.collection_set[ColIndex].art_set[index].is_accepted)}
                                 />
 
                             ))}
@@ -487,7 +500,7 @@ export const Collection = ({
                                 <Row>
 
                                     <React.Fragment>
-                                        <Col xs={12}>
+                                        <Col lg={6} md={6} sm={12} xs={12}>
                                             <div className={styles.addSectionButton}>
                                                 <button
                                                     type='button'
@@ -498,48 +511,18 @@ export const Collection = ({
                                                 </button>
                                             </div>
                                         </Col>
-                                        {values.art_set && SubmittedArt(values.art_set).length > 0 &&
-                                            <Col xs={6}>
-                                                <div className={styles.importArtButton}>
-                                                    <button
-                                                        type='button'
-                                                        className=''
-                                                        onClick={() => openArtModal()}>
-                                                        <i></i>
-                                                        <span>درون ریزی آثار</span>
-                                                    </button>
-                                                </div>
-                                                <Modal
-                                                    isOpen={ModalToggle}
-                                                    toggle={openArtModal}
-                                                    className={styles.importArts}
-                                                    title={'درون ریزی آثار مختلط'}
-                                                >
-                                                    <Row>
-                                                        <Col xs={12}>
-                                                            <p>شما میتوانید آثار ثبت شده را برای استفاده در این قسمت انتخاب کنید</p>
-                                                        </Col>
-                                                        {values && values.art_set &&
-                                                            SubmittedArt(values.art_set).map((arts, index) => (
-                                                                <Col key={index} xs={12}>
-                                                                    <div className='_art'>
-                                                                        {arts.name}
-                                                                        <a
-                                                                            className={`import-button`}
-                                                                            onClick={() => importArttoCollection(index, arts.id, values.collection_set[ColIndex].id)}>
-                                                                        </a>
-                                                                    </div>
-                                                                </Col>
-
-                                                            ))
-
-                                                        }
-
-                                                    </Row>
-                                                </Modal>
-
-                                            </Col>
-                                        }
+                                        <Col lg={6} md={6} sm={12} xs={12}>
+                                            <ArtImportModal
+                                                ModalToggle={ModalToggle}
+                                                openArtModal={() => openArtModal(values.collection_set[ColIndex].id)}
+                                                importArts={importArts}
+                                                push={fields.push}
+                                                importedArt={importedArt}
+                                                artImportpageCount={artImportpageCount}
+                                                handleModalPageClick={handleModalPageClick}
+                                                values={values.collection_set[ColIndex].id}
+                                            />
+                                        </Col>
 
                                     </React.Fragment>
 
@@ -598,6 +581,7 @@ export const SingleArt = ({
                             <Label className={LabelRequired}>نام اثر</Label>
                             <Field
                                 name={`${name}.name`}
+                                // disabled={ServerData.is_accepted && ServerData.is_accepted}
                                 component={AdaptedInput}
                                 placeholder='نام اثر'
                                 validate={value => value ? undefined : 'وارد کردن نام اثر الزامی میباشد'}
@@ -798,13 +782,82 @@ export const SingleArt = ({
                         </FormGroup>
                     </Col>
                     <Col xs={12}>
-                        <LinkButton
-                            onClick={singleArtSubmit}
-                            className='zbtn black bradius d-block'
-                        >ثبت</LinkButton>
+                        {ServerData && ServerData.is_accepted ?
+                            <Button
+                                disabled
+                                style={{ width: '100%' }}
+                                className='zbtn black bradius d-block'
+                            >نمیتوانید ویرایش کنید</Button>
+                            :
+                            <LinkButton
+                                onClick={singleArtSubmit}
+                                className='zbtn black bradius d-block'
+                            >ثبت</LinkButton>
+                        }
                     </Col>
                 </Row>
             </div>
         </Col>
+    )
+}
+
+
+
+
+const ArtImportModal = ({
+    ModalToggle,
+    openArtModal,
+    importArts,
+    importedArt,
+    artImportpageCount,
+    handleModalPageClick,
+    push,
+    values
+}) => {
+    return (
+        <React.Fragment>
+            <div className={styles.importArtButton}>
+                <button
+                    type='button'
+                    className=''
+                    onClick={() => openArtModal()}>
+                    <i></i>
+                    <span>درون ریزی آثار</span>
+                </button>
+            </div>
+            <Modal
+                isOpen={ModalToggle}
+                toggle={openArtModal}
+                className={styles.importArts}
+                title={'درون ریزی آثار مختلط'}
+            >
+                <Row>
+                    <Col xs={12}>
+                        <p>شما میتوانید آثار ثبت شده را برای استفاده در این قسمت انتخاب کنید</p>
+                    </Col>
+                    {importedArt && [
+                        importedArt.map((arts, index) => (
+                            <Col key={arts.id} xs={12}>
+                                <div className='_art'>
+                                    {arts.name}
+                                    <a
+                                        className={`import-button`}
+                                        onClick={() => importArts(push, arts.id, values)}>
+                                    </a>
+                                </div>
+                            </Col>
+                        )),
+                        artImportpageCount > 1 &&
+                        <Col xs={12}>
+                            <Pagination
+                                pageCount={artImportpageCount}
+                                onPageChange={handleModalPageClick}
+                            />
+                        </Col>
+                    ]}
+
+                </Row>
+            </Modal>
+        </React.Fragment>
     )
 }
