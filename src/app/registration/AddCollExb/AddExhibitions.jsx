@@ -55,7 +55,6 @@ const SubmitSeciton = ({ data, Text, values }) => (
             </Col>
 
         </Row>
-        <pre>{JSON.stringify(values, 0, 2)}</pre>
         {/* 
     <pre>{JSON.stringify(values, 0, 2)}</pre>
     */}

@@ -307,11 +307,11 @@ class ArtistRegistration extends React.Component {
                 .then(() => {
                     Toast('success', 'اطلاعات شما با موفقیت ثبت شد');
                     this.BtnSubmitLoading(false);
-                    if (parsed['xeYDSM2fWgsJvFuN'] == 'ios' && isMobile) {
+                    if (parsed['xeYDSM2fWgsJvFuN'] == 'Ios' && isMobile) {
                         this.redirectToApp('ios')
                     }
                     else if (parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) {
-                        this.redirectToApp('android')
+                        this.redirectToApp('Android')
                     }
                 })
                 .then(() => {
@@ -328,13 +328,12 @@ class ArtistRegistration extends React.Component {
         var body = {
             client_id: SecurityManager().getRegClientIDSecret('id', 'Gallery'),
             client_secret: SecurityManager().getRegClientIDSecret('secret', 'Gallery'),
+            platform: os
         }
         axios.post(`${Urls().api()}/gallery-app/auth/get-token/`, body)
             .then(response => {
-                os === 'android' ?
-                    window.location = `intent://whatever/#Intent;scheme=zamineh.panel.signup;package=com.nozhan.zaminehpanel;S.access_token=${response.data.access_token};S.refresh_token=${response.data.refresh_token};token_type=${response.data.token_type};end`
-                    :
-                    window.location = `intent://whatever/#Intent;scheme=zamineh.panel.signup;package=com.nozhan.zaminehpanel;S.access_token=ACCESS_TOKEN;S.refresh_token=REFRESH_TOKEN;token_type=Bearer;end`
+
+                window.location = response.data.scheme
             })
     }
     // End Steps Submit Actions
