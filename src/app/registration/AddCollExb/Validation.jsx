@@ -11,7 +11,33 @@ export function SingleCollectionValidation(value) {
         return true
     }
 }
+export function SingleExhibitionValidation(value) {
+    console.log(value)
+    if (
+        value.title == '' ||
+        value.title == undefined ||
+        value.desc == '' ||
+        value.desc == null ||
+        value.address.address == undefined ||
+        value.address.address == '' ||
+        value.address.tel == undefined ||
+        value.address.tel == '' ||
+        value.start_time == undefined ||
+        value.start_time == '' ||
+        value.end_time == undefined ||
+        value.end_time == ''
+        // value.start_date == undefined ||
+        // value.start_date == '' ||
+        // value.end_date == undefined ||
+        // value.end_date == ''
 
+
+    ) {
+        return false
+    } else {
+        return true
+    }
+}
 export function CollectionAllArtValidation(value) {
     var ret = true;
     for (let index = 0; index < value.length; index++) {

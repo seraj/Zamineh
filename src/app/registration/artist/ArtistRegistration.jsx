@@ -308,7 +308,7 @@ class ArtistRegistration extends React.Component {
                     Toast('success', 'اطلاعات شما با موفقیت ثبت شد');
                     this.BtnSubmitLoading(false);
                     if (parsed['xeYDSM2fWgsJvFuN'] == 'Ios' && isMobile) {
-                        this.redirectToApp('ios')
+                        this.redirectToApp('Ios')
                     }
                     else if (parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) {
                         this.redirectToApp('Android')

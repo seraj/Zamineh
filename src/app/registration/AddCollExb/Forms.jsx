@@ -25,6 +25,8 @@ import PersianDatePicker from '../../components/datepicker/PersianDatePicker';
 import Alert from '../../components/Alert/Alert';
 import { Loading } from '../../components/Spinner/Spinner';
 import Pagination from '../../components/Pagination/Pagination';
+import ZaminehMap from '../../components/map/ZaminehMap';
+
 
 import InputAsyncTypeahead from '../components/InputAsyncTypeahead';
 import styles from '../Registration.scss'
@@ -87,6 +89,7 @@ export const Exhibition = ({
     addArt,
     importArts,
     openArtModal,
+    onMapClick,
 
     importedArt,
     artImportpageCount,
@@ -147,17 +150,54 @@ export const Exhibition = ({
                         <Error name={`${name}.name`} />
                     </FormGroup>
                 </Col>
+
+
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <FormGroup>
+                        <Label className={LabelRequired}>شماره تماس نمایشگاه</Label>
+                        <Field
+                            name={`${name}.address.tel`}
+                            component={AdaptedInput}
+                            placeholder='شماره تماس نمایشگاه'
+                            validate={value => value ? undefined : 'وارد کردن شماره تماس نمایشگاه مجموعه میباشد'}
+                            control
+                        />
+                        <Error name={`${name}.address.tel`} />
+                    </FormGroup>
+                </Col>
                 <Col lg={6} md={6} sm={12} xs={12}>
                     <FormGroup>
                         <Label className={LabelRequired}>آدرس نمایشگاه</Label>
                         <Field
                             name={`${name}.address.address`}
-                            component={AdaptedInput}
+                            component={AdaptedTextarea}
                             placeholder='آدرس نمایشگاه'
                             validate={value => value ? undefined : 'وارد کردن آدرس نمایشگاه مجموعه میباشد'}
                             control
                         />
-                        <Error name={`${name}.name`} />
+                        <Error name={`${name}.address.address`} />
+                    </FormGroup>
+                </Col>
+                <Col lg={6} md={6} sm={12} xs={12}>
+                    <FormGroup>
+                        <Label className={LabelRequired}>آدرس روی نقشه</Label>
+                        {ServerData && ServerData.address && ServerData.address.lat &&
+                            <ZaminehMap
+                                onClick={onMapClick}
+                                mapPosition={ServerData.address.lat != null ? [ServerData.address.lat, ServerData.address.lng] : null}
+                                markerPosition={ServerData.address.lat != null ? [ServerData.address.lat, ServerData.address.lng] : null}
+                                mapZoom={18}
+                                currentLocation={ServerData.address.lat != null ? false : true}
+                            />
+                        }
+                        {ServerData && ServerData.address && ServerData.address.lat == null &&
+                            <ZaminehMap
+                                onClick={onMapClick}
+                                mapZoom={18}
+                                currentLocation={true}
+                            />
+                        }
+
                     </FormGroup>
                 </Col>
                 <Col lg={6} md={6} sm={12} xs={12}>

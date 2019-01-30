@@ -26,7 +26,7 @@ import Section from '../../components/Section/Section';
 
 
 import {
-    SingleCollectionValidation,
+    SingleExhibitionValidation,
     SingleArtValidation,
     SingleCollectionArtValidation,
     CollectionAllArtValidation,
@@ -56,8 +56,8 @@ const SubmitSeciton = ({ data, Text, values }) => (
 
         </Row>
         {/* 
-    <pre>{JSON.stringify(values, 0, 2)}</pre>
-    */}
+            <pre>{JSON.stringify(values, 0, 2)}</pre>
+        */}
     </React.Fragment>
 );
 
@@ -70,6 +70,7 @@ class AddExhibitions extends React.Component {
             data: [],
             importedArt: [],
             modalPageCount: '',
+            Maplatlng: [],
             config: [],
             showForm: false,
             ModalToggle: false
@@ -176,7 +177,17 @@ class AddExhibitions extends React.Component {
         var ExbValue = values.exb_set[ExbIndex];
         var ExbData = this.state.data.exb_set[ExbIndex];
 
-        if (!SingleCollectionValidation(ExbValue)) {
+
+        if (
+            ExbData.address.lat == null
+                ?
+                (this.state.Maplatlng.lat == '' || this.state.Maplatlng.lat == undefined)
+                :
+                (ExbValue.address.lat == '' || ExbValue.address.lat == undefined)
+        ) {
+            Toast('warning', 'لطفا آدرس دقیق را روی نقشه انتخاب کنید');
+
+        } else if (!SingleExhibitionValidation(ExbValue)) {
             Toast('warning', 'لطفا تمام موارد الزامی را تکمیل نمایید');
             if (ExbData.submitted != undefined) {
 
@@ -303,7 +314,7 @@ class AddExhibitions extends React.Component {
 
     addExhibition = async (pushFunction, values) => {
         var ExbValue = values.exb_set
-        if (ExbValue.length > 0 && !SingleCollectionValidation(ExbValue)) {
+        if (ExbValue.length > 0 && !SingleExhibitionValidation(ExbValue)) {
             Toast('warning', `ابتدا نمایشگاه قبلی را تکمیل کنید.`);
         } else {
             axios.get(`${Urls().api()}/gallery-app/collection/create-update/`,
@@ -319,6 +330,12 @@ class AddExhibitions extends React.Component {
     }
 
 
+    onMapClick = (event) => {
+        this.setState({
+            Maplatlng: event.latlng
+        })
+        console.log(this.state.Maplatlng)
+    }
 
     onChangeDatepicker = async (value, index, name) => {
         var currentValue = this.state.data.exb_set[index]
@@ -326,7 +343,9 @@ class AddExhibitions extends React.Component {
         const endate = moment(date, 'jYYYY-jM-jD').format('YYYY-MM-DD');
         currentValue[name] = endate
         this.setState({ currentValue })
-    };
+    }
+
+
     getArtsForImport = (page, id) => {
         axios.get(`${Urls().api()}/gallery-app/artist/art/list/`, {
             params: {
@@ -462,6 +481,7 @@ class AddExhibitions extends React.Component {
                                                                                             singleExbSubmit={this.singleExbSubmit}
                                                                                             singleArtSubmit={this.singleArtSubmit}
                                                                                             addArt={this.AddSingleArt}
+                                                                                            onMapClick={this.onMapClick}
 
                                                                                             importArts={this.importArtfunc}
                                                                                             importedArt={importedArt}
