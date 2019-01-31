@@ -58,7 +58,6 @@ const SubmitSeciton = ({ btnLoading, Text, values }) => (
         {/* 
             <pre>{JSON.stringify(values, 0, 2)}</pre>
         */}
-        <pre>{JSON.stringify(values, 0, 2)}</pre>
     </React.Fragment>
 );
 
