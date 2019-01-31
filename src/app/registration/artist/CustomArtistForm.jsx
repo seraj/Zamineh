@@ -67,7 +67,7 @@ export const Exhibition = ({
     index,
     values }, ...props) => {
     const exbIndex = index
-    const ExbData = StepData.exb_set[index]
+    const ExbData = StepData.exb_set ? StepData.exb_set[index] : null
     const unSubmittedArts = values.exb_set[index] ? unSubmittedArt(values.exb_set[index].art_set).length : null;
 
     return (
@@ -196,7 +196,7 @@ export const Exhibition = ({
                                     name={name}
                                     StepData={StepData}
                                     StepConfig={StepConfig}
-                                    ServerData={StepData.exb_set[exbIndex].art_set[index]}
+                                    ServerData={StepData.exb_set ? StepData.exb_set[exbIndex].art_set[index] : null}
                                     LocalData={values.exb_set[exbIndex].art_set[index]}
                                     index={index}
                                     ParentIndex={exbIndex}
@@ -261,7 +261,7 @@ export const Collection = ({
     index,
     values }, ...props) => {
     const ColIndex = index
-    const ColData = StepData.collection_set[index]
+    const ColData = StepData.collection_set ? StepData.collection_set[index] : null
     const unSubmittedArts = values.collection_set[index] ? unSubmittedArt(values.collection_set[index].art_set).length : null;
     return (
         <div className={`${styles.RegistrationSection} part ${ColData && ColData.submitted ? `submitted` : ``}`}>
@@ -332,7 +332,7 @@ export const Collection = ({
                                     name={name}
                                     StepData={StepData}
                                     StepConfig={StepConfig}
-                                    ServerData={StepData.collection_set[ColIndex].art_set[index]}
+                                    ServerData={StepData.collection_set ? StepData.collection_set[ColIndex].art_set[index] : null}
                                     LocalData={values.collection_set[ColIndex].art_set[index]}
                                     index={index}
                                     input={input}

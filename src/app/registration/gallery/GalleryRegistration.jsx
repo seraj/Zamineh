@@ -36,7 +36,7 @@ import MessageBox from '../../components/ui-components/MessageBox/MessageBox'
 import '../Registration.scss';
 
 
-const SubmitSeciton = ({ FormData, Text, values }) => (
+const SubmitSeciton = ({ btnLoading, Text, values }) => (
     <React.Fragment>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
@@ -46,16 +46,15 @@ const SubmitSeciton = ({ FormData, Text, values }) => (
                         <button
                             type='submit'
                             style={{ width: '100%', marginBottom: 10 }}
-                            disabled={FormData.SubmitBtnLoading}
+                            disabled={btnLoading}
                             variant='primary'
-                            className={`zbtn next black bradius ${FormData.SubmitBtnLoading ? `spinning` : null}`}
+                            className={`zbtn next black bradius ${btnLoading ? `spinning` : null}`}
                         >{Text} <i className='fas fa-angle-left' /></button>
                     </Col>
                 </Row>
             </Col>
 
         </Row>
-        <pre>{JSON.stringify(values, 0, 2)}</pre>
         {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
     </React.Fragment>
 );
@@ -80,6 +79,7 @@ class GalleryRegistration extends React.Component {
             datePicker: '',
             currentStep: '',
             Loading: true,
+            btnLoading: false,
             StepConfig: [],
             FormData: [],
 
@@ -297,6 +297,7 @@ class GalleryRegistration extends React.Component {
             StepConfig,
 
             Loading,
+            btnLoading,
             successBox,
             message,
             timer
@@ -362,7 +363,7 @@ class GalleryRegistration extends React.Component {
 
                                                             <SubmitSeciton
                                                                 Text='ثبت نام گالری'
-                                                                FormData={FormData}
+                                                                btnLoading={btnLoading}
                                                                 currentStep={currentStep}
                                                                 values={values}
 

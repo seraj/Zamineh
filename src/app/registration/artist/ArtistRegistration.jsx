@@ -52,7 +52,7 @@ import {
 import styles from '../Registration.scss';
 
 
-const SubmitSeciton = ({ StepData, Text, values, currentStep, goToSteps }) => (
+const SubmitSeciton = ({ btnLoading, Text, values, currentStep, goToSteps }) => (
     <React.Fragment>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
@@ -70,9 +70,9 @@ const SubmitSeciton = ({ StepData, Text, values, currentStep, goToSteps }) => (
                         <button
                             type='submit'
                             style={{ width: '100%', marginBottom: 10 }}
-                            disabled={StepData.SubmitBtnLoading}
+                            disabled={btnLoading}
                             variant='primary'
-                            className={`zbtn next black bradius ${StepData.SubmitBtnLoading ? `spinning` : null}`}
+                            className={`zbtn next black bradius ${btnLoading ? `spinning` : null}`}
                         >{Text} <i className='fas fa-angle-left' /></button>
                     </Col>
                 </Row>
@@ -114,6 +114,7 @@ class ArtistRegistration extends React.Component {
             currentStep: '',
             Loading: true,
             StepData: [],
+            btnLoading: false,
             loadingDiv: '',
             ModalToggle: false
         }
@@ -207,12 +208,8 @@ class ArtistRegistration extends React.Component {
     //* ـــــــــــــــــــ */
     // Steps Submit Actions
     BtnSubmitLoading = value => {
-        var StepData = this.state.StepData;
-        // StepData.SubmitBtnLoading = value;
         this.setState({
-            StepData: {
-                SubmitBtnLoading: value
-            }
+            btnLoading: value
         })
     }
     artistRegisterStep1 = values => {
@@ -294,8 +291,6 @@ class ArtistRegistration extends React.Component {
         }
     }
     artistRegisterStep4 = values => {
-        const parsed = queryString.parse(location.search);
-
 
         if (!CollectionAllArtValidation(values)) {
             Toast('warning', 'تمام اطلاعات مجموعه‌ها باید ثبت شود');
@@ -326,8 +321,8 @@ class ArtistRegistration extends React.Component {
 
     redirectToApp = (os) => {
         var body = {
-            client_id: SecurityManager().getRegClientIDSecret('id', 'Gallery'),
-            client_secret: SecurityManager().getRegClientIDSecret('secret', 'Gallery'),
+            client_id: SecurityManager().getRegClientIDSecret('id', 'Artist'),
+            client_secret: SecurityManager().getRegClientIDSecret('secret', 'Artist'),
             platform: os
         }
         axios.post(`${Urls().api()}/gallery-app/auth/get-token/`, body)
@@ -537,9 +532,6 @@ class ArtistRegistration extends React.Component {
             }).then(() => {
                 this.getSteps()
             })
-            .catch(error => {
-
-            })
     }
     Step4_AddArt = (pushFunction, type, ColID) => {
         axios.post(`${Urls().api()}/gallery-app/collection-art/`, {
@@ -549,11 +541,7 @@ class ArtistRegistration extends React.Component {
             .then(response => {
                 pushFunction({ id: response.data.id })
             }).then(() => {
-                this.getSteps()
-            })
-
-            .catch(error => {
-
+                // this.getSteps()
             })
     }
     openArtModal = () => {
@@ -592,9 +580,9 @@ class ArtistRegistration extends React.Component {
             ArtValue = values.collection_set[ColIndex].art_set[Artindex];
             ArtData = this.state.StepData.collection_set[ColIndex].art_set[Artindex];
         }
-        console.log(ArtValue)
+        // console.log(ArtValue)
 
-        ArtValue.gallery = ArtValue.gallery[0]
+        ArtValue.gallery = ArtValue.gallery ? ArtValue.gallery[0] : null
         if (!SingleCollectionArtValidation(ArtValue)) {
             Toast('warning', `لطفا تمام فیلدهای مربوط به اثر شماره ${Artindex + 1} را پر کنید`);
             ArtData.submitted = false;
@@ -677,17 +665,6 @@ class ArtistRegistration extends React.Component {
                     Toast('success', `مجموعه شماره ${ColIndex + 1} با موفقیت ثبت شد`)
                     ColData.loading = false;
                     ColData.submitted = true;
-
-                    this.setState({
-                        ColData,
-                        successBox: true,
-                        message: {
-                            type: 'success',
-                            title: 'ثبت موفق',
-                            message: 'اطلاعات مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید.',
-                        },
-                        timer: 15,
-                    })
                 })
 
                 .catch(error => {
@@ -749,6 +726,7 @@ class ArtistRegistration extends React.Component {
             loadingDiv,
             ModalToggle,
             successBox,
+            btnLoading,
             message,
             timer
 
@@ -815,7 +793,7 @@ class ArtistRegistration extends React.Component {
 
                                                             <SubmitSeciton
                                                                 Text='ثبت اطلاعات و رفتن به مرحله ۲'
-                                                                StepData={StepData}
+                                                                btnLoading={btnLoading}
                                                                 currentStep={currentStep}
                                                                 values={values}
 
@@ -845,7 +823,7 @@ class ArtistRegistration extends React.Component {
                                                             />
                                                             <SubmitSeciton
                                                                 Text='ثبت اطلاعات و رفتن به مرحله ۳'
-                                                                StepData={StepData}
+                                                                btnLoading={btnLoading}
                                                                 currentStep={currentStep}
                                                                 values={values}
                                                                 goToSteps={this.goToSteps}
@@ -900,7 +878,7 @@ class ArtistRegistration extends React.Component {
 
                                                                 <SubmitSeciton
                                                                     Text='ثبت اطلاعات و رفتن به مرحله ۴'
-                                                                    StepData={StepData}
+                                                                    btnLoading={btnLoading}
                                                                     currentStep={currentStep}
                                                                     values={values}
                                                                     goToSteps={this.goToSteps}
@@ -955,7 +933,7 @@ class ArtistRegistration extends React.Component {
                                                                 />
                                                                 <SubmitSeciton
                                                                     Text='ثبت نهایی اطلاعات'
-                                                                    StepData={StepData}
+                                                                    btnLoading={btnLoading}
                                                                     currentStep={currentStep}
                                                                     values={values}
                                                                     goToSteps={this.goToSteps}

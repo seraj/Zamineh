@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Urls from '../components/Urls';
 import SecurityManager from '../security/SecurityManager'
+import { Toast } from '../components/Toast/Toast';
+
 
 axios.defaults.baseURL = Urls().api();
 axios.defaults.timeout = 10000;
