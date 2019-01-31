@@ -211,22 +211,11 @@ class AddExhibitions extends React.Component {
             this.setState({
                 ExbData
             })
-            axios.post(`${Urls().api()}/gallery-app/collection/create-update/`, ExbValue)
+            axios.post(`${Urls().api()}/gallery-app/artist/show/create-update/`, ExbValue)
                 .then(response => {
                     Toast('success', `نمایشگاه شماره ${ExbIndex + 1} با موفقیت ثبت شد`)
                     ExbData.loading = false;
                     ExbData.submitted = true;
-
-                    this.setState({
-                        ExbData,
-                        successBox: true,
-                        message: {
-                            type: 'success',
-                            title: 'ثبت موفق',
-                            message: 'اطلاعات مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید.',
-                        },
-                        timer: 1500,
-                    })
                 })
 
                 .catch(error => {
@@ -332,7 +321,7 @@ class AddExhibitions extends React.Component {
         this.setState({
             Maplatlng: event.latlng
         })
-        console.log(this.state.Maplatlng)
+        // console.log(this.state.Maplatlng)
     }
 
     onChangeDatepicker = async (value, index, name) => {
@@ -470,6 +459,7 @@ class AddExhibitions extends React.Component {
                                                                                 {fields.map((name, index) => (
                                                                                     <React.Fragment>
                                                                                         <Exhibition
+                                                                                            type="artist"
                                                                                             key={index}
                                                                                             name={name}
                                                                                             index={index}

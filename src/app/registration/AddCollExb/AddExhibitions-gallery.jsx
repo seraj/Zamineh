@@ -58,6 +58,7 @@ const SubmitSeciton = ({ btnLoading, Text, values }) => (
         {/* 
             <pre>{JSON.stringify(values, 0, 2)}</pre>
         */}
+        <pre>{JSON.stringify(values, 0, 2)}</pre>
     </React.Fragment>
 );
 
@@ -86,7 +87,7 @@ class AddExhibitionsGallery extends React.Component {
     }
     detectParams = () => {
         const parsed = queryString.parse(location.search);
-        if (SecurityManager().hasArtistRegToken()) {
+        if (SecurityManager().hasGalleryRegToken()) {
             this.getFormData(parsed['exb_id'])
         }
     }
@@ -98,7 +99,7 @@ class AddExhibitionsGallery extends React.Component {
 
     getFormData = (id) => {
 
-        axios.get(`${Urls().api()}/gallery-app/artist/show/create-update/`, {
+        axios.get(`${Urls().api()}/gallery-app/gallery/show/create-update/`, {
             params: id ? { id: id } : null
         })
             .then(response => {
@@ -145,7 +146,7 @@ class AddExhibitionsGallery extends React.Component {
             ArtData.loading = true;
             this.setState({ ArtData })
 
-            axios.post(`${Urls().api()}/gallery-app/artist/art/create-update/`, ArtValue, {
+            axios.post(`${Urls().api()}/gallery-app/gallery/art/create-update/`, ArtValue, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -210,25 +211,16 @@ class AddExhibitionsGallery extends React.Component {
         }
         else {
             ExbData.loading = true;
+            ExbValue.address.lat = this.state.Maplatlng.lat;
+            ExbValue.address.lng = this.state.Maplatlng.lng;
             this.setState({
                 ExbData
             })
-            axios.post(`${Urls().api()}/gallery-app/collection/create-update/`, ExbValue)
+            axios.post(`${Urls().api()}/gallery-app/gallery/show/create-update/`, ExbValue)
                 .then(response => {
                     Toast('success', `نمایشگاه شماره ${ExbIndex + 1} با موفقیت ثبت شد`)
                     ExbData.loading = false;
                     ExbData.submitted = true;
-
-                    this.setState({
-                        ExbData,
-                        successBox: true,
-                        message: {
-                            type: 'success',
-                            title: 'ثبت موفق',
-                            message: 'اطلاعات مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید.',
-                        },
-                        timer: 1500,
-                    })
                 })
 
                 .catch(error => {
@@ -258,7 +250,7 @@ class AddExhibitionsGallery extends React.Component {
             ID = values.art_set[ArtIndex].id
         }
 
-        axios.delete(`${Urls().api()}/gallery-app/artist/show/create-update/?id=${ID}`).then(response => {
+        axios.delete(`${Urls().api()}/gallery-app/gallery/show/create-update/?id=${ID}`).then(response => {
             Toast('success', `${Name} مورد نظر با موفقیت حذف شد`)
             FARemove.remove(CurrentIndex)
         })
@@ -268,7 +260,7 @@ class AddExhibitionsGallery extends React.Component {
         var show_id = values.exb_set[ExbIndex].id;
         var art_id = values.exb_set[ExbIndex].art_set[ArtIndex].id;
         if (isAccepted) {
-            axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+            axios.get(`${Urls().api()}/gallery-app/gallery/art/in-show/`, {
                 params: {
                     show_id: show_id,
                     id: art_id,
@@ -280,7 +272,7 @@ class AddExhibitionsGallery extends React.Component {
                     FARemove.remove(ArtIndex)
                 })
         } else {
-            axios.delete(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+            axios.delete(`${Urls().api()}/gallery-app/gallery/art/create-update/`, {
                 params: {
                     id: art_id,
                 }
@@ -298,7 +290,7 @@ class AddExhibitionsGallery extends React.Component {
             Toast('warning', `ابتدا اثر قبلی را تکمیل کنید.`);
         } else {
             axios
-                .get(`${Urls().api()}/gallery-app/artist/art/create-update/`,
+                .get(`${Urls().api()}/gallery-app/gallery/art/create-update/`,
                     {
                         params: {
                             exb_id: ExbID ? ExbID : null,
@@ -334,20 +326,21 @@ class AddExhibitionsGallery extends React.Component {
         this.setState({
             Maplatlng: event.latlng
         })
-        console.log(this.state.Maplatlng)
+        // console.log(this.state.Maplatlng)
     }
 
     onChangeDatepicker = async (value, index, name) => {
         var currentValue = this.state.data.exb_set[index]
         const date = await `${value.jYear()}-${value.jMonth() + 1}-${value.jDate()}`;
         const endate = moment(date, 'jYYYY-jM-jD').format('YYYY-MM-DD');
-        currentValue[name] = endate
+        currentValue[name] = endate;
+        // console.log(currentValue)
         this.setState({ currentValue })
     }
 
 
     getArtsForImport = (page, id) => {
-        axios.get(`${Urls().api()}/gallery-app/artist/art/list/`, {
+        axios.get(`${Urls().api()}/gallery-app/gallery/art/list/`, {
             params: {
                 page: page ? page : 1,
                 show_id: id && id,
@@ -373,7 +366,7 @@ class AddExhibitionsGallery extends React.Component {
     }
 
     importArtfunc = (pushFunction, ArtID, show_id) => {
-        axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+        axios.get(`${Urls().api()}/gallery-app/gallery/art/in-show/`, {
             params: {
                 id: ArtID,
                 show_id: show_id
@@ -402,8 +395,8 @@ class AddExhibitionsGallery extends React.Component {
 
 
     setAccessTokens = (Token, RefreshToken) => {
-        SecurityManager().setArtistRegAccessToken(Token);
-        SecurityManager().setArtistRegRefreshToken(RefreshToken);
+        SecurityManager().setGalleryRegAccessToken(Token);
+        SecurityManager().setGalleryRegRefreshToken(RefreshToken);
     }
     focusOnErrors = createDecorator()
 
@@ -417,7 +410,7 @@ class AddExhibitionsGallery extends React.Component {
             btnLoading,
             showForm
         } = this.state
-        var hasToken = SecurityManager().hasArtistRegToken()
+        var hasToken = SecurityManager().hasGalleryRegToken()
         return (
             <React.Fragment>
                 <Section ExtraClass={'content singlePage'}>
@@ -436,7 +429,7 @@ class AddExhibitionsGallery extends React.Component {
                                             checkMobileAPI='/gallery-app/gallery/check/'
                                             validationAPI='/gallery-app/phone/validate/'
                                             loginAPI='/gallery-app/gallery/login/'
-                                            type='Artist'
+                                            type='Gallery'
                                             setAccessTokens={this.setAccessTokens}
                                         />
                                     }
@@ -472,6 +465,7 @@ class AddExhibitionsGallery extends React.Component {
                                                                                 {fields.map((name, index) => (
                                                                                     <React.Fragment>
                                                                                         <Exhibition
+                                                                                            type="gallery"
                                                                                             key={index}
                                                                                             name={name}
                                                                                             index={index}
@@ -494,6 +488,8 @@ class AddExhibitionsGallery extends React.Component {
                                                                                             values={values}
                                                                                             data={data}
                                                                                             config={config}
+
+                                                                                            GallerryExhibition
                                                                                         />
                                                                                     </React.Fragment>
                                                                                 ))}

@@ -81,6 +81,7 @@ const Condition = ({ when, is, children }) => (
 );
 
 export const Exhibition = ({
+    type,
     singleArtSubmit,
     singleExbSubmit,
     data,
@@ -100,15 +101,20 @@ export const Exhibition = ({
     onRemoveClick,
     handleRemove,
     index,
-    values
+    values,
+
+
+
+    GallerryExhibition
+
 }) => {
     const ExbIndex = index
     const ExbData = data.exb_set ? data.exb_set[ExbIndex] : null
     const unSubmittedArts = values.exb_set[ExbIndex] ? unSubmittedArt(values.exb_set[ExbIndex].art_set).length : null;
 
     const ServerData = data.exb_set ? data.exb_set[ExbIndex] : null;
-    const ImageUploadServer = `/gallery-app/artist/show/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/image/`;
-    const LogoUploadServer = `/gallery-app/artist/show/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/logo/`;
+    const ImageUploadServer = `/gallery-app/${type}/show/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/image/`;
+    const LogoUploadServer = `/gallery-app/${type}/show/upload-image/${values.exb_set[ExbIndex] ? values.exb_set[ExbIndex].id : ''}/logo/`;
 
 
     return (
@@ -343,18 +349,20 @@ export const Exhibition = ({
                                 <Row>
 
                                     <React.Fragment>
-                                        <Col lg={6} md={6} sm={12} xs={12}>
-                                            <div className={styles.addSectionButton}>
-                                                <button
-                                                    type='button'
-                                                    className=''
-                                                    onClick={() => addArt(fields.push, values.exb_set[ExbIndex].id, values.exb_set[ExbIndex])}>
-                                                    <i></i>
-                                                    <span>اضافه کردن اثر</span>
-                                                </button>
-                                            </div>
-                                        </Col>
-                                        <Col lg={6} md={6} sm={12} xs={12}>
+                                        {!GallerryExhibition &&
+                                            <Col lg={6} md={6} sm={12} xs={12}>
+                                                <div className={styles.addSectionButton}>
+                                                    <button
+                                                        type='button'
+                                                        className=''
+                                                        onClick={() => addArt(fields.push, values.exb_set[ExbIndex].id, values.exb_set[ExbIndex])}>
+                                                        <i></i>
+                                                        <span>اضافه کردن اثر</span>
+                                                    </button>
+                                                </div>
+                                            </Col>
+                                        }
+                                        <Col lg={GallerryExhibition? 12 : 6} md={GallerryExhibition ?12:6} sm={12} xs={12}>
 
                                             <ArtImportModal
                                                 ModalToggle={ModalToggle}

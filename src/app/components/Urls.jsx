@@ -90,6 +90,9 @@ export default function Urls() {
         AddExhibitions() {
             return '/registration/artist/add-exhibition';
         },
+        AddExhibitionsGallery() {
+            return '/registration/gallery/add-exhibition';
+        },
 
         Profile() {
             return '/profile'
