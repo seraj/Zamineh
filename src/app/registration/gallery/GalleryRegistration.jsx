@@ -157,10 +157,8 @@ class GalleryRegistration extends React.Component {
     }
 
     BtnSubmitLoading(value) {
-        var FormData = this.state.FormData;
-        FormData.SubmitBtnLoading = value;
         this.setState({
-            FormData
+            btnLoading: value
         })
     }
     Validation = (value) => {
