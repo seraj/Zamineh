@@ -32,7 +32,7 @@ import styles from '../Registration.scss'
 
 
 
-const SubmitSeciton = ({ data, Text, values }) => (
+const SubmitSeciton = ({ btnLoading, Text, values }) => (
     <React.Fragment>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
@@ -42,9 +42,9 @@ const SubmitSeciton = ({ data, Text, values }) => (
                         <button
                             type='submit'
                             style={{ width: '100%', marginBottom: 10 }}
-                            disabled={data.SubmitBtnLoading}
+                            disabled={btnLoading}
                             variant='primary'
-                            className={`zbtn next black bradius ${data.SubmitBtnLoading ? `spinning` : null}`}
+                            className={`zbtn next black bradius ${btnLoading ? `spinning` : null}`}
                         >{Text} <i className='fas fa-angle-left' /></button>
                     </Col>
                 </Row>
@@ -64,6 +64,7 @@ class AddSingleArt extends React.Component {
             data: [],
             config: [],
             showForm: false,
+            btnLoading:false,
             ModalToggle: false
         }
     }
@@ -81,10 +82,8 @@ class AddSingleArt extends React.Component {
         }
     }
     btnSubmitLoading(value) {
-        var data = this.state.data;
-        data.SubmitBtnLoading = value;
         this.setState({
-            data
+            btnLoading:value
         })
     }
     getFormData = (id) => {
@@ -245,6 +244,7 @@ class AddSingleArt extends React.Component {
             ModalToggle,
             loadingDiv,
             type,
+            btnLoading,
             showForm
         } = this.state
         var hasToken = SecurityManager().hasArtistRegToken()
@@ -339,7 +339,7 @@ class AddSingleArt extends React.Component {
 
                                                         <SubmitSeciton
                                                             Text='ثبت نهایی'
-                                                            data={data}
+                                                            btnLoading={btnLoading}
                                                             values={values}
 
                                                         />

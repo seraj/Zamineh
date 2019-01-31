@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
+import moment from 'moment-jalaali';
 import queryString from 'query-string';
-import { isMobile } from 'react-device-detect';
 import { withRouter } from 'react-router-dom'
 import Row from 'reactstrap/lib/Row';
 import Container from 'reactstrap/lib/Container';
@@ -20,22 +20,20 @@ import AuthorizationForm from '../components/AuthorizationForm'
 import SecurityManager from '../../security/SecurityManager';
 import Urls from '../../components/Urls';
 
-import { Collection } from './Forms';
-
+import { Exhibition } from './Forms';
 import Section from '../../components/Section/Section';
-
-import json from './ExJSON.json'
 
 
 
 import {
-
-    SingleCollectionValidation,
+    SingleExhibitionValidation,
     SingleArtValidation,
     SingleCollectionArtValidation,
     CollectionAllArtValidation,
 } from './Validation';
 import styles from '../Registration.scss'
+
+
 
 
 const SubmitSeciton = ({ btnLoading, Text, values }) => (
@@ -57,19 +55,22 @@ const SubmitSeciton = ({ btnLoading, Text, values }) => (
             </Col>
 
         </Row>
-        {/*
+        {/* 
             <pre>{JSON.stringify(values, 0, 2)}</pre>
         */}
     </React.Fragment>
 );
 
 
-class AddCollections extends React.Component {
+class AddExhibitionsGallery extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             data: [],
+            importedArt: [],
+            modalPageCount: '',
+            Maplatlng: [],
             config: [],
             showForm: false,
             btnLoading: false,
@@ -86,17 +87,18 @@ class AddCollections extends React.Component {
     detectParams = () => {
         const parsed = queryString.parse(location.search);
         if (SecurityManager().hasArtistRegToken()) {
-            this.getFormData(parsed['collection_id'])
+            this.getFormData(parsed['exb_id'])
         }
     }
-    btnSubmitLoading(value) {
+    BtnSubmitLoading = value => {
         this.setState({
             btnLoading: value
         })
     }
+
     getFormData = (id) => {
 
-        axios.get(`${Urls().api()}/gallery-app/collection/create-update/`, {
+        axios.get(`${Urls().api()}/gallery-app/artist/show/create-update/`, {
             params: id ? { id: id } : null
         })
             .then(response => {
@@ -119,12 +121,12 @@ class AddCollections extends React.Component {
             })
 
     }
-    singleArtSubmit = (values, Artindex, ColIndex, ArtType) => {
+    singleArtSubmit = (values, Artindex, ExbIndex, ArtType) => {
 
 
-        var ArtValue = values.collection_set[ColIndex].art_set[Artindex];
-        ArtValue.collection_id = values.collection_set[ColIndex].id;
-        var ArtData = this.state.data.collection_set[ColIndex].art_set[Artindex];
+        var ArtValue = values.exb_set[ExbIndex].art_set[Artindex];
+        ArtValue.exb_id = values.exb_set[ExbIndex].id;
+        var ArtData = this.state.data.exb_set[ExbIndex].art_set[Artindex];
 
         if (!SingleArtValidation(ArtValue)) {
             Toast('warning', `لطفا تمام فیلدهای مربوط به اثر شماره ${Artindex + 1} را پر کنید`);
@@ -159,16 +161,6 @@ class AddCollections extends React.Component {
                         this.forceUpdate()
                     })
                 })
-                .then(() => {
-                    if (parsed['xeYDSM2fWgsJvFuN'] == 'ios' && isMobile) {
-                        // window.location.replace(`intent://whatever/#Intent;scheme=zamineh.panel.collection;package=com.nozhan.zaminehpanel;i.status=0/1;i.collection_id=${ColValue.id};end`)
-
-                    }
-                    else if (parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) {
-                        window.location.replace(`intent://whatever/#Intent;scheme=zamineh.panel.art;package=com.nozhan.zaminehpanel;i.status=0/1;art_id=${ArtValue.id};end`)
-
-                    }
-                })
                 .catch(error => {
                     ArtData.loading = false;
                     ArtData.submitted = false;
@@ -181,48 +173,54 @@ class AddCollections extends React.Component {
     }
 
 
-    singleColSubmit = (values, ColIndex) => {
-        const parsed = queryString.parse(location.search);
+    singleExbSubmit = (values, ExbIndex) => {
+        var ExbValue = values.exb_set[ExbIndex];
+        var ExbData = this.state.data.exb_set[ExbIndex];
 
 
-        const ColID = values.collection_set[ColIndex].id
-        var ColValue = values.collection_set[ColIndex];
-        var ColData = this.state.data.collection_set[ColIndex];
+        if (
+            ExbData.address.lat == null
+                ?
+                (this.state.Maplatlng.lat == '' || this.state.Maplatlng.lat == undefined)
+                :
+                (ExbValue.address.lat == '' || ExbValue.address.lat == undefined)
+        ) {
+            Toast('warning', 'لطفا آدرس دقیق را روی نقشه انتخاب کنید');
 
-        if (!SingleCollectionValidation(ColValue)) {
+        } else if (!SingleExhibitionValidation(ExbValue)) {
             Toast('warning', 'لطفا تمام موارد الزامی را تکمیل نمایید');
-            if (ColData.submitted != undefined) {
+            if (ExbData.submitted != undefined) {
 
-                ColData.submitted = false;
+                ExbData.submitted = false;
                 this.setState({
-                    ColData
+                    ExbData
                 })
             }
         } else if (
-            ColValue.art_set == '' ||
-            ColValue.art_set == undefined
+            ExbValue.art_set == '' ||
+            ExbValue.art_set == undefined
         ) {
-            Toast('warning', 'حداقل یک اثر باید برای مجموعه ثبت کنید');
+            Toast('warning', 'حداقل یک اثر باید برای نمایشگاه ثبت کنید');
         }
-        else if (!CollectionAllArtValidation(ColValue.art_set)) {
+        else if (!CollectionAllArtValidation(ExbValue.art_set)) {
             Toast('warning', 'لطفا اطلاعات آثار را تکمیل نمایید');
         }
-        else if (ColValue.art_set.length < 1) {
-            Toast('warning', 'هر مجموعه حداقل باید دارای 1 اثر باشد.');
+        else if (ExbValue.art_set.length < 1) {
+            Toast('warning', 'هر نمایشگاه حداقل باید دارای 1 اثر باشد.');
         }
         else {
-            ColData.loading = true;
+            ExbData.loading = true;
             this.setState({
-                ColData
+                ExbData
             })
-            axios.post(`${Urls().api()}/gallery-app/collection/create-update/`, ColValue)
+            axios.post(`${Urls().api()}/gallery-app/collection/create-update/`, ExbValue)
                 .then(response => {
-                    Toast('success', `مجموعه شماره ${ColIndex + 1} با موفقیت ثبت شد`)
-                    ColData.loading = false;
-                    ColData.submitted = true;
+                    Toast('success', `نمایشگاه شماره ${ExbIndex + 1} با موفقیت ثبت شد`)
+                    ExbData.loading = false;
+                    ExbData.submitted = true;
 
                     this.setState({
-                        ColData,
+                        ExbData,
                         successBox: true,
                         message: {
                             type: 'success',
@@ -231,69 +229,69 @@ class AddCollections extends React.Component {
                         },
                         timer: 1500,
                     })
-                }).then(() => {
-                    if (parsed['xeYDSM2fWgsJvFuN'] == 'ios' && isMobile) {
-                        // window.location.replace(`intent://whatever/#Intent;scheme=zamineh.panel.collection;package=com.nozhan.zaminehpanel;i.status=0/1;i.collection_id=${ColValue.id};end`)
-
-                    }
-                    else if (parsed['xeYDSM2fWgsJvFuN'] == 'android' && isMobile) {
-                        window.location.replace(`intent://whatever/#Intent;scheme=zamineh.panel.collection;package=com.nozhan.zaminehpanel;i.status=0/1;i.collection_id=${ColValue.id};end`)
-
-                    }
                 })
 
                 .catch(error => {
                     console.log(error);
-                    ColData.loading = false;
-                    ColData.submitted = false
+                    ExbData.loading = false;
+                    ExbData.submitted = false
                     this.setState({
-                        ColData
+                        ExbData
                     })
                 })
         }
     }
 
 
-    handleRemove = (FARemove, type, values, ColIndex, ArtIndex, CollectionType) => {
-        const CurrentIndex = type === 'collection_id' ? ColIndex : ArtIndex;
-        const Name = type === 'collection_id' ? 'مجموعه' : 'اثر';
+
+
+    handleRemove = (FARemove, type, values, ExbIndex, ArtIndex, CollectionType) => {
+        const CurrentIndex = type === 'exb_id' ? ExbIndex : ArtIndex;
+        const Name = type === 'exb_id' ? 'نمایشگاه' : 'اثر';
         var ID = ''
-        if (type === 'collection_id') {
-            ID = values.collection_set[ColIndex].id
+        if (type === 'exb_id') {
+            ID = values.exb_set[ExbIndex].id
         } else if (type === 'art_id' && CollectionType === 'CollectionArt') {
-            ID = values.collection_set[ColIndex].art_set[ArtIndex].id;
+            ID = values.exb_set[ExbIndex].art_set[ArtIndex].id;
         }
         else {
             ID = values.art_set[ArtIndex].id
         }
 
-        axios.delete(`${Urls().api()}/gallery-app/artist/art/create-update/?id=${ID}`).then(response => {
+        axios.delete(`${Urls().api()}/gallery-app/artist/show/create-update/?id=${ID}`).then(response => {
             Toast('success', `${Name} مورد نظر با موفقیت حذف شد`)
             FARemove.remove(CurrentIndex)
         })
     }
-    handleRemoveArt = (FARemove, values, ColIndex, ArtIndex) => {
-        var collection_id = values.collection_set[ColIndex].id;
-        var art_id = values.collection_set[ColIndex].art_set[ArtIndex].id;
 
-        axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
-            params: {
-                collection_id: collection_id,
-                id: art_id,
-                is_delete: true
-            }
-        })
-            .then(response => {
-                Toast('success', `اثر مورد نظر با موفقیت حذف شد`)
-                FARemove.remove(ArtIndex)
+    handleRemoveArt = (FARemove, values, ExbIndex, ArtIndex, isAccepted) => {
+        var show_id = values.exb_set[ExbIndex].id;
+        var art_id = values.exb_set[ExbIndex].art_set[ArtIndex].id;
+        if (isAccepted) {
+            axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+                params: {
+                    show_id: show_id,
+                    id: art_id,
+                    is_delete: true
+                }
             })
-    }
-
-    AddSingleArt = (pushFunction, ColID, values) => {
-
-        const Body = {
-            collection_id: ColID ? ColID : null
+                .then(response => {
+                    Toast('success', `اثر مورد نظر با موفقیت از مجموعه برداشته شد`)
+                    FARemove.remove(ArtIndex)
+                })
+        } else {
+            axios.delete(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
+                params: {
+                    id: art_id,
+                }
+            })
+                .then(response => {
+                    Toast('success', `اثر مورد نظر با موفقیت از زمینه حذف شد`)
+                    FARemove.remove(ArtIndex)
+                })
         }
+    }
+    AddSingleArt = (pushFunction, ExbID, values) => {
         var ArtValue = values.art_set
         console.log(SingleCollectionArtValidation(ArtValue))
         if (ArtValue.length > 0 && !SingleCollectionArtValidation(ArtValue)) {
@@ -303,20 +301,21 @@ class AddCollections extends React.Component {
                 .get(`${Urls().api()}/gallery-app/artist/art/create-update/`,
                     {
                         params: {
-                            collection_id: ColID ? ColID : null,
+                            exb_id: ExbID ? ExbID : null,
                             isAdd: true
                         }
                     })
                 .then(response => {
+                    console.log(response.data.art_set[0])
                     pushFunction(response.data.art_set[0])
                 })
         }
     }
 
-    addCollection = async (pushFunction, values) => {
-        var ColValue = values.collection_set
-        if (ColValue.length > 0 && !SingleCollectionValidation(ColValue)) {
-            Toast('warning', `ابتدا مجموعه قبلی را تکمیل کنید.`);
+    addExhibition = async (pushFunction, values) => {
+        var ExbValue = values.exb_set
+        if (ExbValue.length > 0 && !SingleExhibitionValidation(ExbValue)) {
+            Toast('warning', `ابتدا نمایشگاه قبلی را تکمیل کنید.`);
         } else {
             axios.get(`${Urls().api()}/gallery-app/collection/create-update/`,
                 {
@@ -325,20 +324,33 @@ class AddCollections extends React.Component {
                     }
                 })
                 .then(response => {
-                    pushFunction(response.data.collection_set[0])
+                    pushFunction(response.data.exb_set[0])
                 })
         }
     }
 
 
+    onMapClick = (event) => {
+        this.setState({
+            Maplatlng: event.latlng
+        })
+        console.log(this.state.Maplatlng)
+    }
 
+    onChangeDatepicker = async (value, index, name) => {
+        var currentValue = this.state.data.exb_set[index]
+        const date = await `${value.jYear()}-${value.jMonth() + 1}-${value.jDate()}`;
+        const endate = moment(date, 'jYYYY-jM-jD').format('YYYY-MM-DD');
+        currentValue[name] = endate
+        this.setState({ currentValue })
+    }
 
 
     getArtsForImport = (page, id) => {
         axios.get(`${Urls().api()}/gallery-app/artist/art/list/`, {
             params: {
                 page: page ? page : 1,
-                collection_id: id && id,
+                show_id: id && id,
                 for_create: true
             }
         })
@@ -360,18 +372,16 @@ class AddCollections extends React.Component {
             })
     }
 
-
-
-    importArtfunc = (pushFunction, ArtID, collection_id) => {
+    importArtfunc = (pushFunction, ArtID, show_id) => {
         axios.get(`${Urls().api()}/gallery-app/artist/art/create-update/`, {
             params: {
                 id: ArtID,
-                collection_id: collection_id
+                show_id: show_id
             }
         })
             .then(response => {
                 pushFunction(response.data.art_set[0])
-                this.getArtsForImport('', collection_id)
+                this.getArtsForImport('', show_id)
             })
     }
     handleModalPageClick = (data) => {
@@ -386,6 +396,7 @@ class AddCollections extends React.Component {
             ModalToggle: !this.state.ModalToggle
         })
         !this.state.ModalToggle ? this.getArtsForImport('', id) : null
+
     }
 
 
@@ -414,7 +425,7 @@ class AddCollections extends React.Component {
                         <Row>
                             <Col xs={12}>
                                 <div className='section_header_single'>
-                                    <h1>ثبت مجموعه</h1>
+                                    <h1>ثبت نمایشگاه</h1>
                                 </div>
                             </Col>
                             <Col xs={12}>
@@ -430,7 +441,6 @@ class AddCollections extends React.Component {
                                         />
                                     }
                                     {showForm &&
-
                                         <Form
                                             decorators={[this.focusOnErrors]}
                                             onSubmit={this.handleSubmit}
@@ -440,7 +450,6 @@ class AddCollections extends React.Component {
                                             }}
                                             initialValues={
                                                 data !== '' ? data : null
-
                                             }
                                             render={({
                                                 handleSubmit,
@@ -457,20 +466,23 @@ class AddCollections extends React.Component {
 
                                                                 <Col lg={12} md={12} sm={12} xs={12}>
 
-                                                                    <FieldArray name='collection_set'>
+                                                                    <FieldArray name='exb_set'>
                                                                         {({ fields }) =>
                                                                             <React.Fragment>
                                                                                 {fields.map((name, index) => (
                                                                                     <React.Fragment>
-                                                                                        <Collection
+                                                                                        <Exhibition
                                                                                             key={index}
                                                                                             name={name}
                                                                                             index={index}
-                                                                                            onRemoveClick={() => this.handleRemove(fields, 'collection_id', values, index, null)}
+                                                                                            onRemoveClick={() => this.handleRemove(fields, 'exb_id', values, index, null)}
                                                                                             handleRemove={this.handleRemoveArt}
-                                                                                            singleColSubmit={this.singleColSubmit}
+
+                                                                                            onChangeDatepicker={this.onChangeDatepicker}
+                                                                                            singleExbSubmit={this.singleExbSubmit}
                                                                                             singleArtSubmit={this.singleArtSubmit}
                                                                                             addArt={this.AddSingleArt}
+                                                                                            onMapClick={this.onMapClick}
 
                                                                                             importArts={this.importArtfunc}
                                                                                             importedArt={importedArt}
@@ -485,15 +497,15 @@ class AddCollections extends React.Component {
                                                                                         />
                                                                                     </React.Fragment>
                                                                                 ))}
-                                                                                {values && values.collection_set &&
+                                                                                {values && values.exb_set &&
                                                                                     <Col lg={12} md={12} sm={12} xs={12}>
                                                                                         <div className={styles.addSectionButton}>
                                                                                             <button
                                                                                                 type='button'
                                                                                                 className=''
-                                                                                                onClick={() => this.addCollection(fields.push, values)}>
+                                                                                                onClick={() => this.addExhibition(fields.push, values)}>
                                                                                                 <i></i>
-                                                                                                <span>اضافه کردن مجموعه</span>
+                                                                                                <span>اضافه کردن نمایشگاه</span>
                                                                                             </button>
                                                                                         </div>
                                                                                     </Col>
@@ -502,7 +514,6 @@ class AddCollections extends React.Component {
                                                                         }
                                                                     </FieldArray>
                                                                 </Col>
-
 
                                                             </React.Fragment>
                                                         </Row>
@@ -528,4 +539,4 @@ class AddCollections extends React.Component {
     }
 }
 
-export default withRouter(AddCollections);
+export default withRouter(AddExhibitionsGallery);
