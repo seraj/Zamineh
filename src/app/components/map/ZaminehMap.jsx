@@ -15,6 +15,11 @@ class ZaminehMap extends Component {
         }
     }
     componentDidMount() {
+        // const script = document.createElement("script");
+        // script.src = "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.66.0/dist/L.Control.Locate.min.js";
+        // script.async = true;
+        // document.body.appendChild(script);
+
         var greenIcon = L.icon({
             iconUrl: 'http://zamineh.net/static/default_imgs/marker.svg',
             iconSize: [45, 65], // size of the icon
@@ -42,6 +47,7 @@ class ZaminehMap extends Component {
 
             ]
         });
+        // L.control.locate().addTo(this.map);
         // console.log(this.props.markerPosition,this.props.currentLocation)
         if (this.props.markerPosition !== undefined) {
             var theMarker = self.state.mapMarker;
@@ -78,7 +84,7 @@ class ZaminehMap extends Component {
 
 
             var lat = e.latlng.lat;
-            var lon = e.latlng.lng;
+            var lng = e.latlng.lng;
 
             //Clear existing marker, 
 
@@ -88,7 +94,7 @@ class ZaminehMap extends Component {
 
 
             //Add a marker to show where you clicked.
-            theMarker = L.marker([lat, lon], { icon: greenIcon }).addTo(this);
+            theMarker = L.marker([lat, lng], { icon: greenIcon }).addTo(this);
             self.setState({ mapMarker: theMarker });
 
             self.props.onClick(e)

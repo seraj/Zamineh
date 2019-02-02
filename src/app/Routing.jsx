@@ -61,10 +61,7 @@ export default function Routing({ isLogined }) {
     return (
         <Section ExtraClass={'content singlePage'}>
             <Switch>
-                <Route
-                    path={`/map`}
-                    render={() => <Map />}
-                />
+
                 {/* Home Page */}
                 <Route
                     path='/'
