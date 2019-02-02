@@ -27,12 +27,12 @@ class ZaminehMap extends Component {
             popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
 
-
         var self = this;
         this.map = L.map('map', {
             center: this.props.mapPosition,
             zoom: this.props.mapZoom,
             minZoom: 10,
+            color: '#333',
 
             layers: [
                 L.tileLayer.wms('http://map.ir/shiveh', {
@@ -64,8 +64,8 @@ class ZaminehMap extends Component {
                     self.map.addLayer(marker);
                 })
                     .on('locationerror', function (e) {
-                        console.log(e);
-                        console.log('Location access denied.');
+                        // console.log(e);
+                        // console.log('Location access denied.');
                     });
 
 

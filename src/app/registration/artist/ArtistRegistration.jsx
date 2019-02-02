@@ -377,7 +377,7 @@ class ArtistRegistration extends React.Component {
             .then(response => {
                 pushFunction({ id: response.data.id, art_set: [] })
             }).then(() => {
-                this.getSteps()
+                // this.getSteps()
             })
             .catch(error => {
                 // console.log(error);

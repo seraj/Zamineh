@@ -135,7 +135,7 @@ export const Exhibition = ({
                             name={`${name}.name`}
                             component={input}
                             placeholder='نام مجموعه'
-                            validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
+                            // validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
                             control
                         />
                         <Error name={`${name}.name`} />
@@ -160,7 +160,7 @@ export const Exhibition = ({
                             name={`${name}.address`}
                             component={input}
                             placeholder='محل برگذاری'
-                            validate={value => value ? undefined : 'وارد کردن محل برگذاری میباشد'}
+                            // validate={value => value ? undefined : 'وارد کردن محل برگذاری میباشد'}
                             control
                         />
                         <Error name={`${name}.address`} />
@@ -174,7 +174,7 @@ export const Exhibition = ({
                             component={textarea}
                             maxLength='500'
                             placeholder='...'
-                            validate={value => value ? undefined : 'الزامی'}
+                            // validate={value => value ? undefined : 'الزامی'}
                             control
                         />
                         <Error name={`${name}.desc`} />
@@ -296,7 +296,7 @@ export const Collection = ({
                             name={`${name}.name`}
                             component={input}
                             placeholder='نام مجموعه'
-                            validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
+                            // validate={value => value ? undefined : 'وارد کردن نام مجموعه میباشد'}
                             control
                         />
                         <Error name={`${name}.name`} />
@@ -310,7 +310,7 @@ export const Collection = ({
                             component={textarea}
                             maxLength='500'
                             placeholder='...'
-                            validate={value => value ? undefined : 'الزامی'}
+                            // validate={value => value ? undefined : 'الزامی'}
                             control
                         />
                         <Error name={`${name}.desc`} />
@@ -458,7 +458,7 @@ export const SingleArt = ({
                                 name={`${name}.name`}
                                 component={input}
                                 placeholder='نام اثر'
-                                validate={value => value ? undefined : 'وارد کردن نام اثر میباشد'}
+                                // validate={value => value ? undefined : 'وارد کردن نام اثر میباشد'}
                                 control
                             />
                             <Error name={`${name}.name`} />
@@ -472,7 +472,7 @@ export const SingleArt = ({
                                 component={input}
                                 value='sdsada'
                                 placeholder='سال تولید اثر'
-                                validate={value => value ? undefined : 'وارد کردن سال تولید اثر میباشد'}
+                                // validate={value => value ? undefined : 'وارد کردن سال تولید اثر میباشد'}
                                 control
                             />
                             <Error name={`${name}.year`} />
@@ -487,7 +487,7 @@ export const SingleArt = ({
                                 name={`${name}.mat_set`}
                                 api='/gallery-app/material/autocomplete/?phrase'
                                 placeholder='متریال استفاده شده در اثر'
-                                validate={value => value ? undefined : 'وارد کردن متریال الزامی میباشد'}
+                            // validate={value => value ? undefined : 'وارد کردن متریال الزامی میباشد'}
                             />
                             <Error name={`${name}.mat_set`} />
                         </FormGroup>
@@ -501,7 +501,7 @@ export const SingleArt = ({
                                     name={`${name}.medium_set`}
                                     api='/gallery-app/medium/autocomplete/?phrase'
                                     placeholder='بستر استفاده شده در اثر'
-                                    validate={value => value ? undefined : 'وارد کردن بستر الزامی میباشد'}
+                                // validate={value => value ? undefined : 'وارد کردن بستر الزامی میباشد'}
                                 />
                                 <Error name={`${name}.medium_set`} />
                             </FormGroup>
@@ -516,7 +516,7 @@ export const SingleArt = ({
                             <Field
                                 name={`${name}.size.unit`}
                                 component={select}
-                                validate={value => value ? undefined : 'واردن کردن واحد اجباری میباشد'}
+                                // validate={value => value ? undefined : 'واردن کردن واحد اجباری میباشد'}
                                 control
                                 arrow={false}
                             >
@@ -538,7 +538,7 @@ export const SingleArt = ({
                                 name={`${name}.size.width`}
                                 component={input}
                                 placeholder='طول اثر'
-                                validate={value => value ? undefined : 'وارد کردن طول اثر الزامی میباشد'}
+                                // validate={value => value ? undefined : 'وارد کردن طول اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.size.width`} />
@@ -551,7 +551,7 @@ export const SingleArt = ({
                                 name={`${name}.size.height`}
                                 component={input}
                                 placeholder='ارتفاع اثر'
-                                validate={value => value ? undefined : 'وارد کردن ارتفاع اثر الزامی میباشد'}
+                                // validate={value => value ? undefined : 'وارد کردن ارتفاع اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.size.height`} />
@@ -564,7 +564,7 @@ export const SingleArt = ({
                                 name={`${name}.size.depth`}
                                 component={input}
                                 placeholder='عمق اثر'
-                                validate={value => value ? undefined : 'وارد کردن عمق اثر الزامی میباشد'}
+                                // validate={value => value ? undefined : 'وارد کردن عمق اثر الزامی میباشد'}
                                 control
                             />
                             <Error name={`${name}.size.depth`} />
@@ -583,7 +583,7 @@ export const SingleArt = ({
                                     name={`${name}.gallery`}
                                     api='/gallery-app/gallery/autocomplete/?phrase'
                                     placeholder='نام گالری مالک اثر'
-                                    validate={value => value ? undefined : 'وارد کردن نام گالری الزامی میباشد'}
+                                // validate={value => value ? undefined : 'وارد کردن نام گالری الزامی میباشد'}
                                 />
                                 <Error name={`${name}.gallery`} />
                             </FormGroup>
