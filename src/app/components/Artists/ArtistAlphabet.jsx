@@ -65,7 +65,7 @@ class ArtistAlphabet extends Component {
         } = this.props;
         return (
             <React.Fragment>
-                <Section ExtraClass={`${styles.ArtistAlphabet} content singlePage`}>
+                <Section ExtraClass={`${styles.ArtistAlphabet}`}>
                     <Container>
                         <Row>
                             <Col xs={12}>

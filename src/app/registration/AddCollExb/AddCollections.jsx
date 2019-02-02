@@ -22,9 +22,8 @@ import Urls from '../../components/Urls';
 
 import { Collection } from './Forms';
 
-import Section from '../../components/Section/Section';
 
-import json from './ExJSON.json'
+// import json from './ExJSON.json'
 
 
 
@@ -409,120 +408,118 @@ class AddCollections extends React.Component {
         var hasToken = SecurityManager().hasArtistRegToken()
         return (
             <React.Fragment>
-                <Section ExtraClass={'content singlePage'}>
-                    <Container>
-                        <Row>
-                            <Col xs={12}>
-                                <div className='section_header_single'>
-                                    <h1>ثبت مجموعه</h1>
-                                </div>
-                            </Col>
-                            <Col xs={12}>
-                                <div className={styles.RegistrationSection}>
-                                    {!hasToken &&
-                                        <AuthorizationForm
-                                            afterLogin={this.getFormData}
-                                            checkMobileAPI='/gallery-app/gallery/check/'
-                                            validationAPI='/gallery-app/phone/validate/'
-                                            loginAPI='/gallery-app/gallery/login/'
-                                            type='Artist'
-                                            setAccessTokens={this.setAccessTokens}
-                                        />
-                                    }
-                                    {showForm &&
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <div className='section_header_single'>
+                                <h1>ثبت مجموعه</h1>
+                            </div>
+                        </Col>
+                        <Col xs={12}>
+                            <div className={styles.RegistrationSection}>
+                                {!hasToken &&
+                                    <AuthorizationForm
+                                        afterLogin={this.getFormData}
+                                        checkMobileAPI='/gallery-app/gallery/check/'
+                                        validationAPI='/gallery-app/phone/validate/'
+                                        loginAPI='/gallery-app/gallery/login/'
+                                        type='Artist'
+                                        setAccessTokens={this.setAccessTokens}
+                                    />
+                                }
+                                {showForm &&
 
-                                        <Form
-                                            decorators={[this.focusOnErrors]}
-                                            onSubmit={this.handleSubmit}
-                                            mutators={{
-                                                ...arrayMutators,
-                                                setFieldData
-                                            }}
-                                            initialValues={
-                                                data !== '' ? data : null
+                                    <Form
+                                        decorators={[this.focusOnErrors]}
+                                        onSubmit={this.handleSubmit}
+                                        mutators={{
+                                            ...arrayMutators,
+                                            setFieldData
+                                        }}
+                                        initialValues={
+                                            data !== '' ? data : null
 
-                                            }
-                                            render={({
-                                                handleSubmit,
-                                                mutators: { push, pop },
-                                                submitting,
-                                                pristine,
-                                                values
+                                        }
+                                        render={({
+                                            handleSubmit,
+                                            mutators: { push, pop },
+                                            submitting,
+                                            pristine,
+                                            values
 
-                                            }) => (
-                                                    <form onSubmit={handleSubmit}>
-                                                        <Row>
+                                        }) => (
+                                                <form onSubmit={handleSubmit}>
+                                                    <Row>
 
-                                                            <React.Fragment>
+                                                        <React.Fragment>
 
-                                                                <Col lg={12} md={12} sm={12} xs={12}>
+                                                            <Col lg={12} md={12} sm={12} xs={12}>
 
-                                                                    <FieldArray name='collection_set'>
-                                                                        {({ fields }) =>
-                                                                            <React.Fragment>
-                                                                                {fields.map((name, index) => (
-                                                                                    <React.Fragment>
-                                                                                        <Collection
-                                                                                            key={index}
-                                                                                            name={name}
-                                                                                            index={index}
-                                                                                            onRemoveClick={() => this.handleRemove(fields, 'collection_id', values, index, null)}
-                                                                                            handleRemove={this.handleRemoveArt}
-                                                                                            singleColSubmit={this.singleColSubmit}
-                                                                                            singleArtSubmit={this.singleArtSubmit}
-                                                                                            addArt={this.AddSingleArt}
+                                                                <FieldArray name='collection_set'>
+                                                                    {({ fields }) =>
+                                                                        <React.Fragment>
+                                                                            {fields.map((name, index) => (
+                                                                                <React.Fragment>
+                                                                                    <Collection
+                                                                                        key={index}
+                                                                                        name={name}
+                                                                                        index={index}
+                                                                                        onRemoveClick={() => this.handleRemove(fields, 'collection_id', values, index, null)}
+                                                                                        handleRemove={this.handleRemoveArt}
+                                                                                        singleColSubmit={this.singleColSubmit}
+                                                                                        singleArtSubmit={this.singleArtSubmit}
+                                                                                        addArt={this.AddSingleArt}
 
-                                                                                            importArts={this.importArtfunc}
-                                                                                            importedArt={importedArt}
-                                                                                            artImportpageCount={modalPageCount}
-                                                                                            openArtModal={this.openArtModal}
-                                                                                            handleModalPageClick={this.handleModalPageClick}
+                                                                                        importArts={this.importArtfunc}
+                                                                                        importedArt={importedArt}
+                                                                                        artImportpageCount={modalPageCount}
+                                                                                        openArtModal={this.openArtModal}
+                                                                                        handleModalPageClick={this.handleModalPageClick}
 
-                                                                                            ModalToggle={ModalToggle}
-                                                                                            values={values}
-                                                                                            data={data}
-                                                                                            config={config}
-                                                                                        />
-                                                                                    </React.Fragment>
-                                                                                ))}
-                                                                                {values && values.collection_set &&
-                                                                                    <Col lg={12} md={12} sm={12} xs={12}>
-                                                                                        <div className={styles.addSectionButton}>
-                                                                                            <button
-                                                                                                type='button'
-                                                                                                className=''
-                                                                                                onClick={() => this.addCollection(fields.push, values)}>
-                                                                                                <i></i>
-                                                                                                <span>اضافه کردن مجموعه</span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </Col>
-                                                                                }
-                                                                            </React.Fragment>
-                                                                        }
-                                                                    </FieldArray>
-                                                                </Col>
+                                                                                        ModalToggle={ModalToggle}
+                                                                                        values={values}
+                                                                                        data={data}
+                                                                                        config={config}
+                                                                                    />
+                                                                                </React.Fragment>
+                                                                            ))}
+                                                                            {values && values.collection_set &&
+                                                                                <Col lg={12} md={12} sm={12} xs={12}>
+                                                                                    <div className={styles.addSectionButton}>
+                                                                                        <button
+                                                                                            type='button'
+                                                                                            className=''
+                                                                                            onClick={() => this.addCollection(fields.push, values)}>
+                                                                                            <i></i>
+                                                                                            <span>اضافه کردن مجموعه</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </Col>
+                                                                            }
+                                                                        </React.Fragment>
+                                                                    }
+                                                                </FieldArray>
+                                                            </Col>
 
 
-                                                            </React.Fragment>
-                                                        </Row>
+                                                        </React.Fragment>
+                                                    </Row>
 
-                                                        <SubmitSeciton
-                                                            Text='ثبت نهایی'
-                                                            btnLoading={btnLoading}
-                                                            values={values}
+                                                    <SubmitSeciton
+                                                        Text='ثبت نهایی'
+                                                        btnLoading={btnLoading}
+                                                        values={values}
 
-                                                        />
+                                                    />
 
-                                                    </form>
-                                                )}
-                                        />}
+                                                </form>
+                                            )}
+                                    />}
 
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Section>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
             </React.Fragment>
         )
     }

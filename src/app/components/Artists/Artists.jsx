@@ -15,7 +15,6 @@ import Login from '../../login/Login';
 import { FeatureArtist, TopArtists } from './SingleArtist';
 import Error from '..//Error';
 import Urls from '../Urls';
-import Section from '../Section/Section';
 
 // const TopArtists = Loadable({
 //     loader: () => import('./SingleArtist').then(module => module.TopArtists),
@@ -87,34 +86,32 @@ class Artists extends Component {
 
         return (
             <React.Fragment>
-                <Section ExtraClass={'content singlePage'}>
-                    <Container>
-                        <Row>
-                            <Col xs={12}>
-                                <div className='section_header_single'>
-                                    <h1>{ModelManager().convertModelName('artists')}</h1>
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <div className='section_header_single'>
+                                <h1>{ModelManager().convertModelName('artists')}</h1>
 
-                                </div>
-                            </Col>
-                        </Row>
-                        <AlphabetSet />
-                        <TopArtists
-                            title='هنرمندان بولد'
-                            item={this.state.artist.featured_artists}
-                            onFollowClick={this.onFollowClick}
-                            openModal={this.openModal}
-                            handleLogin={this.props.isLogined}
-                        />
+                            </div>
+                        </Col>
+                    </Row>
+                    <AlphabetSet />
+                    <TopArtists
+                        title='هنرمندان بولد'
+                        item={this.state.artist.featured_artists}
+                        onFollowClick={this.onFollowClick}
+                        openModal={this.openModal}
+                        handleLogin={this.props.isLogined}
+                    />
 
-                        <FeatureArtist
-                            item={this.state.artist.genre_set}
-                            onFollowClick={this.onFollowClick}
-                            openModal={this.openModal}
-                            handleLogin={this.props.isLogined}
-                        />
-                    </Container>
+                    <FeatureArtist
+                        item={this.state.artist.genre_set}
+                        onFollowClick={this.onFollowClick}
+                        openModal={this.openModal}
+                        handleLogin={this.props.isLogined}
+                    />
+                </Container>
 
-                </Section>
                 <Login
                     hasModal
                     modalisOpen={this.state.login}

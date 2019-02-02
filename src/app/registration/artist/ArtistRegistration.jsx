@@ -9,7 +9,6 @@ import { isMobile } from 'react-device-detect';
 
 import SecurityManager from '../../security/SecurityManager';
 import Urls from '../../components/Urls';
-import Section from '../../components/Section/Section';
 
 import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
@@ -739,90 +738,144 @@ class ArtistRegistration extends React.Component {
                 <RegisterMetaTags
                     title={'ثبت نام'}
                 />
-                <Section ExtraClass={'content singlePage'}>
-                    <Container>
-                        <Row>
-                            <Col xs={12}>
-                                <div className='page-content registration'>
-                                    {successBox &&
-                                        <MessageBox
-                                            title={message.title}
-                                            message={message.message}
-                                            type={message.type}
-                                            buttonText='رفتن به پروفایل'
-                                            seconds={timer}
-                                            afterTimeFinished={this.afterTimeFinished}
-                                        />
-                                    }
-                                    {!successBox &&
-                                        <StepBar currentStep={currentStep} page='artist' />
-                                    }
-                                    <div className={Loading ? `LoadingData` : ''}></div>
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <div className='page-content registration'>
+                                {successBox &&
+                                    <MessageBox
+                                        title={message.title}
+                                        message={message.message}
+                                        type={message.type}
+                                        buttonText='رفتن به پروفایل'
+                                        seconds={timer}
+                                        afterTimeFinished={this.afterTimeFinished}
+                                    />
+                                }
+                                {!successBox &&
+                                    <StepBar currentStep={currentStep} page='artist' />
+                                }
+                                <div className={Loading ? `LoadingData` : ''}></div>
 
 
-                                    {!hasToken &&
-                                        <AuthorizationForm
-                                            afterLogin={this.getSteps}
-                                            checkMobileAPI='/gallery-app/gallery/check/'
-                                            validationAPI='/gallery-app/phone/validate/'
-                                            loginAPI='/gallery-app/gallery/login/'
-                                            type='Artist'
-                                            setAccessTokens={this.setAccessTokens}
-                                        />
-                                    }
+                                {!hasToken &&
+                                    <AuthorizationForm
+                                        afterLogin={this.getSteps}
+                                        checkMobileAPI='/gallery-app/gallery/check/'
+                                        validationAPI='/gallery-app/phone/validate/'
+                                        loginAPI='/gallery-app/gallery/login/'
+                                        type='Artist'
+                                        setAccessTokens={this.setAccessTokens}
+                                    />
+                                }
 
 
-                                    {currentStep == 1 &&
-                                        <React.Fragment>
-                                            <Col xs={12}>
-                                                <Form
-                                                    decorators={[this.focusOnErrors]}
-                                                    onSubmit={this.artistRegisterStep1}
-                                                    initialValues={
-                                                        StepData !== '' ? StepData : null
-                                                    }
-                                                    render={({ handleSubmit, form, submitting, pristine, values }) => (
+                                {currentStep == 1 &&
+                                    <React.Fragment>
+                                        <Col xs={12}>
+                                            <Form
+                                                decorators={[this.focusOnErrors]}
+                                                onSubmit={this.artistRegisterStep1}
+                                                initialValues={
+                                                    StepData !== '' ? StepData : null
+                                                }
+                                                render={({ handleSubmit, form, submitting, pristine, values }) => (
+                                                    <form onSubmit={handleSubmit}>
+                                                        <Step1
+                                                            Field={Field}
+                                                            StepData={StepData}
+                                                            onMapClick={this.onMapClick}
+                                                            MobileValidator={MobileValidator}
+                                                            ValidateShebaNum={ValidateShebaNum}
+                                                        />
+
+                                                        <SubmitSeciton
+                                                            Text='ثبت اطلاعات و رفتن به مرحله ۲'
+                                                            btnLoading={btnLoading}
+                                                            currentStep={currentStep}
+                                                            values={values}
+
+                                                        />
+                                                    </form>
+                                                )}
+                                            />
+
+                                        </Col>
+
+                                    </React.Fragment>
+                                }
+                                {currentStep == 2 &&
+                                    <React.Fragment>
+                                        <Col xs={12}>
+                                            <Form
+                                                decorators={[this.focusOnErrors]}
+                                                onSubmit={this.artistRegisterStep2}
+                                                initialValues={
+                                                    StepData !== '' ? StepData : null
+                                                }
+                                                render={({ handleSubmit, form, submitting, pristine, values }) => (
+                                                    <form onSubmit={handleSubmit}>
+                                                        <Step2
+                                                            Field={Field}
+                                                            ValidateTextArea={ValidateTextArea}
+                                                        />
+                                                        <SubmitSeciton
+                                                            Text='ثبت اطلاعات و رفتن به مرحله ۳'
+                                                            btnLoading={btnLoading}
+                                                            currentStep={currentStep}
+                                                            values={values}
+                                                            goToSteps={this.goToSteps}
+                                                        />
+                                                    </form>
+                                                )}
+                                            />
+
+                                        </Col>
+                                    </React.Fragment>
+                                }
+                                {currentStep == 3 &&
+                                    <React.Fragment>
+                                        <Col xs={12}>
+                                            <Form
+                                                decorators={[this.focusOnErrors]}
+                                                onSubmit={this.artistRegisterStep3}
+                                                mutators={{
+                                                    ...arrayMutators,
+                                                    setFieldData
+                                                }}
+                                                initialValues={
+                                                    StepData !== '' ? StepData : null
+
+                                                }
+                                                render={({
+                                                    handleSubmit,
+                                                    mutators: { push, pop },
+                                                    submitting,
+                                                    pristine,
+                                                    values
+
+                                                }) => (
                                                         <form onSubmit={handleSubmit}>
-                                                            <Step1
-                                                                Field={Field}
-                                                                StepData={StepData}
-                                                                onMapClick={this.onMapClick}
-                                                                MobileValidator={MobileValidator}
-                                                                ValidateShebaNum={ValidateShebaNum}
-                                                            />
 
-                                                            <SubmitSeciton
-                                                                Text='ثبت اطلاعات و رفتن به مرحله ۲'
-                                                                btnLoading={btnLoading}
-                                                                currentStep={currentStep}
+                                                            <Step3
+                                                                Field={Field}
+                                                                SingleEXBSubmit={this.SingleEXBSubmit}
+                                                                SingleArtSubmit={this.SingleArtSubmit}
+                                                                addExhibition={this.addExhibition}
+                                                                AddArt={this.addArt}
+                                                                handleExhibition={this.handleExhibition}
+                                                                handleRemoveExbArt={this.handleRemoveExbArt}
+                                                                onChangeDatepicker={this.onChangeDatepicker}
+                                                                push={push}
+                                                                pop={pop}
                                                                 values={values}
-
+                                                                StepData={StepData}
+                                                                StepConfig={StepConfig}
                                                             />
-                                                        </form>
-                                                    )}
-                                                />
 
-                                            </Col>
 
-                                        </React.Fragment>
-                                    }
-                                    {currentStep == 2 &&
-                                        <React.Fragment>
-                                            <Col xs={12}>
-                                                <Form
-                                                    decorators={[this.focusOnErrors]}
-                                                    onSubmit={this.artistRegisterStep2}
-                                                    initialValues={
-                                                        StepData !== '' ? StepData : null
-                                                    }
-                                                    render={({ handleSubmit, form, submitting, pristine, values }) => (
-                                                        <form onSubmit={handleSubmit}>
-                                                            <Step2
-                                                                Field={Field}
-                                                                ValidateTextArea={ValidateTextArea}
-                                                            />
                                                             <SubmitSeciton
-                                                                Text='ثبت اطلاعات و رفتن به مرحله ۳'
+                                                                Text='ثبت اطلاعات و رفتن به مرحله ۴'
                                                                 btnLoading={btnLoading}
                                                                 currentStep={currentStep}
                                                                 values={values}
@@ -830,128 +883,72 @@ class ArtistRegistration extends React.Component {
                                                             />
                                                         </form>
                                                     )}
-                                                />
+                                            />
 
-                                            </Col>
-                                        </React.Fragment>
-                                    }
-                                    {currentStep == 3 &&
-                                        <React.Fragment>
-                                            <Col xs={12}>
-                                                <Form
-                                                    decorators={[this.focusOnErrors]}
-                                                    onSubmit={this.artistRegisterStep3}
-                                                    mutators={{
-                                                        ...arrayMutators,
-                                                        setFieldData
-                                                    }}
-                                                    initialValues={
-                                                        StepData !== '' ? StepData : null
+                                        </Col>
 
-                                                    }
-                                                    render={({
-                                                        handleSubmit,
-                                                        mutators: { push, pop },
-                                                        submitting,
-                                                        pristine,
-                                                        values
+                                    </React.Fragment>
+                                }
+                                {currentStep == 4 &&
+                                    <React.Fragment>
+                                        <Col xs={12}>
+                                            <Form
+                                                decorators={[this.focusOnErrors]}
+                                                onSubmit={this.artistRegisterStep4}
+                                                mutators={{
+                                                    ...arrayMutators,
+                                                    setFieldData
+                                                }}
+                                                initialValues={
+                                                    StepData !== '' ? StepData : null
 
-                                                    }) => (
-                                                            <form onSubmit={handleSubmit}>
+                                                }
+                                                render={({
+                                                    handleSubmit,
+                                                    mutators: { push, pop },
+                                                    submitting,
+                                                    pristine,
+                                                    values
 
-                                                                <Step3
-                                                                    Field={Field}
-                                                                    SingleEXBSubmit={this.SingleEXBSubmit}
-                                                                    SingleArtSubmit={this.SingleArtSubmit}
-                                                                    addExhibition={this.addExhibition}
-                                                                    AddArt={this.addArt}
-                                                                    handleExhibition={this.handleExhibition}
-                                                                    handleRemoveExbArt={this.handleRemoveExbArt}
-                                                                    onChangeDatepicker={this.onChangeDatepicker}
-                                                                    push={push}
-                                                                    pop={pop}
-                                                                    values={values}
-                                                                    StepData={StepData}
-                                                                    StepConfig={StepConfig}
-                                                                />
+                                                }) => (
+                                                        <form onSubmit={handleSubmit}>
+                                                            <Step4
+                                                                Field={Field}
+                                                                Step4_addCollection={this.Step4_addCollection}
+                                                                Step4_SingleArtSubmit={this.Step4_SingleArtSubmit}
+                                                                Step4_SingleColSubmit={this.Step4_SingleColSubmit}
+                                                                Step4_onChangeType={this.Step4_onChangeType}
+                                                                AddArt={this.Step4_AddArt}
+                                                                importArttoCollection={this.importArttoCollection}
+                                                                openArtModal={this.openArtModal}
+                                                                Step4_handleRemove={this.Step4_handleRemove}
+                                                                values={values}
+                                                                StepData={StepData}
+                                                                StepConfig={StepConfig}
+                                                                loadingDiv={loadingDiv}
+                                                                ModalToggle={ModalToggle}
 
+                                                            />
+                                                            <SubmitSeciton
+                                                                Text='ثبت نهایی اطلاعات'
+                                                                btnLoading={btnLoading}
+                                                                currentStep={currentStep}
+                                                                values={values}
+                                                                goToSteps={this.goToSteps}
+                                                            />
+                                                        </form>
+                                                    )}
+                                            />
 
-                                                                <SubmitSeciton
-                                                                    Text='ثبت اطلاعات و رفتن به مرحله ۴'
-                                                                    btnLoading={btnLoading}
-                                                                    currentStep={currentStep}
-                                                                    values={values}
-                                                                    goToSteps={this.goToSteps}
-                                                                />
-                                                            </form>
-                                                        )}
-                                                />
+                                        </Col>
+                                    </React.Fragment>
+                                }
 
-                                            </Col>
+                            </div>
 
-                                        </React.Fragment>
-                                    }
-                                    {currentStep == 4 &&
-                                        <React.Fragment>
-                                            <Col xs={12}>
-                                                <Form
-                                                    decorators={[this.focusOnErrors]}
-                                                    onSubmit={this.artistRegisterStep4}
-                                                    mutators={{
-                                                        ...arrayMutators,
-                                                        setFieldData
-                                                    }}
-                                                    initialValues={
-                                                        StepData !== '' ? StepData : null
-
-                                                    }
-                                                    render={({
-                                                        handleSubmit,
-                                                        mutators: { push, pop },
-                                                        submitting,
-                                                        pristine,
-                                                        values
-
-                                                    }) => (
-                                                            <form onSubmit={handleSubmit}>
-                                                                <Step4
-                                                                    Field={Field}
-                                                                    Step4_addCollection={this.Step4_addCollection}
-                                                                    Step4_SingleArtSubmit={this.Step4_SingleArtSubmit}
-                                                                    Step4_SingleColSubmit={this.Step4_SingleColSubmit}
-                                                                    Step4_onChangeType={this.Step4_onChangeType}
-                                                                    AddArt={this.Step4_AddArt}
-                                                                    importArttoCollection={this.importArttoCollection}
-                                                                    openArtModal={this.openArtModal}
-                                                                    Step4_handleRemove={this.Step4_handleRemove}
-                                                                    values={values}
-                                                                    StepData={StepData}
-                                                                    StepConfig={StepConfig}
-                                                                    loadingDiv={loadingDiv}
-                                                                    ModalToggle={ModalToggle}
-
-                                                                />
-                                                                <SubmitSeciton
-                                                                    Text='ثبت نهایی اطلاعات'
-                                                                    btnLoading={btnLoading}
-                                                                    currentStep={currentStep}
-                                                                    values={values}
-                                                                    goToSteps={this.goToSteps}
-                                                                />
-                                                            </form>
-                                                        )}
-                                                />
-
-                                            </Col>
-                                        </React.Fragment>
-                                    }
-
-                                </div>
-
-                            </Col>
-                        </Row>
-                    </Container>
-                </Section>
+                        </Col>
+                    </Row>
+                </Container>
 
             </React.Fragment>
 

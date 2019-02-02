@@ -5,7 +5,6 @@ import './ZaminehMap.scss';
 import leafletPip from 'leaflet-pip';
 import 'leaflet/dist/leaflet.css';
 
-
 class ZaminehMap extends Component {
 
     constructor(props) {
@@ -15,8 +14,6 @@ class ZaminehMap extends Component {
 
         }
     }
-
-
     componentDidMount() {
         var greenIcon = L.icon({
             iconUrl: 'http://zamineh.net/static/default_imgs/marker.svg',
@@ -36,10 +33,13 @@ class ZaminehMap extends Component {
 
             layers: [
                 L.tileLayer.wms('http://map.ir/shiveh', {
+                    maxZoom: 18,
                     layers: 'Shiveh:ShivehGSLD256',
                     format: 'image/png',
-                    attribution: '&copy; <a href=`http://corp.map.ir`>Map.ir</a> contributors'
-                }),
+                    attribution: '',
+                    id: 'mapbox.streets'
+                })
+
             ]
         });
         // console.log(this.props.markerPosition,this.props.currentLocation)
@@ -71,7 +71,6 @@ class ZaminehMap extends Component {
 
             }());
         }
-
 
         this.map.on('click', function (e) {
             var theMarker = self.state.mapMarker;

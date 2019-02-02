@@ -9,7 +9,6 @@ import Login from '../../login/Login';
 import Urls from '../Urls'
 import { CustomInput, Form, FormGroup, Label } from 'reactstrap';
 import { Filters, InputSlider, FilterBox } from '../Filters/Filters';
-import Section from '../Section/Section';
 
 import NumbersConvertor from '../NumbersConvertor';
 import ModelManager from '../Models';
@@ -214,124 +213,122 @@ class Collect extends React.Component {
             <React.Fragment>
 
                 <CollectMetaTags />
-                <Section ExtraClass={'content singlePage'}>
-                    <Container>
-                        <Row>
-                            <Col xs={12}>
-                                <div className='section_header_single'>
-                                    <h1>{ModelManager().convertModelName('collect')} هنرمندان</h1>
-                                    <Link to={Urls().collections()} className='view-all'>{ModelManager().convertModelName('collections')}</Link>
-                                </div>
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <div className='section_header_single'>
+                                <h1>{ModelManager().convertModelName('collect')} هنرمندان</h1>
+                                <Link to={Urls().collections()} className='view-all'>{ModelManager().convertModelName('collections')}</Link>
+                            </div>
 
-                            </Col>
-                            <Col lg={3} md={2} sm={12} xs={12}>
-                                <Filters>
-                                    <Form ref={this.collectFormRef}>
-                                        {FormLoading &&
-                                            <Loading text='' />
-                                        }
-                                        <FilterBox
-                                            title={ModelManager().convertModelName('medium')}
-                                            name='medium'
-                                        >
-                                            {config && config.mediums &&
-                                                <React.Fragment>
-                                                    {config.mediums.map((item, index) => (
-                                                        <CustomInput
-                                                            key={index}
-                                                            onChange={e => this.handleFormChange(e, 'medium')}
-                                                            value={item.id}
-                                                            type='radio'
-                                                            id={item.id}
-                                                            name='medium'
-                                                            label={item.name}
-                                                        />
-                                                    ))}
-                                                </React.Fragment>
-                                            }
-                                        </FilterBox>
-
-                                        <FilterBox
-                                            title='قیمت'
-                                            name='priceRange'
-                                        >
-                                            <InputSlider
-                                                max={priceRange.max}
-                                                min={priceRange.min}
-                                                unit='تومان'
-                                                handleSliderChange={this.handleSliderChange}
-                                                value={priceRange}
-                                                maxValue={config.max_price}
-                                                minValue={config.min_price}
-                                            />
-
-                                        </FilterBox>
-
-                                        <FilterBox
-                                            title='بازه زمانی'
-                                            name='years'
-                                        >
-                                            {config && config.years &&
-                                                <React.Fragment>
-                                                    {config.years.map((item, index) => (
-                                                        <CustomInput
-                                                            key={index}
-                                                            onChange={e => this.handleFormChange(e, 'year')}
-                                                            value={item.value}
-                                                            type='radio'
-                                                            name='year'
-                                                            id={item.value}
-                                                            label={NumbersConvertor().convertToPersian(item.title)}
-                                                        />
-                                                    ))}
-                                                </React.Fragment>
-                                            }
-                                        </FilterBox>
-                                    </Form>
-                                </Filters>
-                            </Col>
-                            <Col lg={9} md={10} sm={12} xs={12}>
-                                <div className={styles.CollectPage}>
-                                    {config && config.years &&
-                                        <Form inline className='simpleSelect alignEnd' style={{ margin: '0px 0 15px' }}>
-                                            <Label for='sorts'>مرتب سازی :</Label>
-
-                                            <CustomInput
-                                                type='select'
-                                                id='sorts'
-                                                name='sorts'
-                                                onChange={e => this.handleFormChange(e, 'sort')}
-                                            >
-                                                <option value=''>انتخاب</option>
-                                                {config.sorts.map((item, index) => (
-                                                    <option key={index} value={item.value}>{item.title}</option>
+                        </Col>
+                        <Col lg={3} md={2} sm={12} xs={12}>
+                            <Filters>
+                                <Form ref={this.collectFormRef}>
+                                    {FormLoading &&
+                                        <Loading text='' />
+                                    }
+                                    <FilterBox
+                                        title={ModelManager().convertModelName('medium')}
+                                        name='medium'
+                                    >
+                                        {config && config.mediums &&
+                                            <React.Fragment>
+                                                {config.mediums.map((item, index) => (
+                                                    <CustomInput
+                                                        key={index}
+                                                        onChange={e => this.handleFormChange(e, 'medium')}
+                                                        value={item.id}
+                                                        type='radio'
+                                                        id={item.id}
+                                                        name='medium'
+                                                        label={item.name}
+                                                    />
                                                 ))}
-                                            </CustomInput>
-
-                                        </Form>
-
-                                    }
-                                    <div className={styles.searchResult}>
-
-                                        {loading &&
-                                            <Loading />
+                                            </React.Fragment>
                                         }
-                                        {this.renderItems()}
-                                    </div>
+                                    </FilterBox>
 
-
-                                    {pageCount > 1 &&
-                                        <Pagination
-                                            pageCount={pageCount}
-                                            onPageChange={this.handlePageClick}
+                                    <FilterBox
+                                        title='قیمت'
+                                        name='priceRange'
+                                    >
+                                        <InputSlider
+                                            max={priceRange.max}
+                                            min={priceRange.min}
+                                            unit='تومان'
+                                            handleSliderChange={this.handleSliderChange}
+                                            value={priceRange}
+                                            maxValue={config.max_price}
+                                            minValue={config.min_price}
                                         />
-                                    }
 
+                                    </FilterBox>
+
+                                    <FilterBox
+                                        title='بازه زمانی'
+                                        name='years'
+                                    >
+                                        {config && config.years &&
+                                            <React.Fragment>
+                                                {config.years.map((item, index) => (
+                                                    <CustomInput
+                                                        key={index}
+                                                        onChange={e => this.handleFormChange(e, 'year')}
+                                                        value={item.value}
+                                                        type='radio'
+                                                        name='year'
+                                                        id={item.value}
+                                                        label={NumbersConvertor().convertToPersian(item.title)}
+                                                    />
+                                                ))}
+                                            </React.Fragment>
+                                        }
+                                    </FilterBox>
+                                </Form>
+                            </Filters>
+                        </Col>
+                        <Col lg={9} md={10} sm={12} xs={12}>
+                            <div className={styles.CollectPage}>
+                                {config && config.years &&
+                                    <Form inline className='simpleSelect alignEnd' style={{ margin: '0px 0 15px' }}>
+                                        <Label for='sorts'>مرتب سازی :</Label>
+
+                                        <CustomInput
+                                            type='select'
+                                            id='sorts'
+                                            name='sorts'
+                                            onChange={e => this.handleFormChange(e, 'sort')}
+                                        >
+                                            <option value=''>انتخاب</option>
+                                            {config.sorts.map((item, index) => (
+                                                <option key={index} value={item.value}>{item.title}</option>
+                                            ))}
+                                        </CustomInput>
+
+                                    </Form>
+
+                                }
+                                <div className={styles.searchResult}>
+
+                                    {loading &&
+                                        <Loading />
+                                    }
+                                    {this.renderItems()}
                                 </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Section>
+
+
+                                {pageCount > 1 &&
+                                    <Pagination
+                                        pageCount={pageCount}
+                                        onPageChange={this.handlePageClick}
+                                    />
+                                }
+
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
                 <Login
                     hasModal
                     modalisOpen={this.state.login}

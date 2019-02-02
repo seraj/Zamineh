@@ -21,7 +21,6 @@ import SecurityManager from '../../security/SecurityManager';
 import Urls from '../../components/Urls';
 
 import { Exhibition } from './Forms';
-import Section from '../../components/Section/Section';
 
 
 
@@ -412,123 +411,121 @@ class AddExhibitionsGallery extends React.Component {
         var hasToken = SecurityManager().hasGalleryRegToken()
         return (
             <React.Fragment>
-                <Section ExtraClass={'content singlePage'}>
-                    <Container>
-                        <Row>
-                            <Col xs={12}>
-                                <div className='section_header_single'>
-                                    <h1>ثبت نمایشگاه</h1>
-                                </div>
-                            </Col>
-                            <Col xs={12}>
-                                <div className={styles.RegistrationSection}>
-                                    {!hasToken &&
-                                        <AuthorizationForm
-                                            afterLogin={this.getFormData}
-                                            checkMobileAPI='/gallery-app/gallery/check/'
-                                            validationAPI='/gallery-app/phone/validate/'
-                                            loginAPI='/gallery-app/gallery/login/'
-                                            type='Gallery'
-                                            setAccessTokens={this.setAccessTokens}
-                                        />
-                                    }
-                                    {showForm &&
-                                        <Form
-                                            decorators={[this.focusOnErrors]}
-                                            onSubmit={this.handleSubmit}
-                                            mutators={{
-                                                ...arrayMutators,
-                                                setFieldData
-                                            }}
-                                            initialValues={
-                                                data !== '' ? data : null
-                                            }
-                                            render={({
-                                                handleSubmit,
-                                                mutators: { push, pop },
-                                                submitting,
-                                                pristine,
-                                                values
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <div className='section_header_single'>
+                                <h1>ثبت نمایشگاه</h1>
+                            </div>
+                        </Col>
+                        <Col xs={12}>
+                            <div className={styles.RegistrationSection}>
+                                {!hasToken &&
+                                    <AuthorizationForm
+                                        afterLogin={this.getFormData}
+                                        checkMobileAPI='/gallery-app/gallery/check/'
+                                        validationAPI='/gallery-app/phone/validate/'
+                                        loginAPI='/gallery-app/gallery/login/'
+                                        type='Gallery'
+                                        setAccessTokens={this.setAccessTokens}
+                                    />
+                                }
+                                {showForm &&
+                                    <Form
+                                        decorators={[this.focusOnErrors]}
+                                        onSubmit={this.handleSubmit}
+                                        mutators={{
+                                            ...arrayMutators,
+                                            setFieldData
+                                        }}
+                                        initialValues={
+                                            data !== '' ? data : null
+                                        }
+                                        render={({
+                                            handleSubmit,
+                                            mutators: { push, pop },
+                                            submitting,
+                                            pristine,
+                                            values
 
-                                            }) => (
-                                                    <form onSubmit={handleSubmit}>
-                                                        <Row>
+                                        }) => (
+                                                <form onSubmit={handleSubmit}>
+                                                    <Row>
 
-                                                            <React.Fragment>
+                                                        <React.Fragment>
 
-                                                                <Col lg={12} md={12} sm={12} xs={12}>
+                                                            <Col lg={12} md={12} sm={12} xs={12}>
 
-                                                                    <FieldArray name='exb_set'>
-                                                                        {({ fields }) =>
-                                                                            <React.Fragment>
-                                                                                {fields.map((name, index) => (
-                                                                                    <React.Fragment>
-                                                                                        <Exhibition
-                                                                                            type="gallery"
-                                                                                            key={index}
-                                                                                            name={name}
-                                                                                            index={index}
-                                                                                            onRemoveClick={() => this.handleRemove(fields, 'exb_id', values, index, null)}
-                                                                                            handleRemove={this.handleRemoveArt}
+                                                                <FieldArray name='exb_set'>
+                                                                    {({ fields }) =>
+                                                                        <React.Fragment>
+                                                                            {fields.map((name, index) => (
+                                                                                <React.Fragment>
+                                                                                    <Exhibition
+                                                                                        type="gallery"
+                                                                                        key={index}
+                                                                                        name={name}
+                                                                                        index={index}
+                                                                                        onRemoveClick={() => this.handleRemove(fields, 'exb_id', values, index, null)}
+                                                                                        handleRemove={this.handleRemoveArt}
 
-                                                                                            onChangeDatepicker={this.onChangeDatepicker}
-                                                                                            singleExbSubmit={this.singleExbSubmit}
-                                                                                            singleArtSubmit={this.singleArtSubmit}
-                                                                                            addArt={this.AddSingleArt}
-                                                                                            onMapClick={this.onMapClick}
+                                                                                        onChangeDatepicker={this.onChangeDatepicker}
+                                                                                        singleExbSubmit={this.singleExbSubmit}
+                                                                                        singleArtSubmit={this.singleArtSubmit}
+                                                                                        addArt={this.AddSingleArt}
+                                                                                        onMapClick={this.onMapClick}
 
-                                                                                            importArts={this.importArtfunc}
-                                                                                            importedArt={importedArt}
-                                                                                            artImportpageCount={modalPageCount}
-                                                                                            openArtModal={this.openArtModal}
-                                                                                            handleModalPageClick={this.handleModalPageClick}
+                                                                                        importArts={this.importArtfunc}
+                                                                                        importedArt={importedArt}
+                                                                                        artImportpageCount={modalPageCount}
+                                                                                        openArtModal={this.openArtModal}
+                                                                                        handleModalPageClick={this.handleModalPageClick}
 
-                                                                                            ModalToggle={ModalToggle}
-                                                                                            values={values}
-                                                                                            data={data}
-                                                                                            config={config}
+                                                                                        ModalToggle={ModalToggle}
+                                                                                        values={values}
+                                                                                        data={data}
+                                                                                        config={config}
 
-                                                                                            GallerryExhibition
-                                                                                        />
-                                                                                    </React.Fragment>
-                                                                                ))}
-                                                                                {values && values.exb_set &&
-                                                                                    <Col lg={12} md={12} sm={12} xs={12}>
-                                                                                        <div className={styles.addSectionButton}>
-                                                                                            <button
-                                                                                                type='button'
-                                                                                                className=''
-                                                                                                onClick={() => this.addExhibition(fields.push, values)}>
-                                                                                                <i></i>
-                                                                                                <span>اضافه کردن نمایشگاه</span>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </Col>
-                                                                                }
-                                                                            </React.Fragment>
-                                                                        }
-                                                                    </FieldArray>
-                                                                </Col>
+                                                                                        GallerryExhibition
+                                                                                    />
+                                                                                </React.Fragment>
+                                                                            ))}
+                                                                            {values && values.exb_set &&
+                                                                                <Col lg={12} md={12} sm={12} xs={12}>
+                                                                                    <div className={styles.addSectionButton}>
+                                                                                        <button
+                                                                                            type='button'
+                                                                                            className=''
+                                                                                            onClick={() => this.addExhibition(fields.push, values)}>
+                                                                                            <i></i>
+                                                                                            <span>اضافه کردن نمایشگاه</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </Col>
+                                                                            }
+                                                                        </React.Fragment>
+                                                                    }
+                                                                </FieldArray>
+                                                            </Col>
 
-                                                            </React.Fragment>
-                                                        </Row>
+                                                        </React.Fragment>
+                                                    </Row>
 
-                                                        <SubmitSeciton
-                                                            Text='ثبت نهایی'
-                                                            btnLoading={btnLoading}
-                                                            values={values}
+                                                    <SubmitSeciton
+                                                        Text='ثبت نهایی'
+                                                        btnLoading={btnLoading}
+                                                        values={values}
 
-                                                        />
+                                                    />
 
-                                                    </form>
-                                                )}
-                                        />}
+                                                </form>
+                                            )}
+                                    />}
 
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Section>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
             </React.Fragment>
         )
     }

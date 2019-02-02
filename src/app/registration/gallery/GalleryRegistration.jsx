@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom'
 import axios from 'axios';
 import SecurityManager from '../../security/SecurityManager';
 import Urls from '../../components/Urls';
-import Section from '../../components/Section/Section';
 
 import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
@@ -309,79 +308,77 @@ class GalleryRegistration extends React.Component {
                 <RegisterMetaTags
                     title={'ثبت نام'}
                 />
-                <Section ExtraClass={'content singlePage'}>
-                    <Container>
-                        <Row>
-                            <Col xs={12}>
-                                <div className='page-content registration'>
-                                    {successBox &&
-                                        <MessageBox
-                                            title={message.title}
-                                            message={message.message}
-                                            type={message.type}
-                                            buttonText='رفتن به پروفایل'
-                                            seconds={timer}
-                                            afterTimeFinished={this.afterTimeFinished}
-                                        />
-                                    }
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <div className='page-content registration'>
+                                {successBox &&
+                                    <MessageBox
+                                        title={message.title}
+                                        message={message.message}
+                                        type={message.type}
+                                        buttonText='رفتن به پروفایل'
+                                        seconds={timer}
+                                        afterTimeFinished={this.afterTimeFinished}
+                                    />
+                                }
 
-                                    <div className={Loading ? `LoadingData` : ''}></div>
-                                    {!hasToken &&
-                                        <AuthorizationForm
-                                            afterLogin={this.getFormConfig}
-                                            checkMobileAPI='/gallery-app/gallery/check/'
-                                            validationAPI='/gallery-app/phone/validate/'
-                                            loginAPI='/gallery-app/gallery/login/'
-                                            type='Gallery'
-                                            setAccessTokens={this.setAccessTokens}
-                                        />
-                                    }
-
-
-                                    {currentStep == 1 &&
-                                        <React.Fragment>
-                                            <Col xs={12}>
-                                                <Form
-                                                    decorators={[this.focusOnErrors]}
-                                                    onSubmit={this.handleFormSubmit}
-                                                    initialValues={
-                                                        FormData != '' ? FormData : null
-                                                    }
-                                                    render={({ handleSubmit, form, submitting, pristine, values }) => (
-                                                        <form onSubmit={handleSubmit}>
-                                                            <RegisterForm
-                                                                Field={Field}
-                                                                FormData={FormData}
-                                                                StepConfig={StepConfig}
-                                                                onMapClick={this.onMapClick}
-                                                                MobileValidator={MobileValidator}
-                                                                ValidateShebaNum={ValidateShebaNum}
-                                                                values={values}
-                                                            />
-
-                                                            <SubmitSeciton
-                                                                Text='ثبت نام گالری'
-                                                                btnLoading={btnLoading}
-                                                                currentStep={currentStep}
-                                                                values={values}
-
-                                                            />
-                                                        </form>
-                                                    )}
-                                                />
-
-                                            </Col>
-
-                                        </React.Fragment>
-                                    }
+                                <div className={Loading ? `LoadingData` : ''}></div>
+                                {!hasToken &&
+                                    <AuthorizationForm
+                                        afterLogin={this.getFormConfig}
+                                        checkMobileAPI='/gallery-app/gallery/check/'
+                                        validationAPI='/gallery-app/phone/validate/'
+                                        loginAPI='/gallery-app/gallery/login/'
+                                        type='Gallery'
+                                        setAccessTokens={this.setAccessTokens}
+                                    />
+                                }
 
 
-                                </div>
+                                {currentStep == 1 &&
+                                    <React.Fragment>
+                                        <Col xs={12}>
+                                            <Form
+                                                decorators={[this.focusOnErrors]}
+                                                onSubmit={this.handleFormSubmit}
+                                                initialValues={
+                                                    FormData != '' ? FormData : null
+                                                }
+                                                render={({ handleSubmit, form, submitting, pristine, values }) => (
+                                                    <form onSubmit={handleSubmit}>
+                                                        <RegisterForm
+                                                            Field={Field}
+                                                            FormData={FormData}
+                                                            StepConfig={StepConfig}
+                                                            onMapClick={this.onMapClick}
+                                                            MobileValidator={MobileValidator}
+                                                            ValidateShebaNum={ValidateShebaNum}
+                                                            values={values}
+                                                        />
 
-                            </Col>
-                        </Row>
-                    </Container>
-                </Section>
+                                                        <SubmitSeciton
+                                                            Text='ثبت نام گالری'
+                                                            btnLoading={btnLoading}
+                                                            currentStep={currentStep}
+                                                            values={values}
+
+                                                        />
+                                                    </form>
+                                                )}
+                                            />
+
+                                        </Col>
+
+                                    </React.Fragment>
+                                }
+
+
+                            </div>
+
+                        </Col>
+                    </Row>
+                </Container>
 
             </React.Fragment>
 

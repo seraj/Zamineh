@@ -14,7 +14,6 @@ import GalleryForm from './GalleryForm'
 import { FeatureSet, ShowSet, GenreSet, ResultsGrid } from './SingleGallery';
 import Error from '../../Error';
 import Urls from '../../Urls';
-import Section from '../../Section/Section';
 import { Loading } from '../../Spinner/Spinner';
 
 
@@ -242,71 +241,69 @@ class Galleries extends Component {
         const parsed = queryString.parse(location.search);
         return (
             <React.Fragment>
-                <Section ExtraClass={'content singlePage'}>
-                    <Container>
-                        <Row>
-                            <Col xs={12}>
-                                <div className='section_header_single'>
-                                    <h1>همه‌ی {ModelManager().convertModelName('galleries')}</h1>
-                                    <Link to={Urls().galleriesAZ()} className='view-all'>الف-ی</Link>
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <div className='section_header_single'>
+                                <h1>همه‌ی {ModelManager().convertModelName('galleries')}</h1>
+                                <Link to={Urls().galleriesAZ()} className='view-all'>الف-ی</Link>
 
-                                </div>
-                            </Col>
-                            <Col xs={12}>
-                                <GalleryForm
-                                    FormValues={this.state.Forms}
-                                    SubmitForm={this.SubmitForm}
-                                    handleFormChange={this.handleFormChange}
-                                    onInputFocus={this.onInputFocus}
-                                    onFormListClick={this.onFormListClick}
-                                    onGallerySearch={this.onGallerySearch}
-                                />
-                            </Col>
-                        </Row>
-                        {this.state.show_set &&
-                            <ShowSet
-                                item={this.state.show_set}
-                                onFollowClick={this.onFollowClick}
-                                openModal={this.openModal}
-                                handleLogin={this.props.isLogined}
+                            </div>
+                        </Col>
+                        <Col xs={12}>
+                            <GalleryForm
+                                FormValues={this.state.Forms}
+                                SubmitForm={this.SubmitForm}
+                                handleFormChange={this.handleFormChange}
+                                onInputFocus={this.onInputFocus}
+                                onFormListClick={this.onFormListClick}
+                                onGallerySearch={this.onGallerySearch}
                             />
-                        }
-                        {this.state.loading &&
-                            <Loading />
-                        }
-                        {this.state.featured_galleries &&
-                            <FeatureSet
-                                item={this.state.featured_galleries}
-                                onFollowClick={this.onFollowClick}
-                                openModal={this.openModal}
-                                handleLogin={this.props.isLogined}
-                            />
-                        }
-                        {this.state.genre_set &&
-                            <GenreSet
-                                item={this.state.genre_set}
-                                onFollowClick={this.onFollowClick}
-                                openModal={this.openModal}
-                                handleLogin={this.props.isLogined}
-                            />
-                        }
-                        {this.state.gallery_set &&
-                            <ResultsGrid
-                                item={this.state.gallery_set}
-                                onFollowClick={this.onFollowClick}
-                                openModal={this.openModal}
-                                handleLogin={this.props.isLogined}
-                            />
-                        }
-                        {this.state.pageCount > 1 &&
-                            <Pagination
-                                pageCount={this.state.pageCount}
-                                onPageChange={this.handlePageClick}
-                            />
-                        }
-                    </Container>
+                        </Col>
+                    </Row>
+                    {this.state.show_set &&
+                        <ShowSet
+                            item={this.state.show_set}
+                            onFollowClick={this.onFollowClick}
+                            openModal={this.openModal}
+                            handleLogin={this.props.isLogined}
+                        />
+                    }
+                    {this.state.loading &&
+                        <Loading />
+                    }
+                    {this.state.featured_galleries &&
+                        <FeatureSet
+                            item={this.state.featured_galleries}
+                            onFollowClick={this.onFollowClick}
+                            openModal={this.openModal}
+                            handleLogin={this.props.isLogined}
+                        />
+                    }
+                    {this.state.genre_set &&
+                        <GenreSet
+                            item={this.state.genre_set}
+                            onFollowClick={this.onFollowClick}
+                            openModal={this.openModal}
+                            handleLogin={this.props.isLogined}
+                        />
+                    }
+                    {this.state.gallery_set &&
+                        <ResultsGrid
+                            item={this.state.gallery_set}
+                            onFollowClick={this.onFollowClick}
+                            openModal={this.openModal}
+                            handleLogin={this.props.isLogined}
+                        />
+                    }
+                    {this.state.pageCount > 1 &&
+                        <Pagination
+                            pageCount={this.state.pageCount}
+                            onPageChange={this.handlePageClick}
+                        />
+                    }
+                </Container>
 
-                </Section>
                 <Login
                     hasModal
                     modalisOpen={this.state.login}

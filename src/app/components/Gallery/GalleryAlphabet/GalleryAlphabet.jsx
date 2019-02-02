@@ -9,7 +9,6 @@ import { BackLink } from '../../General'
 
 
 import Urls from '../../Urls';
-import Section from '../../Section/Section';
 import styles from './GalleryAlphabet.scss'
 
 
@@ -53,7 +52,7 @@ class GalleryAlphabet extends Component {
         } = this.props;
         return (
             <React.Fragment>
-                <Section ExtraClass={`${styles.GalleryAlphabet} content singlePage`}>
+                <div className={`${styles.GalleryAlphabet}`}>
                     <Container>
                         <Row>
 
@@ -85,7 +84,7 @@ class GalleryAlphabet extends Component {
                         </Row>
                     </Container>
 
-                </Section>
+                </div>
             </React.Fragment >
         );
     }

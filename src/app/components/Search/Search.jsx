@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import queryString from 'query-string';
 import Urls from '../Urls'
-import Section from '../Section/Section';
 import SearchMetaTags from './SearchMetaTags'
 import { IconArrowLeft } from '../../components/Icons';
 import ModelManager from '../../components/Models';
@@ -107,35 +106,33 @@ class Search extends React.Component {
             <React.Fragment>
 
                 <SearchMetaTags />
-                <Section ExtraClass={'content singlePage'}>
-                    <Container>
-                        <Row>
-                            <Col xs='12'>
-                                <div className={styles.SearchPage}>
-                                    {parsed['query'] != '' &&
-                                        <span className='searchFor'>جستجو برای “{parsed['query']}”</span>
+                <Container>
+                    <Row>
+                        <Col xs='12'>
+                            <div className={styles.SearchPage}>
+                                {parsed['query'] != '' &&
+                                    <span className='searchFor'>جستجو برای “{parsed['query']}”</span>
+                                }
+                                <div className={styles.searchResult}>
+                                    {this.state.Loading &&
+                                        <Loading text='' background='#fff' />
                                     }
-                                    <div className={styles.searchResult}>
-                                        {this.state.Loading &&
-                                            <Loading text='' background='#fff' />
-                                        }
-                                        {this.state.Results &&
-                                            this.state.Results.map(items => (
-                                                <ResultsItem key={items.id} item={items} />
-                                            ))}
-                                    </div>
-                                    {this.state.pageCount > 1 &&
-                                        <Pagination
-                                            pageCount={this.state.pageCount}
-                                            onPageChange={this.handlePageClick}
-                                        />
-                                    }
-
+                                    {this.state.Results &&
+                                        this.state.Results.map(items => (
+                                            <ResultsItem key={items.id} item={items} />
+                                        ))}
                                 </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Section>
+                                {this.state.pageCount > 1 &&
+                                    <Pagination
+                                        pageCount={this.state.pageCount}
+                                        onPageChange={this.handlePageClick}
+                                    />
+                                }
+
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
 
             </React.Fragment>
         )

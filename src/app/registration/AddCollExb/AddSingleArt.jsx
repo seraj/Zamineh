@@ -18,7 +18,6 @@ import Urls from '../../components/Urls';
 
 import { SingleArt } from './Forms';
 
-import Section from '../../components/Section/Section';
 
 import {
 
@@ -64,7 +63,7 @@ class AddSingleArt extends React.Component {
             data: [],
             config: [],
             showForm: false,
-            btnLoading:false,
+            btnLoading: false,
             ModalToggle: false
         }
     }
@@ -83,7 +82,7 @@ class AddSingleArt extends React.Component {
     }
     btnSubmitLoading(value) {
         this.setState({
-            btnLoading:value
+            btnLoading: value
         })
     }
     getFormData = (id) => {
@@ -250,109 +249,107 @@ class AddSingleArt extends React.Component {
         var hasToken = SecurityManager().hasArtistRegToken()
         return (
             <React.Fragment>
-                <Section ExtraClass={'content singlePage'}>
-                    <Container>
-                        <Row>
-                            <Col xs={12}>
-                                <div className='section_header_single'>
-                                    <h1>ثبت اثر</h1>
-                                </div>
-                            </Col>
-                            <Col xs={12}>
-                                <div className={styles.RegistrationSection}>
-                                    {!hasToken &&
-                                        <AuthorizationForm
-                                            afterLogin={this.getFormData}
-                                            checkMobileAPI='/gallery-app/gallery/check/'
-                                            validationAPI='/gallery-app/phone/validate/'
-                                            loginAPI='/gallery-app/gallery/login/'
-                                            type='Artist'
-                                            setAccessTokens={this.setAccessTokens}
-                                        />
-                                    }
-                                    {showForm &&
+                <Container>
+                    <Row>
+                        <Col xs={12}>
+                            <div className='section_header_single'>
+                                <h1>ثبت اثر</h1>
+                            </div>
+                        </Col>
+                        <Col xs={12}>
+                            <div className={styles.RegistrationSection}>
+                                {!hasToken &&
+                                    <AuthorizationForm
+                                        afterLogin={this.getFormData}
+                                        checkMobileAPI='/gallery-app/gallery/check/'
+                                        validationAPI='/gallery-app/phone/validate/'
+                                        loginAPI='/gallery-app/gallery/login/'
+                                        type='Artist'
+                                        setAccessTokens={this.setAccessTokens}
+                                    />
+                                }
+                                {showForm &&
 
-                                        <Form
-                                            decorators={[this.focusOnErrors]}
-                                            onSubmit={this.handleSubmit}
-                                            mutators={{
-                                                ...arrayMutators,
-                                                setFieldData
-                                            }}
-                                            initialValues={
-                                                data !== '' ? data : null
+                                    <Form
+                                        decorators={[this.focusOnErrors]}
+                                        onSubmit={this.handleSubmit}
+                                        mutators={{
+                                            ...arrayMutators,
+                                            setFieldData
+                                        }}
+                                        initialValues={
+                                            data !== '' ? data : null
 
-                                            }
-                                            render={({
-                                                handleSubmit,
-                                                mutators: { push, pop },
-                                                submitting,
-                                                pristine,
-                                                values
+                                        }
+                                        render={({
+                                            handleSubmit,
+                                            mutators: { push, pop },
+                                            submitting,
+                                            pristine,
+                                            values
 
-                                            }) => (
-                                                    <form onSubmit={handleSubmit}>
-                                                        <Row>
+                                        }) => (
+                                                <form onSubmit={handleSubmit}>
+                                                    <Row>
 
-                                                            <React.Fragment>
+                                                        <React.Fragment>
 
-                                                                <FieldArray name='art_set'>
-                                                                    {({ fields }) =>
-                                                                        <React.Fragment>
-                                                                            {fields.map((name, index) => (
-                                                                                <React.Fragment>
-                                                                                    <SingleArt
-                                                                                        key={index}
-                                                                                        name={name}
-                                                                                        data={data}
-                                                                                        config={config}
-                                                                                        ServerData={data.art_set ? data.art_set[index] : null}
-                                                                                        LocalData={values.art_set[index]}
-                                                                                        index={index}
-                                                                                        values={values}
-                                                                                        singleArtSubmit={() => this.singleArtSubmit(values, index, null, 'SingleArt')}
-                                                                                        hasExtraFields
-                                                                                        onArtRemoveClick={() => this.handleRemove(fields, 'art_id', values, 'Col Index', index)}
-                                                                                    />
-                                                                                </React.Fragment>
-                                                                            ))}
-                                                                            {values && values.art_set &&
-                                                                                <Col lg={6} md={6} sm={12} xs={12}>
-                                                                                    <div className={styles.addSectionButton}>
-                                                                                        <button
-                                                                                            type='button'
-                                                                                            className=''
-                                                                                            onClick={() => this.AddSingleArt(fields.push, '', values)}>
-                                                                                            <i></i>
-                                                                                            <span>اضافه کردن اثر</span>
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </Col>
-                                                                            }
-                                                                        </React.Fragment>
-                                                                    }
-                                                                </FieldArray>
+                                                            <FieldArray name='art_set'>
+                                                                {({ fields }) =>
+                                                                    <React.Fragment>
+                                                                        {fields.map((name, index) => (
+                                                                            <React.Fragment>
+                                                                                <SingleArt
+                                                                                    key={index}
+                                                                                    name={name}
+                                                                                    data={data}
+                                                                                    config={config}
+                                                                                    ServerData={data.art_set ? data.art_set[index] : null}
+                                                                                    LocalData={values.art_set[index]}
+                                                                                    index={index}
+                                                                                    values={values}
+                                                                                    singleArtSubmit={() => this.singleArtSubmit(values, index, null, 'SingleArt')}
+                                                                                    hasExtraFields
+                                                                                    onArtRemoveClick={() => this.handleRemove(fields, 'art_id', values, 'Col Index', index)}
+                                                                                />
+                                                                            </React.Fragment>
+                                                                        ))}
+                                                                        {values && values.art_set &&
+                                                                            <Col lg={6} md={6} sm={12} xs={12}>
+                                                                                <div className={styles.addSectionButton}>
+                                                                                    <button
+                                                                                        type='button'
+                                                                                        className=''
+                                                                                        onClick={() => this.AddSingleArt(fields.push, '', values)}>
+                                                                                        <i></i>
+                                                                                        <span>اضافه کردن اثر</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </Col>
+                                                                        }
+                                                                    </React.Fragment>
+                                                                }
+                                                            </FieldArray>
 
 
-                                                            </React.Fragment>
-                                                        </Row>
+                                                        </React.Fragment>
+                                                    </Row>
 
-                                                        <SubmitSeciton
-                                                            Text='ثبت نهایی'
-                                                            btnLoading={btnLoading}
-                                                            values={values}
+                                                    <SubmitSeciton
+                                                        Text='ثبت نهایی'
+                                                        btnLoading={btnLoading}
+                                                        values={values}
 
-                                                        />
+                                                    />
 
-                                                    </form>
-                                                )}
-                                        />}
+                                                </form>
+                                            )}
+                                    />}
 
-                                </div>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Section>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
             </React.Fragment>
         )
     }

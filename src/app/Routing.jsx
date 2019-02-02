@@ -30,6 +30,7 @@ import AddSingleArt from './registration/AddCollExb/AddSingleArt';
 import ArtistRegistration from './registration/artist/ArtistRegistration';
 import GalleryRegistration from './registration/gallery/GalleryRegistration';
 import Section from './components/Section/Section';
+import Map from './components/map/ZaminehMap';
 
 import { LoadingHome } from './components/Loaders/Loaders';
 
@@ -58,123 +59,127 @@ const Home = Loadable({
 
 export default function Routing({ isLogined }) {
     return (
+        <Section ExtraClass={'content singlePage'}>
+            <Switch>
+                <Route
+                    path={`/map`}
+                    render={() => <Map />}
+                />
+                {/* Home Page */}
+                <Route
+                    path='/'
+                    exact
+                    render={() => <Home isLogined={isLogined} />}
+                />
 
-        <Switch>
-
-            {/* Home Page */}
-            <Route
-                path='/'
-                exact
-                render={() => <Home isLogined={isLogined} />}
-            />
-
-            {/* Login Page */}
-            <Route
-                path='/login'
-                exact
-                render={() => <Login
-                    client_id={cookie.load('client_id', { path: '/' })}
-                    client_secret={cookie.load('client_secret', { path: '/' })}
-                />} />
-
-
-            {/* Magzine */}
-            <Route
-                path={Urls().Magzine()}
-                render={() => <Articles isLogined={isLogined} />}
-            />
+                {/* Login Page */}
+                <Route
+                    path='/login'
+                    exact
+                    render={() => <Login
+                        client_id={cookie.load('client_id', { path: '/' })}
+                        client_secret={cookie.load('client_secret', { path: '/' })}
+                    />} />
 
 
-            {/* Artists */}
-            <Route
-                path={Urls().artists()}
-                exact
-                render={() => <Artists isLogined={isLogined} />}
-            />
-            <Route
-                path={`${Urls().artists()}:artistChar`}
-                component={ArtistAlphabet}
-            />
-
-            {/* Galleries */}
-            <Route
-                path={Urls().galleries()}
-                exact
-                render={() => <Galleries isLogined={isLogined} />}
-            />
-            <Route
-                path={Urls().galleriesAZ()}
-                exact
-                render={() => <GalleryAlphabet />}
-            />
-            <Route
-                path={`${Urls().gallery()}:slug`}
-                component={Gallery}
-            />
+                {/* Magzine */}
+                <Route
+                    path={Urls().Magzine()}
+                    render={() => <Articles isLogined={isLogined} />}
+                />
 
 
+                {/* Artists */}
+                <Route
+                    path={Urls().artists()}
+                    exact
+                    render={() => <Artists isLogined={isLogined} />}
+                />
+                <Route
+                    path={`${Urls().artists()}:artistChar`}
+                    component={ArtistAlphabet}
+                />
 
-            {/* Artist & Gallery Registration */}
-            <Route
-                exact
-                path={Urls().ArtistRegistration()}
-                render={() => <ArtistRegistration />}
-            />
-            <Route
-                exact
-                path={`${Urls().AddSingleArt()}`}
-                render={() => <AddSingleArt />}
-            />
-            <Route
-                exact
-                path={`${Urls().AddCollections()}`}
-                render={() => <AddCollections />}
-            />
-            <Route
-                exact
-                path={`${Urls().AddExhibitions()}`}
-                render={() => <AddExhibitions />}
-            />
-            <Route
-                exact
-                path={`${Urls().AddExhibitionsGallery()}`}
-                render={() => <AddExhibitionsGallery />}
-            />
-            <Route
-                exact
-                path={Urls().GalleryRegistration()}
-                render={() => <GalleryRegistration />}
-            />
+                {/* Galleries */}
+                <Route
+                    path={Urls().galleries()}
+                    exact
+                    render={() => <Galleries isLogined={isLogined} />}
+                />
+                <Route
+                    path={Urls().galleriesAZ()}
+                    exact
+                    render={() => <GalleryAlphabet />}
+                />
+                <Route
+                    path={`${Urls().gallery()}:slug`}
+                    component={Gallery}
+                />
 
 
-            <Route
-                path={`${Urls().arts()}: artsId`}
-                render={() => <Articles />}
-            />
+
+                {/* Artist & Gallery Registration */}
+                <Route
+                    exact
+                    path={Urls().ArtistRegistration()}
+                    render={() => <ArtistRegistration />}
+                />
+                <Route
+                    exact
+                    path={`${Urls().AddSingleArt()}`}
+                    render={() => <AddSingleArt />}
+                />
+                <Route
+                    exact
+                    path={`${Urls().AddCollections()}`}
+                    render={() => <AddCollections />}
+                />
+                <Route
+                    exact
+                    path={`${Urls().AddExhibitions()}`}
+                    render={() => <AddExhibitions />}
+                />
+                <Route
+                    exact
+                    path={`${Urls().AddExhibitionsGallery()}`}
+                    render={() => <AddExhibitionsGallery />}
+                />
+                <Route
+                    exact
+                    path={Urls().GalleryRegistration()}
+                    render={() => <GalleryRegistration />}
+                />
 
 
-            {/* Search */}
-            <Route
-                path={Urls().search()}
-                exact
-                render={() => <Search isLogined={isLogined} />}
-            />
+                <Route
+                    path={`${Urls().arts()}: artsId`}
+                    render={() => <Articles />}
+                />
 
-            {/* Collections */}
-            <Route
-                path={Urls().collect()}
-                exact
-                render={() => <Collect isLogined={isLogined} />}
-            />
-            <Route
-                path={Urls().collections()}
-                exact
-                render={() => <Collections isLogined={isLogined} />}
-            />
 
-            {/* 404 */}
-            <Route component={NoMatch} />
-        </Switch>
+                {/* Search */}
+                <Route
+                    path={Urls().search()}
+                    exact
+                    render={() => <Search isLogined={isLogined} />}
+                />
+
+                {/* Collections */}
+                <Route
+                    path={Urls().collect()}
+                    exact
+                    render={() => <Collect isLogined={isLogined} />}
+                />
+                <Route
+                    path={Urls().collections()}
+                    exact
+                    render={() => <Collections isLogined={isLogined} />}
+                />
+
+                {/* 404 */}
+                <Route component={NoMatch} />
+            </Switch>
+        </Section>
 
     )
 }
