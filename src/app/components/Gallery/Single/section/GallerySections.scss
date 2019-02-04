@@ -1,0 +1,30 @@
+@import '../../../../static/scss/variables';
+@import '../../../../static/scss/_mixins';
+@import '../../../../static/scss/_rem';
+
+:local(.overiewAbout) {
+    margin-bottom: 60px;
+
+    h3 {
+        display: inline-block;
+        margin: 15px 0 20px 0;
+        vertical-align: middle;
+    }
+
+    p {}
+}
+
+:local(.Sections) {
+    // min-height: 200px;
+    // margin-bottom: 60px;
+    border-top: 1px solid #ccc;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -o-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 0 1 100%;
+    -ms-flex: 0 1 100%;
+    flex: 0 1 100%;
+    width: 100%;
+
+}

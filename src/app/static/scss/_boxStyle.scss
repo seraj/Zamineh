@@ -36,6 +36,7 @@
         display: block;
     }
 
+
     .thumb {
         position: relative;
         display: inline-block;
@@ -48,6 +49,11 @@
             height: 100%;
         }
     }
+
+    .magzineImg {
+        height: 345px;
+    }
+
 }
 
 :local(.BoxContent) {
@@ -153,6 +159,25 @@
                 line-height: 1.5;
                 min-height: 25px;
             }
+
+            .info {}
+        }
+
+        .details_wide {
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            overflow: hidden;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+
+            .sec {
+                display: block;
+                font-size: 17px;
+                line-height: 1.5;
+                min-height: 25px;
+            }
+
         }
     }
 }
@@ -169,6 +194,7 @@
 
 :local(.FeatureBoxSection) {
     margin: 40px 0;
+    position: relative;
 
     h4 {
         margin: 20px 0;
@@ -198,6 +224,13 @@
             }
         }
     }
+
+    .view-all {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-bottom: 1px solid #000;
+    }
 }
 
 :local(.followBtn) {
@@ -205,6 +238,11 @@
     padding: 4px 20px;
     background: $primary-color;
     border: 1px solid $primary-color;
+
+    &.min {
+        width: auto;
+        min-width: 115px;
+    }
 
     &.big {
         padding: 12px 20px;

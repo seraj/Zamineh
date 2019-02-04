@@ -97,14 +97,14 @@ export const SingleShowSet = (props) => (
                                 </span>
                             </div>
                         </Link>
-
-                        <FollowButton
-                            is_flw={props.item.is_flw}
-                            handleLogin={props.handleLogin}
-                            onClick={() => props.onFollowClick(props.item.gallery.id, props.GalleryIndex, null, 'show_set')}
-                            loginModal={() => props.openModal(true)}
-                        />
-
+                        {props.onFollowClick &&
+                            <FollowButton
+                                is_flw={props.item.is_flw}
+                                handleLogin={props.handleLogin}
+                                onClick={() => props.onFollowClick(props.item.gallery.id, props.GalleryIndex, null, 'show_set')}
+                                loginModal={() => props.openModal(true)}
+                            />
+                        }
                     </div>
                 </div>
             </div>
@@ -136,21 +136,27 @@ export const SingleGallery = (props) => (
                             {props.item.address}
                         </span>
                     </div>
-                    <div className='details_left'>
-                        <FollowButton
-                            is_flw={props.item.is_flw}
-                            handleLogin={props.handleLogin}
-                            onClick={() => props.onFollowClick(props.item.id, props.GalleryIndex, props.parentIndex, props.type)}
-                            loginModal={() => props.openModal(true)}
-                        />
-
-                    </div>
+                    {props.onFollowClick &&
+                        <div className='details_left'>
+                            <FollowButton
+                                is_flw={props.item.is_flw}
+                                handleLogin={props.handleLogin}
+                                onClick={() => props.onFollowClick(props.item.id, props.GalleryIndex, props.parentIndex, props.type)}
+                                loginModal={() => props.openModal(true)}
+                            />
+                        </div>
+                    }
                 </div>
 
             </div>
         </div>
     </React.Fragment >
 );
+
+
+
+
+
 export const GenreSet = (props) => {
 
     return (
@@ -264,6 +270,201 @@ export const ResultsGrid = (props) => {
                     ))}
                 </Row>
 
+            </div>
+        </React.Fragment>
+    )
+}
+
+export const OverviewSets = (props) => {
+
+    return (
+        <React.Fragment>
+            <div className={DefaultStyle.FeatureBoxSection}>
+                <h4>
+                    {props.title}
+                </h4>
+                <Link to={props.viewAllUrl} className='view-all'>نمایش همه</Link>
+
+                <Row>
+                    <Flickity
+                        className={'carousel items'}
+                        elementType={'div'}
+                        options={flickityOptions}
+                        disableImagesLoaded={false}
+                        reloadOnUpdate
+                    >
+                        {props.item && props.item.map((items, index) => (
+                            <Col lg={props.type == 'article' ? 3 : 4} md={props.type == 'article' ? 3 : 4} sm={props.type == 'article' ? 4 : 6} xs={12} key={index}>
+                                <OverviewSingleItem
+                                    item={items}
+                                    type={props.type}
+                                    url={`${Urls().withProps(props.type)}${items.slug}`}
+                                />
+                            </Col>
+                        ))}
+                    </Flickity>
+                </Row>
+
+            </div>
+        </React.Fragment>
+    )
+}
+export const OverviewSingleItem = (props) => (
+    <React.Fragment>
+        <div className={`${styles.SingleGallery} ${props.carousel ? styles.forCarousel : styles.simpleArtist} `}>
+
+            <div className={`${DefaultStyle.unBorderedBox}`}>
+                <Link to={props.url}>
+                    <div className={`thumb img-hoverable ${props.type === 'article' ? 'magzineImg' : ''}`}>
+                        <Img
+                            img={props.item.img}
+                            alt={props.item.name}
+                            hoverable
+                        />
+                    </div>
+                </Link>
+
+                <div className={`${DefaultStyle.box_details_inline} flex`}>
+                    <div className='details_wide'>
+                        <Link to={props.url}>
+                            <span className={`${DefaultStyle.BoxContent} bold`}>{props.item.title}</span>
+                        </Link>
+                        {props.item.detail &&
+                            <span className={`${DefaultStyle.BoxContent} sec`} >
+                                {props.item.detail}
+                            </span>
+                        }
+                        {props.item.author &&
+                            <span className={`${DefaultStyle.BoxContent} sec`} >
+                                {props.item.author}
+                            </span>
+                        }
+                        {props.item.info &&
+                            <span className={`${DefaultStyle.BoxContent} sec`}>
+                                {props.item.info}
+                            </span>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </React.Fragment >
+);
+
+
+
+export const FourColumnArtist = (props) => {
+    const artistsCol1 = props.item.represented_artists.filter((item, index) => index % 3 == 0);
+    const artistsCol2 = props.item.represented_artists.filter((item, index) => index % 3 == 1);
+    const artistsCol3 = props.item.represented_artists.filter((item, index) => index % 3 == 2);
+    const artistsCol4 = props.item.represented_artists.filter((item, index) => index % 4 == 3);
+    return (
+        <React.Fragment>
+            <div className={`${DefaultStyle.FeatureBoxSection} ${styles.artistbox}`}>
+                <h4>
+                    {props.title}
+                </h4>
+                <Link to={props.viewAllUrl} className='view-all'>نمایش همه</Link>
+                <Row>
+                    <Col lg={10} md={10} sm={12} xs={12}>
+                        <div style={{ borderLeft: '1px solid #ccc' }}>
+                            <h2>{props.sectionone}</h2>
+                            <div style={{ display: 'flex' }}>
+                                {artistsCol1 &&
+                                    <ul style={{
+                                        flex: '1 1 0%',
+                                        minWidth: '0',
+                                        marginLeft: 20
+                                    }}>
+                                        {artistsCol1.map((item, index) => (
+                                            <li key={index}>
+                                                <Link
+                                                    to={`${Urls().artist()}${item.slug}`}
+                                                    style={{ marginBottom: 20 }}
+                                                >
+                                                    {item.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                }
+                                {artistsCol2 &&
+                                    <ul style={{
+                                        flex: '1 1 0%',
+                                        minWidth: '0',
+                                        marginLeft: 20
+                                    }}>
+                                        {artistsCol2.map((item, index) => (
+                                            <li key={index}>
+                                                <Link
+                                                    to={`${Urls().artist()}${item.slug}`}
+                                                    style={{ marginBottom: 20 }}
+                                                >
+                                                    {item.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                }
+                                {artistsCol3 &&
+                                    <ul style={{
+                                        flex: '1 1 0%',
+                                        minWidth: '0',
+                                        marginLeft: 20
+                                    }}>
+                                        {artistsCol2.map((item, index) => (
+                                            <li key={index}>
+                                                <Link
+                                                    to={`${Urls().artist()}${item.slug}`}
+                                                    style={{ marginBottom: 20 }}
+                                                >
+                                                    {item.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                }
+                                {artistsCol4 &&
+                                    <ul style={{
+                                        flex: '1 1 0%',
+                                        minWidth: '0',
+                                        // marginLeft: 20
+                                    }}>
+                                        {artistsCol3.map((item, index) => (
+                                            <li key={index}>
+                                                <Link
+                                                    to={`${Urls().artist()}${item.slug}`}
+                                                    style={{ marginBottom: 20 }}
+                                                >
+                                                    {item.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+                    </Col>
+                    <Col lg={2} md={2} sm={12} xs={12}>
+                        <h2>{props.sectiontwo}</h2>
+                        <ul style={{
+                            flex: '1 1 0%',
+                            minWidth: '0',
+                        }}>
+                            {props.item.represented_artists.map((item, index) => (
+                                <li key={index}>
+                                    <Link
+                                        to={`${Urls().artist()}${item.slug}`}
+                                        style={{ marginBottom: 20 }}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </Col>
+                </Row>
             </div>
         </React.Fragment>
     )

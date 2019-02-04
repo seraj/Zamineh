@@ -78,7 +78,7 @@ class Artists extends Component {
         this.setState({
             login: value
         });
-    };
+    }
 
 
     render() {

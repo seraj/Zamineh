@@ -10,6 +10,7 @@ import {
 
 import Loadable from 'react-loadable';
 
+import page404 from './components/errorPages/404';
 // import Home from './home/Home';
 import Artists from './components/Artists/Artists';
 import ArtistAlphabet from './components/Artists/ArtistAlphabet';
@@ -174,7 +175,7 @@ export default function Routing({ isLogined }) {
                 />
 
                 {/* 404 */}
-                <Route component={NoMatch} />
+                <Route component={page404} />
             </Switch>
         </Section>
 

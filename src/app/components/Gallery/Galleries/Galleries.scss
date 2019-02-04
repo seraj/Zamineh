@@ -164,3 +164,13 @@
 :local(.letters) {
     position: relative;
 }
+
+:local(.artistbox) {
+    position: relative;
+
+    h2 {
+        font-size: 20px;
+        height: 45px;
+        text-align: center;
+    }
+}
