@@ -53,7 +53,6 @@ class ArtistAlphabet extends Component {
             });
     }
     handlePageClick = (data) => {
-
         let selected = data.selected + 1;
         this.setState({ selectedPage: selected, Loading: true }, () => {
             this.handleSearch(selected);

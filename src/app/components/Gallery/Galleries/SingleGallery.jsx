@@ -283,7 +283,9 @@ export const OverviewSets = (props) => {
                 <h4>
                     {props.title}
                 </h4>
-                <Link to={props.viewAllUrl} className='view-all'>نمایش همه</Link>
+                {props.viewAllUrl &&
+                    <Link to={props.viewAllUrl} className='view-all'>نمایش همه</Link>
+                }
 
                 <Row>
                     <Flickity
@@ -465,6 +467,35 @@ export const FourColumnArtist = (props) => {
                         </ul>
                     </Col>
                 </Row>
+            </div>
+        </React.Fragment>
+    )
+}
+
+export const PaginationItem = (props) => {
+
+    return (
+        <React.Fragment>
+            <div className={DefaultStyle.FeatureBoxSection}>
+                <h4>
+                    {props.title}
+                </h4>
+                {props.viewAllUrl &&
+                    <Link to={props.viewAllUrl} className='view-all'>نمایش همه</Link>
+                }
+
+                <Row>
+                    {props.item && props.item.map((items, index) => (
+                        <Col lg={props.type == 'article' ? 3 : 4} md={props.type == 'article' ? 3 : 4} sm={props.type == 'article' ? 4 : 6} xs={12} key={index}>
+                            <OverviewSingleItem
+                                item={items}
+                                type={props.type}
+                                url={`${Urls().withProps(props.type)}${items.slug}`}
+                            />
+                        </Col>
+                    ))}
+                </Row>
+
             </div>
         </React.Fragment>
     )

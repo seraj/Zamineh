@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Urls from '../../../Urls'
-import { OverviewSets, ShowSet, FourColumnArtist } from '../../Galleries/SingleGallery';
+import { OverviewSets, ShowSet, FourColumnArtist, PaginationItem } from '../../Galleries/SingleGallery';
 import { Loading } from '../../../Spinner/Spinner';
+import Pagination from '../../../Pagination/Pagination';
 
 import styles from './GallerySections.scss'
+
 
 export const Overview = ({ slug }) => {
     const [initialized, setInitialized] = useState(false)
@@ -89,15 +91,23 @@ export const Shows = ({ slug }) => {
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         if (!initialized) {
-            axios
-                .get(`${Urls().api()}/gallery/${slug}/shows/`)
-                .then(({ data }) => {
-                    setData(data)
-                    setLoading(false)
-                });
+            handleData()
             setInitialized(true)
         }
     })
+    const handleData = (page) => {
+        axios
+            .get(`${Urls().api()}/gallery/${slug}/shows/`, { params: { page: page } })
+            .then(({ data }) => {
+                setData(data)
+                setLoading(false)
+            });
+    }
+    const handlePageClick = (data) => {
+        let selected = data.selected + 1;
+        setLoading(true)
+        handleData(selected);
+    }
     return (
         <React.Fragment>
             {loading &&
@@ -106,10 +116,10 @@ export const Shows = ({ slug }) => {
                 </div>
             }
             {Data && Data.current_shows &&
-                <div className={styles.Sections}>
+                <div className={`${styles.Sections} nobb`}>
                     <OverviewSets
                         title='نمایشگاه‌های الان'
-                        viewAllUrl={`${Urls().gallery()}${slug}/shows/`}
+                        // viewAllUrl={`${Urls().gallery()}${slug}/shows/`}
                         item={Data.current_shows}
                         type='show'
                     />
@@ -117,16 +127,20 @@ export const Shows = ({ slug }) => {
             }
             {Data && Data.upcoming_shows &&
                 <div className={styles.Sections}>
-                    <OverviewSets
+                    <PaginationItem
                         title='نمایشگاه‌های آینده'
-                        viewAllUrl={`${Urls().gallery()}${slug}/shows/`}
+                        // viewAllUrl={`${Urls().gallery()}${slug}/shows/`}
                         item={Data.upcoming_shows}
                         type='show'
                     />
+                    {Data && Data.page_count > 1 &&
+                        <Pagination
+                            pageCount={Data.page_count}
+                            onPageChange={handlePageClick}
+                        />
+                    }
                 </div>
             }
-
-
         </React.Fragment>
     )
 }
