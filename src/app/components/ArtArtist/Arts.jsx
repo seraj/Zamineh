@@ -35,10 +35,20 @@ export const SingleArt = (props) => (
             </div>
 
             <div className='art_details'>
-                <span className='content item_price'><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{NumbersConvertor().convertToPersian(ThousandSeparator(props.item.price))} تومان</Link></span>
-                <span className='content item_artist_name'><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>
+                {props.item.price && props.item.price.is_for_sale &&
+                    <span className='content item_price'>
+                        {
+                            !props.item.price.is_sold ?
+                                `${NumbersConvertor().convertToPersian(ThousandSeparator(props.item.price.price))} تومان `
+                                :
+                                'فروخته شده'
+                        }
+                    </span>
+                }
+                {props.item.artist && <span className='content item_artist_name'><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>}
                 <span className='content gallery_name'>
-                    {props.item.title}
+                    {props.item.title ? props.item.title : ''}
+                    {props.item.name ? props.item.name : ''}
                 </span>
                 {props.item.gallery != null &&
                     <span className='content gallery_name'>
@@ -54,7 +64,9 @@ export const SingleArt = (props) => (
         </div>
     </React.Fragment >
 );
-export const ThreeColumn = (props) => {
+
+
+export const ThreeColumnArt = (props) => {
     const artworksCol1 = props.Arts.filter((item, index) => index % 3 == 0);
     const artworksCol2 = props.Arts.filter((item, index) => index % 3 == 1);
     const artworksCol3 = props.Arts.filter((item, index) => index % 3 == 2);
@@ -104,6 +116,93 @@ export const ThreeColumn = (props) => {
                         // marginLeft: 20
                     }}>
                         {artworksCol3.map((item, index) => (
+                            <SingleArt
+                                key={item.id}
+                                item={item}
+                                ArtIndex={index}
+                                onSaveItemClick={props.onSaveItemClick}
+                                openModal={props.openModal}
+                                isLogined={props.isLogined}
+                            />
+                        ))}
+                    </div>
+                }
+            </div>
+        </React.Fragment>
+    )
+}
+
+
+
+export const FourColumnArt = (props) => {
+    const artworksCol1 = props.Arts.filter((item, index) => index % 4 == 0);
+    const artworksCol2 = props.Arts.filter((item, index) => index % 4 == 1);
+    const artworksCol3 = props.Arts.filter((item, index) => index % 4 == 2);
+    const artworksCol4 = props.Arts.filter((item, index) => index % 4 == 3);
+    return (
+        <React.Fragment>
+            <div style={{ display: 'flex' }}>
+                {artworksCol1 &&
+                    <div style={{
+                        flex: '1 1 0%',
+                        minWidth: '0',
+                        marginLeft: 20
+                    }}>
+                        {artworksCol1.map((item, index) => (
+                            <SingleArt
+                                key={item.id}
+                                item={item}
+                                ArtIndex={index}
+                                onSaveItemClick={props.onSaveItemClick}
+                                openModal={props.openModal}
+                                isLogined={props.isLogined}
+                            />
+                        ))}
+                    </div>
+                }
+                {artworksCol2 &&
+                    <div style={{
+                        flex: '1 1 0%',
+                        minWidth: '0',
+                        marginLeft: 20
+                    }}>
+                        {artworksCol2.map((item, index) => (
+                            <SingleArt
+                                key={item.id}
+                                item={item}
+                                ArtIndex={index}
+                                onSaveItemClick={props.onSaveItemClick}
+                                openModal={props.openModal}
+                                isLogined={props.isLogined}
+                            />
+                        ))}
+                    </div>
+                }
+                {artworksCol3 &&
+                    <div style={{
+                        flex: '1 1 0%',
+                        minWidth: '0',
+                        marginLeft: 20
+                    }}>
+                        {artworksCol3.map((item, index) => (
+                            <SingleArt
+                                key={item.id}
+                                item={item}
+                                ArtIndex={index}
+                                onSaveItemClick={props.onSaveItemClick}
+                                openModal={props.openModal}
+                                isLogined={props.isLogined}
+                            />
+                        ))}
+                    </div>
+                }
+                {artworksCol4 &&
+                    <div style={{
+                        flex: '1 1 0%',
+                        minWidth: '0',
+                        // marginLeft: 20
+                    }}>
+                        {artworksCol4.map((item, index) => (
                             <SingleArt
                                 key={item.id}
                                 item={item}

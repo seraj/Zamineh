@@ -2,6 +2,8 @@ import React from 'react';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import Urls from '../../components/Urls';
+import { Img } from '../../components/General'
+
 
 class BottomShow extends React.Component {
     constructor(props) {
@@ -18,7 +20,7 @@ class BottomShow extends React.Component {
                     <div className='feature'>
                         <a href={Urls().show() + item.slug} className='img-link'>
                             <div className='img img-hoverable'>
-                                <img src={item.img} alt={item.title} />
+                                <Img img={item.img} alt={item.title} />
                             </div>
                         </a>
                         <div className='details'>

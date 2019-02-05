@@ -59,6 +59,9 @@ export default function Urls() {
                 case 'artist':
                     url = this.artist();
                     break;
+                case 'art':
+                    url = this.arts();
+                    break;
                 case 'gallery':
                     url = this.gallery();
                     break;

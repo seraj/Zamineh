@@ -16,7 +16,7 @@ import ModelManager from '../Models';
 import CollectMetaTags from './CollectMetaTags'
 import Pagination from '../Pagination/Pagination';
 import { Loading } from '../Spinner/Spinner';
-import { ThreeColumn } from '../ArtArtist/Arts';
+import { ThreeColumnArt } from '../ArtArtist/Arts';
 
 
 
@@ -191,7 +191,7 @@ class Collect extends React.Component {
         if (!this.state.error) {
 
             return (
-                <ThreeColumn
+                <ThreeColumnArt
                     Arts={Arts}
                     onSaveItemClick={this.onSaveItemClick}
                     openModal={this.openModal}

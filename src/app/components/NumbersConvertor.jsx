@@ -70,7 +70,7 @@ export default function NumbersConvertor() {
 
         },
         convertToPersian: function (input) {
-            if (input == undefined)
+            if (input == undefined || input == null)
                 return;
             var inPersian = '',
                 mapping = {

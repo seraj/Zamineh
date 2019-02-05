@@ -319,7 +319,7 @@ export const OverviewSingleItem = (props) => (
                 <Link to={props.url}>
                     <div className={`thumb img-hoverable ${props.type === 'article' ? 'magzineImg' : ''}`}>
                         <Img
-                            img={props.item.img}
+                            img={props.item.img.img ? props.item.img.img : props.item.img}
                             alt={props.item.name}
                             hoverable
                         />
@@ -367,9 +367,11 @@ export const FourColumnArtist = (props) => {
                 <h4>
                     {props.title}
                 </h4>
-                <Link to={props.viewAllUrl} className='view-all'>نمایش همه</Link>
+                {props.viewAllUrl &&
+                    <Link to={props.viewAllUrl} className='view-all'>نمایش همه</Link>
+                }
                 <Row>
-                    <Col lg={10} md={10} sm={12} xs={12}>
+                    <Col lg={props.artistTab ? 6 : 10} md={props.artistTab ? 6 : 10} sm={12} xs={12}>
                         <div style={{ borderLeft: '1px solid #ccc' }}>
                             <h2>{props.sectionone}</h2>
                             <div style={{ display: 'flex' }}>
@@ -448,7 +450,7 @@ export const FourColumnArtist = (props) => {
                             </div>
                         </div>
                     </Col>
-                    <Col lg={2} md={2} sm={12} xs={12}>
+                    <Col lg={props.artistTab ? 6 : 2} md={props.artistTab ? 6 : 2} sm={12} xs={12}>
                         <h2>{props.sectiontwo}</h2>
                         <ul style={{
                             flex: '1 1 0%',
@@ -477,9 +479,11 @@ export const PaginationItem = (props) => {
     return (
         <React.Fragment>
             <div className={DefaultStyle.FeatureBoxSection}>
-                <h4>
-                    {props.title}
-                </h4>
+                {props.title &&
+                    <h4>
+                        {props.title}
+                    </h4>
+                }
                 {props.viewAllUrl &&
                     <Link to={props.viewAllUrl} className='view-all'>نمایش همه</Link>
                 }

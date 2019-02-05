@@ -7,7 +7,7 @@ import Col from 'reactstrap/lib/Col';
 import queryString from 'query-string';
 import SecurityManager from '../../../security/SecurityManager'
 
-import { Overview, Shows } from './section/GalleryTabs'
+import { Overview, Shows, Artists, Artworks, Articles } from './section/GalleryTabs'
 
 import Login from '../../../login/Login';
 import Urls from '../../Urls';
@@ -35,13 +35,6 @@ function Tabs({ tabs, slug }) {
     )
 }
 
-function Works() {
-    return (
-        <Section ExtraClass={'content singlePage'}>
-            <h2>works</h2>
-        </Section>
-    );
-}
 function NothingRendered() {
     return (
         <Section ExtraClass={'content singlePage'}>
@@ -84,13 +77,13 @@ class Gallery extends React.Component {
                 component = <Shows slug={this.props.match.params.slug} />;
                 break;
             case '/artists/':
-                component = <Works slug={this.props.match.params.slug} />;
+                component = <Artists slug={this.props.match.params.slug} />;
                 break;
             case '/arts/':
-                component = <Works slug={this.props.match.params.slug} />;
+                component = <Artworks slug={this.props.match.params.slug} isLogined={SecurityManager().isLogined()} openModal={this.openModal} />;
                 break;
-            case '/codecoarticles/':
-                component = <Works slug={this.props.match.params.slug} />;
+            case '/articles/':
+                component = <Articles slug={this.props.match.params.slug} />;
                 break;
             default:
                 component = <NothingRendered />;
@@ -110,8 +103,6 @@ class Gallery extends React.Component {
                     is_flw: response.data.state
                 }
             });
-
-
         })
 
     }

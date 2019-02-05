@@ -2,6 +2,7 @@ import React from 'react';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import Urls from '../../components/Urls';
+import { Img } from '../../components/General'
 
 class TopShow extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class TopShow extends React.Component {
                     <a href={Urls().show() + item.slug} >
                         <div className='feature'>
                             <div className='img'>
-                                <img src={item.img} alt={item.title} />
+                                <Img img={item.img} alt={item.title} />
                             </div>
                             <div className='details'>
                                 <h3>{item.title}</h3>

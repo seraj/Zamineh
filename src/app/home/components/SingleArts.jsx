@@ -41,8 +41,15 @@ const SingleArts = (props) => (
             props.item.gallery ? props.item.gallery.name : ''
           }
         </span>
-        {props.item.price &&
-          <span className='content price'>{NumbersConvertor().convertToPersian(ThousandSeparator(props.item.price))} تومان</span>
+        {props.item.price && props.item.price.is_for_sale &&
+          <span className='content item_price'>
+            {
+              !props.item.price.is_sold ?
+                `${NumbersConvertor().convertToPersian(ThousandSeparator(props.item.price.price))} تومان `
+                :
+                'فروخته شده'
+            }
+          </span>
         }
       </div>
     </div>
