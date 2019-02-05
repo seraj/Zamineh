@@ -4,7 +4,7 @@
 
 :local(.header) {
     padding-top: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 :local(.galleryHeader) {
@@ -62,6 +62,7 @@
     padding: 20px 0;
     border-top: 1px solid #e5e5e5;
     border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 50px;
 
     a {
         font-weight: bold;

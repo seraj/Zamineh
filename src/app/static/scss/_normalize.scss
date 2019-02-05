@@ -181,6 +181,18 @@ a:hover {
     text-decoration: none;
 }
 
+button,
+input {
+    margin: 0;
+    outline: none;
+}
+
+input[type='checkbox'] {
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+}
+
 ul {
     list-style-type: none;
     padding: 0;

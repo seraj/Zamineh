@@ -31,3 +31,126 @@
         border: none;
     }
 }
+
+:local(.artFilter) {
+    text-align: center;
+    margin-bottom: 40px;
+    background: #fff;
+
+    .filter-button,
+    .filter-dropdown {
+        display: inline-block;
+        border: 1px solid #ccc;
+        padding: 15px 18px 10px 18px;
+        // height: 57px;
+        font-weight: bold;
+        background: transparent;
+        cursor: pointer;
+        display: inline-block;
+        vertical-align: middle;
+        text-decoration: none;
+
+        label {
+            margin-bottom: 0;
+        }
+
+        .filter-nav-main-text {}
+
+        &.is-active {
+            .filter-nav-active-text {
+                display: block;
+                margin-top: 5px;
+            }
+
+            .filter-nav-main-text {
+                font-size: 13px;
+                text-align: right;
+                position: absolute;
+                margin-top: -16px;
+                color: #000
+            }
+        }
+
+        a {
+            text-decoration: none
+        }
+    }
+
+
+
+    .filter-button+.filter-button,
+    .filter-dropdown+.filter-button,
+    .filter-button+.filter-dropdown,
+    .filter-dropdown+.filter-dropdown {
+        border-right: 0
+    }
+
+    .filter-button {
+        .checkbox {
+            margin-left: 15px
+        }
+    }
+
+    .filter-dropdown {
+        position: relative;
+        padding-left: 35px;
+
+        &:hover {
+            background: #000;
+            color: #fff;
+
+            >nav {
+                display: block;
+            }
+        }
+
+        .icon {
+            font-size: 12px;
+            display: block;
+            position: absolute;
+            top: 21px;
+            left: 17px;
+        }
+
+        &.is-active {
+            color: $secondery-color
+        }
+
+        nav {
+            z-index: 2;
+            background: #000;
+            position: absolute;
+            top: 49px;
+            right: 0;
+            width: 300px;
+            display: none;
+
+            border-top: 1px solid #333;
+
+            a {
+                text-align: right;
+                color: #fff !important;
+                font-size: 17px;
+                text-transform: none;
+                display: block;
+                border-bottom: 1px solid #333;
+                padding: 15px 18px 10px 18px;
+                -webkit-transition: background-color 0.2s;
+                -moz-transition: background-color 0.2s;
+                -o-transition: background-color 0.2s;
+                -ms-transition: background-color 0.2s;
+                transition: background-color 0.2s;
+                position: relative;
+
+                &:hover {
+                    background: lighten($color: #000000, $amount: 10%)
+                }
+            }
+        }
+
+        &-count {
+            margin-right: 5px;
+            color: #777;
+        }
+    }
+}

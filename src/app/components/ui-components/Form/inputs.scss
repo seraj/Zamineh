@@ -1,0 +1,61 @@
+@import '../../../static/scss/variables';
+@import '../../../static/scss/_mixins';
+@import '../../../static/scss/_rem';
+
+
+:local(.checkbox) {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    background: #e5e5e5;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    >input[type='checkbox'] {
+        visibility: hidden;
+    }
+
+    >input[type='checkbox']:checked+label:after {
+        opacity: 1 !important;
+        -ms-filter: none !important;
+        filter: none !important;
+    }
+
+    >label {
+        cursor: pointer;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        left: 2px;
+        background-color: #fff;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 2px;
+            bottom: 7px;
+            left: 2px;
+            border: 2px solid #000;
+            border-top: none;
+            border-right: none;
+            opacity: 0;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: alpha(opacity=0);
+            -webkit-transform: rotate(-45deg) translateZ(0);
+            -moz-transform: rotate(-45deg) translateZ(0);
+            -o-transform: rotate(-45deg) translateZ(0);
+            -ms-transform: rotate(-45deg) translateZ(0);
+            transform: rotate(-45deg) translateZ(0);
+            -webkit-transition: opacity 0.25s;
+            -moz-transition: opacity 0.25s;
+            -o-transition: opacity 0.25s;
+            -ms-transition: opacity 0.25s;
+            transition: opacity 0.25s;
+        }
+    }
+}

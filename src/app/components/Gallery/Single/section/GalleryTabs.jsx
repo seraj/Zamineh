@@ -5,6 +5,8 @@ import { OverviewSets, ShowSet, FourColumnArtist, PaginationItem } from '../../G
 import { Loading } from '../../../Spinner/Spinner';
 import Pagination from '../../../Pagination/Pagination';
 import { FourColumnArt } from '../../../ArtArtist/Arts';
+import { Checkbox } from '../../../ui-components/Form/inputs'
+import NumbersConvertor from '../../../NumbersConvertor';
 
 import styles from './GallerySections.scss'
 
@@ -230,7 +232,7 @@ export const Articles = ({ slug }) => {
                 </div>
             }
             {Data && Data.article_set && Data.article_set.length > 0 &&
-                <div className={styles.Sections}>
+                <div className={`${styles.Sections} nobb`}>
                     <PaginationItem
                         item={Data.article_set}
                         type='article'
@@ -272,6 +274,15 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
         setLoading(true)
         handleData(selected);
     }
+    const handleFormChange = (e, name) => {
+        const value = e.target.value;
+        console.log(name, value)
+
+    }
+    const filterFormRef = (form) => {
+        form = form;
+        // console.log(form)
+    }
     const onSaveItemClick = () => { }
     return (
         <React.Fragment>
@@ -280,8 +291,41 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
                     <Loading background="#fff" />
                 </div>
             }
+
+            {Data && Data.filter &&
+                <div className={styles.artFilter}>
+                    <form ref={filterFormRef}>
+                        <a class="filter-button">
+                            <Checkbox
+                                onChange={e => handleFormChange(e, Data.filter.only_for_sale.value)}
+                                id={Data.filter.only_for_sale.value}
+                                label={Data.filter.only_for_sale.title}
+                                checked
+                            />
+                        </a>
+                        {Data.filter.size_set && Data.filter.size_set.length > 0 &&
+                            <FilterDropDown
+                                name='اندازه'
+                                options={Data.filter.size_set}
+                            />
+                        }
+                        {Data.filter.price_set && Data.filter.price_set.length > 0 &&
+                            <FilterDropDown
+                                name='قیمت'
+                                options={Data.filter.price_set}
+                            />
+                        }
+                        {Data.filter.medium_set && Data.filter.medium_set.length > 0 &&
+                            <FilterDropDown
+                                name='بستر'
+                                options={Data.filter.medium_set}
+                            />
+                        }
+                    </form>
+                </div>
+            }
             {Data && Data.art_set && Data.art_set.length > 0 &&
-                <div className={styles.Sections}>
+                <div className={`${styles.Sections} nobb`}>
                     <FourColumnArt
                         Arts={Data.art_set}
                         onSaveItemClick={onSaveItemClick}
@@ -297,5 +341,24 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
                 </div>
             }
         </React.Fragment>
+    )
+}
+
+const FilterDropDown = ({ name, options }) => {
+    return (
+
+        <div className="filter-dropdown">
+            <div className="filter-nav-main-text">{name}</div>
+            <div className="filter-nav-active-text"></div>
+            <i className='icon fas fa-chevron-down' />
+            <nav className="filter-dropdown-nav">
+                {options.map((item, index) => (
+                    <a key={index}>
+                        <span className="filter-dropdown-text">{item.title}</span>
+                        <span className="filter-dropdown-count">({NumbersConvertor().convertToPersian(item.count)})</span>
+                    </a>
+                ))}
+            </nav>
+        </div>
     )
 }
