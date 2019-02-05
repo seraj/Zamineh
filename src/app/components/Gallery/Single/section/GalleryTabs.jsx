@@ -254,6 +254,7 @@ export const Articles = ({ slug }) => {
 export const Artworks = ({ slug, isLogined, openModal }) => {
     const [initialized, setInitialized] = useState(false)
     const [Data, setData] = useState()
+    const [Check, setCheck] = useState(true)
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         if (!initialized) {
@@ -261,9 +262,9 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
             setInitialized(true)
         }
     })
-    const handleData = (page) => {
+    const handleData = (params) => {
         axios
-            .get(`${Urls().api()}/gallery/${slug}/artworks/`, { params: { page: page } })
+            .get(`${Urls().api()}/gallery/${slug}/artworks/`, { params: params })
             .then(({ data }) => {
                 setData(data)
                 setLoading(false)
@@ -277,7 +278,9 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
     const handleFormChange = (e, name) => {
         const value = e.target.value;
         console.log(name, value)
-
+    }
+    const handleCheckbox = () => {
+        setCheck(!Check)
     }
     const filterFormRef = (form) => {
         form = form;
@@ -295,12 +298,12 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
             {Data && Data.filter &&
                 <div className={styles.artFilter}>
                     <form ref={filterFormRef}>
-                        <a class="filter-button">
+                        <a className="filter-button">
                             <Checkbox
-                                onChange={e => handleFormChange(e, Data.filter.only_for_sale.value)}
+                                onChange={() => handleCheckbox()}
                                 id={Data.filter.only_for_sale.value}
                                 label={Data.filter.only_for_sale.title}
-                                checked
+                                checked={Check}
                             />
                         </a>
                         {Data.filter.size_set && Data.filter.size_set.length > 0 &&
