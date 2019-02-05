@@ -43,7 +43,7 @@ export const Overview = ({ slug }) => {
                     <p>{Data.about}</p>
                 </section>
             }
-            {Data && Data.show_set &&
+            {Data && Data.show_set.length > 0 &&
                 <div className={styles.Sections}>
                     <OverviewSets
                         title='نمایشگاه‌ها'
@@ -53,7 +53,7 @@ export const Overview = ({ slug }) => {
                     />
                 </div>
             }
-            {Data && Data.artist &&
+            {Data && Data.artist.length > 0 &&
                 <div className={styles.Sections}>
                     <FourColumnArtist
                         title='هنرمندان'
@@ -65,7 +65,7 @@ export const Overview = ({ slug }) => {
                     />
                 </div>
             }
-            {Data && Data.article_set &&
+            {Data && Data.article_set.length > 0 &&
                 <div className={styles.Sections}>
                     <OverviewSets
                         title='مجلات'
@@ -115,7 +115,7 @@ export const Shows = ({ slug }) => {
                     <Loading background="#fff" />
                 </div>
             }
-            {Data && Data.current_shows &&
+            {Data && Data.current_shows.length > 0 &&
                 <div className={`${styles.Sections} nobb`}>
                     <OverviewSets
                         title='نمایشگاه‌های الان'
@@ -125,12 +125,22 @@ export const Shows = ({ slug }) => {
                     />
                 </div>
             }
-            {Data && Data.upcoming_shows &&
-                <div className={styles.Sections}>
-                    <PaginationItem
-                        title='نمایشگاه‌های آینده'
+            {Data && Data.upcoming_shows.length > 0 &&
+                <div className={`${styles.Sections}`}>
+                    <OverviewSets
+                        title='نمایشگاه‌های آتی'
                         // viewAllUrl={`${Urls().gallery()}${slug}/shows/`}
                         item={Data.upcoming_shows}
+                        type='show'
+                    />
+                </div>
+            }
+            {Data && Data.past_shows.length > 0 &&
+                <div className={styles.Sections}>
+                    <PaginationItem
+                        title='نمایشگاه‌های گذشته'
+                        // viewAllUrl={`${Urls().gallery()}${slug}/shows/`}
+                        item={Data.past_shows}
                         type='show'
                     />
                     {Data && Data.page_count > 1 &&
