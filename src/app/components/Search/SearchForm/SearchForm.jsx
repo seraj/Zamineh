@@ -70,7 +70,7 @@ class SearchForm extends React.Component {
                         />
 
                         <a className='icon-search'>
-                            <i className='fas fa-search' />
+                            <i className='fal fa-search' />
                         </a>
 
                         <div className={styles.Results} style={{

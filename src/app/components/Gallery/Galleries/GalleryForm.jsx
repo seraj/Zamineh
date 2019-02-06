@@ -34,7 +34,7 @@ const GalleryForm = (props) => {
                             name='city_id'
                             placeholder='شهر برگذاری'
                         />
-                        <i className='fas fa-angle-down' />
+                        <i className='fas fa-caret-down' />
                         {FormValues.city_id && FormValues.city_id.dropdown &&
                             <ul className={styles.FormValues}>
                                 {FormValues.city_id.values.map(item => (
@@ -55,7 +55,7 @@ const GalleryForm = (props) => {
                             autoComplete='off'
                             placeholder='دسته بندی'
                         />
-                        <i className='fas fa-angle-down' />
+                        <i className='fas fa-caret-down' />
                         {FormValues.genre_id && FormValues.genre_id.dropdown &&
                             <ul className={styles.FormValues}>
                                 {FormValues.genre_id.values.map(item => (

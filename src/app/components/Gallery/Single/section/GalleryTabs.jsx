@@ -353,7 +353,7 @@ const FilterDropDown = ({ name, options }) => {
         <div className="filter-dropdown">
             <div className="filter-nav-main-text">{name}</div>
             <div className="filter-nav-active-text"></div>
-            <i className='icon fas fa-chevron-down' />
+            <i className='icon fas fa-caret-down' />
             <nav className="filter-dropdown-nav">
                 {options.map((item, index) => (
                     <a key={index}>
