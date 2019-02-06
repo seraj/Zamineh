@@ -1,4 +1,5 @@
 const path = require('path');
+var webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -18,6 +19,11 @@ var publicPathJS = '/';
 var publicPathCSS = '/';
 
 var plugins = [
+  new webpack.DefinePlugin({ // <-- key to reducing React's size
+    'process.env': {
+      'NODE_ENV': JSON.stringify('production')
+    }
+  }),
   new ErrorOverlayPlugin(),
 
   new HtmlWebPackPlugin({
@@ -32,6 +38,9 @@ var plugins = [
   }),
 
   //new HardSourceWebpackPlugin(),
+
+  // new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+
 
   new MiniCssExtractPlugin({
     path: path.resolve('build'),
