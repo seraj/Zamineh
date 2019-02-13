@@ -82,28 +82,40 @@ export default function Urls() {
             return url
         },
 
-        // Registration URL
-        ArtistRegistration() {
-            return '/registration/artist';
+        // Gallery Artist URLS
+        GalleryProfile() {
+            return '/panel/gallery/'
+        },
+        GalleryDashboard() {
+            return '/panel/gallery/dashboard/'
         },
         GalleryRegistration() {
-            return '/registration/gallery';
-        },
-        AddSingleArt() {
-            return '/registration/artist/add-art';
-        },
-        AddCollections() {
-            return '/registration/artist/add-collection';
-        },
-        AddExhibitions() {
-            return '/registration/artist/add-exhibition';
+            return '/panel/gallery/registration/';
         },
         AddExhibitionsGallery() {
-            return '/registration/gallery/add-exhibition';
+            return '/panel/gallery/registration/add-exhibition';
         },
 
-        galleryProfile() {
-            return '/registration/gallery/Profile'
+
+
+        ArtistProfile() {
+            return '/panel/artist/'
         },
+        ArtistDashboard() {
+            return '/panel/artist/dashboard/'
+        },
+        ArtistRegistration() {
+            return '/panel/artist/registration/';
+        },
+        AddSingleArt() {
+            return '/panel/artist/registration/add-art';
+        },
+        AddCollections() {
+            return '/panel/artist/registration/add-collection';
+        },
+        AddExhibitions() {
+            return '/panel/artist/registration/add-exhibition';
+        }
+
     }
 }

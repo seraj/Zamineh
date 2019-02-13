@@ -70,8 +70,8 @@ class App extends React.Component {
     }
     getClientsIDSecret = async () => {
         const RegistrationPage = window.location.href.includes('registration');
-        const ArtistRegistrationPage = window.location.href.includes(Urls().ArtistRegistration());
-        const GalleryRegistrationPage = window.location.href.includes(Urls().GalleryRegistration());
+        const ArtistRegistrationPage = window.location.href.includes(Urls().ArtistProfile());
+        const GalleryRegistrationPage = window.location.href.includes(Urls().GalleryProfile());
 
         try {
             var client_id = cookie.load('client_id', { path: '/' });

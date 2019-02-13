@@ -3,6 +3,12 @@ import React from 'react';
 import { Form } from 'react-final-form';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
+
+import {
+    ValidateShebaNum
+} from '../../registration/artist/ArtistFormValidation';
+import { RegisterForm } from '../../registration/gallery/RegistrationFrom'
+
 import {
     Box,
     Button,
@@ -73,14 +79,14 @@ const MobileValidator = value => {
     if (value && !regexp.test(NumbersConvertor().convertToLatin(value))) {
         error = 'شماره تلفن را به درستی وارد کنید'
     }
-
     return error
 }
-export const EditProfile = (props) => {
+export const EditGallery = (props) => {
     const {
         errorMessage,
         handleSubmit,
-        cities,
+        Config,
+        onMapClick,
         values,
         loading
     } = props;
@@ -94,58 +100,15 @@ export const EditProfile = (props) => {
                         initialValues={values}
                         render={({ handleSubmit, form, submitting, pristine, values }) => (
                             <form onSubmit={handleSubmit}>
-                                <FormGroup>
-                                    <Label>شماره تلفن</Label>
-                                    <Field
-                                        name='username'
-                                        component={AdaptedInput}
-                                        disabled
-                                        control
-                                    />
-                                    <Error name='username' />
-                                </FormGroup>
-
-                                <FormGroup>
-                                    <Label>نام و نام خانوادگی</Label>
-                                    <Field
-                                        name='name'
-                                        component={AdaptedInput}
-                                        placeholder='نام و نام خانوادگی'
-                                        validate={value => value ? undefined : 'وارد کردن نام و نام خانوادگی الزامی میباشد'}
-                                        control
-                                    />
-                                    <Error name='name' />
-                                </FormGroup>
-
-                                <FormGroup>
-                                    <Label>ایمیل</Label>
-                                    <Field
-                                        name='email'
-                                        component={AdaptedInput}
-                                        placeholder='ایمیل'
-                                        validate={value => value ? undefined : 'وارد کردن ایمیل الزامی میباشد'}
-                                        control
-                                    />
-                                    <Error name='email' />
-                                </FormGroup>
-
-
-                                <FormGroup>
-                                    <Label>محل سکونت</Label>
-                                    <Field
-                                        name='city'
-                                        component={AdaptedSelect}
-                                        validate={value => value ? undefined : 'واردن کردن محل سکونت اجباری میباشد'}
-                                        control
-                                    >
-                                        <option value=''></option>
-                                        {cities && cities.map((item, index) => (
-                                            <option value={item.id} key={index}>{item.name}</option>
-                                        ))}
-                                    </Field>
-                                    <Error name='city' />
-                                </FormGroup>
-
+                                <RegisterForm
+                                    Field={Field}
+                                    FormData={values}
+                                    StepConfig={Config}
+                                    onMapClick={onMapClick}
+                                    MobileValidator={MobileValidator}
+                                    ValidateShebaNum={ValidateShebaNum}
+                                    values={values}
+                                />
                                 <SubmitButton
                                     Text='ویرایش'
                                     values={values}

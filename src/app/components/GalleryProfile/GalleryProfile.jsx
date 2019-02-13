@@ -6,13 +6,21 @@ import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import queryString from 'query-string';
-import SecurityManager from '../../security/SecurityManager'
-import { LinearTabs } from '../ui-components/Tabs/Tabs'
-import { Saves, Settings, ReportBug } from './GalleryProfile'
+import { Toast } from '../Toast/Toast';
 
-import Login from '../../login/Login';
+
+import SecurityManager from '../../security/SecurityManager'
+import Modal from '../ui-components/Modal/Modal'
+
+import { LinearTabs } from '../ui-components/Tabs/Tabs'
+import { Tabz, Settings, Notification, Transactions, ReportBug } from './GalleryProfileTabs'
+import { Img } from '../General';
+
 import Urls from '../Urls';
 import Section from '../Section/Section';
+
+import NumbersConvertor from '../NumbersConvertor';
+import ThousandSeparator from '../ThousandSeparator';
 
 import DefaultStyle from '../../static/scss/_boxStyle.scss'
 import styles from './GalleryProfile.scss'
@@ -33,15 +41,31 @@ class GalleryProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            config: {},
+            config: [],
             tabs: [
                 {
-                    title: 'ذخیره شده‌ها',
-                    value: 'saves'
+                    title: 'آثار',
+                    value: 'arts'
+                },
+                {
+                    title: 'هنرمندان',
+                    value: 'artists'
+                },
+                {
+                    title: 'نمایشگاه‌ها',
+                    value: 'shows'
                 },
                 {
                     title: 'تنظیمات',
                     value: 'settings'
+                },
+                {
+                    title: 'رخدادها',
+                    value: 'notification'
+                },
+                {
+                    title: 'تراکنش‌ها',
+                    value: 'transactions'
                 },
                 {
                     title: 'گزارش باگ',
@@ -55,7 +79,7 @@ class GalleryProfile extends React.Component {
     }
     getConfig = (slug) => {
         axios
-            .get(`${Urls().api()}/client-app/client/profile/`)
+            .get(`${Urls().api()}/gallery-app/panel/`)
             .then(response => {
                 this.setState({
                     config: response.data
@@ -66,11 +90,23 @@ class GalleryProfile extends React.Component {
     tabComponents = (tab) => {
         var component;
         switch (tab) {
-            case 'saves':
-                component = <Saves />;
+            case 'arts':
+                component = <Tabz type='art' />;
+                break;
+            case 'artists':
+                component = <Tabz type='artist' />;
+                break;
+            case 'shows':
+                component = <Tabz type='show' />;
                 break;
             case 'settings':
-                component = <Settings />;
+                component = <Settings Config={this.state.config} />;
+                break;
+            case 'notification':
+                component = <Notification />;
+                break;
+            case 'transactions':
+                component = <Transactions />;
                 break;
             case 'report':
                 component = <ReportBug />;
@@ -82,53 +118,57 @@ class GalleryProfile extends React.Component {
     }
 
 
-    onFollowClick = (id) => {
-        axios.post(`${Urls().api()}/follow/toggle/`, {
-            id: id,
-            type: 'galleries'
-        }).then((response) => {
-            this.setState({
-                config: {
-                    ...this.state.config,
-                    is_flw: response.data.state
-                }
-            });
-        })
-    }
-    openModal = value => {
-        this.setState({
-            login: value
-        });
-    }
-
-
-
-
     render() {
         const parsed = queryString.parse(location.search);
         const { config, tabs } = this.state;
-        const isLogined = SecurityManager().isLogined();
 
         return (
             <React.Fragment>
-
                 <Section ExtraClass={'content singlePage'}>
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <div className='section_header_single'>
-                                    <h1>{config.name}</h1>
-                                </div>
+                                <div className={styles.user}>
+                                    {config.logo && config.logo !== '' ?
+                                        <Img
+                                            img={config.logo}
+                                            alt={config.name}
+                                            width={100}
+                                            style={{
+                                                minWidth: 50
+                                            }}
+                                        />
+                                        :
+                                        <img src='/static/img/avatar.png' alt={config.name} />
+                                    }
+                                    <div className="detail">
+                                        <div className="info">
+                                            <h1>{config.name}</h1>
+                                        </div>
+                                        {config.saved_art_count !== 0 &&
+                                            <span>{NumbersConvertor().convertToPersian(config.saved_art_count)} اثر ذخیره شده دارید, </span>
+                                        }
+                                        {config.artist_follow_count !== 0 &&
+                                            <span>{NumbersConvertor().convertToPersian(config.artist_follow_count)} هنرمند دنبال میکنید, </span>
+                                        }
+                                        {config.medium_follow_count !== 0 &&
+                                            <span>{NumbersConvertor().convertToPersian(config.medium_follow_count)} بستر دنبال میکنید, </span>
+                                        }
+                                        {config.genre_follow_count !== 0 &&
+                                            <span>{NumbersConvertor().convertToPersian(config.genre_follow_count)} ژانر دنبال میکنید, </span>
+                                        }
+                                    </div>
 
+                                </div>
                                 <Router>
                                     <React.Fragment>
-                                        {tabs ? <LinearTabs tabs={tabs} slug={`${Urls().profile()}`} /> : null}
+                                        <LinearTabs tabs={tabs} slug={`${Urls().GalleryDashboard()}`} />
                                         <div className={styles.content}>
 
                                             {tabs && tabs.map((tabs, index) => (
                                                 <Route
                                                     key={index}
-                                                    path={`${Urls().profile()}${tabs.value}`}
+                                                    path={`${Urls().GalleryDashboard()}${tabs.value}`}
                                                     render={() => this.tabComponents(tabs.value)}
                                                 />
                                             ))}
@@ -139,11 +179,7 @@ class GalleryProfile extends React.Component {
                         </Row>
                     </Container>
                 </Section>
-                <Login
-                    hasModal
-                    modalisOpen={this.state.login}
-                    openModal={this.openModal}
-                />
+
             </React.Fragment>
         )
     }

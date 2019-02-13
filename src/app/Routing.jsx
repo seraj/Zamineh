@@ -98,13 +98,10 @@ export default function Routing({ isLogined }) {
                 />
 
                 <PrivateRoute
-                    path={`${Urls().profile()}`}
+                    path={Urls().profile()}
                     component={Profile}
                 />
-                <PrivateRoute
-                    path={`${Urls().galleryProfile()}`}
-                    component={GalleryProfile}
-                />
+
 
 
                 {/* Magzine */}
@@ -143,7 +140,15 @@ export default function Routing({ isLogined }) {
 
 
 
-                {/* Artist & Gallery Registration */}
+                {/* start Artist & Gallery Routing */}
+                <GalleryPrivateRoute
+                    path={Urls().GalleryDashboard()}
+                    component={GalleryProfile}
+                />
+                <ArtistPrivateRoute
+                    path={Urls().ArtistDashboard()}
+                    component={GalleryProfile}
+                />
                 <Route
                     exact
                     path={Urls().ArtistRegistration()}
@@ -174,7 +179,7 @@ export default function Routing({ isLogined }) {
                     path={Urls().GalleryRegistration()}
                     render={() => <GalleryRegistration />}
                 />
-
+                {/* end Artist & Gallery Routing */}
 
                 <Route
                     path={`${Urls().arts()}:artsId`}
@@ -234,6 +239,42 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
                     <Redirect
                         to={{
                             pathname: "/login",
+                            state: { from: props.location }
+                        }}
+                    />
+                )
+        }
+    />
+);
+
+const GalleryPrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+        {...rest}
+        render={props =>
+            SecurityManager().hasGalleryRegToken() ? (
+                <Component {...props} />
+            ) : (
+                    <Redirect
+                        to={{
+                            pathname: Urls().GalleryRegistration(),
+                            state: { from: props.location }
+                        }}
+                    />
+                )
+        }
+    />
+);
+
+const ArtistPrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+        {...rest}
+        render={props =>
+            SecurityManager().hasArtistRegToken() ? (
+                <Component {...props} />
+            ) : (
+                    <Redirect
+                        to={{
+                            pathname: Urls().ArtistRegistration(),
                             state: { from: props.location }
                         }}
                     />

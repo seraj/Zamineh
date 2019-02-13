@@ -25,7 +25,6 @@ import RegisterMetaTags from '../RegisterMetaTags';
 import { RegisterForm } from './RegistrationFrom';
 
 import {
-    Step1Validation,
     MobileValidator,
     ValidateShebaNum
 } from '../artist/ArtistFormValidation';
@@ -118,7 +117,6 @@ class GalleryRegistration extends React.Component {
                     })
                 }
             })
-
     }
 
     getFormData = () => {
@@ -244,7 +242,7 @@ class GalleryRegistration extends React.Component {
                             successBox: true,
                             message: {
                                 type: 'success',
-                                title: 'گالری شما با موفقیت ثبد شد',
+                                title: 'گالری شما با موفقیت ثبت شد',
                                 message: 'گالری مورد نظر ثبت شده.بزودی به صفحه پروفایل انتقال میابید.',
                             },
                             timer: 15,

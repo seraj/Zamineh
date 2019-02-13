@@ -6,18 +6,18 @@ import { Toast } from '../components/Toast/Toast';
 
 axios.defaults.baseURL = Urls().api();
 axios.defaults.timeout = 10000;
-const RegistrationPage = window.location.href.includes('registration');
-const ArtistRegistrationPage = window.location.href.includes(Urls().ArtistRegistration());
-const GalleryRegistrationPage = window.location.href.includes(Urls().GalleryRegistration());
+const Panels = window.location.href.includes('panel/');
+const ArtistPanels = window.location.href.includes(Urls().ArtistProfile());
+const GalleryPanels = window.location.href.includes(Urls().GalleryProfile());
 
 axios
     .interceptors
     .request
     .use(function (config) {
         var token = '';
-        if (RegistrationPage) {
+        if (Panels) {
 
-            token = GalleryRegistrationPage ?
+            token = GalleryPanels ?
                 SecurityManager().getGalleryRegAuthToken() : SecurityManager().getArtistRegAuthToken();
         } else {
             token = SecurityManager().getAuthToken();
@@ -49,9 +49,9 @@ axios.interceptors.response.use(undefined, err => {
         Toast('error', 'مشکلی رخ داده است.لطفا دوباره تلاش نمایید')
     }
     if (status === 401) {
-        if (RegistrationPage) {
+        if (Panels) {
 
-            if (GalleryRegistrationPage) {
+            if (GalleryPanels) {
                 if (!isRefreshing) {
                     isRefreshing = true;
                     SecurityManager().refreshGalleryRegToken().then(respaonse => {
@@ -67,7 +67,7 @@ axios.interceptors.response.use(undefined, err => {
                     SecurityManager().GalleryRegLogout();
                 }
             }
-            if (ArtistRegistrationPage) {
+            if (ArtistPanels) {
                 if (!isRefreshing) {
                     isRefreshing = true;
                     SecurityManager().refreshArtistRegToken().then(respaonse => {

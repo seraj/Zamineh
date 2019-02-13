@@ -24,9 +24,7 @@ export default function SecurityManager() {
                 });
         },
         isLogined() {
-
             var auth_token = cookie.load('access_token', { path: '/' });
-
             if (auth_token && auth_token != 'null') {
 
                 return true
@@ -92,17 +90,18 @@ export default function SecurityManager() {
 
 
         //Gallery Registration Cookies
+
         getGalleryRegAuthToken() {
-            return cookie.load('gallery_access_token', { path: Urls().GalleryRegistration() });
+            return cookie.load('gallery_access_token', { path: Urls().GalleryProfile() });
         },
         setGalleryRegAccessToken(token) {
-            return cookie.save('gallery_access_token', token, { path: Urls().GalleryRegistration() });
+            return cookie.save('gallery_access_token', token, { path: Urls().GalleryProfile() });
         },
         setGalleryRegRefreshToken(token) {
-            return cookie.save('gallery_refresh_token', token, { path: Urls().GalleryRegistration() });
+            return cookie.save('gallery_refresh_token', token, { path: Urls().GalleryProfile() });
         },
         hasGalleryRegToken() {
-            var gallery_access_token = cookie.load('gallery_access_token', { path: Urls().GalleryRegistration() });
+            var gallery_access_token = cookie.load('gallery_access_token', { path: Urls().GalleryProfile() });
             if (gallery_access_token && gallery_access_token != 'null') {
                 return true
             } else {
@@ -110,20 +109,20 @@ export default function SecurityManager() {
             }
         },
         setGalleryRegClientIDSecret(id, secret) {
-            cookie.save('gallery_auth_client_id', id, { path: Urls().GalleryRegistration() });
-            cookie.save('gallery_auth_client_secret', secret, { path: Urls().GalleryRegistration() });
+            cookie.save('gallery_auth_client_id', id, { path: Urls().GalleryProfile() });
+            cookie.save('gallery_auth_client_secret', secret, { path: Urls().GalleryProfile() });
         },
         refreshGalleryRegToken: function () {
             return axios.post(`${Urls().api()}/o/auth-token/`, {
-                client_id: cookie.load('gallery_auth_client_id', { path: Urls().GalleryRegistration() }),
-                client_secret: cookie.load('gallery_auth_client_secret', { path: Urls().GalleryRegistration() }),
-                refresh_token: cookie.load('gallery_refresh_token', { path: Urls().GalleryRegistration() }),
+                client_id: cookie.load('gallery_auth_client_id', { path: Urls().GalleryProfile() }),
+                client_secret: cookie.load('gallery_auth_client_secret', { path: Urls().GalleryProfile() }),
+                refresh_token: cookie.load('gallery_refresh_token', { path: Urls().GalleryProfile() }),
                 grant_type: 'refresh_token'
             }
             )
         },
         GalleryRegLogout() {
-            cookie.save('gallery_access_token', null, { path: Urls().GalleryRegistration() });
+            cookie.save('gallery_access_token', null, { path: Urls().GalleryProfile() });
             cookie.remove('gallery_access_token');
             cookie.remove('gallery_refresh_token')
         },
@@ -134,16 +133,16 @@ export default function SecurityManager() {
 
         //Artist Registration Cookies
         getArtistRegAuthToken() {
-            return cookie.load('artist_access_token', { path: Urls().ArtistRegistration() });
+            return cookie.load('artist_access_token', { path: Urls().ArtistProfile() });
         },
         setArtistRegAccessToken(token) {
-            return cookie.save('artist_access_token', token, { path: Urls().ArtistRegistration() });
+            return cookie.save('artist_access_token', token, { path: Urls().ArtistProfile() });
         },
         setArtistRegRefreshToken(token) {
-            return cookie.save('artist_refresh_token', token, { path: Urls().ArtistRegistration() });
+            return cookie.save('artist_refresh_token', token, { path: Urls().ArtistProfile() });
         },
         hasArtistRegToken() {
-            var artist_access_token = cookie.load('artist_access_token', { path: Urls().ArtistRegistration() });
+            var artist_access_token = cookie.load('artist_access_token', { path: Urls().ArtistProfile() });
             if (artist_access_token && artist_access_token != 'null') {
                 return true
             } else {
@@ -152,19 +151,19 @@ export default function SecurityManager() {
         },
         refreshArtistRegToken: function () {
             return axios.post(`${Urls().api()}/o/auth-token/`, {
-                client_id: cookie.load('artist_auth_client_id', { path: Urls().ArtistRegistration() }),
-                client_secret: cookie.load('artist_auth_client_secret', { path: Urls().ArtistRegistration() }),
-                refresh_token: cookie.load('artist_refresh_token', { path: Urls().ArtistRegistration() }),
+                client_id: cookie.load('artist_auth_client_id', { path: Urls().ArtistProfile() }),
+                client_secret: cookie.load('artist_auth_client_secret', { path: Urls().ArtistProfile() }),
+                refresh_token: cookie.load('artist_refresh_token', { path: Urls().ArtistProfile() }),
                 grant_type: 'refresh_token'
             }
             )
         },
         setArtistRegClientIDSecret(id, secret) {
-            cookie.save('artist_auth_client_id', id, { path: Urls().ArtistRegistration() });
-            cookie.save('artist_auth_client_secret', secret, { path: Urls().ArtistRegistration() });
+            cookie.save('artist_auth_client_id', id, { path: Urls().ArtistProfile() });
+            cookie.save('artist_auth_client_secret', secret, { path: Urls().ArtistProfile() });
         },
         ArtistRegLogout() {
-            cookie.save('artist_access_token', null, { path: Urls().ArtistRegistration() });
+            cookie.save('artist_access_token', null, { path: Urls().ArtistProfile() });
             cookie.remove('artist_access_token');
             cookie.remove('artist_refresh_token')
         },
@@ -174,16 +173,16 @@ export default function SecurityManager() {
 
             if (type == 'secret') {
                 if (page == 'Gallery') {
-                    return cookie.load('gallery_auth_client_secret', { path: Urls().GalleryRegistration() })
+                    return cookie.load('gallery_auth_client_secret', { path: Urls().GalleryProfile() })
                 } else if (page == 'Artist') {
-                    return cookie.load('artist_auth_client_secret', { path: Urls().ArtistRegistration() })
+                    return cookie.load('artist_auth_client_secret', { path: Urls().ArtistProfile() })
                 }
             }
             if (type == 'id') {
                 if (page == 'Gallery') {
-                    return cookie.load('gallery_auth_client_id', { path: Urls().GalleryRegistration() })
+                    return cookie.load('gallery_auth_client_id', { path: Urls().GalleryProfile() })
                 } else if (page == 'Artist') {
-                    return cookie.load('artist_auth_client_id', { path: Urls().ArtistRegistration() })
+                    return cookie.load('artist_auth_client_id', { path: Urls().ArtistProfile() })
                 }
             }
         }
