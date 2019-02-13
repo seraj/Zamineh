@@ -177,22 +177,6 @@ export const Report = (props) => {
                         initialValues={values}
                         render={({ handleSubmit, form, submitting, pristine, values }) => (
                             <form onSubmit={handleSubmit}>
-                                {/* <FormGroup>
-                                    <Label>نوع گزارش</Label>
-                                    <Field
-                                        name='city'
-                                        component={AdaptedSelect}
-                                        validate={value => value ? undefined : 'واردن کردن نوع گزارش اجباری میباشد'}
-                                        control
-                                    >
-                                        <option value=''></option>
-                                        {cities && cities.map((item, index) => (
-                                            <option value={item.id} key={index}>{item.name}</option>
-                                        ))}
-                                    </Field>
-                                    <Error name='city' />
-                                </FormGroup> */}
-
 
                                 <FormGroup>
                                     <Label>گزارش</Label>
@@ -207,6 +191,49 @@ export const Report = (props) => {
                                 </FormGroup>
                                 <SubmitButton
                                     Text='ثبت گزارش'
+                                    values={values}
+                                    Loading={loading}
+                                />
+                            </form>
+                        )}
+                    />
+                </Col>
+            </React.Fragment>
+
+        </Row>
+    )
+};
+
+
+export const AddCredit = (props) => {
+    const {
+        handleSubmit,
+        loading,
+        btn
+    } = props;
+    return (
+        <Row>
+
+            <React.Fragment>
+                <Col xs={12}>
+                    <Form
+                        onSubmit={handleSubmit}
+                        render={({ handleSubmit, form, submitting, pristine, values }) => (
+                            <form onSubmit={handleSubmit}>
+
+                                <FormGroup>
+                                    <Label>مبلغ مورد نظر</Label>
+                                    <Field
+                                        name='price'
+                                        component={AdaptedInput}
+                                        placeholder='مبلغ مورد نظر'
+                                        validate={value => value ? undefined : 'وارد کردن مبلغ الزامی میباشد'}
+                                        control
+                                    />
+                                    <Error name='price' />
+                                </FormGroup>
+                                <SubmitButton
+                                    Text={btn}
                                     values={values}
                                     Loading={loading}
                                 />

@@ -45,10 +45,7 @@ export const TransactionList = ({ item }) => {
                     <hr />
                     <h2>جزئیات پرداخت</h2>
                     <ul className='list'>
-                        <li>
-                            <i className='zicon icon-42'></i>
-                            مبلغ کل تراکنش :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.total_price))} تومان</span>
-                        </li>
+
                         {item.price.discount_price !== 0 &&
                             <li>
                                 <i className='zicon icon-37'></i>
@@ -69,6 +66,15 @@ export const TransactionList = ({ item }) => {
                                 مالیات :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.tax_price))} تومان</span>
                             </li>
                         }
+                        <li>
+                            <i className='zicon icon-42'></i>
+                            مجموع قیمت آثار :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.total_price))} تومان</span>
+                        </li>
+                        <li>
+                            <i className='zicon icon-42'></i>
+                            کل مبلغ پرداختی :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.payment_price))} تومان</span>
+                        </li>
+
                     </ul>
 
                     {item.cart && item.cart.length > 0 &&
@@ -79,7 +85,14 @@ export const TransactionList = ({ item }) => {
                             <div className="orders">
                                 {item.cart.map((order, index) => (
                                     <a key={index} href={`${Urls().arts()}${order.slug}`} className="order">
-                                        <Img img={order.img.img} alt={order.name} width={70 * order.img.ratio} />
+                                        <Img
+                                            img={order.img.img}
+                                            alt={order.name}
+                                            width={70 * order.img.ratio}
+                                            style={{
+                                                minWidth: order.img.img !== '' ? 80 : 0
+                                            }}
+                                        />
                                         <div className="details">
                                             <span className='bold'>{order.name}</span>
                                             <a href={`${Urls().artist()}${order.artist.slug}`}>

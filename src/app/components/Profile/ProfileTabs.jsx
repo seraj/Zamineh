@@ -18,9 +18,6 @@ import { EditProfile, Report } from './ProfileForms'
 import RecomArtist from '../../home/components/RecomArtist';
 import Categories from '../../home/components/Categories';
 
-import NumbersConvertor from '../NumbersConvertor';
-import ThousandSeparator from '../ThousandSeparator';
-
 import styles from './Profile.scss'
 
 const history = createBrowserHistory()
@@ -268,11 +265,14 @@ export const Transactions = () => {
             }
 
             <section className={styles.tabSection}>
-                <h2 className={styles.title}>رخدادها</h2>
+                <h2 className={styles.title}>تراکنش‌ها</h2>
                 {Data &&
+                    Data.transaction_set.length > 0 ?
                     Data.transaction_set.map((item, index) => (
                         <TransactionList key={index} item={item} />
                     ))
+                    :
+                    <h2>شما تابحال تراکنشی ثبت نکرده‌اید.</h2>
                 }
             </section>
 

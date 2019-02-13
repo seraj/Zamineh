@@ -6,13 +6,23 @@ import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import queryString from 'query-string';
+import { Toast } from '../Toast/Toast';
+
+
 import SecurityManager from '../../security/SecurityManager'
+import Modal from '../ui-components/Modal/Modal'
+import { AddCredit } from './ProfileForms'
+
 import { LinearTabs } from '../ui-components/Tabs/Tabs'
 import { Saves, Settings, Notification, Transactions, ReportBug } from './ProfileTabs'
+import { Img } from '../General';
 
 import Login from '../../login/Login';
 import Urls from '../Urls';
 import Section from '../Section/Section';
+
+import NumbersConvertor from '../NumbersConvertor';
+import ThousandSeparator from '../ThousandSeparator';
 
 import DefaultStyle from '../../static/scss/_boxStyle.scss'
 import styles from './Profile.scss'
@@ -34,6 +44,11 @@ class Profile extends React.Component {
         super(props);
         this.state = {
             config: {},
+            credit: {
+                modal: false,
+                btn: 'افزایش اعتبار',
+                loading: false
+            },
             tabs: [
                 {
                     title: 'ذخیره شده‌ها',
@@ -97,27 +112,74 @@ class Profile extends React.Component {
 
 
     onFollowClick = (id) => {
-        axios.post(`${Urls().api()}/follow/toggle/`, {
-            id: id,
-            type: 'galleries'
-        }).then((response) => {
-            this.setState({
-                config: {
-                    ...this.state.config,
-                    is_flw: response.data.state
-                }
-            });
-        })
+        console.log('not Handled!')
+        // axios.post(`${Urls().api()}/follow/toggle/`, {
+        //     id: id,
+        //     type: 'galleries'
+        // }).then((response) => {
+        //     this.setState({
+        //         config: {
+        //             ...this.state.config,
+        //             is_flw: response.data.state
+        //         }
+        //     });
+        // })
     }
-    openModal = value => {
+    addCreditSubmit = values => {
         this.setState({
-            login: value
-        });
-    }
+            credit: {
+                ...this.state.credit,
+                loading: true
+            },
+        })
+        axios
+            .post(`${Urls().api()}/client-app/credit/charge/`, values,
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    }
+                })
+            .then(({ data }) => {
+                console.log(data)
+                this.setState({
+                    credit: {
+                        ...this.state.credit,
+                        btn: 'در حال انتقال به بانک'
+                    }
+                })
+                window.location.replace(data.url)
 
+            })
+            .catch(err => {
+                Toast('warning', `مشکلی پیش آمده است!`);
+                this.setState({
+                    credit: {
+                        ...this.state.credit,
+                        loading: false
+                    },
+                })
+            })
+    }
+    openCreditModal = value => {
+        this.setState({
+            credit: {
+                ...this.state.credit,
+                modal: value
+            },
+        });
+    };
+    closeCreditModal = () => {
+        this.setState({
+            credit: {
+                ...this.state.credit,
+                modal: false
+            },
+        });
+    };
     render() {
         const parsed = queryString.parse(location.search);
-        const { config, tabs } = this.state;
+        const { config, tabs, credit } = this.state;
         const isLogined = SecurityManager().isLogined();
 
         return (
@@ -126,12 +188,42 @@ class Profile extends React.Component {
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <div className='section_header_single'>
-                                    <h1>{config.name}</h1>
+                                <div className={styles.user}>
+                                    {config.profile_pic !== '' ?
+                                        <Img
+                                            img={config.profile_pic}
+                                            alt={config.name}
+                                            width={100}
+                                            style={{
+                                                minWidth: 50
+                                            }}
+                                        />
+                                        :
+                                        <img src='/static/img/avatar.png' alt={config.name} />
+                                    }
+                                    <div className="detail">
+                                        <div className="info">
+                                            <h1>{config.name}</h1>
+                                            <div onClick={() => this.openCreditModal(true)} className="creditbtn">افزایش اعتبار</div>
+                                        </div>
+                                        {config.saved_art_count !== 0 &&
+                                            <span>{NumbersConvertor().convertToPersian(config.saved_art_count)} اثر ذخیره شده دارید, </span>
+                                        }
+                                        {config.artist_follow_count !== 0 &&
+                                            <span>{NumbersConvertor().convertToPersian(config.artist_follow_count)} هنرمند دنبال میکنید, </span>
+                                        }
+                                        {config.medium_follow_count !== 0 &&
+                                            <span>{NumbersConvertor().convertToPersian(config.medium_follow_count)} بستر دنبال میکنید, </span>
+                                        }
+                                        {config.genre_follow_count !== 0 &&
+                                            <span>{NumbersConvertor().convertToPersian(config.genre_follow_count)} ژانر دنبال میکنید, </span>
+                                        }
+                                    </div>
+
                                 </div>
                                 <Router>
                                     <React.Fragment>
-                                        {tabs ? <LinearTabs tabs={tabs} slug={`${Urls().profile()}`} /> : null}
+                                        <LinearTabs tabs={tabs} slug={`${Urls().profile()}`} />
                                         <div className={styles.content}>
 
                                             {tabs && tabs.map((tabs, index) => (
@@ -148,11 +240,22 @@ class Profile extends React.Component {
                         </Row>
                     </Container>
                 </Section>
-                <Login
-                    hasModal
-                    modalisOpen={this.state.login}
-                    openModal={this.openModal}
-                />
+
+                <Modal
+                    isOpen={credit.modal}
+                    toggle={this.closeCreditModal}
+                    title={'افزایش اعتبار'}
+                >
+                    <Row>
+                        <Col xs={12}>
+                            <AddCredit
+                                loading={credit.loading}
+                                btn={credit.btn}
+                                handleSubmit={this.addCreditSubmit}
+                            />
+                        </Col>
+                    </Row>
+                </Modal>
             </React.Fragment>
         )
     }

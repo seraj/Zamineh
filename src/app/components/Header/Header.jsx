@@ -196,8 +196,7 @@ class AppHeader extends React.Component {
                                                     stroke='#000'
                                                 />
                                                 <div className={`${styles.zaminehDropdown}-menu`}>
-                                                    <a href='/profile'>پروفایل</a>
-                                                    <a href='/profile'>پروفایل</a>
+                                                    <Link to={Urls().profile()}>پروفایل</Link>
                                                     <a onClick={this.logout}>خروج</a>
                                                 </div>
                                             </span>

@@ -24,7 +24,7 @@ export default function Urls() {
             return '/medium/'
         },
         profile() {
-            return '/profile/'
+            return '/client/profile/'
         },
 
 

@@ -12,7 +12,61 @@
 }
 
 
+:local(.user) {
+    margin-top: 20px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 
+    .detail {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+        margin-top: 15px;
+
+        .info {
+            max-width: 100%;
+
+
+            h1 {
+                display: inline;
+                font-size: 30px;
+                font-weight: bold;
+                line-height: 1.5;
+                margin-left: 10px;
+            }
+
+            .creditbtn {
+                display: inline;
+                background: $primary-color;
+                display: inline;
+                font-weight: bold;
+                cursor: pointer;
+                color: #fff;
+                padding: 5px;
+                transition: .2s background ease;
+                border-radius: 3px;
+
+                &:hover {
+                    background: $secondery-color
+                }
+            }
+        }
+
+    }
+
+    img {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 50%;
+        margin-left: 15px;
+    }
+}
 
 :local(.overiewAbout) {
     margin-bottom: 60px;
