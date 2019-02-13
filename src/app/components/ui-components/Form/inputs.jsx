@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './inputs.scss'
 
-export const Checkbox = ({ id, label, onChange, checked = false }) => {
+export const Checkbox = ({ id, label, onChange = null, checked = false }) => {
     return (
         <React.Fragment>
             <div class={`${styles.checkbox} checkbox`}>

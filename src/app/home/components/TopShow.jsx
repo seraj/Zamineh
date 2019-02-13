@@ -18,7 +18,7 @@ class TopShow extends React.Component {
                     <a href={Urls().show() + item.slug} >
                         <div className='feature'>
                             <div className='img'>
-                                <Img img={item.img} alt={item.title} />
+                                <Img img={item.img} alt={item.title} divHeight='44px' divWidth='60px' />
                             </div>
                             <div className='details'>
                                 <h3>{item.title}</h3>

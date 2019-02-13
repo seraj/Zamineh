@@ -1,13 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import cookie from 'react-cookies';
-
+import Row from 'reactstrap/lib/Row';
+import Container from 'reactstrap/lib/Container';
+import Col from 'reactstrap/lib/Col';
 import LoginForm from './LoginForm';
 import SecurityManager from '../security/SecurityManager';
 import NumbersConvertor from '../components/NumbersConvertor';
 import Urls from '../components/Urls';
 import moment from 'moment-jalaali';
 import LoginModal from './LoginModal';
+import Section from '../components/Section/Section';
 
 class Login extends React.Component {
   constructor(props) {
@@ -112,17 +115,13 @@ class Login extends React.Component {
 
     axios
       .post(`${Urls().api()}/client-app/login/`, {
-        client_id: cookie.load('client_id', { path: '/' }),
-        client_secret: cookie.load('client_secret', { path: '/' }),
+        client_id: cookie.load('auth_client_id', { path: '/' }),
+        client_secret: cookie.load('auth_client_secret', { path: '/' }),
         username: this.state.username,
         password: values.password,
         grant_type: 'password'
       })
       .then(response => {
-        // localStorage.setItem('access_token', response.data.access_token);
-        // localStorage.setItem('refresh_token', response.data.refresh_token);
-        // localStorage.setItem('token_type', response.data.token_type);
-        // cookie.save('token_type', response.data.token_type, { path: '/' });
         this.setState({ loading: false })
         SecurityManager().setAccessToken(response.data.access_token);
         SecurityManager().setRefreshToken(response.data.refresh_token);
@@ -210,7 +209,8 @@ class Login extends React.Component {
   };
 
   render() {
-    const { modalisOpen } = this.props;
+    const { modalisOpen, LoginPage } = this.props;
+
     return (
       <React.Fragment>
 
@@ -222,7 +222,7 @@ class Login extends React.Component {
             birthday_end={this.state.birthday_end}
           />
         )}
-        {!this.state.hasModal && (
+        {!this.state.hasModal && !LoginPage &&
           <LoginForm
             onCheckMobileNumberClick={this.onCheckMobileNumberClick}
             loginSubmit={this.loginSubmit}
@@ -242,7 +242,37 @@ class Login extends React.Component {
             username={this.state.username}
             loading={this.state.loading}
           />
-        )}
+
+        }
+        {LoginPage &&
+          <Section ExtraClass={'content singlePage'}>
+            <Container>
+              <Row className='justify-content-center'>
+                <Col lg={5} md={8} sm={10} xs={12}>
+                  <LoginForm
+                    onCheckMobileNumberClick={this.onCheckMobileNumberClick}
+                    loginSubmit={this.loginSubmit}
+                    confirmMobileCode={this.confirmMobileCode}
+                    registerSubmit={this.registerSubmit}
+                    cities={this.state.cities}
+                    checkMobileNumberStep1={this.state.checkMobileNumberStep1}
+                    loginForm={this.state.loginForm}
+                    isMobileValidationStep2={this.state.isMobileValidationStep2}
+                    signUpFormStep3={this.state.signUpFormStep3}
+                    onChangeDatepicker={this.onChangeDatepicker}
+                    showLoginError={this.state.showLoginError}
+                    errorMessage={this.state.errorMessage}
+
+                    birthday_start={this.state.birthday_start}
+                    birthday_end={this.state.birthday_end}
+                    username={this.state.username}
+                    loading={this.state.loading}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          </Section>
+        }
       </React.Fragment>
     );
   }

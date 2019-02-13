@@ -7,6 +7,7 @@ import Col from 'reactstrap/lib/Col';
 import queryString from 'query-string';
 import SecurityManager from '../../../security/SecurityManager'
 
+import { Tabs } from '../../ui-components/Tabs/Tabs'
 import { Overview, Shows, Artists, Artworks, Articles } from './section/GalleryTabs'
 
 import Login from '../../../login/Login';
@@ -16,24 +17,6 @@ import Section from '../../Section/Section';
 import DefaultStyle from '../../../static/scss/_boxStyle.scss'
 import styles from './Gallery.scss'
 
-
-function Tabs({ tabs, slug }) {
-    const url = window.location.href;
-    return (
-        <nav className={styles.tabs}>
-            {tabs && tabs.map((tab, index) => (
-                <React.Fragment>
-                    <Link
-                        key={index}
-                        to={`${Urls().gallery()}${slug}${tab.value}`}
-                        className={url.includes(tab.value) ? 'active' : ''}
-                    >{tab.title}</Link>
-                    <div className={styles.separator} />
-                </React.Fragment>
-            ))}
-        </nav>
-    )
-}
 
 function NothingRendered() {
     return (
@@ -153,7 +136,7 @@ class Gallery extends React.Component {
 
                                 <Router>
                                     <React.Fragment>
-                                        {config && config.tab_bars ? <Tabs tabs={config.tab_bars} slug={this.props.match.params.slug} /> : null}
+                                        {config && config.tab_bars ? <Tabs tabs={config.tab_bars} slug={`${Urls().gallery()}${this.props.match.params.slug}`} /> : null}
                                         <div className={styles.content}>
 
                                             {config && config.tab_bars && config.tab_bars.map((tabs, index) => (

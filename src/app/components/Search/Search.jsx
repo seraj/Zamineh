@@ -7,7 +7,9 @@ import SearchMetaTags from './SearchMetaTags'
 import { IconArrowLeft } from '../../components/Icons';
 import ModelManager from '../../components/Models';
 import Pagination from '../Pagination/Pagination';
-import { Spinner, Loading } from '../Spinner/Spinner';
+import { Img } from '../../components/General';
+
+import { Loading } from '../Spinner/Spinner';
 import styles from './Search.scss'
 
 
@@ -23,7 +25,7 @@ const ResultsItem = (props) => {
             {(props.item.model != 'artist' && props.item.model != 'category') &&
                 <div className={`${styles.ResultItems}-thumbnail`}>
                     <div className={`${styles.ResultItems}-fallback`}>
-                        <img src={props.item.img} width='70' height='70' />
+                        <Img img={props.item.img.img} width='70' height='70' divHeight='70px' divWidth='70px' />
                     </div>
                 </div>
             }
@@ -37,7 +39,7 @@ const ResultsItem = (props) => {
                         {props.item.artworks != '' &&
                             <div className={`${styles.ResultItems}-works`}>
                                 {props.item.artworks.map(works => (
-                                    <img key={works.id} src={works.img} alt={works.name} />
+                                    <Img key={works.id} img={works.img} alt={works.name} />
                                 ))}
                             </div>
                         }

@@ -111,16 +111,20 @@ export function LimitContent(content, limit) {
     const LimitedContent = content.substring(0, limit) + '...';
     return LimitedContent
 }
-export function Img({ img, alt, width, height, divHeight, style }) {
+export function Img({ img, alt, width, height, divWidth, divHeight, style }) {
     return (
         <React.Fragment>
-            {img ?
+            {(img != '' && img !== undefined) ?
                 <img src={img} alt={alt} width={width} height={height} />
                 :
                 <div
                     style={style ?
                         style :
-                        { background: '#e0e0e0', width: '100%', height: divHeight ? divHeight : `100%` }
+                        {
+                            background: '#e0e0e0',
+                            width: divWidth ? divWidth : '100%',
+                            height: divHeight ? divHeight : `100%`
+                        }
                     }
                 />
             }

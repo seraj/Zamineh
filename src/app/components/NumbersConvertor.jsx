@@ -1,17 +1,9 @@
 export default function NumbersConvertor() {
-
-
-
     return {
-
-
         convertArabicToLatin: function (input) {
             if (input == undefined)
                 return;
             var inLatin = '',
-
-
-
                 mapping = {
                     '١': '1',
                     '٢': '2',
@@ -24,7 +16,6 @@ export default function NumbersConvertor() {
                     '٩': '9',
                     '٠': '0',
                 }
-
             input = input.toString();
             for (var i = 0; i < input.length; i++)
                 if (mapping[input[i]])
@@ -33,7 +24,6 @@ export default function NumbersConvertor() {
                     inLatin += input[i];
 
             return inLatin;
-
         },
 
         convertToLatin: function (input) {
@@ -53,21 +43,15 @@ export default function NumbersConvertor() {
                     '۰': '0'
                 };
 
-
-
-
             input = input.toString();
             for (var i = 0; i < input.length; i++)
                 if (mapping[input[i]])
                     inLatin += mapping[input[i]];
                 else
                     inLatin += input[i];
-
-
             inLatin = this.convertArabicToLatin(inLatin)
 
             return inLatin;
-
         },
         convertToPersian: function (input) {
             if (input == undefined || input == null)

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Urls from '../../Urls'
+import { Img } from '../../General'
 import styles from './SearchForm.scss'
 const ResultsItem = (props) => {
     return (
@@ -8,7 +9,7 @@ const ResultsItem = (props) => {
             href={`${Urls().withProps(props.item.model)}${props.item.slug}`}
             className={styles.resultItems}
         >
-            <img src={props.item.img} alt={props.item.name} width='32px' height='32px' />
+            <Img img={props.item.img} alt={props.item.name} width='32px' height='32px' divHeight='32px' divWidth='32px' />
             <span>{props.item.name}</span>
         </a>
     )

@@ -208,7 +208,7 @@ class Galleries extends Component {
             default:
                 Galleries = '/';
         }
-        console.log(id, parentIndex, index)
+        // console.log(id, parentIndex, index)
         // console.log('clicked On', Galleries)
 
         axios.post(`${Urls().api()}/follow/toggle/`, {
@@ -224,7 +224,6 @@ class Galleries extends Component {
                 // console.log('ready for Shift')
                 // Galleries.splice(index, 1);
             }
-
         })
             .catch(function (error) {
 
@@ -247,7 +246,6 @@ class Galleries extends Component {
                             <div className='section_header_single'>
                                 <h1>همه‌ی {ModelManager().convertModelName('galleries')}</h1>
                                 <Link to={Urls().galleriesAZ()} className='view-all'>الف-ی</Link>
-
                             </div>
                         </Col>
                         <Col xs={12}>
@@ -309,7 +307,7 @@ class Galleries extends Component {
                     modalisOpen={this.state.login}
                     openModal={this.openModal}
                 />
-            </React.Fragment >
+            </React.Fragment>
         );
     }
 }

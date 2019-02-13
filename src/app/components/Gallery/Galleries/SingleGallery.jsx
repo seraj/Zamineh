@@ -109,7 +109,7 @@ export const SingleShowSet = (props) => (
                 </div>
             </div>
         </div>
-    </React.Fragment >
+    </React.Fragment>
 );
 export const SingleGallery = (props) => (
     <React.Fragment>
@@ -150,7 +150,7 @@ export const SingleGallery = (props) => (
 
             </div>
         </div>
-    </React.Fragment >
+    </React.Fragment>
 );
 
 

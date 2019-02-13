@@ -23,6 +23,11 @@ export default function Urls() {
         medium() {
             return '/medium/'
         },
+        profile() {
+            return '/profile/'
+        },
+
+
 
 
         // Galleries
@@ -97,8 +102,8 @@ export default function Urls() {
             return '/registration/gallery/add-exhibition';
         },
 
-        Profile() {
-            return '/profile'
-        }
+        galleryProfile() {
+            return '/registration/gallery/Profile'
+        },
     }
 }

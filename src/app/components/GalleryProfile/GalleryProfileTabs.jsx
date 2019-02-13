@@ -1,0 +1,252 @@
+import React, { useState, useEffect } from "react";
+import createBrowserHistory from "history/createBrowserHistory";
+import cookie from 'react-cookies';
+
+import axios from 'axios';
+import Urls from '../Urls'
+import { Toast } from '../Toast/Toast';
+
+import { FourColumnArtist, PaginationItem } from '../Gallery/Galleries/SingleGallery';
+import { Loading } from '../Spinner/Spinner';
+import Pagination from '../Pagination/Pagination';
+import { ThreeColumnArt, FourColumnArt } from '../ArtArtist/Arts';
+import { ResultsGrid } from '../Gallery/Galleries/SingleGallery';
+
+
+import { EditProfile, Report } from './GalleryProfileForms'
+import RecomArtist from '../../home/components/RecomArtist';
+import Categories from '../../home/components/Categories';
+
+
+import styles from './GalleryProfile.scss'
+
+const history = createBrowserHistory()
+
+export const Saves = () => {
+    const [initialized, setInitialized] = useState(false)
+    const [Data, setData] = useState()
+    const [savedArt, setsavedArt] = useState()
+    const [followedArtists, setFollowedArtists] = useState()
+    const [followedGalleries, setFollowedGalleries] = useState()
+    const [followedCats, setFollowedCats] = useState()
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        if (!initialized) {
+            getData('saves', setsavedArt)
+            getData('artists', setFollowedArtists)
+            getData('categories', setFollowedCats)
+            getData('galleries', setFollowedGalleries)
+            // getData('save',setsavedArt)
+            setInitialized(true)
+        }
+    })
+    const getData = (slug, Data) => {
+        axios.get(`${Urls().api()}/client-app/client/${slug}/`)
+            .then(({ data }) => {
+                Data(data)
+                setLoading(false)
+            });
+    }
+    const onFollowClick = () => {
+
+    }
+    return (
+        <React.Fragment>
+            {loading &&
+                <div style={{ height: 150 }}>
+                    <Loading background="#fff" />
+                </div>
+            }
+            {savedArt && savedArt.art_set &&
+                <section className={styles.tabSection}>
+                    <h2 className={styles.title}>ذخیره شده‌ها <span>{savedArt.count} اثر ذخیره شده</span></h2>
+                    <ThreeColumnArt
+                        Arts={savedArt.art_set}
+                    />
+                </section>
+            }
+
+            {followedArtists && followedArtists.artist_set &&
+                <section className={styles.tabSection}>
+                    <h2 className={styles.title}>هنرمندانی که دنبال میکنید <span>{followedArtists.count} هنرمند دنبال میکنید</span></h2>
+                    <RecomArtist artist={followedArtists.artist_set} />
+                </section>
+            }
+            {followedGalleries && followedGalleries.gallery_set &&
+                <section className={styles.tabSection}>
+                    <h2 className={styles.title}>گالری‌هایی که دنبال میکنید <span>{followedGalleries.count} گالری‌ دنبال میکنید</span></h2>
+                    <ResultsGrid
+                        item={followedGalleries.gallery_set}
+                        onFollowClick={onFollowClick}
+                    />
+                </section>
+            }
+            {followedCats && followedCats.cat_set &&
+                <section className={styles.tabSection}>
+                    <h2 className={styles.title}>دسته بندی‌هایی که دنبال میکنید <span>{followedCats.count} دسته بندی‌ دنبال میکنید</span></h2>
+                    <Categories cats={followedCats.cat_set} />
+                </section>
+            }
+        </React.Fragment>
+    )
+}
+
+
+
+
+
+
+
+export const Settings = ({ slug }) => {
+    const [initialized, setInitialized] = useState(false)
+    const [Data, setData] = useState()
+    const [Cities, setCities] = useState()
+    const [loading, setLoading] = useState(true)
+    const [formLoading, setFormLoading] = useState(false)
+    useEffect(() => {
+        if (!initialized) {
+            handleData()
+            getCities()
+            setInitialized(true)
+        }
+    })
+    const handleData = () => {
+        axios
+            .get(`${Urls().api()}/client-app/client/profile/edit/`)
+            .then(({ data }) => {
+                setData(data)
+                setLoading(false)
+            });
+    }
+    const getCities = () => {
+        axios
+            .post(`${Urls().api()}/cities/`, {
+                client_id: cookie.load('client_id', { path: '/' }),
+                client_secret: cookie.load('client_secret', { path: '/' })
+            })
+            .then(({ data }) => {
+                setCities(data)
+            })
+    };
+    const handleSubmit = values => {
+        setFormLoading(true)
+        console.log(values)
+        axios
+            .post(`${Urls().api()}/client-app/client/profile/edit/`, values,
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    }
+                })
+            .then(({ data }) => {
+                setData(data)
+                setFormLoading(false)
+                Toast('success', `اطلاعات شما با موفقیت ثبت شد`);
+
+            })
+            .catch(err => {
+                Toast('warning', `مشکلی پیش آمده است!`);
+                setFormLoading(false)
+            })
+    }
+
+    return (
+        <React.Fragment>
+            {loading &&
+                <div style={{ height: 150 }}>
+                    <Loading background="#fff" />
+                </div>
+            }
+
+            <section className={styles.tabSection}>
+                <h2 className={styles.title}>مشخصات شما</h2>
+                <EditProfile
+                    loading={formLoading}
+                    values={Data}
+                    handleSubmit={handleSubmit}
+                    cities={Cities}
+                />
+            </section>
+
+
+        </React.Fragment>
+    )
+}
+
+
+
+
+export const ReportBug = () => {
+    const [initialized, setInitialized] = useState(false)
+    const [Data, setData] = useState()
+    const [Cities, setCities] = useState()
+    const [loading, setLoading] = useState(true)
+    const [formLoading, setFormLoading] = useState(false)
+    useEffect(() => {
+        if (!initialized) {
+            setLoading(false)
+            // handleData()
+            setInitialized(true)
+        }
+    })
+    const handleData = () => {
+        axios
+            .get(`${Urls().api()}/client-app/client/profile/edit/`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(({ data }) => {
+                setData(data)
+                setLoading(false)
+            });
+    }
+    const getCities = () => {
+        axios
+            .post(`${Urls().api()}/cities/`, {
+                client_id: cookie.load('client_id', { path: '/' }),
+                client_secret: cookie.load('client_secret', { path: '/' })
+            })
+            .then(({ data }) => {
+                setCities(data)
+            })
+    };
+    const handleSubmit = values => {
+        setFormLoading(true)
+        console.log(values)
+        axios
+            .post(`${Urls().api()}/client-app/client/report-bug/`, values)
+            .then(({ data }) => {
+                setData(data)
+                Toast('success', `گزارش با موفقیت ثبت شد`);
+
+                setFormLoading(false)
+            })
+            .catch(err => {
+                setFormLoading(false)
+            })
+    }
+
+    return (
+        <React.Fragment>
+            {loading &&
+                <div style={{ height: 150 }}>
+                    <Loading background="#fff" />
+                </div>
+            }
+
+            <section className={styles.tabSection}>
+                <h2 className={styles.title}>گزارش خطا در وبسایت</h2>
+                <Report
+                    loading={formLoading}
+                    values={Data}
+                    handleSubmit={handleSubmit}
+                />
+            </section>
+
+
+        </React.Fragment>
+    )
+}

@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { generatePath } from 'react-router-dom';
+import createBrowserHistory from "history/createBrowserHistory";
+
 import axios from 'axios';
 import Urls from '../../../Urls'
 import { OverviewSets, ShowSet, FourColumnArtist, PaginationItem } from '../../Galleries/SingleGallery';
@@ -10,6 +13,7 @@ import NumbersConvertor from '../../../NumbersConvertor';
 
 import styles from './GallerySections.scss'
 
+const history = createBrowserHistory()
 
 export const Overview = ({ slug }) => {
     const [initialized, setInitialized] = useState(false)
@@ -254,8 +258,22 @@ export const Articles = ({ slug }) => {
 export const Artworks = ({ slug, isLogined, openModal }) => {
     const [initialized, setInitialized] = useState(false)
     const [Data, setData] = useState()
-    const [Check, setCheck] = useState(true)
+    const [Values, setValues] = useState({
+        only_for_sale: null,
+        price_range: null,
+        size: null,
+        medium: null,
+        sort: null
+    })
     const [loading, setLoading] = useState(true)
+    const [Resultloading, setResultloading] = useState(true)
+
+    // const params = {
+    //     only_for_sale: '',
+    //     sort: '',
+    //     price_range: '',
+    //     size: ''
+    // }
     useEffect(() => {
         if (!initialized) {
             handleData()
@@ -263,11 +281,13 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
         }
     })
     const handleData = (params) => {
+        // console.log(params)
         axios
             .get(`${Urls().api()}/gallery/${slug}/artworks/`, { params: params })
             .then(({ data }) => {
                 setData(data)
                 setLoading(false)
+                setResultloading(false)
             });
     }
     const handlePageClick = (data) => {
@@ -275,16 +295,35 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
         setLoading(true)
         handleData(selected);
     }
-    const handleFormChange = (e, name) => {
-        const value = e.target.value;
-        console.log(name, value)
+    const handleFormChange = (type, value) => {
+        setResultloading(true)
+        let values = Values
+        values[type] = value
+        setValues({
+            ...Values,
+            values
+        })
+        console.log(Values)
+        handleData(Values)
     }
-    const handleCheckbox = () => {
-        setCheck(!Check)
+
+    const urlParams = (
+        sale,
+        size,
+        price,
+        medium
+    ) => {
+        history.push({
+            pathname: `
+            ${sale ? `only_for_sale=${sale}&&` : ``}        
+            ${size ? `size=${size}&&` : ``}        
+            ${price ? `price=${price}&&` : ``}        
+            ${medium ? `medium=${medium}` : ``}        
+            `,
+        })
     }
     const filterFormRef = (form) => {
         form = form;
-        // console.log(form)
     }
     const onSaveItemClick = () => { }
     return (
@@ -298,37 +337,35 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
             {Data && Data.filter &&
                 <div className={styles.artFilter}>
                     <form ref={filterFormRef}>
-                        <a className="filter-button">
+                        <a onClick={() => handleFormChange('only_for_sale', !Values.only_for_sale)} className={`filter-button ${Values.only_for_sale ? 'active' : ''}`}>
                             <Checkbox
-                                onChange={() => handleCheckbox()}
                                 id={Data.filter.only_for_sale.value}
                                 label={Data.filter.only_for_sale.title}
-                                checked={Check}
+                                checked={Values.only_for_sale}
                             />
                         </a>
-                        {Data.filter.size_set && Data.filter.size_set.length > 0 &&
-                            <FilterDropDown
-                                name='اندازه'
-                                options={Data.filter.size_set}
-                            />
-                        }
-                        {Data.filter.price_set && Data.filter.price_set.length > 0 &&
-                            <FilterDropDown
-                                name='قیمت'
-                                options={Data.filter.price_set}
-                            />
-                        }
-                        {Data.filter.medium_set && Data.filter.medium_set.length > 0 &&
-                            <FilterDropDown
-                                name='بستر'
-                                options={Data.filter.medium_set}
-                            />
-                        }
+                        <FilterDropDown
+                            name='اندازه'
+                            handleChange={handleFormChange}
+                            value={Values.size}
+                            options={Data.filter.size_set}
+                        />
+                        <FilterDropDown
+                            name='قیمت'
+                            handleChange={handleFormChange}
+                            options={Data.filter.price_set}
+                        />
+                        <FilterDropDown
+                            name='بستر'
+                            handleChange={handleFormChange}
+                            options={Data.filter.medium_set}
+                        />
                     </form>
                 </div>
             }
             {Data && Data.art_set && Data.art_set.length > 0 &&
                 <div className={`${styles.Sections} nobb`}>
+                    {Resultloading && <Loading />}
                     <FourColumnArt
                         Arts={Data.art_set}
                         onSaveItemClick={onSaveItemClick}
@@ -347,21 +384,24 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
     )
 }
 
-const FilterDropDown = ({ name, options }) => {
+const FilterDropDown = ({ name, options, handleChange }) => {
     return (
-
-        <div className="filter-dropdown">
-            <div className="filter-nav-main-text">{name}</div>
-            <div className="filter-nav-active-text"></div>
-            <i className='icon fas fa-caret-down' />
-            <nav className="filter-dropdown-nav">
-                {options.map((item, index) => (
-                    <a key={index}>
-                        <span className="filter-dropdown-text">{item.title}</span>
-                        <span className="filter-dropdown-count">({NumbersConvertor().convertToPersian(item.count)})</span>
-                    </a>
-                ))}
-            </nav>
-        </div>
+        <React.Fragment>
+            {options && options.length > 0 &&
+                <div className="filter-dropdown">
+                    <div className="filter-nav-main-text">{name}</div>
+                    <div className="filter-nav-active-text"></div>
+                    <i className='icon fas fa-caret-down' />
+                    <nav className="filter-dropdown-nav">
+                        {options.map((item, index) => (
+                            <a key={index} onClick={() => handleChange(item.type, item.value)}>
+                                <span className="filter-dropdown-text">{item.title}</span>
+                                <span className="filter-dropdown-count">({NumbersConvertor().convertToPersian(item.count)})</span>
+                            </a>
+                        ))}
+                    </nav>
+                </div>
+            }
+        </React.Fragment>
     )
 }

@@ -6,7 +6,12 @@ import Col from 'reactstrap/lib/Col';
 import {
     Route,
     Switch,
+    Redirect
 } from 'react-router-dom';
+
+import SecurityManager from './security/SecurityManager';
+
+
 
 import Loadable from 'react-loadable';
 
@@ -14,6 +19,7 @@ import page404 from './components/errorPages/404';
 // import Home from './home/Home';
 import Artists from './components/Artists/Artists';
 import ArtistAlphabet from './components/Artists/ArtistAlphabet';
+import Login from './login/Login';
 
 import Galleries from './components/Gallery/Galleries/Galleries';
 import Gallery from './components/Gallery/Single/Gallery';
@@ -31,7 +37,10 @@ import AddSingleArt from './registration/AddCollExb/AddSingleArt';
 import ArtistRegistration from './registration/artist/ArtistRegistration';
 import GalleryRegistration from './registration/gallery/GalleryRegistration';
 import Section from './components/Section/Section';
-import Map from './components/map/ZaminehMap';
+
+import Profile from './components/Profile/Profile';
+import GalleryProfile from './components/GalleryProfile/GalleryProfile';
+
 
 import { LoadingHome } from './components/Loaders/Loaders';
 
@@ -74,10 +83,28 @@ export default function Routing({ isLogined }) {
                 <Route
                     path='/login'
                     exact
-                    render={() => <Login
-                        client_id={cookie.load('client_id', { path: '/' })}
-                        client_secret={cookie.load('client_secret', { path: '/' })}
-                    />} />
+                    render={props =>
+                        isLogined ? (
+                            <Redirect
+                                to={{
+                                    pathname: "/",
+                                    state: { from: props.location }
+                                }}
+                            />
+                        ) : (
+                                <Login LoginPage={true} />
+                            )
+                    }
+                />
+
+                <PrivateRoute
+                    path={`${Urls().profile()}`}
+                    component={Profile}
+                />
+                <PrivateRoute
+                    path={`${Urls().galleryProfile()}`}
+                    component={GalleryProfile}
+                />
 
 
                 {/* Magzine */}
@@ -150,7 +177,7 @@ export default function Routing({ isLogined }) {
 
 
                 <Route
-                    path={`${Urls().arts()}: artsId`}
+                    path={`${Urls().arts()}:artsId`}
                     render={() => <Articles />}
                 />
 
@@ -197,3 +224,20 @@ function NoMatch({ location }) {
         </Section>
     );
 }
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+        {...rest}
+        render={props =>
+            SecurityManager().isLogined() ? (
+                <Component {...props} />
+            ) : (
+                    <Redirect
+                        to={{
+                            pathname: "/login",
+                            state: { from: props.location }
+                        }}
+                    />
+                )
+        }
+    />
+);
