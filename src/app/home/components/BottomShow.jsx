@@ -48,7 +48,7 @@ class BottomShow extends React.Component {
                             دیدن همه نمایشگاه‌ها
                 </a>
                     </div>
-                    <div className='features bottom-features'>
+                    <div className='features home-shows'>
                         <Row>
                             {this.renderItems()}
                         </Row>

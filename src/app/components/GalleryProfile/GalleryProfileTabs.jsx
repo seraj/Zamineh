@@ -10,6 +10,7 @@ import { Loading } from '../Spinner/Spinner';
 import Pagination from '../Pagination/Pagination';
 import { FourColumnArt } from '../ArtArtist/Arts';
 import { FlatArtist } from '../Artists/SingleArtist';
+import { Img } from '../General'
 
 import { EditGallery, Report } from './GalleryProfileForms'
 
@@ -56,7 +57,22 @@ export const Tabz = ({ type }) => {
                 })
             });
     }
+    const showInZaminehShowClick = (item) => {
+        let Result = Data.results.filter(items => items.id === item.id)
+        axios.post(`${Urls().api()}/gallery-app/show-in-zamineh/toggle/`, {
+            type: 'Show',
+            show_id: item.id
+        })
+            .then(({ data }) => {
+                Result[0].in_zamineh = data.status
+                setData({
+                    ...Data,
+                    Result
+                })
+            });
+    }
     const GalleryProfileBtn = (item) => <div onClick={() => onGalleryBtnClick(item)} className={`${styles.GalleryBtn} ${item.in_zamineh ? 'active' : ''}`}>{item.in_zamineh ? 'برداشتن از زمینه' : 'نمایش در زمینه'}</div>
+    const showInZaminehSHOWS = (item) => <div onClick={() => showInZaminehShowClick(item)} className={`${styles.GalleryBtn} ${item.in_zamineh ? 'active' : ''}`}>{item.in_zamineh ? 'برداشتن از زمینه' : 'نمایش در زمینه'}</div>
     return (
         <React.Fragment>
             {loading &&
@@ -68,17 +84,22 @@ export const Tabz = ({ type }) => {
                 <>
                     {Data && Data.results && Data.results.length > 0 ?
                         <section className={styles.tabSection}>
-                            <h2 className={styles.title}>آثار موجود در گالری</h2>
+                            <h2 className={styles.title}></h2>
                             <FourColumnArt
                                 Arts={Data.results}
                                 GalleryProfile={true}
                                 GalleryProfileContent={GalleryProfileBtn}
                             />
+
                             {Data.page_count > 1 &&
-                                <Pagination
-                                    pageCount={Data.page_count}
-                                    onPageChange={handlePageClick}
-                                />
+                                <Row>
+                                    <Col xs={12}>
+                                        <Pagination
+                                            pageCount={Data.page_count}
+                                            onPageChange={handlePageClick}
+                                        />
+                                    </Col>
+                                </Row>
                             }
                         </section>
                         :
@@ -90,17 +111,57 @@ export const Tabz = ({ type }) => {
                 <>
                     {Data && Data.results && Data.results.length > 0 ?
                         <section className={styles.tabSection}>
-                            <h2 className={styles.title}>هنرمندانی موجود در گالری</h2>
+                            <h2 className={styles.title}></h2>
                             <Row>
                                 {Data.results.map((artist, index) => (
                                     <Col lg={3} md={4} sm={6} xs={12} key={index}>
                                         <FlatArtist item={artist} />
                                     </Col>
                                 ))}
+                                {Data.page_count > 1 &&
+                                    <Col xs={12}>
+                                        <Pagination
+                                            pageCount={Data.page_count}
+                                            onPageChange={handlePageClick}
+                                        />
+                                    </Col>
+                                }
                             </Row>
                         </section>
                         :
                         <h2 className={styles.title}>شما هنرمند ثبت شده ای در این گالری ندارید</h2>
+                    }
+                </>
+            }
+
+            {type === 'show' &&
+                <>
+                    {Data && Data.results && Data.results.length > 0 ?
+                        <section className={`${styles.tabSection} shows`}>
+                            <h2 className={styles.title}></h2>
+                            <Row>
+                                {Data.results.map((show, index) => (
+                                    <Col key={index} lg={4} md={6} sm={6} xs={12}>
+                                        <div className='feature'>
+                                            <a href={Urls().show() + show.slug} className='img-link'>
+                                                <div className='img img-hoverable'>
+                                                    <Img img={show.img} alt={show.title} width='100%' height='250px' />
+                                                </div>
+                                            </a>
+                                            <div className='details'>
+                                                <a href={Urls().show() + show.slug}>
+                                                    <h3>{show.title}</h3>
+                                                    <h4>{show.full_title}</h4>
+                                                </a>
+                                                {showInZaminehSHOWS(show)}
+                                            </div>
+                                        </div>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </section>
+                        :
+                        <h2 className={styles.title}>شما نمایشگاه ثبت شده ای در این گالری ندارید</h2>
                     }
                 </>
             }
@@ -247,7 +308,7 @@ export const Notification = () => {
     })
     const handleData = () => {
         axios
-            .get(`${Urls().api()}/client-app/client/notifications/`)
+            .get(`${Urls().api()}/gallery-app/gallery/notifications/`)
             .then(({ data }) => {
                 setData(data)
                 sendData()
@@ -255,7 +316,7 @@ export const Notification = () => {
             });
     }
     const sendData = () => {
-        axios.post(`${Urls().api()}/client-app/client/notifications/`)
+        axios.post(`${Urls().api()}/gallery-app/gallery/notifications/`)
     }
     return (
         <React.Fragment>
@@ -268,7 +329,7 @@ export const Notification = () => {
             <section className={styles.tabSection}>
                 <h2 className={styles.title}>رخدادها</h2>
                 {Data &&
-                    Data.notif_set.map((item, index) => (
+                    Data.results.map((item, index) => (
                         <div key={index} className={`${styles.notification} ${item.is_seen ? '' : 'seen'}`}>
                             <h2>{item.body}</h2>
                             <span className='notification_time'>{item.date} {item.time}</span>
@@ -296,7 +357,7 @@ export const Transactions = () => {
     })
     const handleData = () => {
         axios
-            .get(`${Urls().api()}/client-app/client/transactions/`)
+            .get(`${Urls().api()}/gallery-app/panel/transaction/list/`)
             .then(({ data }) => {
                 setData(data)
                 setLoading(false)
@@ -314,8 +375,8 @@ export const Transactions = () => {
             <section className={styles.tabSection}>
                 <h2 className={styles.title}>تراکنش‌ها</h2>
                 {Data &&
-                    Data.transaction_set.length > 0 ?
-                    Data.transaction_set.map((item, index) => (
+                    Data.results.length > 0 ?
+                    Data.results.map((item, index) => (
                         <TransactionList key={index} item={item} />
                     ))
                     :
