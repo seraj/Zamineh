@@ -11,6 +11,23 @@
 
 }
 
+:local(.GalleryBtn) {
+    background: #fff;
+    border: 1px solid #333;
+    display: block;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+    padding: 5px;
+    text-align: center;
+    border-radius: 3px;
+    margin-top: 10px;
+
+    &.active {
+        background: $primary-color;
+        color: #fff
+    }
+}
 
 :local(.user) {
     margin-top: 20px;

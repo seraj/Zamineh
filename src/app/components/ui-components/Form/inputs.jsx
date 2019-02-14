@@ -8,7 +8,7 @@ export const Checkbox = ({ id, label, onChange = null, checked = false }) => {
                 <input type="checkbox" id={id} onChange={onChange} checked={checked} />
                 <label for={id}></label>
             </div>
-            <label for={id}>{label}</label>
+            {label && <label for={id}>{label}</label>}
         </React.Fragment>
     )
 }

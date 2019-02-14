@@ -20,18 +20,20 @@ export const SingleArt = (props) => (
                         divHeight='200px'
                     />
                 </Link>
-                <div
-                    className={'save_art ' + ((props.item.is_saved) ? 'saved' : '') + ((props.item.save_loading) ? ' loading' : '')}
-                    onClick={
-                        props.isLogined ?
-                            () => props.onSaveItemClick(props.ArtIndex)
-                            :
-                            () => props.openModal(true)
-                    }
-                    id={props.item.id}>
-                    {props.item.save_loading && <div className='loadingSpinner'></div>}
-                    <IconSave height='80%' width='90%' fill='transparent' stroke='#fff' />
-                </div>
+                {props.onSaveItemClick &&
+                    <div
+                        className={'save_art ' + ((props.item.is_saved) ? 'saved' : '') + ((props.item.save_loading) ? ' loading' : '')}
+                        onClick={
+                            props.isLogined ?
+                                () => props.onSaveItemClick(props.ArtIndex)
+                                :
+                                () => props.openModal(true)
+                        }
+                        id={props.item.id}>
+                        {props.item.save_loading && <div className='loadingSpinner'></div>}
+                        <IconSave height='80%' width='90%' fill='transparent' stroke='#fff' />
+                    </div>
+                }
             </div>
 
             <div className='art_details'>
@@ -59,10 +61,11 @@ export const SingleArt = (props) => (
                         }
                     </span>
                 }
+                {props.GalleryProfile ? props.GalleryProfileContent(props.item) : ''}
 
             </div>
         </div>
-    </React.Fragment >
+    </React.Fragment>
 );
 
 
@@ -87,6 +90,8 @@ export const ThreeColumnArt = (props) => {
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
+                                GalleryProfile={props.GalleryProfile}
+                                GalleryProfileContent={props.GalleryProfileContent}
                             />
                         ))}
                     </div>
@@ -105,6 +110,8 @@ export const ThreeColumnArt = (props) => {
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
+                                GalleryProfile={props.GalleryProfile}
+                                GalleryProfileContent={props.GalleryProfileContent}
                             />
                         ))}
                     </div>
@@ -123,6 +130,8 @@ export const ThreeColumnArt = (props) => {
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
+                                GalleryProfile={props.GalleryProfile}
+                                GalleryProfileContent={props.GalleryProfileContent}
                             />
                         ))}
                     </div>
@@ -156,6 +165,8 @@ export const FourColumnArt = (props) => {
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
+                                GalleryProfile={props.GalleryProfile}
+                                GalleryProfileContent={props.GalleryProfileContent}
                             />
                         ))}
                     </div>
@@ -174,6 +185,8 @@ export const FourColumnArt = (props) => {
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
+                                GalleryProfile={props.GalleryProfile}
+                                GalleryProfileContent={props.GalleryProfileContent}
                             />
                         ))}
                     </div>
@@ -192,6 +205,8 @@ export const FourColumnArt = (props) => {
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
+                                GalleryProfile={props.GalleryProfile}
+                                GalleryProfileContent={props.GalleryProfileContent}
                             />
                         ))}
                     </div>
@@ -210,6 +225,8 @@ export const FourColumnArt = (props) => {
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
+                                GalleryProfile={props.GalleryProfile}
+                                GalleryProfileContent={props.GalleryProfileContent}
                             />
                         ))}
                     </div>

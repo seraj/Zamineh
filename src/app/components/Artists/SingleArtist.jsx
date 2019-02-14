@@ -9,6 +9,7 @@ import DefaultStyle from '../../static/scss/_boxStyle.scss'
 import { Img } from '../../components/General'
 
 import { IconArrowLeft } from '../../components/Icons';
+import { style } from '@smooth-ui/core-sc';
 
 const flickityOptions = {
     initialIndex: 0,
@@ -92,7 +93,7 @@ export const TopSingleArtist = (props) => (
                 </div>
             </div>
         </div>
-    </React.Fragment >
+    </React.Fragment>
 );
 export const SingleArtist = (props) => (
     <React.Fragment>
@@ -133,7 +134,7 @@ export const SingleArtist = (props) => (
 
             </div>
         </div>
-    </React.Fragment >
+    </React.Fragment>
 );
 export const FeatureArtist = (props) => {
 
@@ -172,6 +173,32 @@ export const FeatureArtist = (props) => {
 
                 </div>
             ))}
+        </React.Fragment>
+    )
+}
+
+export const FlatArtist = (props) => {
+
+    return (
+        <React.Fragment>
+            <div className={`${styles.SingleArtist} ${styles.simpleArtist} `}>
+
+                <div className={styles.FlatArtist}>
+                    <div className='avatar'>
+                        <Link to={`${Urls().artist()}${props.item.slug}`}>
+                            <Img
+                                img={props.item.img}
+                                alt={props.item.name}
+                                width={50}
+                            />
+                        </Link>
+                    </div>
+                    <Link to={`${Urls().artist()}${props.item.slug}`}>
+                        <span className={`name`}>{props.item.name}</span>
+                    </Link>
+
+                </div>
+            </div>
         </React.Fragment>
     )
 }

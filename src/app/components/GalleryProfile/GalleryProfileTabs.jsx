@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from "react";
-import createBrowserHistory from "history/createBrowserHistory";
-import cookie from 'react-cookies';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col';
 
 import axios from 'axios';
 import Urls from '../Urls'
 import { Toast } from '../Toast/Toast';
 
-import { FourColumnArtist, PaginationItem } from '../Gallery/Galleries/SingleGallery';
 import { Loading } from '../Spinner/Spinner';
 import Pagination from '../Pagination/Pagination';
-import { ThreeColumnArt, FourColumnArt } from '../ArtArtist/Arts';
-import { ResultsGrid } from '../Gallery/Galleries/SingleGallery';
-
+import { FourColumnArt } from '../ArtArtist/Arts';
+import { FlatArtist } from '../Artists/SingleArtist';
 
 import { EditGallery, Report } from './GalleryProfileForms'
-import RecomArtist from '../../home/components/RecomArtist';
-import Categories from '../../home/components/Categories';
 
 import styles from './GalleryProfile.scss'
-
-const history = createBrowserHistory()
 
 export const Tabz = ({ type }) => {
     const [initialized, setInitialized] = useState(false)
     const [Data, setData] = useState()
+
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         if (!initialized) {
@@ -31,16 +26,37 @@ export const Tabz = ({ type }) => {
             setInitialized(true)
         }
     })
-    const getData = (slug) => {
-        axios.get(`${Urls().api()}/gallery-app/gallery/${slug}/list/`)
+    const getData = (slug, page) => {
+        axios.get(`${Urls().api()}/gallery-app/gallery/${slug}/list/`, {
+            params: {
+                page: page
+            }
+        })
             .then(({ data }) => {
                 setData(data)
                 setLoading(false)
             });
     }
-    const onFollowClick = () => {
-
+    const handlePageClick = (data) => {
+        let selected = data.selected + 1;
+        setLoading(true)
+        getData(type, selected);
+    };
+    const onGalleryBtnClick = (item) => {
+        let Result = Data.results.filter(art => art.id === item.id)
+        axios.post(`${Urls().api()}/gallery-app/show-in-zamineh/toggle/`, {
+            type: 'Art',
+            art_id: item.id
+        })
+            .then(({ data }) => {
+                Result[0].in_zamineh = data.status
+                setData({
+                    ...Data,
+                    Result
+                })
+            });
     }
+    const GalleryProfileBtn = (item) => <div onClick={() => onGalleryBtnClick(item)} className={`${styles.GalleryBtn} ${item.in_zamineh ? 'active' : ''}`}>{item.in_zamineh ? 'برداشتن از زمینه' : 'نمایش در زمینه'}</div>
     return (
         <React.Fragment>
             {loading &&
@@ -55,7 +71,15 @@ export const Tabz = ({ type }) => {
                             <h2 className={styles.title}>آثار موجود در گالری</h2>
                             <FourColumnArt
                                 Arts={Data.results}
+                                GalleryProfile={true}
+                                GalleryProfileContent={GalleryProfileBtn}
                             />
+                            {Data.page_count > 1 &&
+                                <Pagination
+                                    pageCount={Data.page_count}
+                                    onPageChange={handlePageClick}
+                                />
+                            }
                         </section>
                         :
                         <h2 className={styles.title}>شما اثر ثبت شده ای در این گالری ندارید</h2>
@@ -67,7 +91,13 @@ export const Tabz = ({ type }) => {
                     {Data && Data.results && Data.results.length > 0 ?
                         <section className={styles.tabSection}>
                             <h2 className={styles.title}>هنرمندانی موجود در گالری</h2>
-                            <RecomArtist artist={Data.results} />
+                            <Row>
+                                {Data.results.map((artist, index) => (
+                                    <Col lg={3} md={4} sm={6} xs={12} key={index}>
+                                        <FlatArtist item={artist} />
+                                    </Col>
+                                ))}
+                            </Row>
                         </section>
                         :
                         <h2 className={styles.title}>شما هنرمند ثبت شده ای در این گالری ندارید</h2>
