@@ -3,18 +3,18 @@ import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 
 import axios from 'axios';
-import Urls from '../Urls'
-import { Toast } from '../Toast/Toast';
+import Urls from '../../Urls'
+import { Toast } from '../../Toast/Toast';
 
-import { Loading } from '../Spinner/Spinner';
-import Pagination from '../Pagination/Pagination';
-import { FourColumnArt } from '../ArtArtist/Arts';
-import { FlatArtist } from '../Artists/SingleArtist';
-import { Img } from '../General'
+import { Loading } from '../../Spinner/Spinner';
+import Pagination from '../../Pagination/Pagination';
+import { FourColumnArt } from '../../ArtArtist/Arts';
+import { FlatArtist } from '../../Artists/SingleArtist';
+import { Img } from '../../General'
 
 import { EditGallery, Report } from './GalleryProfileForms'
 
-import styles from './GalleryProfile.scss'
+import styles from '../Profile.scss'
 
 export const Tabz = ({ type }) => {
     const [initialized, setInitialized] = useState(false)
@@ -283,6 +283,7 @@ export const Settings = ({ Config }) => {
                     handleSubmit={handleSubmit}
                     onMapClick={onMapClick}
                     config={Config}
+                    hideUpload={true}
                 />
             </section>
 

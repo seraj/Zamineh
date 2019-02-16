@@ -6,8 +6,8 @@ import Col from 'reactstrap/lib/Col';
 
 import {
     ValidateShebaNum
-} from '../../registration/artist/ArtistFormValidation';
-import { RegisterForm } from '../../registration/gallery/RegistrationFrom'
+} from '../../../registration/artist/ArtistFormValidation';
+import { RegisterForm } from '../../../registration/gallery/RegistrationFrom'
 
 import {
     Box,
@@ -21,11 +21,11 @@ import {
     Select,
     Textarea
 } from '@smooth-ui/core-sc';
-import NumbersConvertor from '../NumbersConvertor';
+import NumbersConvertor from '../../NumbersConvertor';
 
 import { Field } from 'react-final-form-html5-validation'
 
-import styles from '../../login/Login.scss'
+import styles from '../Profile.scss'
 
 const SubmitButton = ({ Loading, Text, values }) => (
     <React.Fragment>
@@ -87,6 +87,7 @@ export const EditGallery = (props) => {
         handleSubmit,
         Config,
         onMapClick,
+        hideUpload,
         values,
         loading
     } = props;
@@ -107,6 +108,7 @@ export const EditGallery = (props) => {
                                     onMapClick={onMapClick}
                                     MobileValidator={MobileValidator}
                                     ValidateShebaNum={ValidateShebaNum}
+                                    hideUpload={hideUpload}
                                     values={values}
                                 />
                                 <SubmitButton

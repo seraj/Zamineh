@@ -50,6 +50,7 @@ export const RegisterForm = ({
     Field,
     FormData,
     StepConfig,
+    hideUpload,
     MobileValidator,
     ValidateShebaNum,
     onMapClick,
@@ -137,50 +138,53 @@ export const RegisterForm = ({
 
                         </FormGroup>
                     </Col>
-
-                    <Col xs={12}>
-                        <Divider text='بارگذاری تصاویر مورد نیاز' />
-                    </Col>
-                    <Col lg={6} md={6} sm={12} xs={12}>
-                        <FormGroup>
-                            <Label>لوگو یا نشان گالری</Label>
-                            <Uploader
-                                server='/gallery-app/gallery/upload-image/logo/'
-                                name='logo'
-                                Load={(FormData && FormData.logo && FormData.logo.link) ? FormData.logo.link : null}
-                                files={(FormData && FormData.logo && FormData.logo.name) ? FormData.logo.name : null}
-                            />
-                        </FormGroup>
-                    </Col>
-                    <Col lg={6} md={6} sm={12} xs={12}>
-                        <FormGroup>
-                            <Label>کاور گالری</Label>
-                            <Uploader
-                                server='/gallery-app/gallery/upload-image/cover/'
-                                name='cover'
-                                Load={(FormData && FormData.cover && FormData.cover.link) ? FormData.cover.link : null}
-                                files={(FormData && FormData.cover && FormData.cover.name) ? FormData.cover.name : null}
-                            />
-                        </FormGroup>
-                    </Col>
-                    <Col lg={6} md={6} sm={12} xs={12}>
-                        <FormGroup>
-                            <Label>مجوز گالری</Label>
-                            <Uploader
-                                server='/gallery-app/gallery/upload-image/permission/'
-                                name='permission'
-                                Load={(FormData && FormData.permission && FormData.permission.link) ? FormData.permission.link : null}
-                                files={(FormData && FormData.permission && FormData.permission.name) ? FormData.permission.name : null}
-                            />
-                        </FormGroup>
-                    </Col>
-                    <Col xs={12}>
-                        <Alert
-                            message='لطفا موارد مورد نظر را با دقت بارگذاری کنید.'
-                            type='warning'
-                            rtl
-                        />
-                    </Col>
+                    {!hideUpload &&
+                        <>
+                            <Col xs={12}>
+                                <Divider text='بارگذاری تصاویر مورد نیاز' />
+                            </Col>
+                            <Col lg={6} md={6} sm={12} xs={12}>
+                                <FormGroup>
+                                    <Label>لوگو یا نشان گالری</Label>
+                                    <Uploader
+                                        server='/gallery-app/gallery/upload-image/logo/'
+                                        name='logo'
+                                        Load={(FormData && FormData.logo && FormData.logo.link) ? FormData.logo.link : null}
+                                        files={(FormData && FormData.logo && FormData.logo.name) ? FormData.logo.name : null}
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col lg={6} md={6} sm={12} xs={12}>
+                                <FormGroup>
+                                    <Label>کاور گالری</Label>
+                                    <Uploader
+                                        server='/gallery-app/gallery/upload-image/cover/'
+                                        name='cover'
+                                        Load={(FormData && FormData.cover && FormData.cover.link) ? FormData.cover.link : null}
+                                        files={(FormData && FormData.cover && FormData.cover.name) ? FormData.cover.name : null}
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col lg={6} md={6} sm={12} xs={12}>
+                                <FormGroup>
+                                    <Label>مجوز گالری</Label>
+                                    <Uploader
+                                        server='/gallery-app/gallery/upload-image/permission/'
+                                        name='permission'
+                                        Load={(FormData && FormData.permission && FormData.permission.link) ? FormData.permission.link : null}
+                                        files={(FormData && FormData.permission && FormData.permission.name) ? FormData.permission.name : null}
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col xs={12}>
+                                <Alert
+                                    message='لطفا موارد مورد نظر را با دقت بارگذاری کنید.'
+                                    type='warning'
+                                    rtl
+                                />
+                            </Col>
+                        </>
+                    }
                 </Row>
             </div>
 

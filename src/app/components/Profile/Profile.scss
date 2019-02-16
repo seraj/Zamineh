@@ -11,6 +11,84 @@
 
 }
 
+:local(.userCover) {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    padding: 25px 0;
+    color: #fff;
+
+    .detail {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+        margin-top: 15px;
+
+        .info {
+            max-width: 100%;
+
+
+            h1 {
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 5px;
+                padding: 3px 5px;
+            }
+        }
+
+        .list {
+            display: inline;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            padding: 3px 5px;
+        }
+
+    }
+}
+
+:local(.editCover) {
+    background: transparent;
+    color: #fff;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 3px 5px;
+    transition: .2s background ease;
+
+    input {
+        opacity: 0;
+        position: absolute;
+        cursor: pointer;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        top: 0;
+    }
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .icon {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.8);
+        font-size: 21px;
+        bottom: 0;
+        z-index: 10;
+        width: 100%;
+        color: #fff;
+    }
+
+}
 
 :local(.user) {
     margin-top: 20px;
@@ -58,13 +136,58 @@
 
     }
 
-    img {
+    .img {
+        position: relative;
         flex: 0 0 auto;
         width: auto;
         max-width: 100px;
         max-height: 100px;
-        border-radius: 50%;
         margin-left: 15px;
+
+        img {
+            border-radius: 50%;
+        }
+
+        .editable {
+            border-radius: 50%;
+            background: transparent;
+            position: absolute;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+            right: 0;
+            top: 0;
+            transition: .2s background ease;
+
+            input {
+                opacity: 0;
+                position: absolute;
+                cursor: pointer;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                top: 0;
+            }
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+            &:active {
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            .icon {
+                position: absolute;
+                background: rgba(0, 0, 0, 0.8);
+                font-size: 21px;
+                bottom: 0;
+                z-index: 10;
+                width: 100%;
+                color: #fff;
+            }
+        }
     }
 }
 
@@ -263,5 +386,24 @@
 
     h2 {
         font-size: 20px;
+    }
+}
+
+
+:local(.GalleryBtn) {
+    background: #fff;
+    border: 1px solid #333;
+    display: block;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+    padding: 5px;
+    text-align: center;
+    border-radius: 3px;
+    margin-top: 10px;
+
+    &.active {
+        background: $primary-color;
+        color: #fff
     }
 }

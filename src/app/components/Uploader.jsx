@@ -180,7 +180,7 @@ class Uploader extends React.Component {
 
                 </FilePond>
 
-            </React.Fragment >
+            </React.Fragment>
 
         )
     }

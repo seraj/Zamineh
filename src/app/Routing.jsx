@@ -39,7 +39,7 @@ import GalleryRegistration from './registration/gallery/GalleryRegistration';
 import Section from './components/Section/Section';
 
 import Profile from './components/Profile/Profile';
-import GalleryProfile from './components/GalleryProfile/GalleryProfile';
+import GalleryProfile from './components/Profile/GalleryProfile/GalleryProfile';
 
 
 import { LoadingHome } from './components/Loaders/Loaders';
