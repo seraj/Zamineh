@@ -26,6 +26,19 @@
 
 }
 
+
+
+:local(.TopArtistWork) {
+    position: relative;
+    height: 197px;
+    margin-bottom: 20px;
+
+    .flickity-prev-next-button .flickity-button-icon {
+        top: 40px;
+    }
+}
+
+
 :local(.TopSingleArtist) {
     display: inline-block;
     vertical-align: top;
@@ -174,5 +187,18 @@
 }
 
 :local(.letters) {
+    position: relative;
+}
+
+
+:local(.artistSinglePage) {}
+
+:local(.ArtistHeader) {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+:local(.content) {
     position: relative;
 }

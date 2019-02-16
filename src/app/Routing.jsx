@@ -18,6 +18,7 @@ import Loadable from 'react-loadable';
 import page404 from './components/errorPages/404';
 // import Home from './home/Home';
 import Artists from './components/Artists/Artists';
+import Artist from './components/Artists/Artist';
 import ArtistAlphabet from './components/Artists/ArtistAlphabet';
 import Login from './login/Login';
 
@@ -121,6 +122,10 @@ export default function Routing({ isLogined }) {
                 <Route
                     path={`${Urls().artists()}:artistChar`}
                     component={ArtistAlphabet}
+                />
+                <Route
+                    path={`${Urls().artist()}:slug`}
+                    component={Artist}
                 />
 
                 {/* Galleries */}

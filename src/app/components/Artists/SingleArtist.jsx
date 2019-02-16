@@ -22,6 +22,35 @@ const flickityOptions = {
 };
 
 
+export const TopWorks = (props) => (
+    <React.Fragment>
+        <div className={styles.TopArtistWork}>
+            <>
+                <Flickity
+                    className={'carousel items'}
+                    elementType={'div'}
+                    options={flickityOptions}
+                    disableImagesLoaded={false}
+                    reloadOnUpdate
+                >
+                    {props.item && props.item.map((item, index) => (
+                        <div key={index} style={{ marginLeft: 10 }}>
+                            <div className='thumb'>
+                                <Link to={`${Urls().arts()}${item.slug}`}>
+                                    <Img
+                                        img={item.img.img}
+                                        alt={item.name}
+                                        width={item.img.ratio * 197}
+                                    />
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
+                </Flickity>
+            </>
+        </div>
+    </React.Fragment>
+)
 export const TopArtists = (props) => (
     <React.Fragment>
         <div className={styles.TopArtistCarousel}>

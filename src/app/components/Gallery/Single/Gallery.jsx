@@ -137,6 +137,7 @@ class Gallery extends React.Component {
                                 <Router>
                                     <React.Fragment>
                                         {config && config.tab_bars ? <Tabs tabs={config.tab_bars} slug={`${Urls().gallery()}${this.props.match.params.slug}`} /> : null}
+                                        <div className='clearfix' />
                                         <div className={styles.content}>
 
                                             {config && config.tab_bars && config.tab_bars.map((tabs, index) => (
