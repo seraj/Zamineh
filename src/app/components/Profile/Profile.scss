@@ -355,6 +355,14 @@
     padding-bottom: 60px;
 }
 
+:local(.tabButton) {
+    margin: 20px 0;
+
+    button {
+        margin-left: 10px;
+    }
+}
+
 :local(.title) {
     margin: 30px 0;
     font-size: 25px;

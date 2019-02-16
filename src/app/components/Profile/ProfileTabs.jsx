@@ -12,7 +12,7 @@ import { Loading } from '../Spinner/Spinner';
 import Pagination from '../Pagination/Pagination';
 import { ThreeColumnArt, FourColumnArt } from '../ArtArtist/Arts';
 import { ResultsGrid } from '../Gallery/Galleries/SingleGallery';
-import { TransactionList } from '../Transactions/Transactions'
+import TransactionList from '../Transactions/Transactions'
 
 import { EditProfile, Report } from './ProfileForms'
 import RecomArtist from '../../home/components/RecomArtist';

@@ -178,11 +178,9 @@ export const FeatureArtist = (props) => {
 }
 
 export const FlatArtist = (props) => {
-
     return (
         <React.Fragment>
             <div className={`${styles.SingleArtist} ${styles.simpleArtist} `}>
-
                 <div className={styles.FlatArtist}>
                     <div className='avatar'>
                         <Link to={`${Urls().artist()}${props.item.slug}`}>

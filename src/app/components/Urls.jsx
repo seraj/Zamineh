@@ -52,6 +52,9 @@ export default function Urls() {
         collect() {
             return '/collect/'
         },
+        collection() {
+            return '/collection/'
+        },
         collections() {
             return '/collections/'
         },

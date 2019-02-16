@@ -13,7 +13,7 @@ import SecurityManager from '../../../security/SecurityManager'
 import Modal from '../../ui-components/Modal/Modal'
 
 import { LinearTabs } from '../../ui-components/Tabs/Tabs'
-import { Tabz, Settings, Notification, Transactions, Ticket } from './GalleryProfileTabs'
+import { Tabz, Settings, Notification, Transactions, Ticket } from './ArtistProfileTabs'
 import { Img } from '../../General';
 
 import Urls from '../../Urls';
@@ -23,7 +23,6 @@ import { Loading } from '../../Spinner/Spinner';
 import NumbersConvertor from '../../NumbersConvertor';
 import ThousandSeparator from '../../ThousandSeparator';
 
-import DefaultStyle from '../../../static/scss/_boxStyle.scss'
 import styles from '../Profile.scss'
 
 
@@ -38,7 +37,7 @@ function NothingRendered() {
 }
 
 
-class GalleryProfile extends React.Component {
+class ArtistProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -50,8 +49,8 @@ class GalleryProfile extends React.Component {
                     value: 'arts'
                 },
                 {
-                    title: 'هنرمندان',
-                    value: 'artists'
+                    title: 'مجموعه‌ها',
+                    value: 'collections'
                 },
                 {
                     title: 'نمایشگاه‌ها',
@@ -65,10 +64,10 @@ class GalleryProfile extends React.Component {
                     title: 'رخدادها',
                     value: 'notification'
                 },
-                // {
-                //     title: 'تراکنش‌ها',
-                //     value: 'transactions'
-                // },
+                {
+                    title: 'تراکنش‌ها',
+                    value: 'transactions'
+                },
                 {
                     title: 'تیکت پشتیبانی',
                     value: 'ticket'
@@ -95,8 +94,8 @@ class GalleryProfile extends React.Component {
             case 'arts':
                 component = <Tabz type='art' />;
                 break;
-            case 'artists':
-                component = <Tabz type='artist' />;
+            case 'collections':
+                component = <Tabz type='collection' />;
                 break;
             case 'shows':
                 component = <Tabz type='show' />;
@@ -125,7 +124,7 @@ class GalleryProfile extends React.Component {
         this.setState({ loading: type })
         const formData = new FormData();
         formData.append('image', file, file.name);
-        const url = `${Urls().api()}/gallery-app/panel/gallery/upload-image/${type}/`;
+        const url = `${Urls().api()}/gallery-app/panel/artist/upload-image/${type}/`;
         axios({
             method: 'POST',
             url: `${url}`,
@@ -215,7 +214,7 @@ class GalleryProfile extends React.Component {
                                         </div>
                                         <div className="detail">
                                             <div className="info">
-                                                <h1>{config.gallery_name}</h1>
+                                                <h1>{config.name}</h1>
                                             </div>
                                             <div className="list">
                                                 {config.saved_art_count !== 0 &&
@@ -241,13 +240,13 @@ class GalleryProfile extends React.Component {
                         <Row>
                             <Col xs={12}>
                                 <React.Fragment>
-                                    <LinearTabs tabs={tabs} slug={`${Urls().GalleryDashboard()}`} />
+                                    <LinearTabs tabs={tabs} slug={`${Urls().ArtistDashboard()}`} />
                                     <div className={styles.content}>
 
                                         {tabs && tabs.map((tabs, index) => (
                                             <Route
                                                 key={index}
-                                                path={`${Urls().GalleryDashboard()}${tabs.value}`}
+                                                path={`${Urls().ArtistDashboard()}${tabs.value}`}
                                                 render={() => this.tabComponents(tabs.value)}
                                             />
                                         ))}
@@ -258,8 +257,8 @@ class GalleryProfile extends React.Component {
                     </Container>
                 </Section>
 
-            </React.Fragment >
+            </React.Fragment>
         )
     }
 }
-export default withRouter(GalleryProfile);
+export default withRouter(ArtistProfile);

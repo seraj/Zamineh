@@ -7,7 +7,8 @@ import Col from 'reactstrap/lib/Col';
 import {
     ValidateShebaNum
 } from '../../../registration/artist/ArtistFormValidation';
-import { RegisterForm } from '../../../registration/gallery/RegistrationFrom'
+import { Step1 } from '../../../registration/artist/Steps'
+
 
 import {
     Box,
@@ -81,7 +82,7 @@ const MobileValidator = value => {
     }
     return error
 }
-export const EditGallery = (props) => {
+export const EditArtist = (props) => {
     const {
         errorMessage,
         handleSubmit,
@@ -100,16 +101,15 @@ export const EditGallery = (props) => {
                         initialValues={values}
                         render={({ handleSubmit, form, submitting, pristine, values }) => (
                             <form onSubmit={handleSubmit}>
-                                <RegisterForm
+                                <Step1
                                     Field={Field}
-                                    FormData={values}
-                                    StepConfig={Config}
+                                    StepData={values}
                                     onMapClick={onMapClick}
                                     MobileValidator={MobileValidator}
                                     ValidateShebaNum={ValidateShebaNum}
-                                    hideUpload={true}
-                                    values={values}
+                                    Editable={true}
                                 />
+
                                 <SubmitButton
                                     Text='ویرایش'
                                     values={values}
@@ -124,62 +124,6 @@ export const EditGallery = (props) => {
         </Row>
     )
 };
-
-
-export const ChangePassword = (props) => {
-    const {
-        errorMessage,
-        handleSubmit,
-        values,
-        loading
-    } = props;
-    return (
-        <Row>
-
-            <React.Fragment>
-                <Col xs={12}>
-                    <Form
-                        onSubmit={handleSubmit}
-                        initialValues={values}
-                        render={({ handleSubmit, form, submitting, pristine, values }) => (
-                            <form onSubmit={handleSubmit}>
-                                <FormGroup>
-                                    <Label>کد تایید</Label>
-                                    <Field
-                                        name='code'
-                                        component={AdaptedInput}
-                                        validate={value => value ? undefined : 'وارد کردن کد تایید الزامی میباشد'}
-                                        control
-                                    />
-                                    <Error name='password' />
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label>رمز عبور</Label>
-                                    <Field
-                                        name='password'
-                                        type='password'
-                                        component={AdaptedInput}
-                                        validate={value => value ? undefined : 'وارد کردن رمز عبور الزامی میباشد'}
-                                        control
-                                    />
-                                    <Error name='password' />
-                                </FormGroup>
-                                <SubmitButton
-                                    Text='ثبت'
-                                    values={values}
-                                    Loading={loading}
-                                />
-                            </form>
-                        )}
-                    />
-                </Col>
-            </React.Fragment>
-
-        </Row>
-    )
-};
-
-
 
 export const SupportTicketForm = (props) => {
     const {

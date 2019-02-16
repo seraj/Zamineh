@@ -7,7 +7,7 @@ import NumbersConvertor from '../NumbersConvertor';
 import ThousandSeparator from '../ThousandSeparator';
 import styles from './Transactions.scss'
 
-export const TransactionList = ({ item }) => {
+export default function TransactionList({ item }) {
     const [More, setMore] = useState(false)
     const onMoreClick = () => {
         if (More === false) { setMore(true) }
@@ -22,22 +22,30 @@ export const TransactionList = ({ item }) => {
                     <i className='zicon icon-39'></i>
                     وضعیت سفارش :‌ <span style={{ color: item.status_color }}>{item.status}</span>
                 </li>
-                <li>
-                    <i className='zicon icon-39'></i>
-                    زمان ثبت سفارش :‌ <span>{NumbersConvertor().convertToPersian(moment(item.submit_date.date, 'YYYY-MM-DD').format('jDD jMMMM jYYYY'))} ساعت {NumbersConvertor().convertToPersian(item.submit_date.start_time)}</span>
-                </li>
-                <li>
-                    <i className='zicon icon-34'></i>
-                    زمان انتخابی ارسال :‌ <span>{NumbersConvertor().convertToPersian(moment(item.dl_date.date, 'YYYY-MM-DD').format('jDD jMMMM jYYYY'))} بین ساعت {NumbersConvertor().convertToPersian(item.dl_date.start_time)} تا {NumbersConvertor().convertToPersian(item.dl_date.end_time)}</span>
-                </li>
-                <li>
-                    <i className='zicon icon-34'></i>
-                    {item.dl_date.detail}
-                </li>
-                <li>
-                    <i className='zicon icon-34'></i>
-                    آدرس : <span>{item.address.address}</span>
-                </li>
+                {item.submit_date &&
+                    <li>
+                        <i className='zicon icon-39'></i>
+                        زمان ثبت سفارش :‌ <span>{NumbersConvertor().convertToPersian(moment(item.submit_date.date, 'YYYY-MM-DD').format('jDD jMMMM jYYYY'))} ساعت {NumbersConvertor().convertToPersian(item.submit_date.start_time)}</span>
+                    </li>
+                }
+                {item.dl_date &&
+                    <>
+                        <li>
+                            <i className='zicon icon-34'></i>
+                            زمان انتخابی ارسال :‌ <span>{NumbersConvertor().convertToPersian(moment(item.dl_date.date, 'YYYY-MM-DD').format('jDD jMMMM jYYYY'))} بین ساعت {NumbersConvertor().convertToPersian(item.dl_date.start_time)} تا {NumbersConvertor().convertToPersian(item.dl_date.end_time)}</span>
+                        </li>
+                        <li>
+                            <i className='zicon icon-34'></i>
+                            {item.dl_date.detail}
+                        </li>
+                    </>
+                }
+                {item.address &&
+                    <li>
+                        <i className='zicon icon-34'></i>
+                        آدرس : <span>{item.address.address}</span>
+                    </li>
+                }
             </ul>
             <div onClick={() => onMoreClick()} className="showMore">{More ? 'بستن جزئیات بیشتر' : 'دیدن جزئیات'}</div>
             {More &&
@@ -56,24 +64,30 @@ export const TransactionList = ({ item }) => {
                             <i className='zicon icon-42'></i>
                             هزینه ارسال :‌ <span>{item.price.delivery_price === 0 ? 'رایگان' : `${NumbersConvertor().convertToPersian(ThousandSeparator(item.price.total_price))} تومان`}</span>
                         </li>
-                        <li>
-                            <i className='zicon icon-42'></i>
-                            اعتبار حساب :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.credit_price))} تومان</span>
-                        </li>
+                        {item.price.discount_price &&
+                            <li>
+                                <i className='zicon icon-42'></i>
+                                اعتبار حساب :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.credit_price))} تومان</span>
+                            </li>
+                        }
                         {item.price.tax_price !== 0 &&
                             <li>
                                 <i className='zicon icon-37'></i>
                                 مالیات :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.tax_price))} تومان</span>
                             </li>
                         }
-                        <li>
-                            <i className='zicon icon-42'></i>
-                            مجموع قیمت آثار :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.total_price))} تومان</span>
-                        </li>
-                        <li>
-                            <i className='zicon icon-42'></i>
-                            کل مبلغ پرداختی :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.payment_price))} تومان</span>
-                        </li>
+                        {item.price.total_price &&
+                            <li>
+                                <i className='zicon icon-42'></i>
+                                مجموع قیمت آثار :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.total_price))} تومان</span>
+                            </li>
+                        }
+                        {item.price.payment_price &&
+                            <li>
+                                <i className='zicon icon-42'></i>
+                                کل مبلغ پرداختی :‌ <span>{NumbersConvertor().convertToPersian(ThousandSeparator(item.price.payment_price))} تومان</span>
+                            </li>
+                        }
 
                     </ul>
 
@@ -95,9 +109,11 @@ export const TransactionList = ({ item }) => {
                                         />
                                         <div className="details">
                                             <span className='bold'>{order.name}</span>
-                                            <a href={`${Urls().artist()}${order.artist.slug}`}>
-                                                <span>{order.artist.name}</span>
-                                            </a>
+                                            {order.artist && order.artist !== '' &&
+                                                <a href={`${Urls().artist()}${order.artist.slug}`}>
+                                                    <span>{order.artist.name}</span>
+                                                </a>
+                                            }
                                         </div>
                                     </a>
                                 ))}

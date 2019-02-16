@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import cookie from 'react-cookies'
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 
-
 import axios from 'axios';
-import SecurityManager from '../../../security/SecurityManager'
 import Urls from '../../Urls'
 import { Toast } from '../../Toast/Toast';
 import Modal from '../../ui-components/Modal/Modal'
@@ -13,12 +10,11 @@ import Modal from '../../ui-components/Modal/Modal'
 import { Loading } from '../../Spinner/Spinner';
 import Pagination from '../../Pagination/Pagination';
 import { FourColumnArt } from '../../ArtArtist/Arts';
-import { Flatlist } from '../../ui-components/List/List';
+import { FlatList } from '../../ui-components/List/List';
 import { Img } from '../../General'
 import TransactionList from '../../Transactions/Transactions'
 import SupportTicket from '../../SupportTicket/SupportTicket'
-
-import { EditGallery, ChangePassword, SupportTicketForm } from './GalleryProfileForms'
+import { EditArtist, SupportTicketForm } from './ArtistProfileForms'
 
 import styles from '../Profile.scss'
 
@@ -34,7 +30,7 @@ export const Tabz = ({ type }) => {
         }
     })
     const getData = (slug, page) => {
-        axios.get(`${Urls().api()}/gallery-app/gallery/${slug}/list/`, {
+        axios.get(`${Urls().api()}/gallery-app/artist/${slug}/list/`, {
             params: {
                 page: page
             }
@@ -113,18 +109,18 @@ export const Tabz = ({ type }) => {
                     }
                 </>
             }
-            {type === 'artist' &&
+            {type === 'collection' &&
                 <>
                     {Data && Data.results && Data.results.length > 0 ?
                         <section className={styles.tabSection}>
                             <h2 className={styles.title}></h2>
                             <Row>
-                                {Data.results.map((artist, index) => (
+                                {Data.results.map((collection, index) => (
                                     <Col lg={3} md={4} sm={6} xs={12} key={index}>
-                                        <Flatlist
-                                            img={artist.img}
-                                            url={`${Urls().artist()}${artist.slug}`}
-                                            item={artist} />
+                                        <FlatList
+                                            url={`${Urls().collection()}${collection.slug}`}
+                                            img={collection.logo}
+                                            item={collection} />
                                     </Col>
                                 ))}
                                 {Data.page_count > 1 &&
@@ -152,15 +148,9 @@ export const Tabz = ({ type }) => {
                                 {Data.results.map((show, index) => (
                                     <Col key={index} lg={4} md={6} sm={6} xs={12}>
                                         <div className='feature'>
-                                            <a href={Urls().show() + show.slug} className='img-link'>
-                                                <div className='img img-hoverable'>
-                                                    <Img img={show.img} alt={show.title} width='100%' height='250px' />
-                                                </div>
-                                            </a>
                                             <div className='details'>
                                                 <a href={Urls().show() + show.slug}>
-                                                    <h3>{show.title}</h3>
-                                                    <h4>{show.full_title}</h4>
+                                                    <h3>{show.name}</h3>
                                                 </a>
                                                 {showInZaminehSHOWS(show)}
                                             </div>
@@ -200,7 +190,6 @@ export const Settings = ({ Config }) => {
     const [Data, setData] = useState()
     const [MapData, setMapData] = useState()
     const [loading, setLoading] = useState(true)
-    const [FormTab, setFormTab] = useState('edit')
     const [formLoading, setFormLoading] = useState(false)
     useEffect(() => {
         if (!initialized) {
@@ -210,7 +199,7 @@ export const Settings = ({ Config }) => {
     })
     const handleData = () => {
         axios
-            .get(`${Urls().api()}/gallery-app/gallery/profile/edit/`)
+            .get(`${Urls().api()}/gallery-app/artist/profile/edit/`)
             .then(({ data }) => {
                 setData(data)
                 setLoading(false)
@@ -221,12 +210,13 @@ export const Settings = ({ Config }) => {
     }
     const handleSubmit = values => {
         setFormLoading(true)
+        console.log(values)
         if (!Validation(values)) {
             Toast('warning', 'اطلاعات تکمیل نمیباشد');
         }
         else {
             axios
-                .post(`${Urls().api()}/gallery-app/gallery/profile/edit/`, values,
+                .post(`${Urls().api()}/gallery-app/artist/profile/edit/`, values,
                     {
                         headers: {
                             'Accept': 'application/json',
@@ -252,59 +242,21 @@ export const Settings = ({ Config }) => {
 
     const Validation = (value) => {
         if (
-            value.name == '' ||
-            value.address.address == undefined ||
-            value.address.address == '' ||
-            value.address.tel == undefined ||
-            value.address.tel == '' ||
-            value.work_hours.start_time == undefined ||
-            value.work_hours.start_time == '' ||
-            value.work_hours.end_time == undefined ||
-            value.work_hours.end_time == '' ||
-            value.holiday_set == undefined ||
-            value.holiday_set == '' ||
-            value.email == null ||
+            value.first_name == '' ||
+            value.first_name == undefined ||
+            value.last_name == '' ||
+            value.last_name == undefined ||
+            value.address == '' ||
+            value.address == undefined ||
             value.email == '' ||
-            value.sheba_num == null ||
-            value.sheba_num == '' ||
-            value.owner.name == undefined ||
-            value.owner.name == '' ||
-            value.owner.tel == undefined ||
-            value.owner.tel == ''
+            value.email == undefined ||
+            value.phone_num == '' ||
+            value.phone_num == undefined
         ) {
             return false
         } else {
             return true
         }
-    }
-
-
-    const sendConfirmCode = () => {
-        axios
-            .post(`${Urls().api()}/gallery-app/forgot/code/`, {
-                username: Config.username,
-                client_id: cookie.load('client_id', { path: '' }),
-                client_secret: cookie.load('client_secret', { path: '' }),
-                user_type: 'Gallery'
-            })
-            .then(({ data }) => {
-                setData(data)
-            });
-    }
-    const handleChangePassword = values => {
-        axios
-            .post(`${Urls().api()}/gallery-app/forgot/password/`, {
-                username: Config.username,
-                password: values.password,
-                code: values.code,
-                client_id: SecurityManager().getRegClientIDSecret('id', 'Gallery'),
-                client_secret: SecurityManager().getRegClientIDSecret('secret', 'Gallery'),
-                user_type: 'Gallery'
-            })
-            .then(({ data }) => {
-                SecurityManager().setGalleryRegAccessToken(data.access_token);
-                SecurityManager().setGalleryRegRefreshToken(data.refresh_token);
-            });
     }
     return (
         <React.Fragment>
@@ -314,32 +266,15 @@ export const Settings = ({ Config }) => {
                 </div>
             }
             <section className={styles.tabSection}>
-                <div className={styles.tabButton}>
-                    <button className={`zbtn bradius ${FormTab === 'edit' ? 'black' : ''}`} onClick={() => setFormTab('edit')}>ویرایش اطلاعات گالری</button>
-                    <button className={`zbtn bradius ${FormTab === 'password' ? 'black' : ''}`} onClick={() => setFormTab('password')}>تغییر رمز عبور</button>
-                </div>
-                {FormTab === 'edit' &&
-                    <EditGallery
-                        loading={formLoading}
-                        values={Data}
-                        handleSubmit={handleSubmit}
-                        onMapClick={onMapClick}
-                        config={Config}
-                    />
-                }
-                {FormTab === 'password' &&
-                    <>
-                        <h2>تغییر رمز عبور</h2>
-                        <button className={`zbtn bradius black`} onClick={() => sendConfirmCode()}>دریافت کد تایید</button>
 
-                        <ChangePassword
-                            loading={formLoading}
-                            values={Data}
-                            handleSubmit={handleChangePassword}
-                            hideUpload={true}
-                        />
-                    </>
-                }
+                <EditArtist
+                    loading={formLoading}
+                    values={Data}
+                    handleSubmit={handleSubmit}
+                    onMapClick={onMapClick}
+                    config={Config}
+                    hideUpload={true}
+                />
             </section>
 
 
@@ -364,7 +299,7 @@ export const Notification = () => {
     })
     const handleData = () => {
         axios
-            .get(`${Urls().api()}/gallery-app/gallery/notifications/`)
+            .get(`${Urls().api()}/gallery-app/artist/notifications/`)
             .then(({ data }) => {
                 setData(data)
                 sendData()
@@ -372,7 +307,7 @@ export const Notification = () => {
             });
     }
     const sendData = () => {
-        axios.post(`${Urls().api()}/gallery-app/gallery/notifications/`)
+        axios.post(`${Urls().api()}/gallery-app/artist/notifications/`)
     }
     return (
         <React.Fragment>

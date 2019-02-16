@@ -24,7 +24,7 @@ import Section from '../Section/Section';
 import NumbersConvertor from '../NumbersConvertor';
 import ThousandSeparator from '../ThousandSeparator';
 
-import DefaultStyle from '../../static/scss/_boxStyle.scss'
+import { Loading } from '../Spinner/Spinner';
 import styles from './Profile.scss'
 
 
@@ -44,6 +44,7 @@ class Profile extends React.Component {
         super(props);
         this.state = {
             config: {},
+            loading: '',
             credit: {
                 modal: false,
                 btn: 'افزایش اعتبار',
@@ -177,9 +178,41 @@ class Profile extends React.Component {
             },
         });
     };
+
+    uploadImage = (e, type) => {
+        let file = e.target.files[0];
+        let config = this.state.config;
+        this.setState({ loading: type })
+        const formData = new FormData();
+        formData.append('image', file, file.name);
+        const url = `${Urls().api()}/client-app/client/add-image/`;
+        axios({
+            method: 'POST',
+            url: `${url}`,
+            data: formData,
+            config: {
+                headers: {}
+            }
+        })
+            .then(response => {
+                config.profile_pic = response.data.link
+                Toast('success', 'عکس با موفقیت آپلود شد.');
+                this.setState({
+                    loading: '',
+                    config
+                })
+
+            })
+
+            .catch(error => {
+                Toast('warning', 'مشکلی در بارگذاری عکس به وجود آمده است.');
+                this.setState({ loading: '' })
+            });
+
+    }
     render() {
         const parsed = queryString.parse(location.search);
-        const { config, tabs, credit } = this.state;
+        const { config, tabs, credit, loading } = this.state;
         const isLogined = SecurityManager().isLogined();
 
         return (
@@ -189,18 +222,44 @@ class Profile extends React.Component {
                         <Row>
                             <Col xs={12}>
                                 <div className={styles.user}>
-                                    {config.profile_pic !== '' ?
-                                        <Img
-                                            img={config.profile_pic}
-                                            alt={config.name}
-                                            width={100}
-                                            style={{
-                                                minWidth: 50
-                                            }}
-                                        />
-                                        :
-                                        <img src='/static/img/avatar.png' alt={config.name} />
-                                    }
+                                    <div className="img">
+                                        {config.profile_pic && config.profile_pic !== '' ?
+                                            <Img
+                                                img={config.profile_pic}
+                                                alt={config.name}
+                                                width={100}
+                                                height={100}
+                                                style={{
+                                                    minWidth: 50
+                                                }}
+                                            />
+                                            :
+                                            <img
+                                                src='/static/img/avatar.png'
+                                                width='100'
+                                                height='100'
+                                                style={{
+                                                    minWidth: 50
+                                                }}
+                                                alt={config.name}
+                                            />
+                                        }
+                                        <button className={`editable`}>
+                                            {loading === 'profile' ?
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="spinner-third" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-spinner-third fa-w-16 fa-spin fa-lg"><path fill="currentColor" d="M460.115 373.846l-6.941-4.008c-5.546-3.202-7.564-10.177-4.661-15.886 32.971-64.838 31.167-142.731-5.415-205.954-36.504-63.356-103.118-103.876-175.8-107.701C260.952 39.963 256 34.676 256 28.321v-8.012c0-6.904 5.808-12.337 12.703-11.982 83.552 4.306 160.157 50.861 202.106 123.67 42.069 72.703 44.083 162.322 6.034 236.838-3.14 6.149-10.75 8.462-16.728 5.011z" class=""></path></svg>
+                                                :
+                                                ''
+                                            }
+                                            <input
+                                                onChange={(e) => this.uploadImage(e, 'profile')}
+                                                type="file"
+                                                accept="image/jpeg,image/jpg,image/png" />
+                                            <div className="icon">
+                                                <i class="fal fa-image" />
+                                            </div>
+                                        </button>
+                                    </div>
+
                                     <div className="detail">
                                         <div className="info">
                                             <h1>{config.name}</h1>
@@ -221,21 +280,19 @@ class Profile extends React.Component {
                                     </div>
 
                                 </div>
-                                <Router>
-                                    <React.Fragment>
-                                        <LinearTabs tabs={tabs} slug={`${Urls().profile()}`} />
-                                        <div className={styles.content}>
+                                <React.Fragment>
+                                    <LinearTabs tabs={tabs} slug={`${Urls().profile()}`} />
+                                    <div className={styles.content}>
 
-                                            {tabs && tabs.map((tabs, index) => (
-                                                <Route
-                                                    key={index}
-                                                    path={`${Urls().profile()}${tabs.value}`}
-                                                    render={() => this.tabComponents(tabs.value)}
-                                                />
-                                            ))}
-                                        </div>
-                                    </React.Fragment>
-                                </Router>
+                                        {tabs && tabs.map((tabs, index) => (
+                                            <Route
+                                                key={index}
+                                                path={`${Urls().profile()}${tabs.value}`}
+                                                render={() => this.tabComponents(tabs.value)}
+                                            />
+                                        ))}
+                                    </div>
+                                </React.Fragment>
                             </Col>
                         </Row>
                     </Container>

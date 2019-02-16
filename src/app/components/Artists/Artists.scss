@@ -110,24 +110,6 @@
 
 }
 
-:local(.FlatArtist) {
-    .avatar {
-
-        display: inline-block;
-
-        img {
-            border-radius: 50%;
-            height: 50px;
-            width: 50px;
-        }
-    }
-
-    .name {
-        font-weight: bold;
-        margin-right: 10px;
-    }
-}
-
 :local(.FeatureArtistSection) {
     margin: 40px 0;
 

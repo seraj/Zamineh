@@ -58,6 +58,7 @@ export const Step1 = ({
     StepData,
     MobileValidator,
     ValidateShebaNum,
+    Editable,
     onMapClick
 }) => {
     return (
@@ -103,20 +104,20 @@ export const Step1 = ({
                             <Error name='last_name' />
                         </FormGroup>
                     </Col>
-                    <Col lg={4} md={4} sm={12} xs={12}>
-                        <FormGroup>
-                            <Label>عکس پروفایل</Label>
-                            <Uploader
-                                server='/gallery-app/artist/profile-pic/'
-                                name='profile_pic'
-                                files={StepData ? StepData.profile_pic : null}
-                            // Load={(StepData && StepData.profile_pic && StepData.profile_pic.link) ? StepData.profile_pic.link : null}
+                    {!Editable &&
+                        <Col lg={4} md={4} sm={12} xs={12}>
+                            <FormGroup>
+                                <Label>عکس پروفایل</Label>
+                                <Uploader
+                                    server='/gallery-app/artist/profile-pic/'
+                                    name='profile_pic'
+                                    files={StepData ? StepData.profile_pic : null}
+                                // Load={(StepData && StepData.profile_pic && StepData.profile_pic.link) ? StepData.profile_pic.link : null}
 
-                            />
-
-
-                        </FormGroup>
-                    </Col>
+                                />
+                            </FormGroup>
+                        </Col>
+                    }
                 </Row>
             </div>
             <div className={styles.RegistrationSection}>
@@ -218,24 +219,26 @@ export const Step1 = ({
                             <Error name='sheba_num' />
                         </FormGroup>
                     </Col>
-                    <Col lg={6} md={6} sm={12} xs={12}>
-                        <FormGroup>
-                            <Label>انتخاب گالری</Label>
-                            <InputAsyncTypeahead
-                                name='gallery'
-                                api='/gallery-app/gallery/autocomplete/?phrase'
-                                placeholder='جستجوی گالری مد نظر'
-                            // validate={value => value ? undefined : 'وارد کردن نام گالری الزامی میباشد'}
-                            />
-                            <Error name='gallery' />
-                        </FormGroup>
-                    </Col>
+                    {!Editable &&
+                        <Col lg={6} md={6} sm={12} xs={12}>
+                            <FormGroup>
+                                <Label>انتخاب گالری</Label>
+                                <InputAsyncTypeahead
+                                    name='gallery'
+                                    api='/gallery-app/gallery/autocomplete/?phrase'
+                                    placeholder='جستجوی گالری مد نظر'
+                                // validate={value => value ? undefined : 'وارد کردن نام گالری الزامی میباشد'}
+                                />
+                                <Error name='gallery' />
+                            </FormGroup>
+                        </Col>
+                    }
                 </Row>
-                <Alert
+                {/* <Alert
                     message='...'
                     type='warning'
                     rtl
-                />
+                /> */}
 
             </div>
         </React.Fragment>

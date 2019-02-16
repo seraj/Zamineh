@@ -1,0 +1,21 @@
+@import "../../../static/scss/variables";
+@import "../../../static/scss/_mixins";
+@import "../../../static/scss/_rem";
+
+:local(.FlatList) {
+    .avatar {
+
+        display: inline-block;
+
+        img {
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+        }
+    }
+
+    .name {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+}

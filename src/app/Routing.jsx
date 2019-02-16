@@ -40,6 +40,7 @@ import Section from './components/Section/Section';
 
 import Profile from './components/Profile/Profile';
 import GalleryProfile from './components/Profile/GalleryProfile/GalleryProfile';
+import ArtistProfile from './components/Profile/ArtistProfile/ArtistProfile';
 
 
 import { LoadingHome } from './components/Loaders/Loaders';
@@ -147,7 +148,7 @@ export default function Routing({ isLogined }) {
                 />
                 <ArtistPrivateRoute
                     path={Urls().ArtistDashboard()}
-                    component={GalleryProfile}
+                    component={ArtistProfile}
                 />
                 <Route
                     exact

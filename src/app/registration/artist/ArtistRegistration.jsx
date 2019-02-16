@@ -788,7 +788,6 @@ class ArtistRegistration extends React.Component {
                                                             MobileValidator={MobileValidator}
                                                             ValidateShebaNum={ValidateShebaNum}
                                                         />
-
                                                         <SubmitSeciton
                                                             Text='ثبت اطلاعات و رفتن به مرحله ۲'
                                                             btnLoading={btnLoading}
