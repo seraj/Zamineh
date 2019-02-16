@@ -174,16 +174,7 @@ export const Tabz = ({ type }) => {
                     }
                 </>
             }
-            {/* 
-            {followedGalleries && followedGalleries.gallery_set &&
-                <section className={styles.tabSection}>
-                    <h2 className={styles.title}>گالری‌هایی که دنبال میکنید <span>{followedGalleries.count} گالری‌ دنبال میکنید</span></h2>
-                    <ResultsGrid
-                        item={followedGalleries.gallery_set}
-                        onFollowClick={onFollowClick}
-                    />
-                </section>
-            } */}
+
 
         </React.Fragment>
     )

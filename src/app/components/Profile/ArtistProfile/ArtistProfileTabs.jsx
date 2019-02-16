@@ -148,6 +148,11 @@ export const Tabz = ({ type }) => {
                                 {Data.results.map((show, index) => (
                                     <Col key={index} lg={4} md={6} sm={6} xs={12}>
                                         <div className='feature'>
+                                            <a href={Urls().show() + show.slug} className='img-link'>
+                                                <div className='img img-hoverable'>
+                                                    <Img img={show.img} alt={show.title} width='100%' height='250px' />
+                                                </div>
+                                            </a>
                                             <div className='details'>
                                                 <a href={Urls().show() + show.slug}>
                                                     <h3>{show.name}</h3>
@@ -164,16 +169,6 @@ export const Tabz = ({ type }) => {
                     }
                 </>
             }
-            {/* 
-            {followedGalleries && followedGalleries.gallery_set &&
-                <section className={styles.tabSection}>
-                    <h2 className={styles.title}>گالری‌هایی که دنبال میکنید <span>{followedGalleries.count} گالری‌ دنبال میکنید</span></h2>
-                    <ResultsGrid
-                        item={followedGalleries.gallery_set}
-                        onFollowClick={onFollowClick}
-                    />
-                </section>
-            } */}
 
         </React.Fragment>
     )
