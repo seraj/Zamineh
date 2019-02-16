@@ -102,7 +102,8 @@ class Artist extends React.Component {
                 config: {
                     ...this.state.config,
                     follow: {
-                        is_flw: response.data.state
+                        is_flw: response.data.state,
+                        count: response.data.count
                     }
                 }
             });
@@ -138,11 +139,14 @@ class Artist extends React.Component {
 
                                     <div className="info">
                                         <h1>{config.name}</h1>
-                                        <span>{config.detail}</span>
+                                        <span>
+                                            <h2 style={{ marginLeft: 20, fontSize: 17, display: 'inline' }}>{config.detail}</h2>
+                                            <div style={{ fontSize: 17, display: 'inline' }}> {(config.follow && config.follow.count > 0) ? `${NumbersConvertor().convertToPersian(config.follow.count)} دنبال کننده` : null}</div>
+                                        </span>
                                     </div>
                                     <div className="follow">
                                         <button
-                                            className={`${DefaultStyle.followBtn} min ${config.is_flw ? 'following' : ''}`}
+                                            className={`${DefaultStyle.followBtn} min ${config.follow && config.follow.is_flw ? 'following' : ''}`}
                                             onClick={
                                                 isLogined ?
                                                     () => this.onFollowClick(config.id)
