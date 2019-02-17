@@ -19,3 +19,82 @@
         margin-right: 10px;
     }
 }
+
+:local(.ListWithFollowBtn) {
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    padding: 20px;
+
+    &:hover {
+        border-color: $primary-color
+    }
+
+    .info {
+        margin-bottom: 10px;
+        padding-top: 10px;
+        text-align: center;
+
+        .img {
+            margin-bottom: 10px;
+
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 100px;
+            }
+        }
+
+        span {
+            font-size: 17px;
+            display: block;
+
+            &.bold {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .button {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 30px;
+    }
+}
+
+:local(.followBtn) {
+    width: 100%;
+    font-weight: bold;
+    padding: 4px 20px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    color: $primary-color;
+    text-align: center;
+    position: relative;
+
+    &:before {
+        content: 'دنبال کردن'
+    }
+
+    &:hover {
+        border-color: $primary-color;
+    }
+
+    &.following {
+        color: $primary-color;
+        border: 1px solid #e5e5e5;
+
+        &:hover {
+            border-color: $primary-color;
+
+            &:before {
+                content: 'دنبال نکردن'
+            }
+        }
+
+        &:before {
+            content: 'دنبال میکنید'
+        }
+    }
+}

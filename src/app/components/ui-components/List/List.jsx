@@ -24,3 +24,32 @@ export const FlatList = (props) => {
         </React.Fragment>
     )
 }
+export const ListWithFollowBtn = (props) => {
+    return (
+        <React.Fragment>
+            <div className={styles.ListWithFollowBtn}>
+                <div className="info">
+                    <div className='img'>
+                        <Link to={props.url}>
+                            <Img
+                                img={props.img}
+                                alt={props.name}
+                                width={50}
+                            />
+                        </Link>
+                    </div>
+                    <Link to={props.url}>
+                        <span className={`bold`}>{props.name}</span>
+                        <span>{props.detail}</span>
+                    </Link>
+                </div>
+                <div className="button">
+                    <button
+                        className={`${styles.followBtn} ${props.is_flw ? 'following' : ''}`}
+                        onClick={props.onFollowClick}
+                    ></button>
+                </div>
+            </div>
+        </React.Fragment>
+    )
+}

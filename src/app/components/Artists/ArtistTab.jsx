@@ -17,10 +17,13 @@ import { OverviewSets, ShowSet, FourColumnArtist, PaginationItem } from '../Gall
 import { Loading } from '../Spinner/Spinner';
 import Pagination from '../Pagination/Pagination';
 import { FourColumnArt } from '../ArtArtist/Arts';
-import { Flatlist } from '../ui-components/List/List';
+import { ListWithFollowBtn } from '../ui-components/List/List';
 import { Img } from '../General'
 
 import styles from './Artists.scss'
+
+const isLogined = SecurityManager().isLogined();
+
 
 export const Overview = ({ type, slug }) => {
     const [initialized, setInitialized] = useState(false)
@@ -406,3 +409,80 @@ export const Shows = ({ type, slug }) => {
 
 
 
+
+export const Artists = ({ slug }) => {
+    const [initialized, setInitialized] = useState(false)
+    const [Data, setData] = useState()
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        if (!initialized) {
+            handleData()
+            setInitialized(true)
+        }
+    })
+    const handleData = (page) => {
+        axios
+            .get(`${Urls().api()}/artist/${slug}/related-artists/`, { params: { page: page } })
+            .then(({ data }) => {
+                setData(data)
+                setLoading(false)
+            });
+    }
+    const onFollowClick = (index, id) => {
+        let Artist = Data.results
+        axios.post(`${Urls().api()}/follow/toggle/`, {
+            id: id,
+            type: 'artists'
+        }, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            }
+        ).then(({ data }) => {
+            Artist[index].is_flw = data.state
+            setData({ ...Data, Artist })
+        })
+
+    }
+
+    const handlePageClick = (data) => {
+        let selected = data.selected + 1;
+        setLoading(true)
+        handleData(selected);
+    }
+    return (
+        <React.Fragment>
+            {loading &&
+                <div style={{ height: 150 }}>
+                    <Loading background="#fff" />
+                </div>
+            }
+            {Data && Data.results.length > 0 &&
+                <div className={`${styles.Sections} nobb`}>
+                    <Row>
+                        {Data.results.map((item, index) => (
+                            <Col key={index} lg={3} md={4} sm={6} xs={12}>
+                                <ListWithFollowBtn
+                                    img={item.img}
+                                    name={item.name}
+                                    detail={item.detail}
+                                    is_flw={item.is_flw}
+                                    url={`${Urls().artist()}${item.slug}`}
+                                    onFollowClick={isLogined ? () => onFollowClick(index, item.id) : () => openModal(true)}
+                                />
+                            </Col>
+                        ))}
+                    </Row>
+
+                    {Data && Data.page_count > 1 &&
+                        <Pagination
+                            pageCount={Data.page_count}
+                            onPageChange={handlePageClick}
+                        />
+                    }
+                </div>
+            }
+        </React.Fragment>
+    )
+}

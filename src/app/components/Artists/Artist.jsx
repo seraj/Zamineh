@@ -13,7 +13,7 @@ import SecurityManager from '../../security/SecurityManager'
 import Modal from '../ui-components/Modal/Modal'
 
 import { LinearTabs } from '../ui-components/Tabs/Tabs'
-import { Overview, Cv, Articles, Shows } from './ArtistTab'
+import { Overview, Cv, Articles, Shows, Artists } from './ArtistTab'
 import { TopWorks } from './SingleArtist';
 
 import Login from '../../login/Login';
@@ -79,7 +79,7 @@ class Artist extends React.Component {
                 component = <Shows slug={this.props.match.params.slug} />;
                 break;
             case '/related-artists/':
-                component = <Overview type='related-artists' slug={this.props.match.params.slug} />;
+                component = <Artists slug={this.props.match.params.slug} />;
                 break;
             default:
                 component = <NothingRendered />;
@@ -109,7 +109,6 @@ class Artist extends React.Component {
                 }
             });
         })
-
     }
     openModal = value => {
         this.setState({
