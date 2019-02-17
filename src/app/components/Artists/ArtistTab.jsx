@@ -81,7 +81,6 @@ export const Shows = ({ type, slug }) => {
                     <Loading background="#fff" />
                 </div>
             }
-            <ArtistArtFiltering slug={slug} />
 
         </React.Fragment>
     )

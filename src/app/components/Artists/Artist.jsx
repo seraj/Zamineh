@@ -13,7 +13,7 @@ import SecurityManager from '../../security/SecurityManager'
 import Modal from '../ui-components/Modal/Modal'
 
 import { LinearTabs } from '../ui-components/Tabs/Tabs'
-import { Overview, Tabz } from './ArtistTab'
+import { Overview, Shows, CV } from './ArtistTab'
 import { TopWorks } from './SingleArtist';
 
 import Login from '../../login/Login';
@@ -70,7 +70,7 @@ class Artist extends React.Component {
                 component = <Overview type='overview' slug={this.props.match.params.slug} />;
                 break;
             case '/cv/':
-                component = <Overview type='cv' slug={this.props.match.params.slug} />;
+                component = <CV type='cv-solo' slug={this.props.match.params.slug} />;
                 break;
             case '/articles/':
                 component = <Overview type='articles' slug={this.props.match.params.slug} />;
