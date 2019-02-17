@@ -201,6 +201,16 @@
 
 :local(.content) {
     position: relative;
+    margin: 25px 0;
+}
+
+:local(.artistBio) {
+    // margin-top: 25px;
+
+    h2 {
+        font-size: 20px;
+        font-weight: bold;
+    }
 }
 
 :local(.title) {

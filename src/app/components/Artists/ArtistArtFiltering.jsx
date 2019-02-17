@@ -214,9 +214,12 @@ class ArtistArtFiltering extends React.Component {
             <React.Fragment>
                 {bio && bio !== '' &&
                     <>
-                        <div className="about">
+                        <div className={styles.artistBio}>
                             <h2>درباره نویسنده</h2>
-                            {bio}</div>
+                            <p>
+                                {bio}
+                            </p>
+                        </div>
                         <hr />
                     </>
                 }
