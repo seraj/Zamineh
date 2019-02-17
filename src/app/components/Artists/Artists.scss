@@ -231,3 +231,13 @@
     border-top: 1px solid $border-color;
     padding-top: 10px;
 }
+
+:local(.cvList) {
+    margin-bottom: 5px;
+    padding: 25px 0;
+
+    .name {
+        font-weight: bold;
+        font-size: 19px;
+    }
+}
