@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import cookie from 'react-cookies'
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 
@@ -9,6 +8,8 @@ import SecurityManager from '../../security/SecurityManager'
 import Urls from '../Urls'
 import { Toast } from '../Toast/Toast';
 import Modal from '../ui-components/Modal/Modal'
+import ArtistArtFiltering from './ArtistArtFiltering';
+
 
 import { Loading } from '../Spinner/Spinner';
 import Pagination from '../Pagination/Pagination';
@@ -20,12 +21,40 @@ import styles from './Artists.scss'
 
 export const Overview = ({ type, slug }) => {
     const [initialized, setInitialized] = useState(false)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        if (!initialized) {
+            setLoading(false)
+            setInitialized(true)
+        }
+    })
+    const handlePageClick = (data) => {
+        let selected = data.selected + 1;
+        setLoading(true)
+        getData(type, selected);
+    };
+    return (
+        <React.Fragment>
+            {loading &&
+                <div style={{ height: 150 }}>
+                    <Loading background="#fff" />
+                </div>
+            }
+            <ArtistArtFiltering slug={slug} />
+        </React.Fragment>
+    )
+}
+
+export const Shows = ({ type, slug }) => {
+    const [initialized, setInitialized] = useState(false)
     const [Data, setData] = useState()
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         if (!initialized) {
-            getData(type, slug)
+            // getData(type, slug)
+            setLoading(false)
             setInitialized(true)
         }
     })
@@ -45,8 +74,6 @@ export const Overview = ({ type, slug }) => {
         setLoading(true)
         getData(type, selected);
     };
-
-
     return (
         <React.Fragment>
             {loading &&
@@ -54,15 +81,7 @@ export const Overview = ({ type, slug }) => {
                     <Loading background="#fff" />
                 </div>
             }
-            {Data && Data.bio &&
-                <>
-                    <div className="about">
-                        <h2>درباره نویسنده</h2>
-                        {Data.bio}</div>
-                    <hr />
-                </>
-            }
-
+            <ArtistArtFiltering slug={slug} />
 
         </React.Fragment>
     )

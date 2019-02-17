@@ -20,6 +20,7 @@ import Login from '../../login/Login';
 import Urls from '../Urls';
 import Section from '../Section/Section';
 
+import { SingleArtistMetaTag } from './ArtistMetaTags'
 import NumbersConvertor from '../NumbersConvertor';
 import ThousandSeparator from '../ThousandSeparator';
 
@@ -130,6 +131,7 @@ class Artist extends React.Component {
 
         return (
             <React.Fragment>
+                <SingleArtistMetaTag title={config.name} slug={this.props.match.params.slug} />
                 <Section ExtraClass={'content singlePage'}>
                     <Container>
                         <Row>
