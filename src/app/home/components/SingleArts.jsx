@@ -31,7 +31,8 @@ const SingleArts = (props) => (
       </div>
     </div>
     <div className='art_details'>
-      <span className='content item_title'><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>
+      {props.item.title && <span className='content item_title' style={{ marginBottom: 5 }}><Link to={`${Urls().arts()}${props.item.slug}`}>{props.item.title}</Link></span>}
+      <span className='content '><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>
       <span className='content gallery_name'>
         {props.item.gallery != null &&
           props.item.gallery.slug ?

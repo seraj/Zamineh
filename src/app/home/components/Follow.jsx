@@ -75,15 +75,8 @@ class Follow extends Component {
                 this.setState({
                     Artist
                 })
-                // console.log(Artist)
-            }
-            else {
-                // console.log('its false')
             }
         })
-            .catch(function (error) {
-
-            });
     }
     openModal = value => {
         this.setState({

@@ -41,11 +41,11 @@ class Carousel extends React.Component {
       <React.Fragment>
         <div className='header-slider'>
           <Flickity
-            className={'carousel items'} // default ''
-            elementType={'div'} // default 'div'
-            options={flickityOptions} // takes flickity options {}
-            disableImagesLoaded={false} // default false
-            reloadOnUpdate // default false
+            className={'carousel items'}
+            elementType={'div'}
+            options={flickityOptions}
+            disableImagesLoaded={false}
+            reloadOnUpdate
           >
             {this.renderItems()}
           </Flickity>

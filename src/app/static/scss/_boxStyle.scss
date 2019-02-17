@@ -285,3 +285,37 @@
         }
     }
 }
+
+
+
+:local(.MinimalfollowBtn) {
+    width: 100%;
+    color: $primary-color;
+    position: relative;
+    cursor: pointer;
+
+    &:before {
+        content: 'دنبال کردن'
+    }
+
+    &:hover {
+        color: $secondery-color
+    }
+
+    &.following {
+        color: $primary-color;
+
+        &:hover {
+            color: $secondery-color;
+
+            &:before {
+                content: 'دنبال نکردن'
+            }
+        }
+
+
+        &:before {
+            content: 'دنبال میکنید'
+        }
+    }
+}

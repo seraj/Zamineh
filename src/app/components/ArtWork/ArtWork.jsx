@@ -16,11 +16,13 @@ import Urls from '../Urls';
 import Section from '../Section/Section';
 
 import { SingleArtWorkMetaTag } from '../Metatags/Metatags'
+import ArtCarousel from './ArtCarousel'
 import NumbersConvertor from '../NumbersConvertor';
 import ThousandSeparator from '../ThousandSeparator';
 
 import { Loading } from '../Spinner/Spinner';
 
+import DefaultStyle from '../../static/scss/_boxStyle.scss'
 import styles from './ArtWork.scss'
 
 class ArtWork extends React.Component {
@@ -45,7 +47,14 @@ class ArtWork extends React.Component {
             })
     }
 
-
+    onSaveItemClick = () => {
+        let Art = this.state.config
+        axios.post(`${Urls().api()}/art/save/toggle/`, { id: Art.id })
+            .then(({ data }) => {
+                Art.is_saved = data.state
+                this.setState({ Art });
+            })
+    }
     openModal = value => {
         this.setState({
             login: value
@@ -67,12 +76,37 @@ class ArtWork extends React.Component {
         return (
             <React.Fragment>
                 <SingleArtWorkMetaTag title={config.name} slug={this.props.match.params.slug} />
-                <Section ExtraClass={'content singlePage'}>
+                <Section ExtraClass={`content singlePage ${styles.art}`}>
                     <Container>
                         <Row>
-                            <Col xs={12}>
+                            <Col lg={8} md={8} sm={8} xs={12}>
+                                {config && config.img_set &&
+                                    <ArtCarousel
+                                        items={config.img_set}
+                                        openModal={this.openModal}
+                                        isLogined={isLogined}
+                                        isSaved={config.is_saved}
+                                        onSaveItemClick={this.onSaveItemClick}
+                                    />}
+                            </Col>
+                            <Col lg={4} md={4} sm={4} xs={12}>
+                                <div className={styles.artDetails}>
+                                    <h1>{config.artist ? config.artist.name : ''}</h1>
+                                    <span className={DefaultStyle.MinimalfollowBtn}></span>
 
+                                    <div className='art-details'>
+                                        <span>{config.name}</span>
+                                        {config.detail &&
+                                            <>
+                                                <span>{config.detail.material}</span>
+                                                <span>{config.detail.width} × {config.detail.height} × {config.detail.depth} {config.detail.unit}</span>
 
+                                                <span className="sp">{config.detail.quote}</span>
+                                            </>
+                                        }
+                                    </div>
+                                    <hr />
+                                </div>
                             </Col>
                         </Row>
                     </Container>
