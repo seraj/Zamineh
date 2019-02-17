@@ -174,12 +174,6 @@ export const Tabz = ({ type }) => {
     )
 }
 
-
-
-
-
-
-
 export const Settings = ({ Config }) => {
     const [initialized, setInitialized] = useState(false)
     const [Data, setData] = useState()

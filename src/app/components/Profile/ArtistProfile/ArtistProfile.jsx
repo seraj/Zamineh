@@ -12,6 +12,8 @@ import { Toast } from '../../Toast/Toast';
 import SecurityManager from '../../../security/SecurityManager'
 import Modal from '../../ui-components/Modal/Modal'
 
+import { ArtistProfileMetaTag } from '../../Metatags/Metatags'
+
 import { LinearTabs } from '../../ui-components/Tabs/Tabs'
 import { Tabz, Settings, Notification, Transactions, Ticket } from './ArtistProfileTabs'
 import { Img } from '../../General';
@@ -118,42 +120,13 @@ class ArtistProfile extends React.Component {
         return component
     }
 
-    uploadImage = (e, type) => {
-        let file = e.target.files[0];
-        let config = this.state.config;
-        this.setState({ loading: type })
-        const formData = new FormData();
-        formData.append('image', file, file.name);
-        const url = `${Urls().api()}/gallery-app/panel/artist/upload-image/${type}/`;
-        axios({
-            method: 'POST',
-            url: `${url}`,
-            data: formData,
-            config: {
-                headers: {}
-            }
-        })
-            .then(response => {
-                config[type] = response.data.link
-                Toast('success', 'عکس با موفقیت آپلود شد.');
-                this.setState({ loading: '', config })
-            })
-            .catch(err => {
-                if (err.response.status == 403) {
-                    Toast('warning', 'پروفایل شما تایید نشده است.');
-                    this.setState({ loading: '' })
-                } else {
-                    Toast('warning', 'مشکلی در بارگذاری عکس به وجود آمده است.');
-                    this.setState({ loading: '' })
-                }
-            });
-    }
     render() {
         const parsed = queryString.parse(location.search);
         const { config, tabs, loading } = this.state;
 
         return (
             <React.Fragment>
+                <ArtistProfileMetaTag />
                 <Section ExtraClass={'content singlePage'}>
                     <div className={styles.userCover} style={{
                         backgroundImage: `url(${config.cover !== '' ? config.cover : ''})`

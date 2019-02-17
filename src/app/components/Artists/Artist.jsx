@@ -13,14 +13,14 @@ import SecurityManager from '../../security/SecurityManager'
 import Modal from '../ui-components/Modal/Modal'
 
 import { LinearTabs } from '../ui-components/Tabs/Tabs'
-import { Overview, Shows, Cv, Articles } from './ArtistTab'
+import { Overview, Cv, Articles, Shows } from './ArtistTab'
 import { TopWorks } from './SingleArtist';
 
 import Login from '../../login/Login';
 import Urls from '../Urls';
 import Section from '../Section/Section';
 
-import { SingleArtistMetaTag } from './ArtistMetaTags'
+import { SingleArtistMetaTag } from '../Metatags/Metatags'
 import NumbersConvertor from '../NumbersConvertor';
 import ThousandSeparator from '../ThousandSeparator';
 
@@ -76,7 +76,7 @@ class Artist extends React.Component {
                 component = <Articles type='articles' slug={this.props.match.params.slug} />;
                 break;
             case '/shows/':
-                component = <Overview type='shows' slug={this.props.match.params.slug} />;
+                component = <Shows slug={this.props.match.params.slug} />;
                 break;
             case '/related-artists/':
                 component = <Overview type='related-artists' slug={this.props.match.params.slug} />;

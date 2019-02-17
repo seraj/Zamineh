@@ -113,7 +113,7 @@ class GalleryRegistration extends React.Component {
                             title: 'گالری ثبت شده دارید',
                             message: 'شما با این شماره یک گالری ثبت کرده اید.در صورت نیاز شما میتوانید با شماره‌ی دیگر ثبت نام کنید',
                         },
-                        timer: 15,
+                        timer: 5,
                     })
                 }
             })
@@ -281,7 +281,7 @@ class GalleryRegistration extends React.Component {
         SecurityManager().setGalleryRegRefreshToken(RefreshToken);
     }
     afterTimeFinished = () => {
-        window.location.replace(Urls().Profile());
+        window.location.replace(Urls().GalleryDashboard());
 
     }
 
@@ -315,7 +315,7 @@ class GalleryRegistration extends React.Component {
                                         title={message.title}
                                         message={message.message}
                                         type={message.type}
-                                        buttonText='رفتن به پروفایل'
+                                        buttonText='رفتن به پنل مدیریت گالری'
                                         seconds={timer}
                                         afterTimeFinished={this.afterTimeFinished}
                                     />

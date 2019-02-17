@@ -149,7 +149,7 @@ class ArtistRegistration extends React.Component {
                             title: 'هنرمند ثبت شده دارید',
                             message: 'شما با این شماره یک هنرمند ثبت کرده اید.در صورت نیاز شما میتوانید با شماره‌ی دیگر ثبت نام کنید',
                         },
-                        timer: 15,
+                        timer: 5,
                     })
                 }
             })
@@ -710,7 +710,7 @@ class ArtistRegistration extends React.Component {
     }
 
     afterTimeFinished = () => {
-        window.location.replace(Urls().Profile());
+        window.location.replace(Urls().ArtistDashboard());
 
     }
 
@@ -747,7 +747,7 @@ class ArtistRegistration extends React.Component {
                                         title={message.title}
                                         message={message.message}
                                         type={message.type}
-                                        buttonText='رفتن به پروفایل'
+                                        buttonText='رفتن به پنل مدیریت هنرمند'
                                         seconds={timer}
                                         afterTimeFinished={this.afterTimeFinished}
                                     />

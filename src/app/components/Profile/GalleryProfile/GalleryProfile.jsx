@@ -11,6 +11,7 @@ import { Toast } from '../../Toast/Toast';
 
 import SecurityManager from '../../../security/SecurityManager'
 import Modal from '../../ui-components/Modal/Modal'
+import { GalleryProfileMetaTag } from '../../Metatags/Metatags'
 
 import { LinearTabs } from '../../ui-components/Tabs/Tabs'
 import { Tabz, Settings, Notification, Transactions, Ticket } from './GalleryProfileTabs'
@@ -155,6 +156,7 @@ class GalleryProfile extends React.Component {
 
         return (
             <React.Fragment>
+                <GalleryProfileMetaTag />
                 <Section ExtraClass={'content singlePage'}>
                     <div className={styles.userCover} style={{
                         backgroundImage: `url(${config.cover !== '' ? config.cover : ''})`

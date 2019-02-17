@@ -235,6 +235,7 @@
 
 :local(.followBtn) {
     width: 100%;
+    font-weight: bold;
     padding: 4px 20px;
     background: $primary-color;
     border: 1px solid $primary-color;
@@ -267,7 +268,7 @@
 
     &.following {
         background-color: #fff;
-        color: #ccc;
+        color: $primary-color;
         border: 1px solid #e5e5e5;
 
         &:hover {
