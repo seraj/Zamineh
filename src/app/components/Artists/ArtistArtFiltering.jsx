@@ -31,11 +31,11 @@ class ArtistArtFiltering extends React.Component {
             Results: [],
             priceRange: {},
             FilterInfo: {
-                'medium': '',
+                'medium': null,
                 'sort': 'recently_updated',
-                'min_price': '',
-                'max_price': '',
-                'year': ''
+                'min_price': null,
+                'max_price': null,
+                'year': null
 
             },
             bio: '',
@@ -309,7 +309,7 @@ class ArtistArtFiltering extends React.Component {
                                             name='sorts'
                                             onChange={e => this.handleFormChange(e, 'sort')}
                                         >
-                                            <option value=''>انتخاب</option>
+                                            <option disabled value=''>انتخاب</option>
                                             {config.sorts.map((item, index) => (
                                                 <option key={index} value={item.value}>{item.title}</option>
                                             ))}
