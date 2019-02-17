@@ -19,6 +19,7 @@ import page404 from './components/errorPages/404';
 // import Home from './home/Home';
 import Artists from './components/Artists/Artists';
 import Artist from './components/Artists/Artist';
+import ArtWork from './components/ArtWork/ArtWork';
 import ArtistAlphabet from './components/Artists/ArtistAlphabet';
 import Login from './login/Login';
 
@@ -188,8 +189,8 @@ export default function Routing({ isLogined }) {
                 {/* end Artist & Gallery Routing */}
 
                 <Route
-                    path={`${Urls().arts()}:artsId`}
-                    render={() => <Articles />}
+                    path={`${Urls().arts()}:slug`}
+                    component={ArtWork}
                 />
 
 

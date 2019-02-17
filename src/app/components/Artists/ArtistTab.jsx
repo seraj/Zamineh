@@ -410,7 +410,7 @@ export const Shows = ({ type, slug }) => {
 
 
 
-export const Artists = ({ slug }) => {
+export const Artists = ({ slug, openModal }) => {
     const [initialized, setInitialized] = useState(false)
     const [Data, setData] = useState()
     const [loading, setLoading] = useState(true)

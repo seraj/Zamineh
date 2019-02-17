@@ -79,7 +79,7 @@ class Artist extends React.Component {
                 component = <Shows slug={this.props.match.params.slug} />;
                 break;
             case '/related-artists/':
-                component = <Artists slug={this.props.match.params.slug} />;
+                component = <Artists slug={this.props.match.params.slug} openModal={this.openModal} />;
                 break;
             default:
                 component = <NothingRendered />;
