@@ -162,3 +162,21 @@
         }
     }
 }
+
+:local(.workTitle) {
+
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+
+    span {
+        color: $primary-color;
+        font-size: 22px;
+        display: block;
+    }
+
+    a.zbtn {
+        margin-top: 10px;
+        padding: 10px 25px;
+    }
+}

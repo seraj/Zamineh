@@ -12,20 +12,20 @@ export const SingleArt = (props) => (
     <React.Fragment>
         <div className={styles.Arts}>
             <div className='thumb'>
-                <Link to={`${Urls().arts()}${props.item.slug}`}>
+                <a href={`${Urls().arts()}${props.item.slug}`}>
                     <Img
                         img={props.item.img.img}
                         alt={props.item.title}
                         width='100%'
                         divHeight='200px'
                     />
-                </Link>
+                </a>
                 {props.onSaveItemClick &&
                     <div
                         className={'save_art ' + ((props.item.is_saved) ? 'saved' : '') + ((props.item.save_loading) ? ' loading' : '')}
                         onClick={
                             props.isLogined ?
-                                () => props.onSaveItemClick(props.ArtIndex)
+                                () => props.onSaveItemClick(props.ArtIndex, props.type)
                                 :
                                 () => props.openModal(true)
                         }
@@ -47,7 +47,7 @@ export const SingleArt = (props) => (
                         }
                     </span>
                 }
-                {props.item.artist && <span className='content item_artist_name'><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>}
+                {props.item.artist && <span className='content item_artist_name'><Link to={`${Urls().artist()}${props.item.artist.slug}/overview/`}>{props.item.artist.name}</Link></span>}
                 <span className='content gallery_name'>
                     {props.item.title ? props.item.title : ''}
                     {props.item.name ? props.item.name : ''}
@@ -55,7 +55,7 @@ export const SingleArt = (props) => (
                 {props.item.gallery != null &&
                     <span className='content gallery_name'>
                         {props.item.gallery.slug ?
-                            <Link to={`${Urls().gallery()}${props.item.gallery.slug}`}>{props.item.gallery.name}</Link>
+                            <Link to={`${Urls().gallery()}${props.item.gallery.slug}/overview/`}>{props.item.gallery.name}</Link>
                             :
                             props.item.gallery ? props.item.gallery.name : ''
                         }
@@ -82,11 +82,12 @@ export const ThreeColumnArt = (props) => {
                         minWidth: '0',
                         marginLeft: 20
                     }}>
-                        {artworksCol1.map((item, index) => (
+                        {artworksCol1.map((item) => (
                             <SingleArt
                                 key={item.id}
                                 item={item}
-                                ArtIndex={index}
+                                ArtIndex={item.id}
+                                type={props.type}
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
@@ -102,11 +103,12 @@ export const ThreeColumnArt = (props) => {
                         minWidth: '0',
                         marginLeft: 20
                     }}>
-                        {artworksCol2.map((item, index) => (
+                        {artworksCol2.map((item) => (
                             <SingleArt
                                 key={item.id}
                                 item={item}
-                                ArtIndex={index}
+                                ArtIndex={item.id}
+                                type={props.type}
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
@@ -122,11 +124,12 @@ export const ThreeColumnArt = (props) => {
                         minWidth: '0',
                         // marginLeft: 20
                     }}>
-                        {artworksCol3.map((item, index) => (
+                        {artworksCol3.map((item) => (
                             <SingleArt
                                 key={item.id}
                                 item={item}
-                                ArtIndex={index}
+                                ArtIndex={item.id}
+                                type={props.type}
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
@@ -157,11 +160,12 @@ export const FourColumnArt = (props) => {
                         minWidth: '0',
                         marginLeft: 20
                     }}>
-                        {artworksCol1.map((item, index) => (
+                        {artworksCol1.map((item) => (
                             <SingleArt
                                 key={item.id}
                                 item={item}
-                                ArtIndex={index}
+                                ArtIndex={item.id}
+                                type={props.type}
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
@@ -177,11 +181,12 @@ export const FourColumnArt = (props) => {
                         minWidth: '0',
                         marginLeft: 20
                     }}>
-                        {artworksCol2.map((item, index) => (
+                        {artworksCol2.map((item) => (
                             <SingleArt
                                 key={item.id}
                                 item={item}
-                                ArtIndex={index}
+                                ArtIndex={item.id}
+                                type={props.type}
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
@@ -197,11 +202,12 @@ export const FourColumnArt = (props) => {
                         minWidth: '0',
                         marginLeft: 20
                     }}>
-                        {artworksCol3.map((item, index) => (
+                        {artworksCol3.map((item) => (
                             <SingleArt
                                 key={item.id}
                                 item={item}
-                                ArtIndex={index}
+                                ArtIndex={item.id}
+                                type={props.type}
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}
@@ -217,11 +223,12 @@ export const FourColumnArt = (props) => {
                         minWidth: '0',
                         // marginLeft: 20
                     }}>
-                        {artworksCol4.map((item, index) => (
+                        {artworksCol4.map((item) => (
                             <SingleArt
                                 key={item.id}
                                 item={item}
-                                ArtIndex={index}
+                                ArtIndex={item.id}
+                                type={props.type}
                                 onSaveItemClick={props.onSaveItemClick}
                                 openModal={props.openModal}
                                 isLogined={props.isLogined}

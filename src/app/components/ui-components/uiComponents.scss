@@ -1,0 +1,57 @@
+@import "../../static/scss/variables";
+@import "../../static/scss/_mixins";
+@import "../../static/scss/_rem";
+
+:local(.aboutSection) {
+    display: block;
+    border: 1px solid #e5e5e5;
+    border-image: initial;
+    border-radius: 2px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    .context {
+        display: block;
+        margin-top: 15px;
+    }
+}
+
+:local(.aboutHeader) {
+    color: $primary-color;
+    display: flex;
+    width: 100%;
+    transition: color 0.25s ease 0s;
+    text-decoration: none;
+
+    .image {
+        display: flex;
+        margin-left: 10px;
+
+        img {
+            width: 45px;
+            height: 45px;
+            border-radius: 45px;
+        }
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: center;
+        width: 100%;
+
+        .title {
+            font-weight: bold;
+            font-size: 19px;
+            line-height: 24px;
+            color: rgb(0, 0, 0);
+        }
+
+        span {
+            font-size: 16px;
+            line-height: 16px;
+            color: #666666;
+        }
+    }
+}

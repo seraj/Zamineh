@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserRouter as Router, withRouter, Route, Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
@@ -17,9 +17,10 @@ import Section from '../Section/Section';
 
 import { SingleArtWorkMetaTag } from '../Metatags/Metatags'
 import ArtCarousel from './ArtCarousel'
+import ArtOtherWork from './ArtOtherWork'
 import NumbersConvertor from '../NumbersConvertor';
 import ThousandSeparator from '../ThousandSeparator';
-
+import AboutSection from '../ui-components/AboutSection'
 import { Loading } from '../Spinner/Spinner';
 
 import DefaultStyle from '../../static/scss/_boxStyle.scss'
@@ -30,23 +31,33 @@ class ArtWork extends React.Component {
         super(props);
         this.state = {
             config: {},
+            artItems: {},
             loading: '',
             login: false,
         }
     }
     componentDidMount() {
         this.getConfig(this.props.match.params.slug)
+        this.getArtItems(this.props.match.params.slug)
     }
     getConfig = (slug) => {
         axios
             .get(`${Urls().api()}/art/${slug}/`)
-            .then(response => {
+            .then(({ data }) => {
                 this.setState({
-                    config: response.data
+                    config: data
                 });
             })
     }
-
+    getArtItems = (slug) => {
+        axios
+            .get(`${Urls().api()}/art/${slug}/recommendations/`)
+            .then(({ data }) => {
+                this.setState({
+                    artItems: data
+                });
+            })
+    }
     onSaveItemClick = () => {
         let Art = this.state.config
         axios.post(`${Urls().api()}/art/save/toggle/`, { id: Art.id })
@@ -55,6 +66,7 @@ class ArtWork extends React.Component {
                 this.setState({ Art });
             })
     }
+
     handleBuyArtClick = () => {
         let Art = this.state.config
         axios.post(`${Urls().api()}/art/BUY/`, { id: Art.id })
@@ -62,11 +74,64 @@ class ArtWork extends React.Component {
 
             })
     }
+    onFollowClick = (id, type) => {
+        const Type = type === 'artist' ? 'artists' : 'galleries';
+        let Config = this.state.config[type]
+        axios.post(`${Urls().api()}/follow/toggle/`, {
+            id: id,
+            type: Type
+        },
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            }
+        ).then(({ data }) => {
+            Config.is_flw = data.state
+            this.setState({
+                ...this.state.config,
+                Config
+            });
+        })
+    }
+    onSaveWorkClick = (id, type) => {
+        let Art = this.state.artItems[type]
+        let currentArt = Art.filter(item => item.id === id)
+
+        axios.post(`${Urls().api()}/art/save/toggle/`, { id: id })
+            .then(({ data }) => {
+                currentArt[0].is_saved = data.state
+                this.setState({
+                    ...this.state.artItems,
+                    currentArt
+                });
+            })
+    }
+    onRelatedArtistFollowClick = (id, index) => {
+        let items = this.state.artItems.related_artist
+        axios.post(`${Urls().api()}/follow/toggle/`, {
+            id: id,
+            type: 'artists'
+        },
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            }
+        ).then(({ data }) => {
+            items[index].is_flw = data.state
+            this.setState({
+                ...this.state.artItems,
+                items
+            });
+        })
+    }
     handleViewArtClick = () => {
         let Art = this.state.config
         axios.post(`${Urls().api()}/art/handleClick/`, { id: Art.id })
             .then(({ data }) => {
-
             })
     }
     openModal = value => {
@@ -84,7 +149,7 @@ class ArtWork extends React.Component {
     };
     render() {
         const parsed = queryString.parse(location.search);
-        const { config, login, loading } = this.state;
+        const { config, login, loading, artItems } = this.state;
         const isLogined = SecurityManager().isLogined();
 
         return (
@@ -105,8 +170,15 @@ class ArtWork extends React.Component {
                             </Col>
                             <Col lg={4} md={4} sm={4} xs={12}>
                                 <div className={styles.artDetails}>
-                                    <h1>{config.artist ? config.artist.name : ''}</h1>
-                                    <span className={DefaultStyle.MinimalfollowBtn}></span>
+                                    {config.artist &&
+                                        <>
+                                            <h1>{config.artist ? config.artist.name : ''}</h1>
+                                            <span
+                                                onClick={isLogined ? () => this.onFollowClick(config.artist.id, 'artist') : () => this.openModal}
+                                                className={`${DefaultStyle.MinimalfollowBtn} ${config.artist.is_flw ? 'following' : null}`}
+                                            />
+                                        </>
+                                    }
 
                                     <div className='art-details'>
                                         <span>{config.name}</span>
@@ -189,6 +261,54 @@ class ArtWork extends React.Component {
 
                                 </div>
                             </Col>
+
+                            <Col lg={8} md={8} sm={8} xs={12}>
+                                <hr />
+                                <div className={styles.ArtBio}>
+                                    {config.gallery != null &&
+                                        <AboutSection
+                                            img={config.gallery.logo}
+                                            title={config.gallery.name}
+                                            underTitle={'تهران'}
+                                            context={config.gallery.about}
+                                            type={'artist'}
+                                            follow={config.gallery}
+                                            handleLogin={isLogined}
+                                            onFollowClick={() => this.onFollowClick(config.gallery.id, 'gallery')}
+                                            openModal={() => this.openModal}
+                                            url={`${Urls().gallery()}${config.gallery.slug}/overview/`}
+                                        />
+                                    }
+                                    {config.artist &&
+                                        <AboutSection
+                                            img={config.artist.profile_pic}
+                                            title={config.artist.name}
+                                            underTitle={config.artist.detail}
+                                            context={config.artist.bio}
+                                            type={'artist'}
+                                            follow={config.artist}
+                                            handleLogin={isLogined}
+                                            onFollowClick={() => this.onFollowClick(config.artist.id, 'artist')}
+                                            openModal={() => this.openModal}
+                                            url={`${Urls().artist()}${config.artist.slug}/overview/`}
+                                        />
+                                    }
+                                </div>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            {artItems !== '' &&
+                                <ArtOtherWork
+                                    items={artItems}
+                                    config={config}
+                                    handleLogin={isLogined}
+                                    onSaveItemClick={this.onSaveWorkClick}
+                                    openModal={this.openModal}
+                                    onFollowClick={this.onRelatedArtistFollowClick}
+                                />
+                            }
+
                         </Row>
                     </Container>
                 </Section>

@@ -325,7 +325,19 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
     const filterFormRef = (form) => {
         form = form;
     }
-    const onSaveItemClick = () => { }
+    const onSaveItemClick = (id, type) => {
+        let Art = Data.art_set
+        let currentArt = Art.filter(item => item.id === id)
+
+        axios.post(`${Urls().api()}/art/save/toggle/`, { id: id })
+            .then(({ data }) => {
+                currentArt[0].is_saved = data.state
+                setData({
+                    ...Data,
+                    currentArt
+                })
+            })
+    }
     return (
         <React.Fragment>
             {loading &&
