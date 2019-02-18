@@ -97,7 +97,6 @@ class ArtistArtFiltering extends React.Component {
         }, () => {
             this.getOffers(this.state.FilterInfo);
         });
-        // console.log(this.state.FilterInfo)
     }
     handleSliderChange = (value, completed) => {
 
@@ -119,7 +118,6 @@ class ArtistArtFiltering extends React.Component {
             }, () => {
                 this.getOffers(this.state.FilterInfo);
             });
-            // console.log(this.state.FilterInfo)
         }
     }
     getOffers = (params) => {

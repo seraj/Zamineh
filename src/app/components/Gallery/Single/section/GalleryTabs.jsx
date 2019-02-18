@@ -268,12 +268,6 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
     const [loading, setLoading] = useState(true)
     const [Resultloading, setResultloading] = useState(true)
 
-    // const params = {
-    //     only_for_sale: '',
-    //     sort: '',
-    //     price_range: '',
-    //     size: ''
-    // }
     useEffect(() => {
         if (!initialized) {
             handleData()
@@ -297,13 +291,9 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
     }
     const handleFormChange = (type, value) => {
         setResultloading(true)
-        let values = Values
-        values[type] = value
-        setValues({
-            ...Values,
-            values
-        })
-        console.log(Values)
+        let allValue = Values
+        allValue[type] = value
+        setValues(allValue)
         handleData(Values)
     }
 
@@ -349,26 +339,37 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
             {Data && Data.filter &&
                 <div className={styles.artFilter}>
                     <form ref={filterFormRef}>
-                        <a onClick={() => handleFormChange('only_for_sale', !Values.only_for_sale)} className={`filter-button ${Values.only_for_sale ? 'active' : ''}`}>
-                            <Checkbox
-                                id={Data.filter.only_for_sale.value}
-                                label={Data.filter.only_for_sale.title}
-                                checked={Values.only_for_sale}
-                            />
-                        </a>
+                        {Values.only_for_sale !== '' &&
+                            <div onClick={() => handleFormChange('only_for_sale', !Values.only_for_sale)} className={`filter-button ${Values.only_for_sale ? 'active' : ''}`}>
+                                <Checkbox
+                                    disabled={true}
+                                    id={Data.filter.only_for_sale.value}
+                                    label={Data.filter.only_for_sale.title}
+                                    checked={Values.only_for_sale}
+                                />
+                            </div>
+                        }
                         <FilterDropDown
                             name='اندازه'
-                            handleChange={handleFormChange}
+                            data={Data.filter.size_set}
+                            defaultOptionClick={() => handleFormChange('size', null)}
                             value={Values.size}
+                            handleChange={handleFormChange}
                             options={Data.filter.size_set}
                         />
                         <FilterDropDown
                             name='قیمت'
+                            data={Data.filter.price_set}
+                            defaultOptionClick={() => handleFormChange('price_range', null)}
+                            value={Values.price_range}
                             handleChange={handleFormChange}
                             options={Data.filter.price_set}
                         />
                         <FilterDropDown
                             name='بستر'
+                            data={Data.filter.medium_set}
+                            defaultOptionClick={() => handleFormChange('medium', null)}
+                            value={Values.medium}
                             handleChange={handleFormChange}
                             options={Data.filter.medium_set}
                         />
@@ -396,15 +397,19 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
     )
 }
 
-const FilterDropDown = ({ name, options, handleChange }) => {
+const FilterDropDown = ({ name, options, value, handleChange, defaultOptionClick, data }) => {
+    const activeValue = data.filter(item => item.value === value)
     return (
         <React.Fragment>
             {options && options.length > 0 &&
-                <div className="filter-dropdown">
+                <div className={`filter-dropdown ${value != null ? 'is-active' : null}`}>
                     <div className="filter-nav-main-text">{name}</div>
-                    <div className="filter-nav-active-text"></div>
+                    <div className="filter-nav-active-text">{(value != null && activeValue !== null) ? activeValue[0].title : null}</div>
                     <i className='icon fas fa-caret-down' />
                     <nav className="filter-dropdown-nav">
+                        <a onClick={defaultOptionClick}>
+                            <span className="filter-dropdown-text">همه</span>
+                        </a>
                         {options.map((item, index) => (
                             <a key={index} onClick={() => handleChange(item.type, item.value)}>
                                 <span className="filter-dropdown-text">{item.title}</span>

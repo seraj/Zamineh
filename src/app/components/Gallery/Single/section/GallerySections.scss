@@ -61,14 +61,14 @@
         &.is-active {
             .filter-nav-active-text {
                 display: block;
-                margin-top: 5px;
+                margin-top: 0;
             }
 
             .filter-nav-main-text {
                 font-size: 13px;
                 text-align: right;
                 position: absolute;
-                margin-top: -16px;
+                margin-top: -13px;
                 color: #000
             }
         }

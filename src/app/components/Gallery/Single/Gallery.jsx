@@ -114,7 +114,7 @@ class Gallery extends React.Component {
                                     <div className={styles.galleryHeader}>
                                         <div className='info'>
                                             <h1 className='name'>{config.name}</h1>
-                                            <span className='location'>{location.pathname}</span>
+                                            <span className='location'></span>
                                             <div className="follow">
                                                 <button
                                                     className={`${DefaultStyle.followBtn} min ${config.is_flw ? 'following' : ''}`}
