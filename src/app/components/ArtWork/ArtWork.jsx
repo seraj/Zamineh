@@ -55,6 +55,20 @@ class ArtWork extends React.Component {
                 this.setState({ Art });
             })
     }
+    handleBuyArtClick = () => {
+        let Art = this.state.config
+        axios.post(`${Urls().api()}/art/BUY/`, { id: Art.id })
+            .then(({ data }) => {
+
+            })
+    }
+    handleViewArtClick = () => {
+        let Art = this.state.config
+        axios.post(`${Urls().api()}/art/handleClick/`, { id: Art.id })
+            .then(({ data }) => {
+
+            })
+    }
     openModal = value => {
         this.setState({
             login: value
@@ -99,13 +113,80 @@ class ArtWork extends React.Component {
                                         {config.detail &&
                                             <>
                                                 <span>{config.detail.material}</span>
-                                                <span>{config.detail.width} × {config.detail.height} × {config.detail.depth} {config.detail.unit}</span>
+                                                <span>{NumbersConvertor().convertToPersian(config.detail.width)} × {NumbersConvertor().convertToPersian(config.detail.height)} × {NumbersConvertor().convertToPersian(config.detail.depth)} {config.detail.unit}</span>
 
                                                 <span className="sp">{config.detail.quote}</span>
                                             </>
                                         }
                                     </div>
                                     <hr />
+                                    {config.is_in_gallery ?
+                                        <div className={styles.buySection}>
+                                            {config.price && config.price.is_for_sale ?
+                                                <>
+                                                    {!config.price.is_sold ?
+                                                        <>
+                                                            <h2>برای خرید تماس بگیرید</h2>
+                                                            <Link
+                                                                to={`${Urls().gallery()}${config.gallery.slug}/contact/`}
+                                                                style={{ width: '100%', marginBottom: 10 }}
+                                                                className={`zbtn next black bradius`}
+                                                            >
+                                                                تماس با گالری <i className='fas fa-phone' />
+                                                            </Link>
+                                                            {config.gallery &&
+                                                                <div className="gallery">
+                                                                    <Link to={`${Urls().gallery()}${config.gallery.slug}`}>
+                                                                        <div className="name">{config.gallery.name}</div>
+                                                                    </Link>
+                                                                </div>
+                                                            }
+                                                        </>
+                                                        : null
+                                                    }
+                                                </>
+                                                : null
+                                            }
+                                        </div>
+                                        :
+                                        <>
+                                            <div className={styles.buySection}>
+                                                {config.price && config.price.is_for_sale ?
+                                                    <>
+                                                        {!config.price.is_sold ?
+                                                            <>
+                                                                <h2>{NumbersConvertor().convertToPersian(ThousandSeparator(config.price.price))} تومان</h2>
+                                                                <button
+                                                                    onClick={() => this.handleBuyArtClick()}
+                                                                    style={{ width: '100%', marginBottom: 10 }}
+                                                                    className={`zbtn next black bradius`}
+                                                                >
+                                                                    خرید اثر <i class="fal fa-shopping-cart" />
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => this.handleViewArtClick()}
+                                                                    style={{ width: '100%', marginBottom: 10 }}
+                                                                    className={`zbtn next white bradius`}
+                                                                >
+                                                                    بازدید از اثر
+                                                                </button>
+                                                            </>
+                                                            :
+                                                            <button
+                                                                disabled
+                                                                style={{ width: '100%', marginBottom: 10 }}
+                                                                className={`zbtn next white bradius`}
+                                                            >
+                                                                اثر فروخته شده
+                                                            </button>
+                                                        }
+                                                    </>
+                                                    : null
+                                                }
+                                            </div>
+                                        </>
+                                    }
+
                                 </div>
                             </Col>
                         </Row>

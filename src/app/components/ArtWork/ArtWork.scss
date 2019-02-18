@@ -27,6 +27,30 @@
     }
 }
 
+:local(.buySection) {
+    h2 {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .gallery {
+        display: block;
+
+        .name {
+            font-weight: bold;
+            font-size: 20px;
+            display: block;
+        }
+
+        .location {
+            color: #666666;
+            font-size: 18px;
+        }
+    }
+}
+
 :local(.artCarousel) {
     margin-bottom: 30px;
     width: 100%;
