@@ -30,9 +30,6 @@ const ArtOtherWorks = (props) => {
                     <FourColumnArt
                         Arts={props.items.artist_other_works}
                         type='artist_other_works'
-                        onSaveItemClick={props.onSaveItemClick}
-                        openModal={props.openModal}
-                        isLogined={props.handleLogin}
                     />
                 </Col>
             }
@@ -53,9 +50,6 @@ const ArtOtherWorks = (props) => {
                     <FourColumnArt
                         Arts={props.items.gallery_other_works}
                         type={'gallery_other_works'}
-                        onSaveItemClick={props.onSaveItemClick}
-                        openModal={props.openModal}
-                        isLogined={props.handleLogin}
                     />
                 </Col>
             }
@@ -74,7 +68,6 @@ const ArtOtherWorks = (props) => {
                     <FourColumnArt
                         Arts={props.items.related_works}
                         type={'related_works'}
-                        onSaveItemClick={props.onSaveItemClick}
                         openModal={props.openModal}
                         isLogined={props.handleLogin}
                     />

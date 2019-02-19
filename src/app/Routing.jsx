@@ -25,6 +25,8 @@ import Show from './components/Shows/SingleShow/Show';
 import ArtistAlphabet from './components/Artists/ArtistAlphabet';
 import Login from './login/Login';
 
+import Categories from './components/Categories/Categories';
+
 import Galleries from './components/Gallery/Galleries/Galleries';
 import Gallery from './components/Gallery/Single/Gallery';
 
@@ -125,6 +127,10 @@ export default function Routing({ isLogined }) {
                     component={Show}
                 />
 
+                <Route
+                    path={`${Urls().gene()}:slug`}
+                    component={Categories}
+                />
                 {/* Artists */}
                 <Route
                     path={Urls().artists()}

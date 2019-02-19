@@ -95,19 +95,6 @@ class ArtWork extends React.Component {
             });
         })
     }
-    onSaveWorkClick = (id, type) => {
-        let Art = this.state.artItems[type]
-        let currentArt = Art.filter(item => item.id === id)
-
-        axios.post(`${Urls().api()}/art/save/toggle/`, { id: id })
-            .then(({ data }) => {
-                currentArt[0].is_saved = data.state
-                this.setState({
-                    ...this.state.artItems,
-                    currentArt
-                });
-            })
-    }
     onRelatedArtistFollowClick = (id, index) => {
         let items = this.state.artItems.related_artist
         axios.post(`${Urls().api()}/follow/toggle/`, {
@@ -295,8 +282,6 @@ class ArtWork extends React.Component {
                                     items={artItems}
                                     config={config}
                                     handleLogin={isLogined}
-                                    onSaveItemClick={this.onSaveWorkClick}
-                                    openModal={this.openModal(true)}
                                     onFollowClick={this.onRelatedArtistFollowClick}
                                 />
                             }

@@ -4,7 +4,6 @@ import { Container, Row, Col } from 'reactstrap';
 import axios from 'axios';
 import queryString from 'query-string';
 import SecurityManager from '../../security/SecurityManager'
-import Login from '../../login/Login';
 
 import Urls from '../Urls'
 import { CustomInput, Form, FormGroup, Label } from 'reactstrap';
@@ -142,42 +141,6 @@ class Collect extends React.Component {
     }
 
 
-    openModal = value => {
-        this.setState({
-            login: value
-        });
-    };
-
-    onSaveItemClick = (index) => {
-        var Arts = this.state.Results;
-
-        Arts[index].save_loading = true;
-
-        axios.post(`${Urls().api()}/art/save/toggle/`, { id: Arts[index].id }).then((response) => {
-
-            if (response.data.state) {
-                Arts[index].is_saved = true;
-                Arts[index].save_loading = false;
-
-                this.setState({ Arts });
-
-            } else {
-                Arts[index].is_saved = false;
-                Arts[index].save_loading = false;
-
-                this.setState({ Arts });
-            }
-
-        })
-            .catch(error => {
-                Arts[index].save_loading = false;
-
-            });
-    }
-
-
-
-
     collectFormRef = (form) => {
         this.form = form;
         // console.log(form)
@@ -191,12 +154,7 @@ class Collect extends React.Component {
         if (!this.state.error) {
 
             return (
-                <ThreeColumnArt
-                    Arts={Arts}
-                    onSaveItemClick={this.onSaveItemClick}
-                    openModal={this.openModal}
-                    isLogined={isLogined}
-                />
+                <ThreeColumnArt Arts={Arts} />
             );
 
         } else {
@@ -329,11 +287,7 @@ class Collect extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-                <Login
-                    hasModal
-                    modalisOpen={this.state.login}
-                    openModal={this.openModal}
-                />
+
             </React.Fragment>
         )
     }

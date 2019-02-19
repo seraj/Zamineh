@@ -63,7 +63,7 @@ class Gallery extends React.Component {
                 component = <Artists slug={this.props.match.params.slug} />;
                 break;
             case '/arts/':
-                component = <Artworks slug={this.props.match.params.slug} isLogined={SecurityManager().isLogined()} openModal={this.openModal} />;
+                component = <Artworks slug={this.props.match.params.slug} isLogined={SecurityManager().isLogined()} />;
                 break;
             case '/articles/':
                 component = <Articles slug={this.props.match.params.slug} />;

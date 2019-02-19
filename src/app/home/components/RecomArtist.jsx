@@ -1,4 +1,5 @@
 import React from 'react';
+import Urls from '../../components/Urls'
 import Arts from './Arts';
 
 class RecomArtist extends React.Component {
@@ -11,7 +12,7 @@ class RecomArtist extends React.Component {
                     ExtraClass={item.ExtraClass}
                     isFollow={item.is_flw}
                     id={item.id}
-                    viewsLink='link'
+                    viewsLink={`${Urls().artist()}${item.slug}/overview/`}
                     mode='artists'
                     key={index}
                     query={`slug=${item.slug}`}
@@ -20,6 +21,8 @@ class RecomArtist extends React.Component {
                     based_name={item.based_name}
                     based_slug={item.based_slug}
                     annotation={`پیشنهاد فالو بر اساس `}
+                    foreignItems={this.props.foreignItems}
+                    items={this.props.foreignItems ? this.props.artist : null}
                 />
             ));
         }

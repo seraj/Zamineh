@@ -315,19 +315,6 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
     const filterFormRef = (form) => {
         form = form;
     }
-    const onSaveItemClick = (id, type) => {
-        let Art = Data.art_set
-        let currentArt = Art.filter(item => item.id === id)
-
-        axios.post(`${Urls().api()}/art/save/toggle/`, { id: id })
-            .then(({ data }) => {
-                currentArt[0].is_saved = data.state
-                setData({
-                    ...Data,
-                    currentArt
-                })
-            })
-    }
     return (
         <React.Fragment>
             {loading &&
@@ -340,7 +327,7 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
                 <div className={styles.artFilter}>
                     <form ref={filterFormRef}>
                         {Values.only_for_sale !== '' &&
-                            <div onClick={() => handleFormChange('only_for_sale', !Values.only_for_sale)} className={`filter-button ${Values.only_for_sale ? 'active' : ''}`}>
+                            <div onClick={() => handleFormChange('only_for_sale', Values.only_for_sale ? null : true)} className={`filter-button ${Values.only_for_sale ? 'active' : ''}`}>
                                 <Checkbox
                                     disabled={true}
                                     id={Data.filter.only_for_sale.value}
@@ -381,9 +368,6 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
                     {Resultloading && <Loading />}
                     <FourColumnArt
                         Arts={Data.art_set}
-                        onSaveItemClick={onSaveItemClick}
-                        openModal={openModal}
-                        isLogined={isLogined}
                     />
                     {Data && Data.page_count > 1 &&
                         <Pagination

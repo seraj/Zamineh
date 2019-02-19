@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IconSave } from '../../components/Icons';
+import SaveButton from '../../components/ui-components/SaveButton';
 import { Img } from '../../components/General';
 import NumbersConvertor from '../../components/NumbersConvertor';
 import ThousandSeparator from '../../components/ThousandSeparator';
@@ -16,23 +16,11 @@ const SingleArts = (props) => (
           width={props.item.img.ratio * 197}
         />
       </Link>
-      <div
-        className={'save_art ' + ((props.item.is_saved) ? 'saved' : '') + ((props.item.save_loading) ? ' loading' : '')}
-        onClick={
-          props.isLogined ?
-            () => props.onSaveItemClick(props.ArtIndex)
-            :
-            () => props.openModal(true)
-        }
-
-        id={props.item.id}>
-        {props.item.save_loading && <div className='loadingSpinner'></div>}
-        <IconSave height='80%' width='90%' fill='transparent' stroke='#fff' />
-      </div>
+      <SaveButton id={props.item.id} isSaved={props.item.is_saved} />
     </div>
     <div className='art_details'>
       {props.item.title && <span className='content item_title' style={{ marginBottom: 5 }}><Link to={`${Urls().arts()}${props.item.slug}`}>{props.item.title}</Link></span>}
-      <span className='content '><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>
+      {props.item.artist && <span className='content '><Link to={`${Urls().artist()}${props.item.artist.slug}`}>{props.item.artist.name}</Link></span>}
       <span className='content gallery_name'>
         {props.item.gallery != null &&
           props.item.gallery.slug ?

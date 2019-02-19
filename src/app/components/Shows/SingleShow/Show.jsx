@@ -85,19 +85,7 @@ class Show extends React.Component {
             });
         })
     }
-    onSaveItemClick = (id, type) => {
-        let Art = this.state.config.art_set
-        let currentArt = Art.filter(item => item.id === id)
 
-        axios.post(`${Urls().api()}/art/save/toggle/`, { id: id })
-            .then(({ data }) => {
-                currentArt[0].is_saved = data.state
-                this.setState({
-                    ...this.state.config,
-                    currentArt
-                });
-            })
-    }
     onFollowArtistClick = (id, index) => {
         let Artist = this.state.config.artist_set
         axios.post(`${Urls().api()}/follow/toggle/`, {
@@ -117,19 +105,6 @@ class Show extends React.Component {
                 Artist
             });
         })
-    }
-    onSaveWorkClick = (id, type) => {
-        let Art = this.state.artItems[type]
-        let currentArt = Art.filter(item => item.id === id)
-
-        axios.post(`${Urls().api()}/art/save/toggle/`, { id: id })
-            .then(({ data }) => {
-                currentArt[0].is_saved = data.state
-                this.setState({
-                    ...this.state.artItems,
-                    currentArt
-                });
-            })
     }
 
     openModal = value => {
@@ -218,9 +193,6 @@ class Show extends React.Component {
                                     <div className={styles.ArtSet}>
                                         <ThreeColumnArt
                                             Arts={config.art_set}
-                                            onSaveItemClick={this.onSaveItemClick}
-                                            openModal={this.openModal}
-                                            isLogined={isLogined}
                                         />
                                     </div>
                                 </Col>

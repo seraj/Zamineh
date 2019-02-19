@@ -13,7 +13,9 @@ export default function Urls() {
         Magzine() {
             return '/mag/';
         },
-
+        gene() {
+            return '/gene/';
+        },
         arts() {
             return '/artwork/';
         },

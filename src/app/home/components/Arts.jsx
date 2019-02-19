@@ -31,6 +31,10 @@ class Arts extends Component {
 
   componentDidMount() {
 
+    if (!this.props.foreignItems) { this.getData() }
+
+  }
+  getData = () => {
     let url = '';
     let mode = (this.props.mode);
 
@@ -57,58 +61,45 @@ class Arts extends Component {
         });
       });
   }
-
   openModal = value => {
     this.setState({
       login: value
     });
   };
 
-  onSaveItemClick = (index) => {
-    var Arts = (this.props.mode == 'artists') ? this.state.arts.art_set : this.state.arts;
 
-    Arts[index].save_loading = true;
-
-    axios.post(`${Urls().api()}/art/save/toggle/`, { id: Arts[index].id }).then((response) => {
-
-      if (response.data.state) {
-        Arts[index].is_saved = true;
-        Arts[index].save_loading = false;
-
-        this.setState({ Arts });
-
-      } else {
-        Arts[index].is_saved = false;
-        Arts[index].save_loading = false;
-
-        this.setState({ Arts });
-      }
-
-    })
-      .catch(function (error) {
-        Arts[index].save_loading = false;
-
-      });
-  }
   renderItems() {
-    var Arts = (this.props.mode == 'artists') ? this.state.arts.art_set : this.state.arts;
-
-    if (!this.state.error) {
+    if (!this.props.foreignItems) {
+      var Arts = (this.props.mode == 'artists') ? this.state.arts.art_set : this.state.arts;
+      if (!this.state.error) {
+        return (
+          Arts &&
+          Arts.map((item, index) => (
+            <SingleArts
+              key={item.id}
+              item={item}
+              ArtIndex={index}
+            />
+          ))
+        );
+      } else {
+        return <Error />;
+      }
+    } else {
       return (
-        Arts &&
-        Arts.map((item, index) => (
-          <SingleArts
-            key={item.id}
-            item={item}
-            ArtIndex={index}
-            onSaveItemClick={this.onSaveItemClick}
-            openModal={this.openModal}
-            isLogined={isLogined}
-          />
+        this.props.items &&
+        this.props.items.map((items) => (
+          items.art_set.map((item, index) => (
+            <SingleArts
+              key={item.id}
+              item={item}
+              ArtIndex={index}
+              openModal={this.openModal}
+              isLogined={isLogined}
+            />
+          ))
         ))
       );
-    } else {
-      return <Error />;
     }
   }
 

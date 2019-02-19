@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { IconSave } from '../Icons';
 import { Img } from '../General'
+import SaveButton from '../ui-components/SaveButton';
+
 import NumbersConvertor from '../NumbersConvertor';
 import ThousandSeparator from '../ThousandSeparator';
 import Urls from '../Urls';
@@ -20,20 +22,7 @@ export const SingleArt = (props) => (
                         divHeight='200px'
                     />
                 </a>
-                {props.onSaveItemClick &&
-                    <div
-                        className={'save_art ' + ((props.item.is_saved) ? 'saved' : '') + ((props.item.save_loading) ? ' loading' : '')}
-                        onClick={
-                            props.isLogined ?
-                                () => props.onSaveItemClick(props.ArtIndex, props.type)
-                                :
-                                () => props.openModal(true)
-                        }
-                        id={props.item.id}>
-                        {props.item.save_loading && <div className='loadingSpinner'></div>}
-                        <IconSave height='80%' width='90%' fill='transparent' stroke='#fff' />
-                    </div>
-                }
+                <SaveButton id={props.item.id} isSaved={props.item.is_saved} />
             </div>
 
             <div className='art_details'>
@@ -88,9 +77,6 @@ export const ThreeColumnArt = (props) => {
                                 item={item}
                                 ArtIndex={item.id}
                                 type={props.type}
-                                onSaveItemClick={props.onSaveItemClick}
-                                openModal={props.openModal}
-                                isLogined={props.isLogined}
                                 GalleryProfile={props.GalleryProfile}
                                 GalleryProfileContent={props.GalleryProfileContent}
                             />
@@ -109,9 +95,6 @@ export const ThreeColumnArt = (props) => {
                                 item={item}
                                 ArtIndex={item.id}
                                 type={props.type}
-                                onSaveItemClick={props.onSaveItemClick}
-                                openModal={props.openModal}
-                                isLogined={props.isLogined}
                                 GalleryProfile={props.GalleryProfile}
                                 GalleryProfileContent={props.GalleryProfileContent}
                             />
@@ -130,9 +113,6 @@ export const ThreeColumnArt = (props) => {
                                 item={item}
                                 ArtIndex={item.id}
                                 type={props.type}
-                                onSaveItemClick={props.onSaveItemClick}
-                                openModal={props.openModal}
-                                isLogined={props.isLogined}
                                 GalleryProfile={props.GalleryProfile}
                                 GalleryProfileContent={props.GalleryProfileContent}
                             />
@@ -166,9 +146,6 @@ export const FourColumnArt = (props) => {
                                 item={item}
                                 ArtIndex={item.id}
                                 type={props.type}
-                                onSaveItemClick={props.onSaveItemClick}
-                                openModal={props.openModal}
-                                isLogined={props.isLogined}
                                 GalleryProfile={props.GalleryProfile}
                                 GalleryProfileContent={props.GalleryProfileContent}
                             />
@@ -187,9 +164,6 @@ export const FourColumnArt = (props) => {
                                 item={item}
                                 ArtIndex={item.id}
                                 type={props.type}
-                                onSaveItemClick={props.onSaveItemClick}
-                                openModal={props.openModal}
-                                isLogined={props.isLogined}
                                 GalleryProfile={props.GalleryProfile}
                                 GalleryProfileContent={props.GalleryProfileContent}
                             />
@@ -208,9 +182,6 @@ export const FourColumnArt = (props) => {
                                 item={item}
                                 ArtIndex={item.id}
                                 type={props.type}
-                                onSaveItemClick={props.onSaveItemClick}
-                                openModal={props.openModal}
-                                isLogined={props.isLogined}
                                 GalleryProfile={props.GalleryProfile}
                                 GalleryProfileContent={props.GalleryProfileContent}
                             />
@@ -229,9 +200,6 @@ export const FourColumnArt = (props) => {
                                 item={item}
                                 ArtIndex={item.id}
                                 type={props.type}
-                                onSaveItemClick={props.onSaveItemClick}
-                                openModal={props.openModal}
-                                isLogined={props.isLogined}
                                 GalleryProfile={props.GalleryProfile}
                                 GalleryProfileContent={props.GalleryProfileContent}
                             />
