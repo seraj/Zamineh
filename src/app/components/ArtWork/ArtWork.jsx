@@ -139,14 +139,6 @@ class ArtWork extends React.Component {
             login: value
         });
     }
-    closeCreditModal = () => {
-        this.setState({
-            credit: {
-                ...this.state.credit,
-                modal: false
-            },
-        });
-    };
     render() {
         const parsed = queryString.parse(location.search);
         const { config, login, loading, artItems } = this.state;
@@ -174,7 +166,7 @@ class ArtWork extends React.Component {
                                         <>
                                             <h1>{config.artist ? config.artist.name : ''}</h1>
                                             <span
-                                                onClick={isLogined ? () => this.onFollowClick(config.artist.id, 'artist') : () => this.openModal}
+                                                onClick={isLogined ? () => this.onFollowClick(config.artist.id, 'artist') : () => this.openModal(true)}
                                                 className={`${DefaultStyle.MinimalfollowBtn} ${config.artist.is_flw ? 'following' : null}`}
                                             />
                                         </>
@@ -275,7 +267,7 @@ class ArtWork extends React.Component {
                                             follow={config.gallery}
                                             handleLogin={isLogined}
                                             onFollowClick={() => this.onFollowClick(config.gallery.id, 'gallery')}
-                                            openModal={() => this.openModal}
+                                            openModal={() => this.openModal(true)}
                                             url={`${Urls().gallery()}${config.gallery.slug}/overview/`}
                                         />
                                     }
@@ -289,7 +281,7 @@ class ArtWork extends React.Component {
                                             follow={config.artist}
                                             handleLogin={isLogined}
                                             onFollowClick={() => this.onFollowClick(config.artist.id, 'artist')}
-                                            openModal={() => this.openModal}
+                                            openModal={() => this.openModal(true)}
                                             url={`${Urls().artist()}${config.artist.slug}/overview/`}
                                         />
                                     }
@@ -304,7 +296,7 @@ class ArtWork extends React.Component {
                                     config={config}
                                     handleLogin={isLogined}
                                     onSaveItemClick={this.onSaveWorkClick}
-                                    openModal={this.openModal}
+                                    openModal={this.openModal(true)}
                                     onFollowClick={this.onRelatedArtistFollowClick}
                                 />
                             }

@@ -10,12 +10,12 @@ function SingleCollection({ item }) {
 
         <div className={styles.items}>
             <div className={styles.img}>
-                <Link to={`${Urls().arts()}${item.slug}`}>
+                <Link to={`${Urls().collection()}${item.slug}`}>
                     <img src={item.img} alt={item.name} />
                 </Link>
             </div>
             <div className={styles.name}>
-                <Link to={`${Urls().arts()}${item.slug}`}>
+                <Link to={`${Urls().collection()}${item.slug}`}>
                     <span>{item.name}</span>
                 </Link>
             </div>

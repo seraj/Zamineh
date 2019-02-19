@@ -1,0 +1,224 @@
+@import '../../../static/scss/variables';
+@import '../../../static/scss/_mixins';
+@import '../../../static/scss/_rem';
+
+:local(.showHeader) {
+    h1 {
+        font-weight: bold;
+        font-size: 27px
+    }
+
+    .partner {
+        display: table;
+        width: 100%;
+        position: relative;
+        padding-top: 10px;
+
+        >.follow {
+            display: table-cell;
+            vertical-align: top;
+
+            .name {
+                font-weight: bold;
+                font-size: 19px
+            }
+        }
+
+        >.share {
+            display: table-cell;
+            vertical-align: top;
+            padding-right: 30px;
+            text-align: left;
+
+            .zicon {
+                width: 35px;
+            }
+        }
+    }
+
+    .metadata {
+        font-size: 17px
+    }
+}
+
+:local(.ArtSet) {
+    margin: 50px 0;
+}
+
+
+:local(.showSection) {
+    margin-bottom: 50px;
+
+    h2 {
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 25px;
+
+    }
+
+    .artists {
+        .artist {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 10px;
+
+            .name {
+                font-weight: bold;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+:local(.showCarousel) {
+    margin-bottom: 70px;
+    width: 100%;
+    counter-reset: carousel-cell;
+
+    .flickity-button {
+        transition: .3s visibility;
+        visibility: visible
+    }
+
+    &:hover {
+
+        .flickity-button {
+            transition: .3s visibility;
+            visibility: visible
+        }
+    }
+
+    .item {
+        max-width: 250px;
+    }
+
+    .flickity-prev-next-button {
+        transform: none;
+        bottom: -40px;
+        width: 50px;
+        height: 50px !important;
+        top: auto;
+        z-index: 2;
+
+        &.next {
+            right: 92%;
+        }
+
+        &.previous {
+            left: 92%;
+        }
+
+        .flickity-button-icon {
+            top: 11px;
+            height: auto !important;
+        }
+    }
+
+    .flickity-page-dots {
+        position: relative;
+        display: block;
+        z-index: 1;
+
+        .dot {}
+    }
+
+    .list {
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-left: 5px;
+        padding-top: 30px;
+        position: relative;
+        user-select: none;
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            cursor: pointer;
+            padding-right: 20px;
+            margin-bottom: 10px;
+            position: relative;
+
+            &.active {
+                color: $secondery-color;
+            }
+
+            span {
+                font-weight: bold;
+
+                &.colored {
+                    color: $secondery-color
+                }
+            }
+        }
+    }
+}
+
+:local(.otherShows) {
+    margin-bottom: 30px;
+}
+
+:local(.singleFeatureShow) {
+    margin-bottom: 90px;
+
+    .organizer {
+        // width: 310px;
+        // padding-left: 30px;
+
+        .name {
+            display: block;
+            font-size: 30px;
+            line-height: 1.25;
+            margin-bottom: 15px;
+        }
+
+        .partner {
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .date {
+            margin: 15px 0;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+    }
+
+    .all-arts {
+        width: 100%;
+        float: right;
+        overflow-x: scroll;
+        position: relative;
+        overflow-y: hidden;
+        white-space: nowrap;
+
+
+        &::-webkit-scrollbar-track {
+            display: none
+        }
+
+        &::-webkit-scrollbar {
+            display: none
+        }
+
+        &::-webkit-scrollbar-thumb {
+            display: none
+        }
+
+        .show-arts {
+            position: relative;
+            display: inline-block;
+            margin-left: 10px;
+            white-space: nowrap;
+
+            img {
+                background-color: #e5e5e5;
+                height: 250px;
+            }
+        }
+    }
+}

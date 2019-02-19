@@ -20,6 +20,8 @@ import page404 from './components/errorPages/404';
 import Artists from './components/Artists/Artists';
 import Artist from './components/Artists/Artist';
 import ArtWork from './components/ArtWork/ArtWork';
+import Shows from './components/Shows/Shows';
+import Show from './components/Shows/SingleShow/Show';
 import ArtistAlphabet from './components/Artists/ArtistAlphabet';
 import Login from './login/Login';
 
@@ -31,6 +33,7 @@ import GalleryAlphabet from './components/Gallery/GalleryAlphabet/GalleryAlphabe
 import Search from './components/Search/Search'
 import Collect from './components/Collect/Collect'
 import Collections from './components/Collections/Collections'
+import Collection from './components/Collections/SingleCollection/Collection'
 import Articles from './article/Articles';
 import AddCollections from './registration/AddCollExb/AddCollections';
 import AddExhibitions from './registration/AddCollExb/AddExhibitions';
@@ -112,7 +115,15 @@ export default function Routing({ isLogined }) {
                     path={Urls().Magzine()}
                     render={() => <Articles isLogined={isLogined} />}
                 />
+                <Route
+                    path={`${Urls().arts()}:slug`}
+                    component={ArtWork}
+                />
 
+                <Route
+                    path={`${Urls().show()}:slug`}
+                    component={Show}
+                />
 
                 {/* Artists */}
                 <Route
@@ -188,11 +199,6 @@ export default function Routing({ isLogined }) {
                 />
                 {/* end Artist & Gallery Routing */}
 
-                <Route
-                    path={`${Urls().arts()}:slug`}
-                    component={ArtWork}
-                />
-
 
                 {/* Search */}
                 <Route
@@ -211,6 +217,11 @@ export default function Routing({ isLogined }) {
                     path={Urls().collections()}
                     exact
                     render={() => <Collections isLogined={isLogined} />}
+                />
+                <Route
+                    path={`${Urls().collection()}:slug`}
+                    exact
+                    component={Collection}
                 />
 
                 {/* 404 */}

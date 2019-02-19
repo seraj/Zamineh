@@ -293,9 +293,19 @@
     color: $primary-color;
     position: relative;
     cursor: pointer;
+    margin-right: 5px;
 
     &:before {
-        content: 'دنبال کردن'
+        font-family: 'Font Awesome 5 Pro' !important;
+        font-size: 18px;
+        position: absolute;
+        right: 0;
+        content: '\f0fe';
+    }
+
+    &:after {
+        content: 'دنبال کردن';
+        margin-right: 22px;
     }
 
     &:hover {
@@ -308,14 +318,46 @@
         &:hover {
             color: $secondery-color;
 
-            &:before {
+            &:after {
                 content: 'دنبال نکردن'
             }
         }
 
-
         &:before {
+            content: '\f14a';
+            vertical-align: -8.5px;
+
+        }
+
+        &:after {
             content: 'دنبال میکنید'
         }
+    }
+}
+
+
+
+:local(.openMapBtn) {
+    width: 100%;
+    color: $primary-color;
+    position: relative;
+    cursor: pointer;
+    margin-right: 5px;
+
+    &:before {
+        font-family: 'Font Awesome 5 Pro' !important;
+        font-size: 18px;
+        position: absolute;
+        right: 0;
+        content: '\f3c5';
+    }
+
+    &:after {
+        content: 'نقشه';
+        margin-right: 17px;
+    }
+
+    &:hover {
+        color: $secondery-color
     }
 }

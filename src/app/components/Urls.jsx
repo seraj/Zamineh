@@ -5,6 +5,9 @@ export default function Urls() {
         api() {
             return 'https://api.zamineh.net/web-api';
         },
+        client() {
+            return 'https://zamineh.net'
+        },
         // Home Page Components
 
         Magzine() {
@@ -42,7 +45,9 @@ export default function Urls() {
         },
 
 
-
+        shows() {
+            return '/shows/';
+        },
         show() {
             return '/show/';
         },
@@ -57,6 +62,9 @@ export default function Urls() {
         },
         collections() {
             return '/collections/'
+        },
+        collection() {
+            return '/collection/'
         },
         withProps(model) {
             var url;
@@ -73,6 +81,8 @@ export default function Urls() {
                 case 'gallery':
                     url = this.gallery();
                     break;
+                case 'shows':
+                    url = this.shows();
                 case 'show':
                     url = this.show();
                     break;
