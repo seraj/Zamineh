@@ -146,7 +146,7 @@ class Show extends React.Component {
                                         <div className="follow">
                                             {config.organizer &&
                                                 <>
-                                                    <Link className='name' to={`${partnerUrl}${config.organizer.slug}`}>{config.organizer.name}</Link>
+                                                    <a className='name' href={`${partnerUrl}${config.organizer.slug}`}>{config.organizer.name}</a>
                                                     <span
                                                         onClick={isLogined ? () => this.onFollowClick(config.organizer.id, config.artist_organizer) : () => this.openModal(true)}
                                                         className={`${DefaultStyle.MinimalfollowBtn} ${config.organizer.is_flw ? 'following' : null}`}
@@ -205,7 +205,7 @@ class Show extends React.Component {
 
                                             {config.artist_set.map((artist, index) => (
                                                 <div className="artist">
-                                                    <Link className='name' to={`${Urls().artist()}${artist.slug}`}>{artist.name}</Link>
+                                                    <a className='name' href={`${Urls().artist()}${artist.slug}`}>{artist.name}</a>
                                                     <span
                                                         onClick={isLogined ? () => this.onFollowArtistClick(artist.id, index) : () => this.openModal(true)}
                                                         className={`${DefaultStyle.MinimalfollowBtn} ${artist.is_flw ? 'following' : null}`}
@@ -230,15 +230,15 @@ class Show extends React.Component {
 
                                                         <Col lg={4} md={12} sm={12} xs={12} className="organizer">
                                                             <div className="name">
-                                                                <Link to={`${Urls().show()}${items.slug}`}>{items.name}</Link>
+                                                                <a href={`${Urls().show()}${items.slug}`}>{items.name}</a>
                                                             </div>
                                                             <div className="partner">
-                                                                <Link to={`${Urls().gallery()}${items.organizer.slug}`}>{items.organizer.name}</Link>
+                                                                <a to={`${Urls().gallery()}${items.organizer.slug}`}>{items.organizer.name}</a>
                                                             </div>
                                                             <div className="date">{items.date}</div>
                                                         </Col>
                                                         <Col lg={8} md={12} sm={12} xs={12}>
-                                                            <Link className='all-arts' to={`${Urls().show()}${items.slug}`}>
+                                                            <a className='all-arts' href={`${Urls().show()}${items.slug}`}>
                                                                 {items.arts && items.arts.map((showArts, index) => (
                                                                     <div key={index} className="show-arts">
                                                                         <div className='img-hoverable'>
@@ -246,7 +246,7 @@ class Show extends React.Component {
                                                                         </div>
                                                                     </div>
                                                                 ))}
-                                                            </Link>
+                                                            </a>
                                                         </Col>
                                                     </Row>
 
