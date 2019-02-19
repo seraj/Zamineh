@@ -22,6 +22,32 @@
     }
 }
 
+:local(.Header) {
+    h1 {
+        text-align: center;
+        font-weight: bold;
+        font-size: 30px;
+    }
+}
+
+:local(.categorySection) {
+    .title {
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .links {
+        a {
+            color: $secondery-color !important;
+            font-size: 17px;
+
+            &:hover {
+                color: $primary-color !important
+            }
+        }
+    }
+}
+
 :local(.artFilter) {
     text-align: center;
     margin-bottom: 40px;

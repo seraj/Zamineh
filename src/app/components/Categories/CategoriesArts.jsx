@@ -37,7 +37,6 @@ const CategoriesArts = ({ slug, isLogined, openModal }) => {
         }
     })
     const handleData = (params) => {
-        // console.log(params)
         axios
             .get(`${Urls().api()}/gene/${slug}/filter/`, { params: params })
             .then(({ data }) => {
@@ -54,8 +53,23 @@ const CategoriesArts = ({ slug, isLogined, openModal }) => {
     const handleFormChange = (type, value) => {
         setResultloading(true)
         let allValue = Values
-        allValue[type] = value
-        setValues(allValue)
+        if (type === Data.filter.mode.type) {
+            setValues({
+                mode: value,
+                only_for_sale: null,
+                price_range: null,
+                size: null,
+                medium: null,
+                sort: null
+            })
+        } else {
+            allValue[type] = value
+            allValue[Data.filter.mode.type] = null
+            setValues(allValue)
+
+
+        }
+
         handleData(Values)
     }
 
@@ -89,7 +103,7 @@ const CategoriesArts = ({ slug, isLogined, openModal }) => {
                 <div className={styles.artFilter}>
                     <form ref={filterFormRef}>
                         {Values.mode !== '' &&
-                            <div onClick={() => handleFormChange('mode', Values.mode === Data.filter.mode.value ? null : Data.filter.mode.value)} className={`filter-button ${Values.mode === 'artist' ? 'active' : ''}`}>
+                            <div onClick={() => handleFormChange(Data.filter.mode.type, Values.mode === Data.filter.mode.value ? null : Data.filter.mode.value)} className={`filter-button ${Values.mode === 'artist' ? 'active' : ''}`}>
                                 <Checkbox
                                     disabled={true}
                                     id={Data.filter.mode.value}
