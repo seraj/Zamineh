@@ -290,7 +290,7 @@ export const Shows = ({ type, slug }) => {
                 </div>
             }
 
-            {currentShows && currentShows.results.length > 0 ?
+            {currentShows && currentShows.results.length > 0 &&
                 <>
                     <h2 className={styles.title}>نمایشگاه‌های حال</h2>
                     <section className={`${styles.tabSection} shows`}>
@@ -327,8 +327,6 @@ export const Shows = ({ type, slug }) => {
                         </Row>
                     </section>
                 </>
-                :
-                <h2 className={styles.title}>نمایشگاهی برای نمایش وجود ندارد</h2>
             }
 
             {pastShows && pastShows.results.length > 0 &&

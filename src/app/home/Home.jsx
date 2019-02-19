@@ -68,28 +68,29 @@ class Home extends React.Component {
 
   render() {
     const { isLogined } = this.props;
+    const { homeconfig } = this.state;
 
     return (
       <React.Fragment>
         <HomeMetaTags />
-        <Carousel slides={this.state.homeconfig.carousels} />
+        <Carousel slides={homeconfig.carousels} />
         <Section ExtraClass='section homeContent'>
           <Container>
-            {this.state.homeconfig.top_shows != '' &&
+            {homeconfig.top_shows != '' &&
               <Section id='top_shows'>
-                <TopShow features={this.state.homeconfig.top_shows} />
+                <TopShow features={homeconfig.top_shows} />
               </Section>
             }
 
 
-            {!isLogined &&
+            {!isLogined && homeconfig.mediums &&
               <Section Name='mediums'>
                 <div className='title right'>
                   <h2>{ModelManager().convertModelName('medium')}</h2>
                 </div>
                 <div className='items'>
                   <Row>
-                    <ItemMedium items={this.state.homeconfig.mediums} />
+                    <ItemMedium items={homeconfig.mediums} />
                   </Row>
                 </div>
               </Section>
@@ -98,18 +99,17 @@ class Home extends React.Component {
               <Arts
                 justLogin
                 handleLogin={isLogined}
-                visible={this.state.homeconfig.has_recent_views}
+                visible={homeconfig.has_recent_views}
                 sectionName='recent'
                 mode='arts'
                 query='type=recent'
                 title='اخیرا بازدید کرده اید'
               />,
 
-
               <Arts
                 justLogin
                 handleLogin={isLogined}
-                visible={this.state.homeconfig.has_similar_view_works}
+                visible={homeconfig.has_similar_view_works}
                 sectionName='similar_view'
                 mode='arts'
                 query='type=similar_view'
@@ -117,10 +117,11 @@ class Home extends React.Component {
               />,
 
 
+
               <Arts
                 justLogin
                 handleLogin={isLogined}
-                visible={this.state.homeconfig.has_saves}
+                visible={homeconfig.has_saves}
                 viewsLink
                 sectionName='save'
                 mode='arts'
@@ -132,7 +133,7 @@ class Home extends React.Component {
               <Arts
                 justLogin
                 handleLogin={isLogined}
-                visible={this.state.homeconfig.has_similar_saves}
+                visible={homeconfig.has_similar_saves}
                 sectionName='similar_save'
                 mode='arts'
                 query='type=similar_save'
@@ -164,7 +165,7 @@ class Home extends React.Component {
               <Arts
                 justLogin
                 handleLogin={isLogined}
-                visible={this.state.homeconfig.has_recom_works}
+                visible={homeconfig.has_recom_works}
                 mode='arts'
                 query='type=recommend'
                 title='کارهایی که ما پیشنهاد میکنیم ببینید #مثلا'
@@ -172,23 +173,23 @@ class Home extends React.Component {
             }
 
 
-            {this.state.homeconfig.recom_artists != '' &&
-              <RecomArtist artist={this.state.homeconfig.recom_artists} sectionName='artist_recommended' />
+            {homeconfig.recom_artists != '' &&
+              <RecomArtist artist={homeconfig.recom_artists} sectionName='artist_recommended' />
             }
 
-            {this.state.homeconfig.recom_base_artists != '' &&
-              <RecomArtist artist={this.state.homeconfig.recom_base_artists} hasannotation sectionName='base_artist_recommended' />
+            {homeconfig.recom_base_artists != '' &&
+              <RecomArtist artist={homeconfig.recom_base_artists} hasannotation sectionName='base_artist_recommended' />
             }
 
-            {this.state.homeconfig.cats &&
-              <Categories cats={this.state.homeconfig.cats} sectionName='categories' />
+            {homeconfig.cats &&
+              <Categories cats={homeconfig.cats} sectionName='categories' />
             }
 
 
 
-            {this.state.homeconfig.bottom_shows != '' &&
+            {homeconfig.bottom_shows != '' &&
               <Section id='bottom_shows'>
-                <BottomShow features={this.state.homeconfig.bottom_shows} />
+                <BottomShow features={homeconfig.bottom_shows} />
               </Section>
             }
           </Container>
