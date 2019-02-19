@@ -37,7 +37,7 @@ class Collection extends React.Component {
                 'min_price': null,
                 'max_price': null,
                 'year': null,
-                'collection_id': ''
+                'collection_id': this.props.match.params.slug
 
             },
             config: [],
@@ -49,12 +49,12 @@ class Collection extends React.Component {
         };
     }
     componentDidMount() {
-        this.getPageConfig();
-        this.getOffers();
+        this.getPageConfig(this.props.match.params.slug);
+        this.getOffers(this.state.FilterInfo);
     }
 
-    getPageConfig = () => {
-        axios.get(`${Urls().api()}/collection/configs/`)
+    getPageConfig = (slug) => {
+        axios.get(`${Urls().api()}/collection/${this.props.match.params.slug}/`)
             .then(response => {
                 this.setState({
                     config: response.data,
@@ -217,10 +217,21 @@ class Collection extends React.Component {
                 <Container>
                     <Row>
                         <Col xs={12}>
-                            <div className='section_header_single'>
-                                <h1>{ModelManager().convertModelName('collect')} هنرمندان</h1>
-                                <Link to={Urls().collections()} className='view-all'>{ModelManager().convertModelName('collections')}</Link>
-                            </div>
+                            {config.collection &&
+                                <div className={styles.collectionHeader}>
+                                    <div className={styles.cover}
+                                        style={{
+                                            background: `url(${config.collection.cover}) center center / cover rgb(194, 194, 194)`
+                                        }}>
+                                        <div className='bg' />
+                                        <div className='section_header_single'>
+                                            <h1>{config.collection.name}</h1>
+                                            <Link to={Urls().collect()} className='view-all'>دیدن تمام آثار</Link>
+                                        </div>
+                                    </div>
+                                    <div className="about">{config.collection.about}</div>
+                                </div>
+                            }
 
                         </Col>
                         <Col lg={3} md={2} sm={12} xs={12}>
