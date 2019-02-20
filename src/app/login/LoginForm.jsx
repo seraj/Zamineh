@@ -23,7 +23,7 @@ import { Field } from 'react-final-form-html5-validation'
 import styles from './Login.scss'
 
 const SubmitButton = ({ Loading, Text }) => (
-    <React.Fragment>
+    <>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
                 <Row className='justify-content-center'>
@@ -42,7 +42,7 @@ const SubmitButton = ({ Loading, Text }) => (
 
         </Row>
         {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
-    </React.Fragment>
+    </>
 );
 
 const adapt /* ⬅️ this is a HOC */ = Component => ({
@@ -103,7 +103,7 @@ const LoginForm = (props) => {
     return (
         <Row>
             {checkMobileNumberStep1 &&
-                <React.Fragment>
+                <>
                     <Col xs={12}>
                         <Form
                             onSubmit={onCheckMobileNumberClick}
@@ -137,10 +137,10 @@ const LoginForm = (props) => {
                             )}
                         />
                     </Col>
-                </React.Fragment>
+                </>
             }
             {loginForm &&
-                <React.Fragment>
+                <>
                     <Col xs={12}>
                         <Form
                             onSubmit={loginSubmit}
@@ -182,9 +182,9 @@ const LoginForm = (props) => {
                             )}
                         />
                     </Col>
-                </React.Fragment>}
+                </>}
             {isMobileValidationStep2 &&
-                <React.Fragment>
+                <>
                     <Col xs={12}>
                         <Form
                             onSubmit={confirmMobileCode}
@@ -215,10 +215,10 @@ const LoginForm = (props) => {
                         />
                     </Col>
                     <Col />
-                </React.Fragment>
+                </>
             }
             {signUpFormStep3 &&
-                <React.Fragment>
+                <>
                     <Col xs={12}>
                         <Form
                             onSubmit={registerSubmit}
@@ -313,7 +313,7 @@ const LoginForm = (props) => {
                             )}
                         />
                     </Col>
-                </React.Fragment>
+                </>
             }
         </Row>
     )

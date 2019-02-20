@@ -31,7 +31,7 @@ export const Overview = ({ slug }) => {
         }
     })
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -82,7 +82,7 @@ export const Overview = ({ slug }) => {
                     />
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }
 
@@ -116,7 +116,7 @@ export const Shows = ({ slug }) => {
         handleData(selected);
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -158,7 +158,7 @@ export const Shows = ({ slug }) => {
                     }
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }
 
@@ -181,7 +181,7 @@ export const Artists = ({ slug }) => {
             });
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -199,7 +199,7 @@ export const Artists = ({ slug }) => {
                     />
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }
 
@@ -229,7 +229,7 @@ export const Articles = ({ slug }) => {
         handleData(selected);
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -249,7 +249,7 @@ export const Articles = ({ slug }) => {
                     }
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }
 
@@ -316,7 +316,7 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
         form = form;
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -377,14 +377,14 @@ export const Artworks = ({ slug, isLogined, openModal }) => {
                     }
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }
 
 const FilterDropDown = ({ name, options, value, handleChange, defaultOptionClick, data }) => {
     const activeValue = data.filter(item => item.value === value)
     return (
-        <React.Fragment>
+        <>
             {options && options.length > 0 &&
                 <div className={`filter-dropdown ${value != null ? 'is-active' : null}`}>
                     <div className="filter-nav-main-text">{name}</div>
@@ -403,6 +403,6 @@ const FilterDropDown = ({ name, options, value, handleChange, defaultOptionClick
                     </nav>
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }

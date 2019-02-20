@@ -106,7 +106,7 @@ class Artist extends React.Component {
         const isLogined = SecurityManager().isLogined();
 
         return (
-            <React.Fragment>
+            <>
                 <SingleArtistMetaTag title={config.name} slug={this.props.match.params.slug} />
                 <Section ExtraClass={'content singlePage'}>
                     <Container>
@@ -129,7 +129,7 @@ class Artist extends React.Component {
                                     </div>
 
                                 </div>
-                                <React.Fragment>
+                                <>
                                     <LinearTabs tabs={config.tab_bars} slug={`${Urls().artist()}${this.props.match.params.slug}`} />
                                     <div className='clearfix' />
                                     <div className={styles.content}>
@@ -142,7 +142,7 @@ class Artist extends React.Component {
                                             />
                                         ))}
                                     </div>
-                                </React.Fragment>
+                                </>
                             </Col>
                         </Row>
                     </Container>
@@ -153,7 +153,7 @@ class Artist extends React.Component {
                     modalisOpen={login}
                     openModal={this.openModal}
                 />
-            </React.Fragment>
+            </>
         )
     }
 }

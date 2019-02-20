@@ -24,7 +24,7 @@ const flickityOptions = {
 
 
 export const TopWorks = (props) => (
-    <React.Fragment>
+    <>
         <div className={styles.TopArtistWork}>
             <>
                 <Flickity
@@ -50,10 +50,10 @@ export const TopWorks = (props) => (
                 </Flickity>
             </>
         </div>
-    </React.Fragment>
+    </>
 )
 export const TopArtists = (props) => (
-    <React.Fragment>
+    <>
         <div className={styles.TopArtistCarousel}>
             <h1 className='center-h1'>{props.title}</h1>
             <Row>
@@ -79,10 +79,10 @@ export const TopArtists = (props) => (
             </Row>
         </div>
 
-    </React.Fragment>
+    </>
 )
 export const TopSingleArtist = (props) => (
-    <React.Fragment>
+    <>
         <div className={`${styles.TopSingleArtist}`}>
 
             <div className={`${DefaultStyle.BorderedBox} big`}>
@@ -115,10 +115,10 @@ export const TopSingleArtist = (props) => (
                 </div>
             </div>
         </div>
-    </React.Fragment>
+    </>
 );
 export const SingleArtist = (props) => (
-    <React.Fragment>
+    <>
         <div className={`${styles.SingleArtist} ${styles.simpleArtist} `}>
 
             <div className={DefaultStyle.BorderedBox}>
@@ -148,12 +148,12 @@ export const SingleArtist = (props) => (
 
             </div>
         </div>
-    </React.Fragment>
+    </>
 );
 export const FeatureArtist = (props) => {
 
     return (
-        <React.Fragment>
+        <>
             {props.item && props.item.map((item, index) => (
 
                 <div className={DefaultStyle.FeatureBoxSection} key={item.id}>
@@ -187,13 +187,13 @@ export const FeatureArtist = (props) => {
 
                 </div>
             ))}
-        </React.Fragment>
+        </>
     )
 }
 
 export const FlatArtist = (props) => {
     return (
-        <React.Fragment>
+        <>
             <div className={`${styles.SingleArtist} ${styles.simpleArtist} `}>
                 <div className={styles.FlatArtist}>
                     <div className='avatar'>
@@ -211,6 +211,6 @@ export const FlatArtist = (props) => {
 
                 </div>
             </div>
-        </React.Fragment>
+        </>
     )
 }

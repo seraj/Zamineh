@@ -36,7 +36,7 @@ class SingleArticle extends React.Component {
 
         return (
 
-            <React.Fragment>
+            <>
                 <Container>
                     <Row>
                         <Col xs='12'>
@@ -44,7 +44,7 @@ class SingleArticle extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-            </React.Fragment>
+            </>
 
         )
     }

@@ -51,7 +51,7 @@ class FollowButton extends Component {
         const { min, big, wide } = this.props;
         const isLogined = SecurityManager().isLogined();
         return (
-            <React.Fragment>
+            <>
                 <button
                     className={`${styles.followBtn} ${isFollowed ? 'following' : ''} ${big ? 'big' : ''} ${min ? 'min' : ''} ${wide ? 'wide' : ''}`}
                     onClick={
@@ -66,7 +66,7 @@ class FollowButton extends Component {
                     modalisOpen={this.state.login}
                     openModal={this.openModal}
                 />
-            </React.Fragment>
+            </>
         );
     }
 }

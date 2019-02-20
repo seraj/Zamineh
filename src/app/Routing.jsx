@@ -49,6 +49,7 @@ import Profile from './components/Profile/Profile';
 import GalleryProfile from './components/Profile/GalleryProfile/GalleryProfile';
 import ArtistProfile from './components/Profile/ArtistProfile/ArtistProfile';
 
+import Payment from './components/Payment/Payment';
 
 import { LoadingHome } from './components/Loaders/Loaders';
 
@@ -109,6 +110,11 @@ export default function Routing({ isLogined }) {
                     path={Urls().profile()}
                     component={Profile}
                 />
+                {/* <PrivateRoute
+                    path={`${Urls().payment()}:orderId`}
+                    exact
+                    component={Payment}
+                /> */}
 
 
 

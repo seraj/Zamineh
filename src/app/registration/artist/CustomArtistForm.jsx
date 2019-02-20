@@ -189,7 +189,7 @@ export const Exhibition = ({
 
                 <FieldArray name={`${name}.art_set`}>
                     {({ fields }) =>
-                        <React.Fragment>
+                        <>
                             {fields.map((name, index) => (
                                 <SingleArt
                                     key={index}
@@ -222,7 +222,7 @@ export const Exhibition = ({
                                     </button>
                                 </div>
                             </Col>
-                        </React.Fragment>
+                        </>
                     }
 
                 </FieldArray>
@@ -325,7 +325,7 @@ export const Collection = ({
 
                 <FieldArray name={`${name}.art_set`}>
                     {({ fields }) =>
-                        <React.Fragment>
+                        <>
                             {fields.map((name, index) => (
                                 <SingleArt
                                     key={index}
@@ -401,7 +401,7 @@ export const Collection = ({
                                     }
                                 </Row>
                             </Col>
-                        </React.Fragment>
+                        </>
                     }
 
                 </FieldArray>

@@ -54,7 +54,7 @@ class Categories extends React.Component {
     render() {
         const { config } = this.state;
         return (
-            <React.Fragment>
+            <>
 
                 <SingleCategoryMetaTag title={config.category ? config.name : ''} slug={this.props.match.params.slug} />
                 <Container>
@@ -122,7 +122,7 @@ class Categories extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-            </React.Fragment>
+            </>
         )
     }
 }

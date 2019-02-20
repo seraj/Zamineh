@@ -210,9 +210,8 @@ class Login extends React.Component {
 
   render() {
     const { modalisOpen, LoginPage } = this.props;
-
     return (
-      <React.Fragment>
+      <>
 
         {this.state.hasModal && (
           <LoginModal
@@ -273,7 +272,7 @@ class Login extends React.Component {
             </Container>
           </Section>
         }
-      </React.Fragment>
+      </>
     );
   }
 }

@@ -64,7 +64,7 @@ class Artists extends Component {
         let params = new URLSearchParams(location.search);
 
         return (
-            <React.Fragment>
+            <>
                 <Container>
                     <Row>
                         <Col xs={12}>
@@ -96,7 +96,7 @@ class Artists extends Component {
                     modalisOpen={this.state.login}
                     openModal={this.openModal}
                 />
-            </React.Fragment >
+            </ >
         );
     }
 }

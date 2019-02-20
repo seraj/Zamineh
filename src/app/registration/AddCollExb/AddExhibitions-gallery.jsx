@@ -36,7 +36,7 @@ import styles from '../Registration.scss'
 
 
 const SubmitSeciton = ({ btnLoading, Text, values }) => (
-    <React.Fragment>
+    <>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
                 <Row className={`justify-content-center`}>
@@ -57,7 +57,7 @@ const SubmitSeciton = ({ btnLoading, Text, values }) => (
         {/* 
             <pre>{JSON.stringify(values, 0, 2)}</pre>
         */}
-    </React.Fragment>
+    </>
 );
 
 
@@ -410,7 +410,7 @@ class AddExhibitionsGallery extends React.Component {
         } = this.state
         var hasToken = SecurityManager().hasGalleryRegToken()
         return (
-            <React.Fragment>
+            <>
                 <Container>
                     <Row>
                         <Col xs={12}>
@@ -452,15 +452,15 @@ class AddExhibitionsGallery extends React.Component {
                                                 <form onSubmit={handleSubmit}>
                                                     <Row>
 
-                                                        <React.Fragment>
+                                                        <>
 
                                                             <Col lg={12} md={12} sm={12} xs={12}>
 
                                                                 <FieldArray name='exb_set'>
                                                                     {({ fields }) =>
-                                                                        <React.Fragment>
+                                                                        <>
                                                                             {fields.map((name, index) => (
-                                                                                <React.Fragment>
+                                                                                <>
                                                                                     <Exhibition
                                                                                         type="gallery"
                                                                                         key={index}
@@ -488,7 +488,7 @@ class AddExhibitionsGallery extends React.Component {
 
                                                                                         GallerryExhibition
                                                                                     />
-                                                                                </React.Fragment>
+                                                                                </>
                                                                             ))}
                                                                             {values && values.exb_set &&
                                                                                 <Col lg={12} md={12} sm={12} xs={12}>
@@ -503,12 +503,12 @@ class AddExhibitionsGallery extends React.Component {
                                                                                     </div>
                                                                                 </Col>
                                                                             }
-                                                                        </React.Fragment>
+                                                                        </>
                                                                     }
                                                                 </FieldArray>
                                                             </Col>
 
-                                                        </React.Fragment>
+                                                        </>
                                                     </Row>
 
                                                     <SubmitSeciton
@@ -526,7 +526,7 @@ class AddExhibitionsGallery extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-            </React.Fragment>
+            </>
         )
     }
 }

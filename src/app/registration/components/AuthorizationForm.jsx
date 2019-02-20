@@ -42,7 +42,7 @@ const Error = ({ name }) => (
 );
 
 const SubmitButton = ({ Loading, Text, values }) => (
-    <React.Fragment>
+    <>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
                 <Row className='justify-content-center'>
@@ -61,7 +61,7 @@ const SubmitButton = ({ Loading, Text, values }) => (
 
         </Row>
         {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
-    </React.Fragment>
+    </>
 );
 
 class AuthorizationForm extends React.Component {
@@ -258,7 +258,7 @@ class AuthorizationForm extends React.Component {
         } = this.state
         var url = window.location.href;
         return (
-            <React.Fragment>
+            <>
 
                 {checkMobileNumberStep1 &&
                     <Row className='justify-content-md-center'>
@@ -434,7 +434,7 @@ class AuthorizationForm extends React.Component {
                         </Col>
                     </Row>
                 }
-            </React.Fragment>
+            </>
         )
     }
 }

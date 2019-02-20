@@ -40,7 +40,7 @@ class BottomShow extends React.Component {
 
 
         return (
-            <React.Fragment>
+            <>
                 <section className='section'>
                     <div className='section_header'>
                         <h1>{this.state.title}</h1>
@@ -54,7 +54,7 @@ class BottomShow extends React.Component {
                         </Row>
                     </div>
                 </section>
-            </React.Fragment>
+            </>
         );
     }
 }

@@ -84,7 +84,7 @@ class Gallery extends React.Component {
         const isLogined = SecurityManager().isLogined();
 
         return (
-            <React.Fragment>
+            <>
 
                 <Section ExtraClass={'content singlePage'}>
                     <Container>
@@ -111,7 +111,7 @@ class Gallery extends React.Component {
                                 </div>
 
                                 <Router>
-                                    <React.Fragment>
+                                    <>
                                         {config && config.tab_bars ? <Tabs tabs={config.tab_bars} slug={`${Urls().gallery()}${this.props.match.params.slug}`} /> : null}
                                         <div className='clearfix' />
                                         <div className={styles.content}>
@@ -124,7 +124,7 @@ class Gallery extends React.Component {
                                                 />
                                             ))}
                                         </div>
-                                    </React.Fragment>
+                                    </>
                                 </Router>
                             </Col>
                         </Row>
@@ -135,7 +135,7 @@ class Gallery extends React.Component {
                     modalisOpen={this.state.login}
                     openModal={this.openModal}
                 />
-            </React.Fragment>
+            </>
         )
     }
 }

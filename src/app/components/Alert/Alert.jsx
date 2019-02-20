@@ -33,7 +33,7 @@ export default class ReactAlert extends React.Component {
             style = _props.style,
             rtl = _props.rtl
         return (
-            <React.Fragment>
+            <>
                 {!Close &&
                     <div
                         className={` ${rtl ? `rtl` : ``} ${ClassName} ${type ? type : null} ${description ? `${ClassName}-with-description` : ``} ${description && !icon ? `${ClassName}-with-description-no-icon` : ``} ${!icon ? `${ClassName}-no-icon` : ``} ${closable ? `${ClassName}-closable` : ``} ${animation ? `${ClassName}-slide-up-leave` : ``}`}
@@ -53,7 +53,7 @@ export default class ReactAlert extends React.Component {
                                 </i></a>}
                     </div>
                 }
-            </React.Fragment>
+            </>
         );
     }
 
@@ -61,7 +61,7 @@ export default class ReactAlert extends React.Component {
 
 function Icon(type) {
     return (
-        <React.Fragment>
+        <>
             {type && type.type === 'info' &&
                 <svg viewBox='64 64 896 896' width='1em' height='1em' fill='currentColor' aria-hidden='true'>
                     <path d='M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 0 1 0-96 48.01 48.01 0 0 1 0 96z'>
@@ -87,6 +87,6 @@ function Icon(type) {
                 </svg>
             }
 
-        </React.Fragment>
+        </>
     )
 }

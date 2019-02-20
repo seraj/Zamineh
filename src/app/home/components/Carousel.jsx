@@ -38,7 +38,7 @@ class Carousel extends React.Component {
 
 
     return (
-      <React.Fragment>
+      <>
         <div className='header-slider'>
           <Flickity
             className={'carousel items'}
@@ -50,7 +50,7 @@ class Carousel extends React.Component {
             {this.renderItems()}
           </Flickity>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

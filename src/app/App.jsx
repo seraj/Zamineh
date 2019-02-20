@@ -179,7 +179,7 @@ class App extends React.Component {
         const { nav_list } = this.state.baseContent;
         const parsed = queryString.parse(location.search)
         return (
-            <React.Fragment>
+            <>
                 <ToastMessageBox />
                 {((parsed['xeYDSM2fWgsJvFuN'] == 'ios' || parsed['xeYDSM2fWgsJvFuN'] == 'android') && isMobile) ?
                     null
@@ -204,7 +204,7 @@ class App extends React.Component {
                     :
                     <AppFooter></AppFooter>
                 }
-            </React.Fragment>
+            </>
         )
     }
 }

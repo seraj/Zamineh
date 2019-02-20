@@ -48,7 +48,7 @@ class SaveButton extends Component {
         const { isSaved, loading } = this.state;
         const isLogined = SecurityManager().isLogined();
         return (
-            <React.Fragment>
+            <>
                 <div
                     className={'save_art ' + (isSaved ? 'saved' : '') + (loading ? ' loading' : '')}
                     onClick={
@@ -65,7 +65,7 @@ class SaveButton extends Component {
                     modalisOpen={this.state.login}
                     openModal={this.openModal}
                 />
-            </React.Fragment>
+            </>
         );
     }
 }

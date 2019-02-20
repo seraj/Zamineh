@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
 import Col from 'reactstrap/lib/Col';
 import queryString from 'query-string';
 import { Toast } from '../Toast/Toast';
+import Modal from '../ui-components/Modal/Modal'
 
 
 import SecurityManager from '../../security/SecurityManager'
@@ -21,6 +22,7 @@ import ArtOtherWork from './ArtOtherWork'
 import NumbersConvertor from '../NumbersConvertor';
 import ThousandSeparator from '../ThousandSeparator';
 import AboutSection from '../ui-components/AboutSection'
+import Payment from '../Payment/Payment'
 import { Loading } from '../Spinner/Spinner';
 
 import DefaultStyle from '../../static/scss/_boxStyle.scss'
@@ -30,6 +32,21 @@ class ArtWork extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            seeArtModal: {
+                modal: false,
+                title: '',
+                context: '',
+                btn: 'افزایش اعتبار',
+                loading: false
+            },
+            BuyModal: {
+                modal: false,
+                cart_serial: null,
+                title: '',
+                context: '',
+                btn: 'افزایش اعتبار',
+                loading: false
+            },
             config: {},
             artItems: {},
             loading: '',
@@ -69,9 +86,22 @@ class ArtWork extends React.Component {
 
     handleBuyArtClick = () => {
         let Art = this.state.config
-        axios.post(`${Urls().api()}/art/BUY/`, { id: Art.id })
+        axios.post(`${Urls().api()}/client-app/pay/start/`, {
+            art_set: [
+                {
+                    id: Art.id
+                }
+            ]
+        })
             .then(({ data }) => {
-
+                this.setState({
+                    BuyModal: {
+                        ...this.state.BuyModal,
+                        cart_serial: data.cart_serial,
+                        modal: true
+                    }
+                })
+                // window.location.replace(`${Urls().payment()}${data.cart_serial}`)
             })
     }
     onFollowClick = (id, type) => {
@@ -98,8 +128,28 @@ class ArtWork extends React.Component {
 
     handleViewArtClick = () => {
         let Art = this.state.config
-        axios.post(`${Urls().api()}/art/handleClick/`, { id: Art.id })
+        axios.post(`${Urls().api()}/client-app/art/buy/log/`, { id: Art.id, type: 'See' })
             .then(({ data }) => {
+                this.setState({
+                    seeArtModal: {
+                        ...this.state.seeArtModal,
+                        title: 'بازدید از اثر هنری',
+                        context: 'درخواست شما برای بازدید از این اثر هنری با موفقیت ثبت شد. کارشناسان واحد فروش زمینه در اسرع وقت، جهت هماهنگی زمان و شیوه بازدید از این اثر هنری با شما تماس خواهند گرفت.',
+                        modal: true
+                    }
+                })
+            })
+            .catch(err => {
+                if (err.response.status == 406) {
+                    this.setState({
+                        seeArtModal: {
+                            ...this.state.seeArtModal,
+                            title: 'مشاهده اثر هنری',
+                            context: 'شما یک درخواست برای مشاهده این اثر هنری ثبت کرده اید.کارشناسان واحد فروش زمینه در اسرع وقت، جهت انجام هماهنگیلازم با شما تماس خواهند گرفت. لطفا تا پایان بررسی درخواست خود شکیبا باشید',
+                            modal: true
+                        }
+                    })
+                }
             })
     }
     openModal = value => {
@@ -107,13 +157,29 @@ class ArtWork extends React.Component {
             login: value
         });
     }
+    closeSeeArtModal = () => {
+        this.setState({
+            seeArtModal: {
+                ...this.state.seeArtModal,
+                modal: false
+            },
+        });
+    };
+    closeBuyArtModal = () => {
+        this.setState({
+            BuyModal: {
+                ...this.state.BuyModal,
+                modal: false
+            },
+        });
+    };
     render() {
         const parsed = queryString.parse(location.search);
-        const { config, login, loading, artItems } = this.state;
+        const { config, login, BuyModal, seeArtModal, artItems } = this.state;
         const isLogined = SecurityManager().isLogined();
 
         return (
-            <React.Fragment>
+            <>
                 <SingleArtWorkMetaTag title={config.name} slug={this.props.match.params.slug} />
                 <Section ExtraClass={`content singlePage ${styles.art}`}>
                     <Container>
@@ -196,7 +262,7 @@ class ArtWork extends React.Component {
                                                                     خرید اثر <i class="fal fa-shopping-cart" />
                                                                 </button>
                                                                 <button
-                                                                    onClick={() => this.handleViewArtClick()}
+                                                                    onClick={isLogined ? () => this.handleViewArtClick() : () => this.openModal(true)}
                                                                     style={{ width: '100%', marginBottom: 10 }}
                                                                     className={`zbtn next white bradius`}
                                                                 >
@@ -274,7 +340,31 @@ class ArtWork extends React.Component {
                     modalisOpen={login}
                     openModal={this.openModal}
                 />
-            </React.Fragment>
+                <Modal
+                    isOpen={seeArtModal.modal}
+                    toggle={this.closeSeeArtModal}
+                    title={seeArtModal.title}
+                >
+                    <Row>
+                        <Col xs={12}>
+                            <p>{seeArtModal.context}</p>
+                        </Col>
+                    </Row>
+                </Modal>
+
+                <Modal
+                    isOpen={BuyModal.modal}
+                    className={styles.BuyModal}
+                    toggle={this.closeBuyArtModal}
+                    title='خرید اثر'
+                >
+                    <Row>
+                        <Col xs={12}>
+                            <p><Payment cart_serial={BuyModal.cart_serial !== null ? BuyModal.cart_serial : null} /></p>
+                        </Col>
+                    </Row>
+                </Modal>
+            </>
         )
     }
 }

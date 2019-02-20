@@ -100,7 +100,7 @@ class AppHeader extends React.Component {
         const url = window.location.href;
         const { isLogined, navList, openModal } = this.props;
         return (
-            <React.Fragment>
+            <>
                 <Row>
                     <MediaQuery query='(max-width: 768px)'>
                         <Col xs='12' lg='12' md='12' sm='12' className='mobileLogin'>
@@ -250,7 +250,7 @@ class AppHeader extends React.Component {
                         </Col>
                     </Row>
                 </Modal>
-            </React.Fragment>
+            </>
         );
     }
 }

@@ -35,7 +35,7 @@ import '../Registration.scss';
 
 
 const SubmitSeciton = ({ btnLoading, Text, values }) => (
-    <React.Fragment>
+    <>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
                 <Row className={`justify-content-center`}>
@@ -54,7 +54,7 @@ const SubmitSeciton = ({ btnLoading, Text, values }) => (
 
         </Row>
         {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
-    </React.Fragment>
+    </>
 );
 
 
@@ -301,7 +301,7 @@ class GalleryRegistration extends React.Component {
         var url = window.location.href;
         var hasToken = SecurityManager().hasGalleryRegToken()
         return (
-            <React.Fragment>
+            <>
 
                 <RegisterMetaTags
                     title={'ثبت نام'}
@@ -335,7 +335,7 @@ class GalleryRegistration extends React.Component {
 
 
                                 {currentStep == 1 &&
-                                    <React.Fragment>
+                                    <>
                                         <Col xs={12}>
                                             <Form
                                                 decorators={[this.focusOnErrors]}
@@ -368,7 +368,7 @@ class GalleryRegistration extends React.Component {
 
                                         </Col>
 
-                                    </React.Fragment>
+                                    </>
                                 }
 
 
@@ -378,7 +378,7 @@ class GalleryRegistration extends React.Component {
                     </Row>
                 </Container>
 
-            </React.Fragment>
+            </>
 
         )
     }

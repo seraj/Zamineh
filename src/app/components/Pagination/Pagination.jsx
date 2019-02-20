@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 import styles from './Pagination.scss'
 
 const Pagination = (props) => (
-    <React.Fragment>
+    <>
         <ReactPaginate
             previousLabel={'قبلی'}
             pageCount={props.pageCount}
@@ -18,7 +18,7 @@ const Pagination = (props) => (
             subContainerClassName={'pages pagination'}
             activeClassName={'active'}
         />
-    </React.Fragment >
+    </ >
 );
 
 export default Pagination;

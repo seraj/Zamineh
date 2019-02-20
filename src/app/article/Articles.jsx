@@ -77,7 +77,7 @@ class Articles extends React.Component {
         const parsed = queryString.parse(this.props.location.search);
 
         return (
-            <React.Fragment>
+            <>
 
                 <ArticleMetaTags></ArticleMetaTags>
                 <Container>
@@ -105,7 +105,7 @@ class Articles extends React.Component {
                     </Row>
                 </Container>
 
-            </React.Fragment>
+            </>
 
         )
     }

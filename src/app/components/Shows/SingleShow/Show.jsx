@@ -129,7 +129,7 @@ class Show extends React.Component {
         const isLogined = SecurityManager().isLogined();
         const partnerUrl = config && config.artist_organizer ? Urls().artist() : Urls().gallery()
         return (
-            <React.Fragment>
+            <>
                 <SingleShowMetaTag title={config.show ? config.show.name : ''} slug={this.props.match.params.slug} />
                 <Section ExtraClass={`content singlePage ${styles.art}`}>
                     {config && config.img_set && <ShowCarousel items={config.img_set} />}
@@ -285,7 +285,7 @@ class Show extends React.Component {
 
                     </Row>
                 </Modal>
-            </React.Fragment>
+            </>
         )
     }
 }

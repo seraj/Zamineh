@@ -71,7 +71,7 @@ class Home extends React.Component {
     const { homeconfig } = this.state;
 
     return (
-      <React.Fragment>
+      <>
         <HomeMetaTags />
         <Carousel slides={homeconfig.carousels} />
         <Section ExtraClass='section homeContent'>
@@ -194,7 +194,7 @@ class Home extends React.Component {
             }
           </Container>
         </Section>
-      </React.Fragment>
+      </>
     );
   }
 }

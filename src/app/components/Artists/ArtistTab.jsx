@@ -35,20 +35,15 @@ export const Overview = ({ type, slug }) => {
             setInitialized(true)
         }
     })
-    const handlePageClick = (data) => {
-        let selected = data.selected + 1;
-        setLoading(true)
-        getData(type, selected);
-    };
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
                 </div>
             }
             <ArtistArtFiltering slug={slug} />
-        </React.Fragment>
+        </>
     )
 }
 
@@ -94,7 +89,7 @@ export const Cv = ({ slug }) => {
         getData(type, selected);
     };
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -158,7 +153,7 @@ export const Cv = ({ slug }) => {
                     </div>
                 </>
             }
-        </React.Fragment>
+        </>
     )
 }
 
@@ -187,7 +182,7 @@ export const Articles = ({ slug }) => {
         handleData(selected);
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -207,7 +202,7 @@ export const Articles = ({ slug }) => {
                     }
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }
 
@@ -288,7 +283,7 @@ export const Shows = ({ type, slug }) => {
 
 
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -405,7 +400,7 @@ export const Shows = ({ type, slug }) => {
                     </section>
                 </>
             }
-        </React.Fragment>
+        </>
     )
 }
 
@@ -438,7 +433,7 @@ export const Artists = ({ slug, openModal }) => {
         handleData(selected);
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -469,6 +464,6 @@ export const Artists = ({ slug, openModal }) => {
                     }
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }

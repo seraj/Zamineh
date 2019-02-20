@@ -32,7 +32,7 @@ const ArtsLoading = (props) => {
         );
     }
     return (
-        <React.Fragment>
+        <>
 
             <section className='isloading'>
 
@@ -44,7 +44,7 @@ const ArtsLoading = (props) => {
 
                 </Container>
             </section>
-        </React.Fragment>
+        </>
     )
 }
 

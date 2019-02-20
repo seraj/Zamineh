@@ -11,7 +11,7 @@ import styles from './Arts.scss';
 
 
 export const SingleArt = (props) => (
-    <React.Fragment>
+    <>
         <div className={styles.Arts}>
             <div className='thumb'>
                 <a href={`${Urls().arts()}${props.item.slug}`}>
@@ -54,7 +54,7 @@ export const SingleArt = (props) => (
 
             </div>
         </div>
-    </React.Fragment>
+    </>
 );
 
 
@@ -63,7 +63,7 @@ export const ThreeColumnArt = (props) => {
     const artworksCol2 = props.Arts.filter((item, index) => index % 3 == 1);
     const artworksCol3 = props.Arts.filter((item, index) => index % 3 == 2);
     return (
-        <React.Fragment>
+        <>
             <div style={{ display: 'flex' }}>
                 {artworksCol1 &&
                     <div style={{
@@ -120,7 +120,7 @@ export const ThreeColumnArt = (props) => {
                     </div>
                 }
             </div>
-        </React.Fragment>
+        </>
     )
 }
 
@@ -132,7 +132,7 @@ export const FourColumnArt = (props) => {
     const artworksCol3 = props.Arts.filter((item, index) => index % 4 == 2);
     const artworksCol4 = props.Arts.filter((item, index) => index % 4 == 3);
     return (
-        <React.Fragment>
+        <>
             <div style={{ display: 'flex' }}>
                 {artworksCol1 &&
                     <div style={{
@@ -207,6 +207,6 @@ export const FourColumnArt = (props) => {
                     </div>
                 }
             </div>
-        </React.Fragment>
+        </>
     )
 }

@@ -6,7 +6,7 @@ import styles from './List.scss'
 
 export const FlatList = (props) => {
     return (
-        <React.Fragment>
+        <>
             <div className={styles.FlatList}>
                 <div className='avatar'>
                     <a href={props.url}>
@@ -22,12 +22,12 @@ export const FlatList = (props) => {
                 </a>
 
             </div>
-        </React.Fragment>
+        </>
     )
 }
 export const ListWithFollowBtn = (props) => {
     return (
-        <React.Fragment>
+        <>
             <div className={styles.ListWithFollowBtn}>
                 <div className="info">
                     <div className='img'>
@@ -49,6 +49,6 @@ export const ListWithFollowBtn = (props) => {
 
                 </div>
             </div>
-        </React.Fragment>
+        </>
     )
 }

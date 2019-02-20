@@ -1,0 +1,188 @@
+@import '../../static/scss/variables';
+
+:local(.section) {
+    margin-bottom: 25px;
+
+    h2 {
+        font-size: 22px;
+        font-weight: bold;
+
+    }
+}
+
+:local(.address) {
+
+
+
+    .items {
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 2px;
+        padding: 30px;
+
+        &.active {
+            border: 1px solid $secondery-color;
+            color: $secondery-color;
+            background-color: lighten($secondery-color, 45%);
+        }
+
+        .close {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-size: 12px;
+            padding-right: 10px;
+            z-index: 10;
+            color: rgb(202, 11, 11);
+
+            i {
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
+
+    button {}
+}
+
+:local(.deliveryTime) {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+
+    .weekDay {
+        position: relative;
+        padding: 10px;
+        border-bottom: 1px solid #e5e5e5;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        // &.opened {
+        //     .info:after {
+        //         transform: rotate(180deg);
+        //     }
+        // }
+
+        .info {
+            position: relative;
+
+            span {
+                display: block;
+
+                &.day {
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                }
+            }
+
+            &:after {
+                font-family: 'Font Awesome 5 Pro' !important;
+                font-size: 18px;
+                position: absolute;
+                transform: translate(-50%, -10px);
+                top: 50%;
+                left: 10px;
+                content: '\f107';
+            }
+        }
+
+        .time_set {
+            display: none;
+
+            &.open {
+                display: block;
+            }
+
+            .times {
+                margin-top: 15px;
+                cursor: pointer;
+                display: block;
+                border-bottom: 1px solid #e5e5e5;
+
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .item {
+                    // flex: 1;
+                    display: block;
+                    margin-bottom: 20px;
+                    padding-right: 25px;
+                    position: relative;
+
+
+                    span {
+                        display: block;
+                        margin-bottom: 5px;
+
+                        &.time {
+                            font-weight: bold;
+
+                        }
+                    }
+
+                    &:before {
+                        font-family: 'Font Awesome 5 Pro' !important;
+                        font-size: 18px;
+                        position: absolute;
+                        right: 0;
+                        top: -3px;
+                        color: #e5e5e5;
+                        content: '\f0c8';
+                    }
+
+                    &.selected {
+                        color: $secondery-color;
+
+                        &:before {
+                            color: $secondery-color;
+                            content: '\f14a'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+:local(.invoce) {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.list {
+    margin: 20px 0;
+
+    li {
+        padding-right: 30px;
+        margin-bottom: 10px;
+        position: relative;
+
+        i {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 0;
+            right: 0;
+
+        }
+
+        span {
+            font-weight: bold;
+
+            &.colored {
+                color: $secondery-color
+            }
+        }
+    }
+}

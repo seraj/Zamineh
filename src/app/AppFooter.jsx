@@ -86,7 +86,7 @@ class AppFooter extends React.Component {
         const url = window.location.href;
         const { birthday_start, birthday_end, isLogined } = this.props;
         return (
-            <React.Fragment>
+            <>
                 <footer>
                     <Container>
                         <section className='footer'>
@@ -172,7 +172,7 @@ class AppFooter extends React.Component {
                     </Container>
                 </footer>
 
-            </React.Fragment>
+            </>
         )
     }
 }

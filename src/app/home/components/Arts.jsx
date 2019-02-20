@@ -127,7 +127,7 @@ class Arts extends Component {
     } = this.props;
     return (
 
-      <React.Fragment>
+      <>
         {visible && showwhenuserLoggedin &&
           <Section ExtraClass={sectionName}>
 
@@ -181,7 +181,7 @@ class Arts extends Component {
           modalisOpen={this.state.login}
           openModal={this.openModal}
         />
-      </React.Fragment>
+      </>
     );
   }
 }

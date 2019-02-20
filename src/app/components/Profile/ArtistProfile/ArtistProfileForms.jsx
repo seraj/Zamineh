@@ -29,7 +29,7 @@ import { Field } from 'react-final-form-html5-validation'
 import styles from '../Profile.scss'
 
 const SubmitButton = ({ Loading, Text, values }) => (
-    <React.Fragment>
+    <>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
                 <Row className='justify-content-center'>
@@ -48,7 +48,7 @@ const SubmitButton = ({ Loading, Text, values }) => (
 
         </Row>
         {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
-    </React.Fragment>
+    </>
 );
 
 const adapt /* ⬅️ this is a HOC */ = Component => ({
@@ -94,7 +94,7 @@ export const EditArtist = (props) => {
     return (
         <Row>
 
-            <React.Fragment>
+            <>
                 <Col xs={12}>
                     <Form
                         onSubmit={handleSubmit}
@@ -119,7 +119,7 @@ export const EditArtist = (props) => {
                         )}
                     />
                 </Col>
-            </React.Fragment>
+            </>
 
         </Row>
     )
@@ -133,7 +133,7 @@ export const SupportTicketForm = (props) => {
     return (
         <Row>
 
-            <React.Fragment>
+            <>
                 <Col xs={12}>
                     <Form
                         onSubmit={handleSubmit}
@@ -186,7 +186,7 @@ export const SupportTicketForm = (props) => {
                         )}
                     />
                 </Col>
-            </React.Fragment>
+            </>
 
         </Row>
     )

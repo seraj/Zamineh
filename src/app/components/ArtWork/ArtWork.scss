@@ -180,3 +180,10 @@
         padding: 10px 25px;
     }
 }
+
+:local(.BuyModal) {
+    .modal-body {
+        overflow-y: scroll;
+        max-height: 700px;
+    }
+}

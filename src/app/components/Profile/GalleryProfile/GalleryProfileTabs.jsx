@@ -80,7 +80,7 @@ export const Tabz = ({ type }) => {
     const GalleryProfileBtn = (item) => <div onClick={() => onGalleryBtnClick(item)} className={`${styles.GalleryBtn} ${item.in_zamineh ? 'active' : ''}`}>{item.in_zamineh ? 'برداشتن از زمینه' : 'نمایش در زمینه'}</div>
     const showInZaminehSHOWS = (item) => <div onClick={() => showInZaminehShowClick(item)} className={`${styles.GalleryBtn} ${item.in_zamineh ? 'active' : ''}`}>{item.in_zamineh ? 'برداشتن از زمینه' : 'نمایش در زمینه'}</div>
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -176,7 +176,7 @@ export const Tabz = ({ type }) => {
             }
 
 
-        </React.Fragment>
+        </>
     )
 }
 
@@ -298,7 +298,7 @@ export const Settings = ({ Config }) => {
             });
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -334,7 +334,7 @@ export const Settings = ({ Config }) => {
             </section>
 
 
-        </React.Fragment>
+        </>
     )
 }
 
@@ -366,7 +366,7 @@ export const Notification = () => {
         axios.post(`${Urls().api()}/gallery-app/gallery/notifications/`)
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -386,7 +386,7 @@ export const Notification = () => {
             </section>
 
 
-        </React.Fragment>
+        </>
     )
 }
 
@@ -412,7 +412,7 @@ export const Transactions = () => {
     }
 
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -432,7 +432,7 @@ export const Transactions = () => {
             </section>
 
 
-        </React.Fragment>
+        </>
     )
 }
 
@@ -490,7 +490,7 @@ export const Ticket = () => {
     }
 
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -523,6 +523,6 @@ export const Ticket = () => {
                     handleSubmit={handleSubmit}
                 />
             </Modal>
-        </React.Fragment>
+        </>
     )
 }

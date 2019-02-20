@@ -53,7 +53,7 @@ class Uploader extends React.Component {
         } = this.props;
 
         return (
-            <React.Fragment>
+            <>
 
                 <FilePond
                     ref={ref => this.pond = ref}
@@ -180,7 +180,7 @@ class Uploader extends React.Component {
 
                 </FilePond>
 
-            </React.Fragment>
+            </>
 
         )
     }

@@ -32,7 +32,7 @@ import styles from '../Registration.scss'
 
 
 const SubmitSeciton = ({ btnLoading, Text, values }) => (
-    <React.Fragment>
+    <>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
                 <Row className={`justify-content-center`}>
@@ -51,7 +51,7 @@ const SubmitSeciton = ({ btnLoading, Text, values }) => (
 
         </Row>
         {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
-    </React.Fragment>
+    </>
 );
 
 
@@ -248,7 +248,7 @@ class AddSingleArt extends React.Component {
         } = this.state
         var hasToken = SecurityManager().hasArtistRegToken()
         return (
-            <React.Fragment>
+            <>
                 <Container>
                     <Row>
                         <Col xs={12}>
@@ -292,13 +292,13 @@ class AddSingleArt extends React.Component {
                                                 <form onSubmit={handleSubmit}>
                                                     <Row>
 
-                                                        <React.Fragment>
+                                                        <>
 
                                                             <FieldArray name='art_set'>
                                                                 {({ fields }) =>
-                                                                    <React.Fragment>
+                                                                    <>
                                                                         {fields.map((name, index) => (
-                                                                            <React.Fragment>
+                                                                            <>
                                                                                 <SingleArt
                                                                                     key={index}
                                                                                     name={name}
@@ -312,7 +312,7 @@ class AddSingleArt extends React.Component {
                                                                                     hasExtraFields
                                                                                     onArtRemoveClick={() => this.handleRemove(fields, 'art_id', values, 'Col Index', index)}
                                                                                 />
-                                                                            </React.Fragment>
+                                                                            </>
                                                                         ))}
                                                                         {values && values.art_set &&
                                                                             <Col lg={6} md={6} sm={12} xs={12}>
@@ -327,12 +327,12 @@ class AddSingleArt extends React.Component {
                                                                                 </div>
                                                                             </Col>
                                                                         }
-                                                                    </React.Fragment>
+                                                                    </>
                                                                 }
                                                             </FieldArray>
 
 
-                                                        </React.Fragment>
+                                                        </>
                                                     </Row>
 
                                                     <SubmitSeciton
@@ -350,7 +350,7 @@ class AddSingleArt extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-            </React.Fragment>
+            </>
         )
     }
 }

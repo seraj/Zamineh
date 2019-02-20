@@ -155,7 +155,7 @@ class GalleryProfile extends React.Component {
         const { config, tabs, loading } = this.state;
 
         return (
-            <React.Fragment>
+            <>
                 <GalleryProfileMetaTag />
                 <Section ExtraClass={'content singlePage'}>
                     <div className={styles.userCover} style={{
@@ -242,7 +242,7 @@ class GalleryProfile extends React.Component {
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <React.Fragment>
+                                <>
                                     <LinearTabs tabs={tabs} slug={`${Urls().GalleryDashboard()}`} />
                                     <div className={styles.content}>
 
@@ -254,13 +254,13 @@ class GalleryProfile extends React.Component {
                                             />
                                         ))}
                                     </div>
-                                </React.Fragment>
+                                </>
                             </Col>
                         </Row>
                     </Container>
                 </Section>
 
-            </React.Fragment >
+            </ >
         )
     }
 }

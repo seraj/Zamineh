@@ -22,7 +22,7 @@ import { Field } from 'react-final-form-html5-validation'
 import styles from '../../login/Login.scss'
 
 const SubmitButton = ({ Loading, Text, values }) => (
-    <React.Fragment>
+    <>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
                 <Row className='justify-content-center'>
@@ -41,7 +41,7 @@ const SubmitButton = ({ Loading, Text, values }) => (
 
         </Row>
         {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
-    </React.Fragment>
+    </>
 );
 
 const adapt /* ⬅️ this is a HOC */ = Component => ({
@@ -87,7 +87,7 @@ export const EditProfile = (props) => {
     return (
         <Row>
 
-            <React.Fragment>
+            <>
                 <Col xs={12}>
                     <Form
                         onSubmit={handleSubmit}
@@ -155,7 +155,7 @@ export const EditProfile = (props) => {
                         )}
                     />
                 </Col>
-            </React.Fragment>
+            </>
 
         </Row>
     )
@@ -170,7 +170,7 @@ export const Report = (props) => {
     return (
         <Row>
 
-            <React.Fragment>
+            <>
                 <Col xs={12}>
                     <Form
                         onSubmit={handleSubmit}
@@ -198,7 +198,7 @@ export const Report = (props) => {
                         )}
                     />
                 </Col>
-            </React.Fragment>
+            </>
 
         </Row>
     )
@@ -214,7 +214,7 @@ export const AddCredit = (props) => {
     return (
         <Row>
 
-            <React.Fragment>
+            <>
                 <Col xs={12}>
                     <Form
                         onSubmit={handleSubmit}
@@ -241,7 +241,7 @@ export const AddCredit = (props) => {
                         )}
                     />
                 </Col>
-            </React.Fragment>
+            </>
 
         </Row>
     )

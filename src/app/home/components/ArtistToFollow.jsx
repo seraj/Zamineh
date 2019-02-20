@@ -132,7 +132,7 @@ class ArtistToFolllow extends Component {
         } = this.props;
 
         return (
-            <React.Fragment>
+            <>
                 <Section ExtraClass={sectionName}>
                     <Container>
                         <div className='section_header'>
@@ -159,19 +159,19 @@ class ArtistToFolllow extends Component {
 
                         </div>
                         {this.state.currentTab === 'foryou' && this.state.artist.for_you &&
-                            <React.Fragment>
+                            <>
                                 {this.renderItems('for_you')}
-                            </React.Fragment>
+                            </>
                         }
                         {this.state.currentTab === 'trending' && this.state.artist.trend_set &&
-                            <React.Fragment>
+                            <>
                                 {this.renderItems('trend_set')}
-                            </React.Fragment>
+                            </>
                         }
                         {this.state.currentTab === 'popular' && this.state.artist.pop_set &&
-                            <React.Fragment>
+                            <>
                                 {this.renderItems('pop_set')}
-                            </React.Fragment>
+                            </>
                         }
                     </Container>
 
@@ -181,7 +181,7 @@ class ArtistToFolllow extends Component {
                     modalisOpen={this.state.login}
                     openModal={this.openModal}
                 />
-            </React.Fragment>
+            </>
         );
     }
 }

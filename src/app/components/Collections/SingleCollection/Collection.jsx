@@ -174,7 +174,7 @@ class Collection extends React.Component {
         const { isLogined } = this.props;
         const { FormLoading, loading, pageCount, priceRange, config } = this.state;
         return (
-            <React.Fragment>
+            <>
 
                 <SingleCollectionMetaTag title={config.show ? config.name : ''} slug={this.props.match.params.slug} />
                 <Container>
@@ -208,7 +208,7 @@ class Collection extends React.Component {
                                         name='medium'
                                     >
                                         {config && config.mediums &&
-                                            <React.Fragment>
+                                            <>
                                                 {config.mediums.map((item, index) => (
                                                     <CustomInput
                                                         key={index}
@@ -220,7 +220,7 @@ class Collection extends React.Component {
                                                         label={item.name}
                                                     />
                                                 ))}
-                                            </React.Fragment>
+                                            </>
                                         }
                                     </FilterBox>
 
@@ -245,7 +245,7 @@ class Collection extends React.Component {
                                         name='years'
                                     >
                                         {config && config.years &&
-                                            <React.Fragment>
+                                            <>
                                                 {config.years.map((item, index) => (
                                                     <CustomInput
                                                         key={index}
@@ -257,7 +257,7 @@ class Collection extends React.Component {
                                                         label={NumbersConvertor().convertToPersian(item.title)}
                                                     />
                                                 ))}
-                                            </React.Fragment>
+                                            </>
                                         }
                                     </FilterBox>
                                 </Form>
@@ -304,7 +304,7 @@ class Collection extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-            </React.Fragment>
+            </>
         )
     }
 }

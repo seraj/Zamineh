@@ -52,7 +52,7 @@ import styles from '../Registration.scss';
 
 
 const SubmitSeciton = ({ btnLoading, Text, values, currentStep, goToSteps }) => (
-    <React.Fragment>
+    <>
         <Row>
             <Col lg={12} md={12} sm={12} xs={12}>
                 <Row className={`${currentStep > 1 ? `justify-content-between` : `justify-content-center`} `}>
@@ -79,7 +79,7 @@ const SubmitSeciton = ({ btnLoading, Text, values, currentStep, goToSteps }) => 
 
         </Row>
         {/*<pre>{JSON.stringify(values, 0, 2)}</pre>*/}
-    </React.Fragment>
+    </>
 );
 
 
@@ -733,7 +733,7 @@ class ArtistRegistration extends React.Component {
         var url = window.location.href;
         var hasToken = SecurityManager().hasArtistRegToken()
         return (
-            <React.Fragment>
+            <>
 
                 <RegisterMetaTags
                     title={'ثبت نام'}
@@ -771,7 +771,7 @@ class ArtistRegistration extends React.Component {
 
 
                                 {currentStep == 1 &&
-                                    <React.Fragment>
+                                    <>
                                         <Col xs={12}>
                                             <Form
                                                 decorators={[this.focusOnErrors]}
@@ -793,7 +793,6 @@ class ArtistRegistration extends React.Component {
                                                             btnLoading={btnLoading}
                                                             currentStep={currentStep}
                                                             values={values}
-
                                                         />
                                                     </form>
                                                 )}
@@ -801,10 +800,10 @@ class ArtistRegistration extends React.Component {
 
                                         </Col>
 
-                                    </React.Fragment>
+                                    </>
                                 }
                                 {currentStep == 2 &&
-                                    <React.Fragment>
+                                    <>
                                         <Col xs={12}>
                                             <Form
                                                 decorators={[this.focusOnErrors]}
@@ -830,10 +829,10 @@ class ArtistRegistration extends React.Component {
                                             />
 
                                         </Col>
-                                    </React.Fragment>
+                                    </>
                                 }
                                 {currentStep == 3 &&
-                                    <React.Fragment>
+                                    <>
                                         <Col xs={12}>
                                             <Form
                                                 decorators={[this.focusOnErrors]}
@@ -886,10 +885,10 @@ class ArtistRegistration extends React.Component {
 
                                         </Col>
 
-                                    </React.Fragment>
+                                    </>
                                 }
                                 {currentStep == 4 &&
-                                    <React.Fragment>
+                                    <>
                                         <Col xs={12}>
                                             <Form
                                                 decorators={[this.focusOnErrors]}
@@ -940,7 +939,7 @@ class ArtistRegistration extends React.Component {
                                             />
 
                                         </Col>
-                                    </React.Fragment>
+                                    </>
                                 }
 
                             </div>
@@ -949,7 +948,7 @@ class ArtistRegistration extends React.Component {
                     </Row>
                 </Container>
 
-            </React.Fragment>
+            </>
 
         )
     }

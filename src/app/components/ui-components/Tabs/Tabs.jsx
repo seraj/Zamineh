@@ -10,13 +10,13 @@ export const LinearTabs = ({ tabs, slug }) => {
     return (
         <nav className={styles.LinearTabs}>
             {tabs && tabs.map((tab, index) => (
-                <React.Fragment>
+                <>
                     <Link
                         key={index}
                         to={`${slug}${tab.value}`}
                         className={url.includes(tab.value) ? 'active' : ''}
                     >{tab.title}</Link>
-                </React.Fragment>
+                </>
             ))}
         </nav>
     )
@@ -27,14 +27,14 @@ export const Tabs = ({ tabs, slug }) => {
     return (
         <nav className={styles.tabs}>
             {tabs && tabs.map((tab, index) => (
-                <React.Fragment>
+                <>
                     <Link
                         key={index}
                         to={`${slug}${tab.value}`}
                         className={url.includes(tab.value) ? 'active' : ''}
                     >{tab.title}</Link>
                     <div className={styles.separator} />
-                </React.Fragment>
+                </>
             ))}
         </nav>
     )

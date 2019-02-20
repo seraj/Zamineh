@@ -50,7 +50,7 @@ class Collections extends React.Component {
         const { isLogined } = this.props;
         const { Results, loading } = this.state
         return (
-            <React.Fragment>
+            <>
 
                 <CollectionsMetaTags />
                 <Container>
@@ -81,7 +81,7 @@ class Collections extends React.Component {
                     </Row>
                 </Container>
 
-            </React.Fragment>
+            </>
         )
     }
 }

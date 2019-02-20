@@ -142,7 +142,7 @@ class Profile extends React.Component {
                     }
                 })
             .then(({ data }) => {
-                console.log(data)
+                // console.log(data)
                 this.setState({
                     credit: {
                         ...this.state.credit,
@@ -216,7 +216,7 @@ class Profile extends React.Component {
         const isLogined = SecurityManager().isLogined();
 
         return (
-            <React.Fragment>
+            <>
                 <Section ExtraClass={'content singlePage'}>
                     <Container>
                         <Row>
@@ -280,7 +280,7 @@ class Profile extends React.Component {
                                     </div>
 
                                 </div>
-                                <React.Fragment>
+                                <>
                                     <LinearTabs tabs={tabs} slug={`${Urls().profile()}`} />
                                     <div className={styles.content}>
 
@@ -292,7 +292,7 @@ class Profile extends React.Component {
                                             />
                                         ))}
                                     </div>
-                                </React.Fragment>
+                                </>
                             </Col>
                         </Row>
                     </Container>
@@ -313,7 +313,7 @@ class Profile extends React.Component {
                         </Col>
                     </Row>
                 </Modal>
-            </React.Fragment>
+            </>
         )
     }
 }

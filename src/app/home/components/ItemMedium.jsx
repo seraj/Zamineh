@@ -15,7 +15,7 @@ class itemMedium extends React.Component {
     }
   };
   render() {
-    return <React.Fragment>{this.mediumsItem()}</React.Fragment>;
+    return <>{this.mediumsItem()}</>;
   }
 }
 export default itemMedium;

@@ -51,7 +51,7 @@ export const Saves = () => {
 
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -87,7 +87,7 @@ export const Saves = () => {
                     <Categories cats={followedCats.cat_set} />
                 </section>
             }
-        </React.Fragment>
+        </>
     )
 }
 
@@ -164,7 +164,7 @@ export const Settings = ({ slug }) => {
     }
 
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -182,7 +182,7 @@ export const Settings = ({ slug }) => {
             </section>
 
 
-        </React.Fragment>
+        </>
     )
 }
 
@@ -211,7 +211,7 @@ export const Notification = () => {
         axios.post(`${Urls().api()}/client-app/client/notifications/`)
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -231,7 +231,7 @@ export const Notification = () => {
             </section>
 
 
-        </React.Fragment>
+        </>
     )
 }
 
@@ -257,7 +257,7 @@ export const Transactions = () => {
     }
 
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -277,7 +277,7 @@ export const Transactions = () => {
             </section>
 
 
-        </React.Fragment>
+        </>
     )
 }
 
@@ -310,7 +310,7 @@ export const ReportBug = () => {
     }
 
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -327,6 +327,6 @@ export const ReportBug = () => {
             </section>
 
 
-        </React.Fragment>
+        </>
     )
 }

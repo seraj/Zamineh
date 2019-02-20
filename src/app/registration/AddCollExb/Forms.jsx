@@ -329,7 +329,7 @@ export const Exhibition = ({
 
                 <FieldArray name={`${name}.art_set`}>
                     {({ fields }) =>
-                        <React.Fragment>
+                        <>
                             {fields.map((name, index) => (
                                 <SingleArt
                                     key={index}
@@ -348,7 +348,7 @@ export const Exhibition = ({
                             <Col xs={12}>
                                 <Row>
 
-                                    <React.Fragment>
+                                    <>
                                         {!GallerryExhibition &&
                                             <Col lg={6} md={6} sm={12} xs={12}>
                                                 <div className={styles.addSectionButton}>
@@ -378,11 +378,11 @@ export const Exhibition = ({
                                         </Col>
 
 
-                                    </React.Fragment>
+                                    </>
 
                                 </Row>
                             </Col>
-                        </React.Fragment>
+                        </>
                     }
 
                 </FieldArray>
@@ -528,7 +528,7 @@ export const Collection = ({
 
                 <FieldArray name={`${name}.art_set`}>
                     {({ fields }) =>
-                        <React.Fragment>
+                        <>
                             {fields.map((name, index) => (
                                 <SingleArt
                                     key={index}
@@ -547,7 +547,7 @@ export const Collection = ({
                             <Col xs={12}>
                                 <Row>
 
-                                    <React.Fragment>
+                                    <>
                                         <Col lg={6} md={6} sm={12} xs={12}>
                                             <div className={styles.addSectionButton}>
                                                 <button
@@ -572,11 +572,11 @@ export const Collection = ({
                                             />
                                         </Col>
 
-                                    </React.Fragment>
+                                    </>
 
                                 </Row>
                             </Col>
-                        </React.Fragment>
+                        </>
                     }
 
                 </FieldArray>
@@ -743,7 +743,7 @@ export const SingleArt = ({
                         </FormGroup>
                     </Col>
                     {LocalData && LocalData.price &&
-                        <React.Fragment>
+                        <>
                             <Col lg={12} md={12} sm={12} xs={12}>
                                 <Divider text={`مشخصات برای فروش اثر`} orientation='right' />
                             </Col>
@@ -789,7 +789,7 @@ export const SingleArt = ({
                                     <Error name={`${name}.price.price`} />
                                 </FormGroup>
                             </Col>
-                        </React.Fragment>
+                        </>
                     }
                     <Col xs={12}>
                         <Label className={LabelRequired}>بارگذاری آثار</Label>
@@ -863,7 +863,7 @@ const ArtImportModal = ({
     values
 }) => {
     return (
-        <React.Fragment>
+        <>
             <div className={styles.importArtButton}>
                 <button
                     type='button'
@@ -906,6 +906,6 @@ const ArtImportModal = ({
 
                 </Row>
             </Modal>
-        </React.Fragment>
+        </>
     )
 }

@@ -113,7 +113,7 @@ export function LimitContent(content, limit) {
 }
 export function Img({ img, alt, width, height, divWidth, divHeight, style }) {
     return (
-        <React.Fragment>
+        <>
             {(img != '' && img !== undefined) ?
                 <img src={img} alt={alt} width={width} height={height} style={style ? style : null} />
                 :
@@ -128,7 +128,7 @@ export function Img({ img, alt, width, height, divWidth, divHeight, style }) {
                     }
                 />
             }
-        </React.Fragment>
+        </>
     )
 }
 export const BackLink = ({ Text, pageLink }) => {

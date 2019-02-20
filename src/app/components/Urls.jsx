@@ -31,6 +31,9 @@ export default function Urls() {
         profile() {
             return '/client/profile/'
         },
+        payment() {
+            return '/payment/'
+        },
 
 
 

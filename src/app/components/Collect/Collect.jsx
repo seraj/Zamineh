@@ -169,7 +169,7 @@ class Collect extends React.Component {
         const { isLogined } = this.props;
         const { FormLoading, loading, pageCount, priceRange, config } = this.state;
         return (
-            <React.Fragment>
+            <>
 
                 <CollectMetaTags />
                 <Container>
@@ -192,7 +192,7 @@ class Collect extends React.Component {
                                         name='medium'
                                     >
                                         {config && config.mediums &&
-                                            <React.Fragment>
+                                            <>
                                                 {config.mediums.map((item, index) => (
                                                     <CustomInput
                                                         key={index}
@@ -204,7 +204,7 @@ class Collect extends React.Component {
                                                         label={item.name}
                                                     />
                                                 ))}
-                                            </React.Fragment>
+                                            </>
                                         }
                                     </FilterBox>
 
@@ -229,7 +229,7 @@ class Collect extends React.Component {
                                         name='years'
                                     >
                                         {config && config.years &&
-                                            <React.Fragment>
+                                            <>
                                                 {config.years.map((item, index) => (
                                                     <CustomInput
                                                         key={index}
@@ -241,7 +241,7 @@ class Collect extends React.Component {
                                                         label={NumbersConvertor().convertToPersian(item.title)}
                                                     />
                                                 ))}
-                                            </React.Fragment>
+                                            </>
                                         }
                                     </FilterBox>
                                 </Form>
@@ -289,7 +289,7 @@ class Collect extends React.Component {
                     </Row>
                 </Container>
 
-            </React.Fragment>
+            </>
         )
     }
 }

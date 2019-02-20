@@ -35,13 +35,13 @@ class TopShow extends React.Component {
 
 
         return (
-            <React.Fragment>
+            <>
                 <div className='features top-features'>
                     <Row>
                         {this.renderItems()}
                     </Row>
                 </div>
-            </React.Fragment>
+            </>
         );
     }
 }

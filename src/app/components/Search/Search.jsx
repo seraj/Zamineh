@@ -36,7 +36,7 @@ const ResultsItem = (props) => {
                 <div className={`${styles.ResultItems}-about`}>{props.item.about}</div>
 
                 {(props.item.model == 'artist' || props.item.model == 'category') &&
-                    <React.Fragment>
+                    <>
                         {props.item.artworks != '' &&
                             <div className={`${styles.ResultItems}-works`}>
                                 {props.item.artworks.map(works => (
@@ -44,7 +44,7 @@ const ResultsItem = (props) => {
                                 ))}
                             </div>
                         }
-                    </React.Fragment>
+                    </>
                 }
             </div>
             <div className={`${styles.ResultItems}-icon`}>
@@ -106,7 +106,7 @@ class Search extends React.Component {
         const parsed = queryString.parse(location.search);
         const { isLogined } = this.props;
         return (
-            <React.Fragment>
+            <>
 
                 <SearchMetaTags />
                 <Container>
@@ -137,7 +137,7 @@ class Search extends React.Component {
                     </Row>
                 </Container>
 
-            </React.Fragment>
+            </>
         )
     }
 }

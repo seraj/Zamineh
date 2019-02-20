@@ -88,7 +88,7 @@ class Follow extends Component {
         const { isFollow, followPopover, popoverContent } = this.state;
         const isLogined = SecurityManager().isLogined();
         return (
-            <React.Fragment>
+            <>
                 <div
                     className={`follow-button ${isFollow ? 'following' : ''}`}
                     id={`${mode}_${id}`}
@@ -141,7 +141,7 @@ class Follow extends Component {
                     modalisOpen={this.state.login}
                     openModal={this.openModal}
                 />
-            </React.Fragment>
+            </>
         );
     }
 }

@@ -63,7 +63,7 @@ class ArtistAlphabet extends Component {
             match
         } = this.props;
         return (
-            <React.Fragment>
+            <>
                 <Section ExtraClass={`${styles.ArtistAlphabet}`}>
                     <Container>
                         <Row>
@@ -96,7 +96,7 @@ class ArtistAlphabet extends Component {
                     </Container>
 
                 </Section>
-            </React.Fragment >
+            </ >
         );
     }
 }

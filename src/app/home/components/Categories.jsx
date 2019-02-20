@@ -25,7 +25,7 @@ class Categories extends React.Component {
     }
   };
   render() {
-    return <React.Fragment>{this.renderItems()}</React.Fragment>;
+    return <>{this.renderItems()}</>;
   }
 }
 export default Categories;

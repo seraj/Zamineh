@@ -125,7 +125,7 @@ class ArtistProfile extends React.Component {
         const { config, tabs, loading } = this.state;
 
         return (
-            <React.Fragment>
+            <>
                 <ArtistProfileMetaTag />
                 <Section ExtraClass={'content singlePage'}>
                     <div className={styles.userCover} style={{
@@ -212,7 +212,7 @@ class ArtistProfile extends React.Component {
                     <Container>
                         <Row>
                             <Col xs={12}>
-                                <React.Fragment>
+                                <>
                                     <LinearTabs tabs={tabs} slug={`${Urls().ArtistDashboard()}`} />
                                     <div className={styles.content}>
 
@@ -224,13 +224,13 @@ class ArtistProfile extends React.Component {
                                             />
                                         ))}
                                     </div>
-                                </React.Fragment>
+                                </>
                             </Col>
                         </Row>
                     </Container>
                 </Section>
 
-            </React.Fragment>
+            </>
         )
     }
 }

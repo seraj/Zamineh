@@ -51,7 +51,7 @@ class GalleryAlphabet extends Component {
             match
         } = this.props;
         return (
-            <React.Fragment>
+            <>
                 <div className={`${styles.GalleryAlphabet}`}>
                     <Container>
                         <Row>
@@ -85,7 +85,7 @@ class GalleryAlphabet extends Component {
                     </Container>
 
                 </div>
-            </React.Fragment >
+            </ >
         );
     }
 }

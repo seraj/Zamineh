@@ -94,7 +94,7 @@ const CategoriesArts = ({ slug, isLogined, openModal }) => {
         form = form;
     }
     return (
-        <React.Fragment>
+        <>
             {loading &&
                 <div style={{ height: 150 }}>
                     <Loading background="#fff" />
@@ -177,7 +177,7 @@ const CategoriesArts = ({ slug, isLogined, openModal }) => {
                     }
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }
 
@@ -186,7 +186,7 @@ export default CategoriesArts;
 const FilterDropDown = ({ name, options, value, handleChange, defaultOptionClick, data }) => {
     const activeValue = data.filter(item => item.value === value)
     return (
-        <React.Fragment>
+        <>
             {options && options.length > 0 &&
                 <div className={`filter-dropdown ${value != null ? 'is-active' : null}`}>
                     <div className="filter-nav-main-text">{name}</div>
@@ -205,6 +205,6 @@ const FilterDropDown = ({ name, options, value, handleChange, defaultOptionClick
                     </nav>
                 </div>
             }
-        </React.Fragment>
+        </>
     )
 }

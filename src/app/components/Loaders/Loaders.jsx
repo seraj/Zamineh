@@ -69,7 +69,7 @@ const RenderArts = () => (
 
 export const LoadingHome = () => {
     return (
-        <React.Fragment>
+        <>
             <div className='header-slider'></div>
             <Section ExtraClass='section homeContent'>
 
@@ -96,6 +96,6 @@ export const LoadingHome = () => {
                 </div>
 
             </Section>
-        </React.Fragment>
+        </>
     )
 }

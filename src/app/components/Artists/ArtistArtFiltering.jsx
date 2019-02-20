@@ -169,7 +169,7 @@ class ArtistArtFiltering extends React.Component {
         const { isLogined } = this.props;
         const { FormLoading, loading, pageCount, priceRange, config, bio } = this.state;
         return (
-            <React.Fragment>
+            <>
                 {bio && bio !== '' &&
                     <>
                         <div className={styles.artistBio}>
@@ -200,7 +200,7 @@ class ArtistArtFiltering extends React.Component {
                                         name='medium'
                                     >
                                         {config && config.mediums &&
-                                            <React.Fragment>
+                                            <>
                                                 {config.mediums.map((item, index) => (
                                                     <CustomInput
                                                         key={index}
@@ -212,7 +212,7 @@ class ArtistArtFiltering extends React.Component {
                                                         label={item.name}
                                                     />
                                                 ))}
-                                            </React.Fragment>
+                                            </>
                                         }
                                     </FilterBox>
 
@@ -237,7 +237,7 @@ class ArtistArtFiltering extends React.Component {
                                         name='years'
                                     >
                                         {config && config.years &&
-                                            <React.Fragment>
+                                            <>
                                                 {config.years.map((item, index) => (
                                                     <CustomInput
                                                         key={index}
@@ -249,7 +249,7 @@ class ArtistArtFiltering extends React.Component {
                                                         label={NumbersConvertor().convertToPersian(item.title)}
                                                     />
                                                 ))}
-                                            </React.Fragment>
+                                            </>
                                         }
                                     </FilterBox>
                                 </Form>
@@ -296,7 +296,7 @@ class ArtistArtFiltering extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-            </React.Fragment>
+            </>
         )
     }
 }

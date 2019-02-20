@@ -57,7 +57,7 @@ export const RegisterForm = ({
     values
 }) => {
     return (
-        <React.Fragment>
+        <>
             <div className={styles.RegistrationSection}>
                 <Row>
                     <Field
@@ -346,6 +346,6 @@ export const RegisterForm = ({
                 />
 
             </div>
-        </React.Fragment >
+        </ >
     )
 }

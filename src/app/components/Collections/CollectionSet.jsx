@@ -24,7 +24,7 @@ function SingleCollection({ item }) {
 }
 export function CollectionSet({ items }) {
     return (
-        <React.Fragment>
+        <>
             {
                 items.map((item, index) => (
 
@@ -42,7 +42,7 @@ export function CollectionSet({ items }) {
                     </div>
                 ))
             }
-        </React.Fragment>
+        </>
 
     )
 }

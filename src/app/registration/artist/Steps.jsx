@@ -62,7 +62,7 @@ export const Step1 = ({
     onMapClick
 }) => {
     return (
-        <React.Fragment>
+        <>
             <div className={styles.RegistrationSection}>
                 <Row>
                     <Field
@@ -241,13 +241,13 @@ export const Step1 = ({
                 /> */}
 
             </div>
-        </React.Fragment>
+        </>
     )
 }
 
 export const Step2 = ({ Field, ValidateTextArea }) => {
     return (
-        <React.Fragment>
+        <>
             <div className={styles.RegistrationSection}>
                 <Row>
                     <Col xs={12}>
@@ -331,7 +331,7 @@ export const Step2 = ({ Field, ValidateTextArea }) => {
                 </Row>
             </div>
 
-        </React.Fragment>
+        </>
     )
 }
 
@@ -349,9 +349,9 @@ export const Step3 = ({
     return (
         <FieldArray name='exb_set'>
             {({ fields }) =>
-                <React.Fragment>
+                <>
                     {fields.map((name, index) => (
-                        <React.Fragment>
+                        <>
                             <Exhibition
                                 key={index}
                                 name={name}
@@ -371,7 +371,7 @@ export const Step3 = ({
                                 StepData={StepData}
                                 StepConfig={StepConfig}
                             />
-                        </React.Fragment>
+                        </>
                     ))}
                     <Col lg={12} md={12} sm={12} xs={12}>
                         <div className={styles.addSectionButton}>
@@ -385,7 +385,7 @@ export const Step3 = ({
                             </button>
                         </div>
                     </Col>
-                </React.Fragment>
+                </>
             }
         </FieldArray>
     )
@@ -408,7 +408,7 @@ export const Step4 = ({
     loadingDiv
 }) => {
     return (
-        <React.Fragment>
+        <>
             <div className={styles.RegistrationSection}>
                 <Row>
                     <Col xs={12}>
@@ -491,9 +491,9 @@ export const Step4 = ({
                     {values && values.type == 'mix' &&
                         <FieldArray name='art_set'>
                             {({ fields }) =>
-                                <React.Fragment>
+                                <>
                                     {fields.map((name, index) => (
-                                        <React.Fragment>
+                                        <>
                                             <SingleArt
                                                 key={index}
                                                 name={name}
@@ -510,7 +510,7 @@ export const Step4 = ({
                                                 hasExtraFields
                                                 onArtRemoveClick={() => Step4_handleRemove(fields, 'art_id', values, 'Col Index', index)}
                                             />
-                                        </React.Fragment>
+                                        </>
                                     ))}
                                     {values.art_set.length < 11 &&
                                         <Col lg={6} md={6} sm={12} xs={12}>
@@ -525,18 +525,18 @@ export const Step4 = ({
                                             </div>
                                         </Col>
                                     }
-                                </React.Fragment>
+                                </>
                             }
                         </FieldArray>
                     }
                     {values && values.type === 'collection_arts' &&
-                        <React.Fragment>
+                        <>
                             <Col lg={12} md={12} sm={12} xs={12}>
                                 <FieldArray name='collection_set'>
                                     {({ fields }) =>
-                                        <React.Fragment>
+                                        <>
                                             {fields.map((name, index) => (
-                                                <React.Fragment>
+                                                <>
                                                     <Collection
                                                         key={index}
                                                         name={name}
@@ -558,7 +558,7 @@ export const Step4 = ({
                                                         StepData={StepData}
                                                         StepConfig={StepConfig}
                                                     />
-                                                </React.Fragment>
+                                                </>
                                             ))}
                                             {values.collection_set.length < 1 &&
 
@@ -574,7 +574,7 @@ export const Step4 = ({
                                                     </div>
                                                 </Col>
                                             }
-                                        </React.Fragment>
+                                        </>
                                     }
                                 </FieldArray>
                             </Col>
@@ -589,9 +589,9 @@ export const Step4 = ({
                             </Col>
                             <FieldArray name='art_set'>
                                 {({ fields }) =>
-                                    <React.Fragment>
+                                    <>
                                         {fields.map((name, index) => (
-                                            <React.Fragment>
+                                            <>
                                                 <SingleArt
                                                     key={index}
                                                     name={name}
@@ -608,7 +608,7 @@ export const Step4 = ({
                                                     hasExtraFields
                                                     onArtRemoveClick={() => Step4_handleRemove(fields, 'art_id', values, 'Col Index', index)}
                                                 />
-                                            </React.Fragment>
+                                            </>
                                         ))}
                                         {values.art_set.length < 11 &&
                                             <Col lg={6} md={6} sm={12} xs={12}>
@@ -623,20 +623,20 @@ export const Step4 = ({
                                                 </div>
                                             </Col>
                                         }
-                                    </React.Fragment>
+                                    </>
                                 }
                             </FieldArray>
-                        </React.Fragment>
+                        </>
                     }
                     {values && values.type === '2collections' &&
-                        <React.Fragment>
+                        <>
 
                             <Col lg={12} md={12} sm={12} xs={12}>
                                 <FieldArray name='collection_set'>
                                     {({ fields }) =>
-                                        <React.Fragment>
+                                        <>
                                             {fields.map((name, index) => (
-                                                <React.Fragment>
+                                                <>
                                                     <Collection
                                                         key={index}
                                                         name={name}
@@ -658,7 +658,7 @@ export const Step4 = ({
                                                         StepData={StepData}
                                                         StepConfig={StepConfig}
                                                     />
-                                                </React.Fragment>
+                                                </>
                                             ))}
 
                                             <Col lg={12} md={12} sm={12} xs={12}>
@@ -673,16 +673,16 @@ export const Step4 = ({
                                                 </div>
                                             </Col>
 
-                                        </React.Fragment>
+                                        </>
                                     }
                                 </FieldArray>
                             </Col>
-                        </React.Fragment>
+                        </>
                     }
 
                 </Row>
             </div>
 
-        </React.Fragment >
+        </ >
     )
 }
