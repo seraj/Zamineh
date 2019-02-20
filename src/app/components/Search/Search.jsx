@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
-import { Container, Row, Col } from 'reactstrap';
-import axios from 'axios';
+import Container from 'reactstrap/lib/Container';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col'; import axios from 'axios';
 import queryString from 'query-string';
 import Urls from '../Urls'
 import SearchMetaTags from './SearchMetaTags'

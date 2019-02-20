@@ -2,8 +2,9 @@
 import React from 'react';
 import cookie from 'react-cookies';
 import axios from 'axios';
-import { Container, Row, Col } from 'reactstrap';
-import { Route, Switch, withRouter } from 'react-router-dom'
+import Container from 'reactstrap/lib/Container';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col'; import { Route, Switch, withRouter } from 'react-router-dom'
 import queryString from 'query-string';
 import Urls from '../components/Urls';
 

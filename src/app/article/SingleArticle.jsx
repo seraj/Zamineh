@@ -1,8 +1,8 @@
 
 import React from 'react';
-import FlipPage from 'react-flip-page';
-import { Container, Row, Col } from 'reactstrap';
-import queryString from 'query-string';
+import Container from 'reactstrap/lib/Container';
+import Row from 'reactstrap/lib/Row';
+import Col from 'reactstrap/lib/Col'; import queryString from 'query-string';
 import { withRouter } from 'react-router-dom'
 
 

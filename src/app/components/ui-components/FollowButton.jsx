@@ -5,14 +5,15 @@ import SecurityManager from '../../security/SecurityManager'
 import Login from '../../login/Login';
 
 import Urls from '../../components/Urls';
-import { IconPlus } from '../../components/Icons';
-import styles from './uiComponents.scss'
 
-class SaveButton extends Component {
+import { IconPlus } from '../../components/Icons';
+
+import styles from './uiComponents.scss'
+class FollowButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSaved: this.props.isSaved,
+            isFollowed: this.props.isFollowed,
             loading: false,
             login: false
         };
@@ -21,22 +22,23 @@ class SaveButton extends Component {
     handleClick = () => {
 
 
-        axios.post(`${Urls().api()}/art/save/toggle/`, 
-        {
-            id: this.props.id
-                
-        },
-        {
-        headers: {
+        axios.post(`${Urls().api()}/follow/toggle/`,
+            {
+                type: this.props.type,
+                id: this.props.id
+
+            },
+            {
+                headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 }
-        }).then((response) => {
-            this.setState({
-                isSaved: response.data.state
-            })
+            }).then((response) => {
+                this.setState({
+                    isFollowed: response.data.state
+                })
 
-        })
+            })
     }
 
     openModal = value => {
@@ -45,21 +47,19 @@ class SaveButton extends Component {
         });
     };
     render() {
-        const { isSaved, loading } = this.state;
+        const { isFollowed, loading } = this.state;
         const isLogined = SecurityManager().isLogined();
         return (
             <React.Fragment>
-                <div
-                    className={'save_art ' + (isSaved ? 'saved' : '') + (loading ? ' loading' : '')}
+                <button
+                    className={`${styles.followBtn} ${isFollowed ? 'following' : ''}`}
                     onClick={
                         isLogined ?
                             () => this.handleClick()
                             :
                             () => this.openModal(true)
-                    }>
-                    {loading && <div className='loadingSpinner'></div>}
-                    <IconSave height='80%' width='90%' fill='transparent' stroke='#fff' />
-                </div>
+                    }
+                ></button>
                 <Login
                     hasModal
                     modalisOpen={this.state.login}
@@ -69,4 +69,4 @@ class SaveButton extends Component {
         );
     }
 }
-export default SaveButton;
+export default FollowButton;
