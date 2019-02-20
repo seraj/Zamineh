@@ -21,9 +21,16 @@ class SaveButton extends Component {
     handleClick = () => {
 
 
-        axios.post(`${Urls().api()}/art/save/toggle/`, {
+        axios.post(`${Urls().api()}/art/save/toggle/`, 
+        {
             id: this.props.id
-
+                
+        },
+        {
+        headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
         }).then((response) => {
             this.setState({
                 isSaved: response.data.state

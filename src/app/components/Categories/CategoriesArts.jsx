@@ -54,23 +54,25 @@ const CategoriesArts = ({ slug, isLogined, openModal }) => {
         setResultloading(true)
         let allValue = Values
         if (type === Data.filter.mode.type) {
-            setValues({
-                mode: value,
-                only_for_sale: null,
-                price_range: null,
-                size: null,
-                medium: null,
-                sort: null
-            })
+            allValue[Data.filter.mode.type] = value
+            allValue['medium'] = null
+            allValue['price_range'] = null
+            allValue['only_for_sale'] = null
+            allValue['size'] = null
+            allValue['sort'] = null
+            setValues(allValue)
+            console.log(type,value,Values)
+            handleData(Values)
         } else {
+            console.log(type,value)
             allValue[type] = value
             allValue[Data.filter.mode.type] = null
             setValues(allValue)
-
+            handleData(Values)
 
         }
 
-        handleData(Values)
+        
     }
 
     const urlParams = (
