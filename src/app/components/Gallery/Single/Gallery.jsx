@@ -13,6 +13,7 @@ import { Overview, Shows, Artists, Artworks, Articles } from './section/GalleryT
 import Login from '../../../login/Login';
 import Urls from '../../Urls';
 import Section from '../../Section/Section';
+import FollowButton from '../../ui-components/FollowButton'
 
 import DefaultStyle from '../../../static/scss/_boxStyle.scss'
 import styles from './Gallery.scss'
@@ -75,27 +76,6 @@ class Gallery extends React.Component {
     }
 
 
-    onFollowClick = (id) => {
-        axios.post(`${Urls().api()}/follow/toggle/`, {
-            id: id,
-            type: 'galleries'
-        }).then((response) => {
-            this.setState({
-                config: {
-                    ...this.state.config,
-                    is_flw: response.data.state
-                }
-            });
-        })
-
-    }
-    openModal = value => {
-        this.setState({
-            login: value
-        });
-    }
-
-
 
 
     render() {
@@ -116,14 +96,10 @@ class Gallery extends React.Component {
                                             <h1 className='name'>{config.name}</h1>
                                             <span className='location'></span>
                                             <div className="follow">
-                                                <button
-                                                    className={`${DefaultStyle.followBtn} min ${config.is_flw ? 'following' : ''}`}
-                                                    onClick={
-                                                        isLogined ?
-                                                            () => this.onFollowClick(config.id)
-                                                            :
-                                                            () => this.openModal(true)}
-                                                ></button>
+                                                {console.log(config.is_flw)}
+                                                {config.is_flw !== undefined &&
+                                                    <FollowButton id={config.id} type='galleries' isFollowed={config.is_flw} min />
+                                                }
                                             </div>
                                         </div>
                                         <div className='icon'>

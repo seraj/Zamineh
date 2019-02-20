@@ -53,27 +53,6 @@ class Artists extends Component {
     onTabClick = (value) => {
         this.setState({ currentTab: value })
     }
-    onFollowClick = (id, Type, index, parentIndex, type) => {
-        var Artist = type == 'BigArtist' ? this.state.artist.featured_artists : this.state.artist.genre_set[parentIndex].artist_set;
-
-        axios.post(`${Urls().api()}/follow/toggle/`, {
-            id: id,
-            type: 'artists'
-        }).then((response) => {
-            Artist[index].is_flw = response.data.state;
-            this.setState({
-                Artist
-            })
-            if (response.data.state) {
-                // console.log('ready for Shift')
-                // Artist.splice(index, 1);
-            }
-
-        })
-            .catch(function (error) {
-
-            });
-    }
     openModal = value => {
         this.setState({
             login: value

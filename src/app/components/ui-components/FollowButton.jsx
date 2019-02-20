@@ -48,11 +48,12 @@ class FollowButton extends Component {
     };
     render() {
         const { isFollowed, loading } = this.state;
+        const { min, big, wide } = this.props;
         const isLogined = SecurityManager().isLogined();
         return (
             <React.Fragment>
                 <button
-                    className={`${styles.followBtn} ${isFollowed ? 'following' : ''}`}
+                    className={`${styles.followBtn} ${isFollowed ? 'following' : ''} ${big ? 'big' : ''} ${min ? 'min' : ''} ${wide ? 'wide' : ''}`}
                     onClick={
                         isLogined ?
                             () => this.handleClick()

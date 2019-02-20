@@ -87,9 +87,9 @@ const ArtOtherWorks = (props) => {
                                     img={item.img}
                                     name={item.name}
                                     detail={item.detail}
+                                    id={item.id}
                                     is_flw={item.is_flw}
                                     url={`${Urls().artist()}${item.slug}`}
-                                    onFollowClick={props.handleLogin ? () => props.onFollowClick(item.id, index) : () => props.openModal(true)}
                                 />
                             </Col>
                         ))}

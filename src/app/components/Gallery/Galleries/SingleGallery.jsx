@@ -6,7 +6,7 @@ import Urls from '../../Urls';
 import Flickity from 'react-flickity-component';
 import { Img } from '../../General'
 import { IconArrowLeft } from '../../Icons';
-import { FollowButton } from '../../ui-components/Buttons';
+import FollowButton from '../../ui-components/FollowButton';
 import styles from './Galleries.scss'
 import DefaultStyle from '../../../static/scss/_boxStyle.scss'
 
@@ -36,7 +36,7 @@ const flickityOptions = {
 
 
 export const ShowSet = (props) => (
-    <React.Fragment>
+    <>
         <div className={styles.TopGalleryCarousel}>
             <Flickity
                 className={'carousel items'}
@@ -50,7 +50,6 @@ export const ShowSet = (props) => (
                         key={item.id}
                         item={item}
                         GalleryIndex={galleryIndex}
-                        onFollowClick={props.onFollowClick}
                         openModal={props.openModal}
                         handleLogin={props.handleLogin}
                     />
@@ -58,10 +57,10 @@ export const ShowSet = (props) => (
             </Flickity>
         </div>
 
-    </React.Fragment>
+    </>
 )
 export const SingleShowSet = (props) => (
-    <React.Fragment>
+    <>
         <div className={`${styles.TopShowSet}`}>
 
             <div className={`${DefaultStyle.BorderedBox} big`}>
@@ -97,22 +96,20 @@ export const SingleShowSet = (props) => (
                                 </span>
                             </div>
                         </Link>
-                        {props.onFollowClick &&
-                            <FollowButton
-                                is_flw={props.item.is_flw}
-                                handleLogin={props.handleLogin}
-                                onClick={() => props.onFollowClick(props.item.gallery.id, props.GalleryIndex, null, 'show_set')}
-                                loginModal={() => props.openModal(true)}
-                            />
-                        }
+                        <FollowButton
+                            isFollowed={props.item.is_flw}
+                            id={props.item.gallery.id}
+                            type='galleries'
+                        />
+
                     </div>
                 </div>
             </div>
         </div>
-    </React.Fragment>
+    </>
 );
 export const SingleGallery = (props) => (
-    <React.Fragment>
+    <>
         <div className={`${styles.SingleGallery} ${props.carousel ? styles.forCarousel : styles.simpleArtist} `}>
 
             <div className={`${DefaultStyle.unBorderedBox}`}>
@@ -136,21 +133,19 @@ export const SingleGallery = (props) => (
                             {props.item.address}
                         </span>
                     </div>
-                    {props.onFollowClick &&
-                        <div className='details_left'>
-                            <FollowButton
-                                is_flw={props.item.is_flw}
-                                handleLogin={props.handleLogin}
-                                onClick={() => props.onFollowClick(props.item.id, props.GalleryIndex, props.parentIndex, props.type)}
-                                loginModal={() => props.openModal(true)}
-                            />
-                        </div>
-                    }
+                    <div className='details_left'>
+                        <FollowButton
+                            isFollowed={props.item.is_flw}
+                            id={props.item.id}
+                            type='galleries'
+                        />
+                    </div>
+
                 </div>
 
             </div>
         </div>
-    </React.Fragment>
+    </>
 );
 
 
@@ -160,7 +155,7 @@ export const SingleGallery = (props) => (
 export const GenreSet = (props) => {
 
     return (
-        <React.Fragment>
+        <>
             {props.item && props.item.map((item, index) => (
 
                 <div className={DefaultStyle.FeatureBoxSection} key={item.id}>
@@ -191,9 +186,7 @@ export const GenreSet = (props) => {
                                         item={item}
                                         parentIndex={index}
                                         GalleryIndex={GalleryIndex}
-                                        onFollowClick={props.onFollowClick}
-                                        openModal={props.openModal}
-                                        handleLogin={props.handleLogin}
+
                                         type='genre_set'
                                     />
                                 </Col>
@@ -203,13 +196,13 @@ export const GenreSet = (props) => {
 
                 </div>
             ))}
-        </React.Fragment>
+        </>
     )
 }
 export const FeatureSet = (props) => {
 
     return (
-        <React.Fragment>
+        <>
             {props.item && props.item.map((item, index) => (
 
                 <div className={DefaultStyle.FeatureBoxSection} key={index}>
@@ -230,9 +223,6 @@ export const FeatureSet = (props) => {
                                         item={items}
                                         parentIndex={index}
                                         GalleryIndex={GalleryIndex}
-                                        onFollowClick={props.onFollowClick}
-                                        openModal={props.openModal}
-                                        handleLogin={props.handleLogin}
                                         type='feature_set'
                                     />
                                 </Col>
@@ -242,14 +232,14 @@ export const FeatureSet = (props) => {
 
                 </div>
             ))}
-        </React.Fragment>
+        </>
     )
 }
 
 export const ResultsGrid = (props) => {
 
     return (
-        <React.Fragment>
+        <>
 
             <div className={DefaultStyle.FeatureBoxSection}>
                 <h4>
@@ -261,9 +251,6 @@ export const ResultsGrid = (props) => {
                             <SingleGallery
                                 item={items}
                                 GalleryIndex={GalleryIndex}
-                                onFollowClick={props.onFollowClick}
-                                openModal={props.openModal}
-                                handleLogin={props.handleLogin}
                                 type='gallery_set'
                             />
                         </Col>
@@ -271,14 +258,14 @@ export const ResultsGrid = (props) => {
                 </Row>
 
             </div>
-        </React.Fragment>
+        </>
     )
 }
 
 export const OverviewSets = (props) => {
 
     return (
-        <React.Fragment>
+        <>
             <div className={DefaultStyle.FeatureBoxSection}>
                 <h4>
                     {props.title}
@@ -308,11 +295,11 @@ export const OverviewSets = (props) => {
                 </Row>
 
             </div>
-        </React.Fragment>
+        </>
     )
 }
 export const OverviewSingleItem = (props) => (
-    <React.Fragment>
+    <>
         <div className={`${styles.SingleGallery} ${props.carousel ? styles.forCarousel : styles.simpleArtist} `}>
 
             <div className={`${DefaultStyle.unBorderedBox}`}>
@@ -351,7 +338,7 @@ export const OverviewSingleItem = (props) => (
 
             </div>
         </div>
-    </React.Fragment >
+    </>
 );
 
 
@@ -362,7 +349,7 @@ export const FourColumnArtist = (props) => {
     const artistsCol3 = props.item.represented_artists.filter((item, index) => index % 3 == 2);
     const artistsCol4 = props.item.represented_artists.filter((item, index) => index % 4 == 3);
     return (
-        <React.Fragment>
+        <>
             <div className={`${DefaultStyle.FeatureBoxSection} ${styles.artistbox}`}>
                 <h4>
                     {props.title}
@@ -470,14 +457,14 @@ export const FourColumnArtist = (props) => {
                     </Col>
                 </Row>
             </div>
-        </React.Fragment>
+        </>
     )
 }
 
 export const PaginationItem = (props) => {
 
     return (
-        <React.Fragment>
+        <>
             <div className={DefaultStyle.FeatureBoxSection}>
                 {props.title &&
                     <h4>
@@ -501,6 +488,6 @@ export const PaginationItem = (props) => {
                 </Row>
 
             </div>
-        </React.Fragment>
+        </>
     )
 }

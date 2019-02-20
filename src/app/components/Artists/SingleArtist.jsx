@@ -7,6 +7,7 @@ import Flickity from 'react-flickity-component';
 import styles from './Artists.scss'
 import DefaultStyle from '../../static/scss/_boxStyle.scss'
 import { Img } from '../../components/General'
+import FollowButton from '../ui-components/FollowButton'
 
 import { IconArrowLeft } from '../../components/Icons';
 import { style } from '@smooth-ui/core-sc';
@@ -109,15 +110,7 @@ export const TopSingleArtist = (props) => (
 
                     </div>
                     <div className='details_left'>
-                        <button
-                            className={`${DefaultStyle.followBtn} big ${props.item.is_flw ? 'following' : ''}`}
-                            onClick={
-                                props.handleLogin ?
-                                    () => props.onFollowClick(props.item.id, props.item.type, props.artistIndex, null, 'BigArtist')
-                                    :
-                                    () => props.openModal(true)}
-                        >
-                        </button>
+                        <FollowButton id={props.item.id} type='artists' isFollowed={props.item.is_flw} big />
                     </div>
                 </div>
             </div>
@@ -151,15 +144,7 @@ export const SingleArtist = (props) => (
                         }
                     </div>
                 </Link>
-
-                <button
-                    className={`${DefaultStyle.followBtn} ${props.item.is_flw ? 'following' : ''}`}
-                    onClick={
-                        props.handleLogin ?
-                            () => props.onFollowClick(props.item.id, props.item.type, props.artistIndex, props.parentIndex)
-                            :
-                            () => props.openModal(true)}
-                ></button>
+                <FollowButton id={props.item.id} type='artists' isFollowed={props.item.is_flw} wide />
 
             </div>
         </div>

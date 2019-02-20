@@ -1,5 +1,7 @@
 import React from 'react';
 import { Img } from '../../General'
+import FollowButton from '../FollowButton'
+
 import styles from './List.scss'
 
 export const FlatList = (props) => {
@@ -43,10 +45,8 @@ export const ListWithFollowBtn = (props) => {
                     </a>
                 </div>
                 <div className="button">
-                    <button
-                        className={`${styles.followBtn} ${props.is_flw ? 'following' : ''}`}
-                        onClick={props.onFollowClick}
-                    ></button>
+                    <FollowButton id={props.id} type='artists' isFollowed={props.is_flw} wide />
+
                 </div>
             </div>
         </React.Fragment>

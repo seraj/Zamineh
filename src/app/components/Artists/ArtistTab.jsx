@@ -228,7 +228,6 @@ export const Shows = ({ type, slug }) => {
             getCurrentShowsData()
             getPastShowsData()
             getUpcomingShowsData()
-            setLoading(false)
             setInitialized(true)
         }
     })
@@ -240,6 +239,8 @@ export const Shows = ({ type, slug }) => {
         }).then(({ data }) => {
             setCurrentShows(data)
             setCurrentShowsLoading(false)
+            setLoading(false)
+
         });
     }
     const getPastShowsData = (page) => {
@@ -250,6 +251,8 @@ export const Shows = ({ type, slug }) => {
         }).then(({ data }) => {
             setPastShows(data)
             setPastShowsLoading(false)
+            setLoading(false)
+
         });
     }
     const getUpcomingShowsData = (page) => {
@@ -260,6 +263,8 @@ export const Shows = ({ type, slug }) => {
         }).then(({ data }) => {
             setUpcomingShows(data)
             setUpcomingShowsLoading(false)
+            setLoading(false)
+
         });
     }
 
@@ -426,23 +431,6 @@ export const Artists = ({ slug, openModal }) => {
                 setLoading(false)
             });
     }
-    const onFollowClick = (index, id) => {
-        let Artist = Data.results
-        axios.post(`${Urls().api()}/follow/toggle/`, {
-            id: id,
-            type: 'artists'
-        }, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                }
-            }
-        ).then(({ data }) => {
-            Artist[index].is_flw = data.state
-            setData({ ...Data, Artist })
-        })
-
-    }
 
     const handlePageClick = (data) => {
         let selected = data.selected + 1;
@@ -466,8 +454,8 @@ export const Artists = ({ slug, openModal }) => {
                                     name={item.name}
                                     detail={item.detail}
                                     is_flw={item.is_flw}
+                                    id={item.id}
                                     url={`${Urls().artist()}${item.slug}`}
-                                    onFollowClick={isLogined ? () => onFollowClick(index, item.id) : () => openModal(true)}
                                 />
                             </Col>
                         ))}

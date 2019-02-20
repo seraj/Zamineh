@@ -95,26 +95,7 @@ class ArtWork extends React.Component {
             });
         })
     }
-    onRelatedArtistFollowClick = (id, index) => {
-        let items = this.state.artItems.related_artist
-        axios.post(`${Urls().api()}/follow/toggle/`, {
-            id: id,
-            type: 'artists'
-        },
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                }
-            }
-        ).then(({ data }) => {
-            items[index].is_flw = data.state
-            this.setState({
-                ...this.state.artItems,
-                items
-            });
-        })
-    }
+
     handleViewArtClick = () => {
         let Art = this.state.config
         axios.post(`${Urls().api()}/art/handleClick/`, { id: Art.id })
@@ -281,8 +262,6 @@ class ArtWork extends React.Component {
                                 <ArtOtherWork
                                     items={artItems}
                                     config={config}
-                                    handleLogin={isLogined}
-                                    onFollowClick={this.onRelatedArtistFollowClick}
                                 />
                             }
 

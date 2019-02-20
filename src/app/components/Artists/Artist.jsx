@@ -19,6 +19,7 @@ import { TopWorks } from './SingleArtist';
 import Login from '../../login/Login';
 import Urls from '../Urls';
 import Section from '../Section/Section';
+import FollowButton from '../ui-components/FollowButton'
 
 import { SingleArtistMetaTag } from '../Metatags/Metatags'
 import NumbersConvertor from '../NumbersConvertor';
@@ -86,30 +87,6 @@ class Artist extends React.Component {
         }
         return component
     }
-
-
-    onFollowClick = (id) => {
-        axios.post(`${Urls().api()}/follow/toggle/`, {
-            id: id,
-            type: 'artists'
-        }, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                }
-            }
-        ).then((response) => {
-            this.setState({
-                config: {
-                    ...this.state.config,
-                    follow: {
-                        is_flw: response.data.state,
-                        count: response.data.count
-                    }
-                }
-            });
-        })
-    }
     openModal = value => {
         this.setState({
             login: value
@@ -146,14 +123,9 @@ class Artist extends React.Component {
                                         </span>
                                     </div>
                                     <div className="follow">
-                                        <button
-                                            className={`${DefaultStyle.followBtn} min ${config.follow && config.follow.is_flw ? 'following' : ''}`}
-                                            onClick={
-                                                isLogined ?
-                                                    () => this.onFollowClick(config.id)
-                                                    :
-                                                    () => this.openModal(true)}
-                                        ></button>
+                                        {config.follow &&
+                                            <FollowButton id={config.id} type='artists' isFollowed={config.follow.is_flw} />
+                                        }
                                     </div>
 
                                 </div>

@@ -9,7 +9,6 @@ import queryString from 'query-string';
 import ModelManager from '../../Models';
 import Pagination from '../../Pagination/Pagination';
 
-import Login from '../../../login/Login';
 import GalleryForm from './GalleryForm'
 import { FeatureSet, ShowSet, GenreSet, ResultsGrid } from './SingleGallery';
 import Error from '../../Error';
@@ -189,57 +188,12 @@ class Galleries extends Component {
         });
 
     }
-    onFollowClick = (id, index, parentIndex, Type) => {
-
-        var Galleries;
-        switch (Type) {
-            case 'show_set':
-                Galleries = this.state.show_set;
-                break;
-            case 'genre_set':
-                Galleries = this.state.genre_set[parentIndex].gallery_set;
-                break;
-            case 'feature_set':
-                Galleries = this.state.featured_galleries[parentIndex].gallery_set;
-                break;
-            case 'gallery_set':
-                Galleries = this.state.gallery_set;
-                break;
-            default:
-                Galleries = '/';
-        }
-        // console.log(id, parentIndex, index)
-        // console.log('clicked On', Galleries)
-
-        axios.post(`${Urls().api()}/follow/toggle/`, {
-            id: id,
-            type: 'galleries'
-        }).then((response) => {
-            Galleries[index].is_flw = response.data.state;
-            // console.log(Galleries[index].is_flw)
-            this.setState({
-                Galleries
-            })
-            if (response.data.state) {
-                // console.log('ready for Shift')
-                // Galleries.splice(index, 1);
-            }
-        })
-            .catch(function (error) {
-
-            });
-    }
-    openModal = value => {
-        this.setState({
-            login: value
-        });
-    };
 
 
     render() {
         const parsed = queryString.parse(location.search);
         return (
-            <React.Fragment>
+            <>
                 <Container>
                     <Row>
                         <Col xs={12}>
@@ -262,9 +216,6 @@ class Galleries extends Component {
                     {this.state.show_set &&
                         <ShowSet
                             item={this.state.show_set}
-                            onFollowClick={this.onFollowClick}
-                            openModal={this.openModal}
-                            handleLogin={this.props.isLogined}
                         />
                     }
                     {this.state.loading &&
@@ -273,25 +224,16 @@ class Galleries extends Component {
                     {this.state.featured_galleries &&
                         <FeatureSet
                             item={this.state.featured_galleries}
-                            onFollowClick={this.onFollowClick}
-                            openModal={this.openModal}
-                            handleLogin={this.props.isLogined}
                         />
                     }
                     {this.state.genre_set &&
                         <GenreSet
                             item={this.state.genre_set}
-                            onFollowClick={this.onFollowClick}
-                            openModal={this.openModal}
-                            handleLogin={this.props.isLogined}
                         />
                     }
                     {this.state.gallery_set &&
                         <ResultsGrid
                             item={this.state.gallery_set}
-                            onFollowClick={this.onFollowClick}
-                            openModal={this.openModal}
-                            handleLogin={this.props.isLogined}
                         />
                     }
                     {this.state.pageCount > 1 &&
@@ -302,12 +244,7 @@ class Galleries extends Component {
                     }
                 </Container>
 
-                <Login
-                    hasModal
-                    modalisOpen={this.state.login}
-                    openModal={this.openModal}
-                />
-            </React.Fragment>
+            </>
         );
     }
 }
