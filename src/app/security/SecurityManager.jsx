@@ -185,7 +185,13 @@ export default function SecurityManager() {
                     return cookie.load('artist_auth_client_id', { path: Urls().ArtistProfile() })
                 }
             }
-        }
+        },
+
+        // Jury Panel
+        setJuryPanelClientIDSecret(id, secret) {
+            cookie.save('jury_auth_client_id', id, { path: Urls().JuryPanel() });
+            cookie.save('jury_auth_client_secret', secret, { path: Urls().JuryPanel() });
+        },
 
     }
 }

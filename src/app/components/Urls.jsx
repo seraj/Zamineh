@@ -100,6 +100,14 @@ export default function Urls() {
             return url
         },
 
+
+        // Jury Panel
+        JuryPanel() {
+            return '/panel/jury/'
+        },
+
+
+
         // Gallery Artist URLS
         GalleryProfile() {
             return '/panel/gallery/'

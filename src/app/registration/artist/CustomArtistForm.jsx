@@ -235,9 +235,6 @@ export const Exhibition = ({
                 </Col>
             </Row>
         </div>
-
-
-
     )
 }
 

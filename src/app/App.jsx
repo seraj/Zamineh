@@ -69,23 +69,32 @@ class App extends React.Component {
         }, 200);
     }
     getClientsIDSecret = async () => {
-        const RegistrationPage = window.location.href.includes('registration');
-        const ArtistRegistrationPage = window.location.href.includes(Urls().ArtistProfile());
-        const GalleryRegistrationPage = window.location.href.includes(Urls().GalleryProfile());
+        const Panels = window.location.href.includes('panel/');
+        const ArtistPanel = window.location.href.includes(Urls().ArtistProfile());
+        const GalleryPanel = window.location.href.includes(Urls().GalleryProfile());
+        const JuryPanel = window.location.href.includes(Urls().JuryPanel());
 
         try {
             var client_id = cookie.load('client_id', { path: '/' });
             var client_secret = cookie.load('client_secret', { path: '/' });
             var auth_client_id = cookie.load('auth_client_id', { path: '/' });
-            var auth_client_secret = cookie.load('auth_client_secret', { path: '/' });
-            var galleryReg_auth_client_id = cookie.load('gallery_auth_client_id', { path: '/' });
-            var artistReg_auth_client_secret = cookie.load('artist_auth_client_secret', { path: '/' });
+
+            var galleryReg_auth_client_id = cookie.load('gallery_auth_client_id', { path: Urls().GalleryProfile() });
+            var artistReg_auth_client_secret = cookie.load('artist_auth_client_secret', { path: Urls().ArtistProfile() });
+            var jury_auth_client_id = cookie.load('jury_auth_client_id', { path: Urls().JuryPanel() });
 
 
-            if (RegistrationPage) {
-
-
-                if (GalleryRegistrationPage) {
+            if (Panels) {
+                if (JuryPanel) {
+                    if (jury_auth_client_id == '' || jury_auth_client_id == undefined) {
+                        await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`, {
+                            is_jury: true
+                        }).then((response) => {
+                            SecurityManager().setJuryPanelClientIDSecret(response.data.client_id, response.data.client_secret)
+                        });
+                    }
+                }
+                if (GalleryPanel) {
                     if (galleryReg_auth_client_id == '' || galleryReg_auth_client_id == undefined) {
                         await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`, {
                             is_gallery: true
@@ -94,7 +103,7 @@ class App extends React.Component {
                         });
                     }
                 }
-                if (ArtistRegistrationPage) {
+                if (ArtistPanel) {
                     if (artistReg_auth_client_secret == '' || artistReg_auth_client_secret == undefined) {
                         await axios.post(`${Urls().api()}/a9pY5kS7L3KgG44r/KKu6wWGVbn5Kq/`, {
                             is_gallery: true
