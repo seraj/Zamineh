@@ -1,6 +1,7 @@
-import React from 'react';
-import Arts from './Arts';
-import ModelManager from '../../components/Models';
+import React from "react";
+import Arts from "./Arts";
+import Urls from "../../components/Urls";
+import ModelManager from "../../components/Models";
 
 class Categories extends React.Component {
   renderItems = () => {
@@ -11,15 +12,16 @@ class Categories extends React.Component {
           visible
           ExtraClass={item.ExtraClass}
           isFollow={item.is_flw}
-          mode='cats'
+          mode="cats"
           id={item.id}
+          viewsLink={`${Urls().gene()}${item.slug}/`}
           artist={item.artist}
           gallery={item.gallery}
           key={index}
           query={`slug=${item.slug}`}
           title={item.name}
           hasannotation
-          annotation={ModelManager().convertModelName('genre')}
+          annotation={ModelManager().convertModelName("genre")}
         />
       ));
     }
