@@ -262,8 +262,8 @@ class GalleryRegistration extends React.Component {
 
   redirectToApp = os => {
     var body = {
-      client_id: SecurityManager().getRegClientIDSecret("id", "Gallery"),
-      client_secret: SecurityManager().getRegClientIDSecret(
+      client_id: SecurityManager().getClientIDSecret("id", "Gallery"),
+      client_secret: SecurityManager().getClientIDSecret(
         "secret",
         "Gallery"
       ),

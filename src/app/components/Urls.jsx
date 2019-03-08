@@ -82,6 +82,7 @@ export default function Urls() {
           break;
         case "shows":
           url = this.shows();
+          break;
         case "show":
           url = this.show();
           break;

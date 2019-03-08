@@ -60,19 +60,12 @@ export default function SecurityManager() {
       cookie.remove("auth_client_id");
       cookie.remove("auth_client_secret");
     },
-    logout() {
+
+    removeLoginedUser() {
+      console.log("remove");
       cookie.save("access_token", null, { path: "/" });
       cookie.remove("access_token");
       cookie.remove("token_type");
-      cookie.remove("refresh_token");
-      // axios.get('/accounts/logout/').then((response) => {
-      //     if (!window.location.href.includes('/mag/'))
-      //         window.location = '/'
-      // })
-      // .catch(function (error) { });
-    },
-    removeLoginedUser() {
-      cookie.remove("access_token");
       cookie.remove("refresh_token");
     },
 
@@ -183,24 +176,28 @@ export default function SecurityManager() {
       cookie.remove("artist_refresh_token");
     },
 
-    getRegClientIDSecret(type, page) {
+    getClientIDSecret(type, page) {
       if (type == "secret") {
-        if (page == "Gallery") {
+        if (page == "Client" || page == "client") {
+          return cookie.load("auth_client_secret", { path: "/" });
+        } else if (page == "Gallery" || page == "gallery") {
           return cookie.load("gallery_auth_client_secret", {
             path: Urls().GalleryPanel()
           });
-        } else if (page == "Artist") {
+        } else if (page == "Artist" || page == "artist") {
           return cookie.load("artist_auth_client_secret", {
             path: Urls().ArtistPanel()
           });
         }
       }
       if (type == "id") {
-        if (page == "Gallery") {
+        if (page == "Client" || page == "client") {
+          return cookie.load("auth_client_id", { path: "/" });
+        } else if (page == "Gallery" || page == "gallery") {
           return cookie.load("gallery_auth_client_id", {
             path: Urls().GalleryPanel()
           });
-        } else if (page == "Artist") {
+        } else if (page == "Artist" || page == "artist") {
           return cookie.load("artist_auth_client_id", {
             path: Urls().ArtistPanel()
           });
@@ -208,6 +205,56 @@ export default function SecurityManager() {
       }
     },
 
+    // Logout
+
+    logout(client, userType, playerId) {
+      var url;
+      switch (client) {
+        case "artist":
+          url = "gallery-app/gallery";
+          break;
+        case "gallery":
+          url = "gallery-app/gallery";
+          break;
+        case "client":
+          url = "client-app/client";
+          break;
+        default:
+          url = "client-app/client/ddd";
+      }
+      axios
+        .post(
+          `${Urls().api()}/${url}/logout/`,
+          {
+            client_id: this.getClientIDSecret("id", client),
+            client_secret: this.getClientIDSecret("secret", client),
+            user_type: userType ? userType : null,
+            player_id: playerId ? playerId : 1234456
+          },
+          {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            }
+          }
+        )
+        .then(res => {
+          this.handleRemoveCookies(client);
+          window.location.replace("/");
+        })
+        .catch(err => {
+          // window.location.replace("/");
+        });
+    },
+    handleRemoveCookies(client) {
+      if (client === "client") {
+        this.removeLoginedUser();
+      } else if (client === "gallery") {
+        this.GalleryRegLogout();
+      } else if (client === "artist") {
+        this.ArtistRegLogout();
+      }
+    },
     // Jury Panel
     setJuryPanelClientIDSecret(id, secret) {
       cookie.save("jury_auth_client_id", id, { path: Urls().JuryPanel() });

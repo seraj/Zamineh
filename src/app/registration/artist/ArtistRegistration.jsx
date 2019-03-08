@@ -351,8 +351,8 @@ class ArtistRegistration extends React.Component {
 
   redirectToApp = os => {
     var body = {
-      client_id: SecurityManager().getRegClientIDSecret("id", "Artist"),
-      client_secret: SecurityManager().getRegClientIDSecret("secret", "Artist"),
+      client_id: SecurityManager().getClientIDSecret("id", "Artist"),
+      client_secret: SecurityManager().getClientIDSecret("secret", "Artist"),
       platform: os
     };
     axios

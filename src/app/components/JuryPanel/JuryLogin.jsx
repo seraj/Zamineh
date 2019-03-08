@@ -164,8 +164,8 @@ class JuryLogin extends React.Component {
 
         axios
             .post(`${Urls().api()}${this.props.validationAPI}`, {
-                client_id: SecurityManager().getRegClientIDSecret('id', this.props.type),
-                client_secret: SecurityManager().getRegClientIDSecret('secret', this.props.type),
+                client_id: SecurityManager().getClientIDSecret('id', this.props.type),
+                client_secret: SecurityManager().getClientIDSecret('secret', this.props.type),
                 player_id: this.state.playerID,
                 code: values.code,
                 username: this.state.username,

@@ -288,8 +288,8 @@ export const Settings = ({ Config }) => {
                 username: Config.username,
                 password: values.password,
                 code: values.code,
-                client_id: SecurityManager().getRegClientIDSecret('id', 'Gallery'),
-                client_secret: SecurityManager().getRegClientIDSecret('secret', 'Gallery'),
+                client_id: SecurityManager().getClientIDSecret('id', 'Gallery'),
+                client_secret: SecurityManager().getClientIDSecret('secret', 'Gallery'),
                 user_type: 'Gallery'
             })
             .then(({ data }) => {

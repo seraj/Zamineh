@@ -158,11 +158,11 @@ class AuthorizationForm extends React.Component {
 
     axios
       .post(`${Urls().api()}${this.props.validationAPI}`, {
-        client_id: SecurityManager().getRegClientIDSecret(
+        client_id: SecurityManager().getClientIDSecret(
           "id",
           this.props.type
         ),
-        client_secret: SecurityManager().getRegClientIDSecret(
+        client_secret: SecurityManager().getClientIDSecret(
           "secret",
           this.props.type
         ),
@@ -195,11 +195,11 @@ class AuthorizationForm extends React.Component {
 
     axios
       .post(`${Urls().api()}${this.props.loginAPI}`, {
-        client_id: SecurityManager().getRegClientIDSecret(
+        client_id: SecurityManager().getClientIDSecret(
           "id",
           this.props.type
         ),
-        client_secret: SecurityManager().getRegClientIDSecret(
+        client_secret: SecurityManager().getClientIDSecret(
           "secret",
           this.props.type
         ),

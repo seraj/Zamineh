@@ -19,6 +19,12 @@
     }
 }
 
+:local(.logout) {
+    float: left !important;
+    color: red !important;
+    border-color: red !important;
+}
+
 :local(.LinearTabs) {
     margin: 30px 0 0 0;
     float: right;

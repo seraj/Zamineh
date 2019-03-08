@@ -89,10 +89,8 @@ class AppHeader extends React.Component {
     });
   };
 
-  logout = async () => {
-    await SecurityManager().logout();
-    location.reload();
-    this.forceUpdate();
+  logout = () => {
+    SecurityManager().logout("client");
   };
 
   render() {

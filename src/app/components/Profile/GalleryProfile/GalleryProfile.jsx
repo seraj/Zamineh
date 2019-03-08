@@ -79,6 +79,10 @@ class GalleryProfile extends React.Component {
         {
           title: "تیکت پشتیبانی",
           value: "ticket"
+        },
+        {
+          title: "خروج",
+          value: "logout"
         }
       ]
     };
@@ -124,12 +128,17 @@ class GalleryProfile extends React.Component {
       case "ticket":
         component = <Ticket />;
         break;
+      case "logout":
+        this.logout();
+        break;
       default:
         component = <NothingRendered />;
     }
     return component;
   };
-
+  logout = () => {
+    SecurityManager().logout("gallery", "Gallery");
+  };
   uploadImage = (e, type) => {
     let file = e.target.files[0];
     let config = this.state.config;

@@ -79,6 +79,10 @@ class ArtistProfile extends React.Component {
         {
           title: "تیکت پشتیبانی",
           value: "ticket"
+        },
+        {
+          title: "خروج",
+          value: "logout"
         }
       ]
     };
@@ -124,12 +128,17 @@ class ArtistProfile extends React.Component {
       case "ticket":
         component = <Ticket />;
         break;
+      case "logout":
+        this.logout();
+        break;
       default:
         component = <NothingRendered />;
     }
     return component;
   };
-
+  logout = () => {
+    SecurityManager().logout("artist", "Artist");
+  };
   render() {
     const parsed = queryString.parse(location.search);
     const { config, tabs, loading } = this.state;
