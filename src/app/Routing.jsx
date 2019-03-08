@@ -153,11 +153,11 @@ export default function Routing({ isLogined }) {
           path={`${Urls().AddCollections()}`}
           render={() => <AddCollections />}
         />
-        <Route
+        {/* <Route
           exact
           path={`${Urls().AddExhibitions()}`}
           render={() => <AddExhibitions />}
-        />
+        /> */}
         <Route
           exact
           path={`${Urls().AddExhibitionsGallery()}`}
