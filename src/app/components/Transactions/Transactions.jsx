@@ -168,7 +168,8 @@ export default function TransactionList({ item }) {
                     <Img
                       img={order.img.img}
                       alt={order.name}
-                      width={70 * order.img.ratio}
+                      width={parseInt(70 * order.img.ratio)}
+                      //height={70}
                       style={{
                         minWidth: order.img.img !== "" ? 80 : 0
                       }}

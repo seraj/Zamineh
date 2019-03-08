@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Flickity from 'react-flickity-component';
-import { Spinner } from '../../components/Spinner/Spinner';
-import SecurityManager from '../../security/SecurityManager'
-import Login from '../../login/Login';
+import React, { Component } from "react";
+import axios from "axios";
+import Flickity from "react-flickity-component";
+import { Spinner } from "../../components/Spinner/Spinner";
+import SecurityManager from "../../security/SecurityManager";
+import Login from "../../login/Login";
 
-import Follow from './Follow';
-import SingleArts from './SingleArts';
-import Error from '../../components/Error';
-import Urls from '../../components/Urls';
-import Section from '../../components/Section/Section';
+import Follow from "./Follow";
+import SingleArts from "./SingleArts";
+import Error from "../../components/Error";
+import Urls from "../../components/Urls";
+import Section from "../../components/Section/Section";
 
-import { flickityOptions } from '../../components/FlickityOptions';
+import { flickityOptions } from "../../components/FlickityOptions";
 
 // const SingleArts = React.lazy(() => import('./SingleArts'));
 const isLogined = SecurityManager().isLogined();
@@ -25,23 +25,21 @@ class Arts extends Component {
       cats: [],
       followPopover: false,
       error: false,
-      login: false,
+      login: false
     };
   }
 
   componentDidMount() {
-
-    if (!this.props.foreignItems) { this.getData() }
-
+    if (!this.props.foreignItems) {
+      this.getData();
+    }
   }
   getData = () => {
-    let url = '';
-    let mode = (this.props.mode);
+    let url = "";
+    let mode = this.props.mode;
 
-    if (this.props.type == 'all') {
-      url = `${Urls().api()}/for-you/${mode}/?type=${
-        this.props.type
-        }`;
+    if (this.props.type == "all") {
+      url = `${Urls().api()}/for-you/${mode}/?type=${this.props.type}`;
     } else {
       url = `${Urls().api()}/for-you/${mode}/?${this.props.query}`;
     }
@@ -52,34 +50,30 @@ class Arts extends Component {
         this.setState({
           arts: response.data
         });
-
-
       })
       .catch(error => {
         this.setState({
           error: true
         });
       });
-  }
+  };
   openModal = value => {
     this.setState({
       login: value
     });
   };
 
-
   renderItems() {
     if (!this.props.foreignItems) {
-      var Arts = (this.props.mode == 'artists') ? this.state.arts.art_set : this.state.arts;
+      var Arts =
+        this.props.mode == "artists"
+          ? this.state.arts.art_set
+          : this.state.arts;
       if (!this.state.error) {
         return (
           Arts &&
           Arts.map((item, index) => (
-            <SingleArts
-              key={item.id}
-              item={item}
-              ArtIndex={index}
-            />
+            <SingleArts key={item.id} item={item} ArtIndex={index} />
           ))
         );
       } else {
@@ -88,27 +82,23 @@ class Arts extends Component {
     } else {
       return (
         this.props.items &&
-        this.props.items.map((items) => (
-          items.art_set.map((item, index) => (
-            <SingleArts
-              key={item.id}
-              item={item}
-              ArtIndex={index}
-              openModal={this.openModal}
-              isLogined={isLogined}
-            />
-          ))
+        this.props.items.map((items, index) => (
+          <SingleArts
+            key={items.id}
+            item={items}
+            ArtIndex={index}
+            openModal={this.openModal}
+            isLogined={isLogined}
+          />
         ))
       );
     }
   }
 
-
-
-
-
   render() {
-    const showwhenuserLoggedin = this.props.handleLogin ? this.state.justLogin : true;
+    const showwhenuserLoggedin = this.props.handleLogin
+      ? this.state.justLogin
+      : true;
     const {
       id,
       mode,
@@ -126,20 +116,20 @@ class Arts extends Component {
       visible
     } = this.props;
     return (
-
       <>
-        {visible && showwhenuserLoggedin &&
+        {visible && showwhenuserLoggedin && (
           <Section ExtraClass={sectionName}>
-
-
-            <div className='section_header'>
-              {hasannotation &&
-                <div className='annotation'>
-                  {annotation} {based_name && <a href={Urls().artist() + based_slug}>{based_name}</a>}
+            <div className="section_header">
+              {hasannotation && (
+                <div className="annotation">
+                  {annotation}{" "}
+                  {based_name && (
+                    <a href={Urls().artist() + based_slug}>{based_name}</a>
+                  )}
                 </div>
-              }
+              )}
               <h1>{title}</h1>
-              {follow &&
+              {follow && (
                 <Follow
                   isFollow={isFollow}
                   mode={mode}
@@ -147,27 +137,28 @@ class Arts extends Component {
                   count={2}
                   hassPopover
                 />
-
-              }
-              {viewsLink &&
-                <a href={viewsLink} className='view-all'>
+              )}
+              {viewsLink && (
+                <a href={viewsLink} className="view-all">
                   نمایش همه
-            </a>
-              }
+                </a>
+              )}
             </div>
             <Flickity
-              className={'carousel items'}
-              elementType={'div'}
+              className={"carousel items"}
+              elementType={"div"}
               options={flickityOptions}
               disableImagesLoaded={false}
               reloadOnUpdate
             >
-              {type == 'all' && (
-                <div className='artist_list'>
-                  <div className='content'>
+              {type == "all" && (
+                <div className="artist_list">
+                  <div className="content">
                     {this.state.arts.artist_set &&
                       this.state.arts.artist_set.map(item => (
-                        <a key={item.id} href={item.slug}>{item.name}</a>
+                        <a key={item.id} href={item.slug}>
+                          {item.name}
+                        </a>
                       ))}
                   </div>
                 </div>
@@ -175,7 +166,7 @@ class Arts extends Component {
               {this.renderItems()}
             </Flickity>
           </Section>
-        }
+        )}
         <Login
           hasModal
           modalisOpen={this.state.login}

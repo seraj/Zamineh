@@ -67,7 +67,10 @@ export const Saves = () => {
             هنرمندانی که دنبال میکنید{" "}
             <span>{followedArtists.count} هنرمند دنبال میکنید</span>
           </h2>
-          <RecomArtist artist={followedArtists.artist_set} />
+          <RecomArtist
+            artist={followedArtists.artist_set}
+            foreignItems={true}
+          />
         </section>
       )}
       {followedGalleries && followedGalleries.gallery_set && (
@@ -88,7 +91,11 @@ export const Saves = () => {
             دسته بندی‌هایی که دنبال میکنید{" "}
             <span>{followedCats.count} دسته بندی‌ دنبال میکنید</span>
           </h2>
-          <Categories cats={followedCats.cat_set} />
+          <Categories
+            cats={followedCats.cat_set}
+            art_set={followedCats.art_set}
+            foreignItems={true}
+          />
         </section>
       )}
     </>

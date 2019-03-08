@@ -22,6 +22,8 @@ class Categories extends React.Component {
           title={item.name}
           hasannotation
           annotation={ModelManager().convertModelName("genre")}
+          foreignItems={this.props.foreignItems}
+          items={this.props.foreignItems ? this.props.art_set : null}
         />
       ));
     }

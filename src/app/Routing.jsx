@@ -140,7 +140,7 @@ export default function Routing({ isLogined }) {
         />
         <Route
           exact
-          path={Urls().ArtistRegistration()}
+          path={Urls().ArtistPanel()}
           render={() => <ArtistRegistration />}
         />
         <Route
@@ -165,7 +165,7 @@ export default function Routing({ isLogined }) {
         />
         <Route
           exact
-          path={Urls().GalleryRegistration()}
+          path={Urls().GalleryPanel()}
           render={() => <GalleryRegistration />}
         />
         {/* end Artist & Gallery Routing */}
@@ -243,7 +243,7 @@ const GalleryPrivateRoute = ({ component: Component, ...rest }) => (
       ) : (
         <Redirect
           to={{
-            pathname: Urls().GalleryRegistration(),
+            pathname: Urls().GalleryPanel(),
             state: { from: props.location }
           }}
         />
@@ -261,7 +261,7 @@ const ArtistPrivateRoute = ({ component: Component, ...rest }) => (
       ) : (
         <Redirect
           to={{
-            pathname: Urls().ArtistRegistration(),
+            pathname: Urls().ArtistPanel(),
             state: { from: props.location }
           }}
         />

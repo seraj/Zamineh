@@ -284,6 +284,10 @@ class Profile extends React.Component {
                   <div className="detail">
                     <div className="info">
                       <h1>{config.name}</h1>
+                      <span>
+                        اعتبار شما :
+                        {NumbersConvertor().convertToPersian(config.credit)}
+                      </span>
                       <div
                         onClick={() => this.openCreditModal(true)}
                         className="creditbtn"
@@ -307,6 +311,7 @@ class Profile extends React.Component {
                         هنرمند دنبال میکنید,{" "}
                       </span>
                     )}
+                    <br />
                     {config.medium_follow_count !== 0 && (
                       <span>
                         {NumbersConvertor().convertToPersian(

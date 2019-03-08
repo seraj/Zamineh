@@ -84,8 +84,11 @@ class ArtistProfile extends React.Component {
     };
   }
   componentDidMount() {
-    if (location.pathname === `/panel/artist`) {
-      window.location.replace(`${Urls().ArtistProfile()}arts`);
+    if (
+      location.pathname === `/panel/artist/dashboard` ||
+      location.pathname === `/panel/artist/dashboard/`
+    ) {
+      window.location.replace(`${Urls().ArtistDashboard()}arts`);
     }
     this.getConfig();
   }

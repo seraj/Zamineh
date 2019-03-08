@@ -84,8 +84,11 @@ class GalleryProfile extends React.Component {
     };
   }
   componentDidMount() {
-    if (location.pathname === `/panel/gallery`) {
-      window.location.replace(`${Urls().GalleryProfile()}arts`);
+    if (
+      location.pathname === `/panel/gallery/dashboard` ||
+      location.pathname === `/panel/gallery/dashboard/`
+    ) {
+      window.location.replace(`${Urls().GalleryDashboard()}arts`);
     }
     this.getConfig();
   }

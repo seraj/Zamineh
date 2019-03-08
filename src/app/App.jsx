@@ -56,8 +56,8 @@ class App extends React.Component {
   };
   getClientsIDSecret = async () => {
     const Panels = window.location.href.includes("panel/");
-    const ArtistPanel = window.location.href.includes(Urls().ArtistProfile());
-    const GalleryPanel = window.location.href.includes(Urls().GalleryProfile());
+    const ArtistPanel = window.location.href.includes(Urls().ArtistPanel());
+    const GalleryPanel = window.location.href.includes(Urls().GalleryPanel());
     const JuryPanel = window.location.href.includes(Urls().JuryPanel());
 
     try {
@@ -66,11 +66,11 @@ class App extends React.Component {
       var auth_client_id = cookie.load("auth_client_id", { path: "/" });
 
       var galleryReg_auth_client_id = cookie.load("gallery_auth_client_id", {
-        path: Urls().GalleryProfile()
+        path: Urls().GalleryPanel()
       });
       var artistReg_auth_client_secret = cookie.load(
         "artist_auth_client_secret",
-        { path: Urls().ArtistProfile() }
+        { path: Urls().ArtistPanel() }
       );
       var jury_auth_client_id = cookie.load("jury_auth_client_id", {
         path: Urls().JuryPanel()

@@ -254,7 +254,12 @@ class ArtistRegistration extends React.Component {
     else {
       this.BtnSubmitLoading(true);
       axios
-        .post(`${Urls().api()}/gallery-app/artist/portfolio-step1/`, data)
+        .post(`${Urls().api()}/gallery-app/artist/portfolio-step1/`, data, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        })
         .then(() => {
           Toast("success", "اطلاعات شما با موفقیت ثبت شد");
           this.BtnSubmitLoading(false);
@@ -270,7 +275,12 @@ class ArtistRegistration extends React.Component {
   artistRegisterStep2 = values => {
     this.BtnSubmitLoading(true);
     axios
-      .post(`${Urls().api()}/gallery-app/artist/portfolio-step2/`, values)
+      .post(`${Urls().api()}/gallery-app/artist/portfolio-step2/`, values, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      })
       .then(() => {
         Toast("success", "اطلاعات شما با موفقیت ثبت شد");
 
@@ -290,7 +300,12 @@ class ArtistRegistration extends React.Component {
       this.BtnSubmitLoading(true);
 
       axios
-        .post(`${Urls().api()}/gallery-app/artist/portfolio-step3/new-step/`)
+        .post(`${Urls().api()}/gallery-app/artist/portfolio-step3/new-step/`, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        })
         .then(() => {
           Toast("success", "اطلاعات شما با موفقیت ثبت شد");
 
@@ -310,7 +325,12 @@ class ArtistRegistration extends React.Component {
     } else {
       this.BtnSubmitLoading(true);
       axios
-        .post(`${Urls().api()}/gallery-app/artist/portfolio-step4/`)
+        .post(`${Urls().api()}/gallery-app/artist/portfolio-step4/`, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        })
         .then(() => {
           Toast("success", "اطلاعات شما با موفقیت ثبت شد");
           this.BtnSubmitLoading(false);
@@ -790,7 +810,7 @@ class ArtistRegistration extends React.Component {
                     afterTimeFinished={this.afterTimeFinished}
                   />
                 )}
-                {!successBox && (
+                {!successBox && SecurityManager().hasArtistRegToken() && (
                   <StepBar currentStep={currentStep} page="artist" />
                 )}
                 <div className={Loading ? `LoadingData` : ""} />
@@ -802,6 +822,7 @@ class ArtistRegistration extends React.Component {
                     validationAPI="/gallery-app/phone/validate/"
                     loginAPI="/gallery-app/gallery/login/"
                     type="Artist"
+                    afterTimeFinished={this.afterTimeFinished}
                     setAccessTokens={this.setAccessTokens}
                   />
                 )}
