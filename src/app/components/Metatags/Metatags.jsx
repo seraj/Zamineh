@@ -120,3 +120,14 @@ export const SingleCategoryMetaTag = props => {
     </Helmet>
   );
 };
+export const StaticPages = ({ title, url }) => {
+  return (
+    <Helmet>
+      <title>{title}</title>
+      <meta id="em_mtag1" property="og:description" content="" />
+      <meta id="em_mtag2" property="og:url" content={url} />
+      <meta id="em_mtag3" name="keywords" content="" />
+      <meta id="em_mtag4" name="description" content="" />
+    </Helmet>
+  );
+};

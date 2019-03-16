@@ -18,6 +18,8 @@ import Shows from "./components/Shows/Shows";
 import Show from "./components/Shows/SingleShow/Show";
 import ArtistAlphabet from "./components/Artists/ArtistAlphabet";
 import Login from "./login/Login";
+import ContactUs from "./components/StaticPages/ContactUs";
+import AboutUs from "./components/StaticPages/AboutUs";
 
 import Categories from "./components/Categories/Categories";
 
@@ -64,6 +66,10 @@ export default function Routing({ isLogined }) {
       <Switch>
         {/* Home Page */}
         <Route path="/" exact render={() => <Home isLogined={isLogined} />} />
+
+        {/* Static Pages */}
+        <Route path={Urls().contactus()} exact render={() => <ContactUs />} />
+        <Route path={Urls().aboutus()} exact render={() => <AboutUs />} />
 
         {/* Login Page */}
         <Route

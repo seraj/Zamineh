@@ -32,6 +32,12 @@ export default function Urls() {
     payment() {
       return "/payment/";
     },
+    contactus() {
+      return "/contact/";
+    },
+    aboutus() {
+      return "/about/";
+    },
 
     // Galleries
     galleries() {
