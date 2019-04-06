@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './404.scss'
 
-export default function Overview({ page }) {
+export default function Page404({ page }) {
     return (
         <div className={styles.page404}>
 

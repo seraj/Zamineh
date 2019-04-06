@@ -9,7 +9,7 @@ import SecurityManager from "./security/SecurityManager";
 
 import Loadable from "react-loadable";
 
-import page404 from "./components/errorPages/404";
+import Page404 from "./components/errorPages/404";
 // import Home from './home/Home';
 import Artists from "./components/Artists/Artists";
 import Artist from "./components/Artists/Artist";
@@ -201,7 +201,7 @@ export default function Routing({ isLogined }) {
         />
 
         {/* 404 */}
-        <Route component={page404} />
+        <Route component={Page404} />
       </Switch>
     </Section>
   );
