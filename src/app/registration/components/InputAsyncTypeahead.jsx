@@ -1,74 +1,70 @@
-import React, { Fragment } from 'react';
-import { Field } from 'react-final-form-html5-validation'
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-// import GithubMenuItem from './MenuItem';
-import makeAndHandleRequest from './makeAndHandleRequest';
-import arrify from 'arrify';
-import 'react-bootstrap-typeahead/css/Typeahead.css';
+import React, { Fragment } from "react";
+import { Field } from "react-final-form-html5-validation";
+import { AsyncTypeahead } from "react-bootstrap-typeahead";
+import makeAndHandleRequest from "./makeAndHandleRequest";
+import arrify from "arrify";
+import "react-bootstrap-typeahead/css/Typeahead.css";
 
-
-const AdaptedTypeahead = ({
-  input,
-  meta: { valid,
-    touched },
-  ...rest
-}) => (
-    <AsyncTypeahead {...input} {...rest} selected={input.value} valid={touched ? valid : ''} />
-  );
+const AdaptedTypeahead = ({ input, meta: { valid, touched }, ...rest }) => (
+  <AsyncTypeahead
+    {...input}
+    {...rest}
+    selected={input.value}
+    valid={touched ? valid : ""}
+  />
+);
 class InputAsyncTypeahead extends React.Component {
   state = {
     isLoading: false,
-    options: [],
+    options: []
   };
 
   render() {
-
     return (
-      <div className='InputTypeahead'>
+      <div className="InputTypeahead">
         <Field
           name={this.props.name}
           validate={this.props.validate}
           allowNew={this.props.allowNew}
           multiple={this.props.multiple}
           clearButton={this.props.clearButton}
-          newSelectionPrefix={this.props.newSelectionPrefix ? this.props.newSelectionPrefix : 'اضافه کردن این ایتم:'}
+          newSelectionPrefix={
+            this.props.newSelectionPrefix
+              ? this.props.newSelectionPrefix
+              : "اضافه کردن این ایتم:"
+          }
           component={AdaptedTypeahead}
           placeholder={this.props.placeholder}
-          labelKey='name'
+          labelKey="name"
           format={arrify}
           minLength={1}
-          searchText='جستجو...'
-          emptyLabel='یافت نشد.'
-          promptText='برای جستجو تایپ کنید...'
+          searchText="جستجو..."
+          emptyLabel="یافت نشد."
+          promptText="برای جستجو تایپ کنید..."
           options={this.state.options}
           onSearch={this._handleSearch}
           isLoading={this.state.isLoading}
           flip
           selectHintOnEnter
-        // highlightOnlyResult
+          // highlightOnlyResult
         />
       </div>
     );
   }
 
-
-
-  _handleChange = (e) => {
+  _handleChange = e => {
     const { checked, name } = e.target;
     this.setState({ [name]: checked });
-  }
-  _handleSearch = (query) => {
+  };
+  _handleSearch = query => {
     this.setState({ isLoading: true });
-    makeAndHandleRequest(this.props.api, query)
-      .then(({ options }) => {
-        this.setState({
-          isLoading: false,
-          options,
-        });
+    makeAndHandleRequest(this.props.api, query).then(({ options }) => {
+      this.setState({
+        isLoading: false,
+        options
       });
-
-  }
+    });
+  };
 }
-/* example-end */
 
 export default InputAsyncTypeahead;
