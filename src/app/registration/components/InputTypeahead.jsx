@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Field } from 'react-final-form-html5-validation'
 import { Typeahead } from 'react-bootstrap-typeahead';
-// import GithubMenuItem from './MenuItem';
 import makeAndHandleRequest from './makeAndHandleRequest';
 import arrify from 'arrify';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
@@ -66,6 +65,5 @@ class InputTypeahead extends React.Component {
 
     }
 }
-/* example-end */
 
 export default InputTypeahead;
